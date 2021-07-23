@@ -1,0 +1,116 @@
+﻿USE [HicadFixedAssetDb]
+GO
+SET IDENTITY_INSERT [dbo].[Menus] ON 
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (1, N'User Management', NULL, N'User', N'Index', N'Create, read, update, delete activities on roles, menus and devices', 1, 0, CAST(N'2020-11-17T11:15:03.5033717' AS DateTime2), CAST(N'2020-11-17T11:15:03.5035155' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (2, N'Menu/Activities', NULL, N'Menu', N'Index', N'Create, read, update, delete activities on user', 1, 0, CAST(N'2020-11-17T11:15:03.5036759' AS DateTime2), CAST(N'2020-11-17T11:15:03.5036763' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (4, N'Asset Register', NULL, N'AssetRegister', N'Index', N'Show summary report or overview of all employees', 9, 0, CAST(N'2020-11-17T11:15:03.5036770' AS DateTime2), CAST(N'2020-11-17T11:15:03.5036771' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (5, N'Depreciation Value', NULL, N'depreciationValue', N'Index', N'Show report of biometric process', 9, 0, CAST(N'2020-11-17T11:15:03.5036773' AS DateTime2), CAST(N'2020-11-17T11:15:03.5036774' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (6, N'Role', NULL, N'Role', N'Index', N'Create, read, update, delete activities associated with biometric excercise periods', 1, 0, CAST(N'2020-11-17T11:15:03.5036787' AS DateTime2), CAST(N'2020-11-17T11:15:03.5036788' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (7, N'Company', NULL, N'Company', N'Index', N'Create,read,update', 2, 0, CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (8, N'BusinessLine', NULL, N'BusinessLine', N'Index', NULL, 2, 0, CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (9, N'Division', NULL, N'Division', N'Index', NULL, 2, 0, CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (10, N'Cost Center', NULL, N'CostCenter', N'Index', NULL, 2, 0, CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (11, N'Asset Classification', NULL, N'AssetClassification', N'Index', NULL, 2, 0, CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (12, N'Asset Registeration', NULL, N'AssetRegisteration', N'Index', NULL, 2, 0, CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-10T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (13, N'Asset Movement', NULL, N'AssetMovement', N'Index', NULL, 5, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (15, N'Asset Reclassification', NULL, N'AssetReclassification', N'Index', NULL, 5, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (17, N'Asset Revaluation', NULL, N'Revaluation', N'Index', NULL, 5, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (18, N'Asset Disposal', NULL, N'Disposal', N'Index', NULL, 5, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (19, N'Insurance Renewal', NULL, N'Renewal', N'Index', NULL, 5, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (20, N'Generate Depreciation', NULL, N'depreciation', N'Index', NULL, 6, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (22, N'Update Ledger with Depreciation', NULL, N'UpdateDepreciation', N'Index', NULL, 6, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (23, N'YEAREND PROCESS', NULL, N'YearendProcessing', N'Index', NULL, 7, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (24, N'Depreciation Summary', NULL, N'Summary', N'Index', NULL, 9, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (25, N'Asset Movement Report', NULL, N'MovementReport', N'Index', NULL, 9, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (27, N'Addition and Disposal', NULL, N'DisposalReport', N'Index', NULL, 9, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[Menus] ([Id], [Name], [Code], [Controller], [Action], [Description], [MenuGroupId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (28, N'Insurance Renewal Notice', NULL, N'RenewalNoticeReport', N'Index', NULL, 9, 0, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[Menus] OFF
+GO
+SET IDENTITY_INSERT [dbo].[RoleMenus] ON 
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (1, 1, 1, 1, CAST(N'2020-11-17T11:15:03.9131914' AS DateTime2), CAST(N'2020-11-17T11:15:03.9133893' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (2, 2, 1, 1, CAST(N'2020-11-17T11:15:03.9135132' AS DateTime2), CAST(N'2020-11-17T11:15:03.9135137' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (5, 4, 1, 1, CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (6, 5, 1, 1, CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (7, 6, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (8, 7, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (9, 8, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (10, 9, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (11, 10, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (12, 11, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (13, 12, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (14, 13, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (18, 15, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (20, 17, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (21, 18, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (22, 19, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (23, 20, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (24, 22, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (25, 23, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (26, 24, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (27, 25, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[RoleMenus] ([Id], [MenuId], [RoleId], [IsActive], [CreatedOn], [UpdatedOn]) VALUES (28, 27, 1, 1, CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-18T00:00:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[RoleMenus] OFF
+GO
+SET IDENTITY_INSERT [dbo].[MenuGroups] ON 
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (1, N'SYSTEM ADMINISTRATOR', N'Administrative Menus', CAST(N'2020-11-17T11:15:03.3864993' AS DateTime2), CAST(N'2020-11-17T11:15:03.3865974' AS DateTime2))
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (2, N'REFERENCE TABLE', N'Report Menus', CAST(N'2020-11-17T11:15:03.4029582' AS DateTime2), CAST(N'2020-11-17T11:15:03.4029590' AS DateTime2))
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (5, N'TRANSACTION', N'transaction Menus', CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (6, N'MONTHEND PROCESS', N'month end processing menu', CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (8, N'YEAREND PROCESS', N'year end processing', CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+INSERT [dbo].[MenuGroups] ([Id], [Name], [Description], [CreatedOn], [UpdatedOn]) VALUES (9, N'REPORT', N'report menu', CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2), CAST(N'2020-11-17T00:00:00.0000000' AS DateTime2))
+GO
+SET IDENTITY_INSERT [dbo].[MenuGroups] OFF
+GO
