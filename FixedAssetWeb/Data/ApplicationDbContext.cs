@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
+using FixedAssetCore.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,7 +35,9 @@ namespace FixedAssetWeb.Data
     public DbSet<nac_mainact> nac_mainacts { get ; set ; }
     public DbSet<nac_sub_type> nac_sub_Types { get ; set ; }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    public DbSet<fa_history> fa_history { get; set; }
+    public DbSet<fa_transaction> fa_transaction { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 

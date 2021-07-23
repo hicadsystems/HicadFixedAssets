@@ -486,6 +486,120 @@ namespace FixedAssetWeb.Migrations
                     b.ToTable("nac_sub_Types");
                 });
 
+            modelBuilder.Entity("FixedAssetCore.Entities.fa_history", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Accum_depre");
+
+                    b.Property<string>("Busline")
+                        .HasMaxLength(2);
+
+                    b.Property<DateTime>("Dispdate");
+
+                    b.Property<decimal>("Dispval");
+
+                    b.Property<decimal>("Insuredval");
+
+                    b.Property<DateTime>("Purchdate");
+
+                    b.Property<decimal>("Purchval");
+
+                    b.Property<DateTime>("Reclassdate");
+
+                    b.Property<DateTime>("Revaldate");
+
+                    b.Property<string>("assetCode")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("assetdesc")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("insrenewdate");
+
+                    b.Property<DateTime>("lastopendate");
+
+                    b.Property<DateTime>("movedate");
+
+                    b.Property<decimal>("newRevalval");
+
+                    b.Property<string>("newclass")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("newloc")
+                        .HasMaxLength(15);
+
+                    b.Property<string>("oldclass")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("oldloc")
+                        .HasMaxLength(15);
+
+                    b.Property<DateTime>("oldrenewdate");
+
+                    b.Property<decimal>("oldrevalval");
+
+                    b.Property<string>("period")
+                        .HasMaxLength(8);
+
+                    b.Property<string>("userid")
+                        .HasMaxLength(15);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("fa_history");
+                });
+
+            modelBuilder.Entity("FixedAssetCore.Entities.fa_transaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Accum_depre");
+
+                    b.Property<string>("Busline")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("Class")
+                        .HasMaxLength(2);
+
+                    b.Property<string>("Dept")
+                        .HasMaxLength(15);
+
+                    b.Property<DateTime>("Dispdate");
+
+                    b.Property<decimal>("Dispval");
+
+                    b.Property<DateTime>("Insurdate");
+
+                    b.Property<decimal>("Insuredval");
+
+                    b.Property<DateTime>("Purchdate");
+
+                    b.Property<decimal>("Purchval");
+
+                    b.Property<DateTime>("Reclassdate");
+
+                    b.Property<DateTime>("Revaldate");
+
+                    b.Property<decimal>("Revalval");
+
+                    b.Property<string>("assetCode")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("assetdesc")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("movedate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("fa_transaction");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
