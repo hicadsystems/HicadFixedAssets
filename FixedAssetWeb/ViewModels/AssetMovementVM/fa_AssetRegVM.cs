@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
-namespace FixedAssetCore.Core.Entities
+namespace FixedAssetWeb.ViewModels.AssetMovementVM
 {
-    public class fa_Assetsreg
+    public class fa_AssetRegVM
     {
         public int Id { get; set; }
+
+        [Required]
         [StringLength(20)]
         public string assetCode { get; set; }
         [StringLength(100)]
         public string assetDesc { get; set; }
         [StringLength(2)]
-        public string Class { get; set;}
+        public string classCode { get; set; }
         [StringLength(15)]
         public string Dept { get; set; }
         [StringLength(2)]
@@ -33,15 +35,14 @@ namespace FixedAssetCore.Core.Entities
         [StringLength(8)]
         public string Dispdate { get; set; }
 
-        public Nullable<decimal> Purchval { get; set; }
-        public Nullable<decimal> Accum_depre { get; set; }
-        public Nullable<decimal> Dispval { get; set; }
-
-        public Nullable<decimal> Revalval { get; set; }
+        public decimal? Purchval { get; set; }
+        public decimal? Accum_depre { get; set; }
+        public decimal? Dispval { get; set; }
+        public decimal? Revalval { get; set; }
         [StringLength(8)]
         public string Insurdate { get; set; }
-        public Nullable<decimal> Insuredval { get; set; }
-        public Nullable<decimal> year_depr { get; set; }
-        public Nullable<decimal> depr_rate { get; set; }
+        public decimal? Insuredval { get; set; }
+        public decimal? year_depr { get; set; }
+        public decimal? depr_rate { get; set; }
     }
 }

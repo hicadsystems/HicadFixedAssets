@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.IRepositories;
+using FixedAssetCore.IRepositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace FixedAssetCore.Core.Data
         IAssetRegistration reg { get; }
         IAssetClass assetClass { get; }
         IAccountChart accountChart { get; }
+        IAssetMovement assetMovement { get; }
 
         Task<bool> Done();
     }

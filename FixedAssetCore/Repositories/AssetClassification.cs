@@ -21,5 +21,7 @@ namespace FixedAssetCore.Core.Repositories
         {
             return context.fa_class.FirstOrDefaultAsync(x => x.classcode == code);
         }
+        
+     
     }
 }

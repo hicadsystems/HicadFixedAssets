@@ -35,9 +35,9 @@ namespace FixedAssetWeb.Data
     public DbSet<nac_mainact> nac_mainacts { get ; set ; }
     public DbSet<nac_sub_type> nac_sub_Types { get ; set ; }
 
-    public DbSet<fa_history> fa_history { get; set; }
-    public DbSet<fa_transaction> fa_transaction { get; set; }
-        protected override void OnModelCreating(ModelBuilder builder)
+    public DbSet<fa_history> fa_historys { get; set; }
+    public DbSet<fa_transaction> fa_transactions { get; set; }
+    protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
@@ -79,6 +79,9 @@ namespace FixedAssetWeb.Data
             .HasOne(x => x.fa_Menu)
             .WithMany(x => x.fa_RoleMenus)
             .HasForeignKey(x => x.MenuId);
+
+            builder.Entity<fa_Assetsreg>()
+                    .HasKey(x => x.assetCode);
     }
    }
 }

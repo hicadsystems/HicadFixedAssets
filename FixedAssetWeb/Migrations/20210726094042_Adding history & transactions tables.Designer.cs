@@ -4,14 +4,16 @@ using FixedAssetWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FixedAssetWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210726094042_Adding history & transactions tables")]
+    partial class Addinghistorytransactionstables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,24 +295,24 @@ namespace FixedAssetWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal?>("Accum_depre");
+                    b.Property<decimal>("Accum_depre");
 
                     b.Property<string>("Busline")
                         .HasMaxLength(2);
 
-                    b.Property<DateTime?>("Dispdate");
+                    b.Property<DateTime>("Dispdate");
 
-                    b.Property<decimal?>("Dispval");
+                    b.Property<decimal>("Dispval");
 
-                    b.Property<decimal?>("Insuredval");
+                    b.Property<decimal>("Insuredval");
 
-                    b.Property<DateTime?>("Purchdate");
+                    b.Property<DateTime>("Purchdate");
 
-                    b.Property<decimal?>("Purchval");
+                    b.Property<decimal>("Purchval");
 
-                    b.Property<DateTime?>("Reclassdate");
+                    b.Property<DateTime>("Reclassdate");
 
-                    b.Property<DateTime?>("Revaldate");
+                    b.Property<DateTime>("Revaldate");
 
                     b.Property<string>("assetCode")
                         .HasMaxLength(20);
@@ -318,13 +320,13 @@ namespace FixedAssetWeb.Migrations
                     b.Property<string>("assetdesc")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime?>("insrenewdate");
+                    b.Property<DateTime>("insrenewdate");
 
-                    b.Property<DateTime?>("lastopendate");
+                    b.Property<DateTime>("lastopendate");
 
-                    b.Property<DateTime?>("movedate");
+                    b.Property<DateTime>("movedate");
 
-                    b.Property<decimal?>("newRevalval");
+                    b.Property<decimal>("newRevalval");
 
                     b.Property<string>("newclass")
                         .HasMaxLength(2);
@@ -338,9 +340,9 @@ namespace FixedAssetWeb.Migrations
                     b.Property<string>("oldloc")
                         .HasMaxLength(15);
 
-                    b.Property<DateTime?>("oldrenewdate");
+                    b.Property<DateTime>("oldrenewdate");
 
-                    b.Property<decimal?>("oldrevalval");
+                    b.Property<decimal>("oldrevalval");
 
                     b.Property<string>("period")
                         .HasMaxLength(8);
@@ -359,7 +361,7 @@ namespace FixedAssetWeb.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal?>("Accum_depre");
+                    b.Property<decimal>("Accum_depre");
 
                     b.Property<string>("Busline")
                         .HasMaxLength(2);
@@ -370,23 +372,23 @@ namespace FixedAssetWeb.Migrations
                     b.Property<string>("Dept")
                         .HasMaxLength(15);
 
-                    b.Property<DateTime?>("Dispdate");
+                    b.Property<DateTime>("Dispdate");
 
-                    b.Property<decimal?>("Dispval");
+                    b.Property<decimal>("Dispval");
 
-                    b.Property<DateTime?>("Insurdate");
+                    b.Property<DateTime>("Insurdate");
 
-                    b.Property<decimal?>("Insuredval");
+                    b.Property<decimal>("Insuredval");
 
-                    b.Property<DateTime?>("Purchdate");
+                    b.Property<DateTime>("Purchdate");
 
-                    b.Property<decimal?>("Purchval");
+                    b.Property<decimal>("Purchval");
 
-                    b.Property<DateTime?>("Reclassdate");
+                    b.Property<DateTime>("Reclassdate");
 
-                    b.Property<DateTime?>("Revaldate");
+                    b.Property<DateTime>("Revaldate");
 
-                    b.Property<decimal?>("Revalval");
+                    b.Property<decimal>("Revalval");
 
                     b.Property<string>("assetCode")
                         .HasMaxLength(20);
@@ -394,7 +396,7 @@ namespace FixedAssetWeb.Migrations
                     b.Property<string>("assetdesc")
                         .HasMaxLength(50);
 
-                    b.Property<DateTime?>("movedate");
+                    b.Property<DateTime>("movedate");
 
                     b.HasKey("Id");
 

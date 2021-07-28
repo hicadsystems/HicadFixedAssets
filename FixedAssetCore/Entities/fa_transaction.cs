@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace FixedAssetCore.Entities
+namespace FixedAssetCore.Core.Entities
 {
 	public class fa_transaction
 	{
+		[Key]
 		public int Id { get; set; }
 
 		[StringLength(20)]
@@ -23,17 +24,17 @@ namespace FixedAssetCore.Entities
 
 		[StringLength(2)]
 		public string Busline { get; set; }
-		public DateTime Purchdate { get; set; }
-		public DateTime Revaldate { get; set; }
-		public DateTime Reclassdate { get; set; }
-		public DateTime movedate { get; set; }
-		public DateTime Dispdate { get; set; }
-		public decimal Purchval { get; set; }
-		public decimal Accum_depre { get; set; }
-		public decimal Dispval { get; set; }
-		public decimal Revalval { get; set; }
-		public DateTime Insurdate { get; set; }
-		public decimal Insuredval { get; set; }
+		public DateTime? Purchdate { get; set; }
+		public DateTime? Revaldate { get; set; }
+		public DateTime? Reclassdate { get; set; }
+		public DateTime? movedate { get; set; }
+		public DateTime? Dispdate { get; set; }
+		public decimal? Purchval { get; set; }
+		public decimal? Accum_depre { get; set; }
+		public decimal? Dispval { get; set; }
+		public decimal? Revalval { get; set; }
+		public DateTime? Insurdate { get; set; }
+		public decimal? Insuredval { get; set; }
 	}
 
 }

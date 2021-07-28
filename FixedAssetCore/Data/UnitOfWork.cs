@@ -1,5 +1,7 @@
 ﻿using FixedAssetCore.Core.IRepositories;
 using FixedAssetCore.Core.Repositories;
+using FixedAssetCore.IRepositories;
+using FixedAssetCore.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +27,7 @@ namespace FixedAssetCore.Core.Data
             reg = new AssetRegistration(context);
             assetClass = new AssetClassification(context);
             accountChart = new ChartRepository(context);
+            assetMovement = new AssetMovement(context);
         }
 
         public IUserRepository Users { get; set; }
@@ -48,6 +51,8 @@ namespace FixedAssetCore.Core.Data
         public IAssetClass assetClass { get; set; }
 
         public IAccountChart accountChart { get; set; }
+
+        public IAssetMovement assetMovement { get; set; }
 
         public async Task<bool> Done()
         {

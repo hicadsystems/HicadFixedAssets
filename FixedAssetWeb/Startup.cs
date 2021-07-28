@@ -81,6 +81,7 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetRegisterationService, AssetRegService>();
             services.AddScoped<IBusinessLineService, BusinessLineService>();
             services.AddScoped<IAssetClassService, AssetClassService>();
+            services.AddScoped<IAssetMovementService, AssetMovementService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
