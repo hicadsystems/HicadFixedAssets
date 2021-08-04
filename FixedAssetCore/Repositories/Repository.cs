@@ -74,6 +74,11 @@ namespace FixedAssetCore.Core.Repositories
             return await context.Instance.Set<T>().FindAsync(id);
         }
 
+        public async Task<T> FindCode(string id)
+        {
+            return await context.Instance.Set<T>().FindAsync(id);
+        }
+
         public IEnumerable<T> GetByExpression(Expression<Func<T, bool>> predicate)
         {
             return context.Instance.Set<T>().Where(predicate);

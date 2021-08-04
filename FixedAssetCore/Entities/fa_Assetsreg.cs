@@ -8,6 +8,7 @@ namespace FixedAssetCore.Core.Entities
 {
     public class fa_Assetsreg
     {
+        [Key]
         public int Id { get; set; }
         [StringLength(20)]
         public string assetCode { get; set; }
@@ -19,29 +20,23 @@ namespace FixedAssetCore.Core.Entities
         public string Dept { get; set; }
         [StringLength(2)]
         public string Busline { get; set; }
-        [StringLength(8)]
-        public string Purchdate { get; set; }
+        public DateTime? Purchdate { get; set; }
 
-        [StringLength(8)]
-        public string Revaldate { get; set; }
+        public DateTime? Revaldate { get; set; }
 
-        [StringLength(8)]
-        public string Reclassdate { get; set; }
-        [StringLength(8)]
-        public string movedate { get; set; }
+        public DateTime? Reclassdate { get; set; }
+        public DateTime? movedate { get; set; }
 
-        [StringLength(8)]
-        public string Dispdate { get; set; }
+        public DateTime? Dispdate { get; set; }
 
-        public Nullable<decimal> Purchval { get; set; }
-        public Nullable<decimal> Accum_depre { get; set; }
-        public Nullable<decimal> Dispval { get; set; }
+        public decimal? Purchval { get; set; }
+        public decimal? Accum_depre { get; set; }
+        public decimal? Dispval { get; set; }
 
-        public Nullable<decimal> Revalval { get; set; }
-        [StringLength(8)]
-        public string Insurdate { get; set; }
-        public Nullable<decimal> Insuredval { get; set; }
-        public Nullable<decimal> year_depr { get; set; }
-        public Nullable<decimal> depr_rate { get; set; }
+        public decimal? Revalval { get; set; }
+        public DateTime? Insurdate { get; set; }
+        public decimal? Insuredval { get; set; }
+        public decimal? year_depr { get; set; }
+        public decimal? depr_rate { get; set; }
     }
 }

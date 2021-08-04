@@ -1,6 +1,5 @@
 ﻿using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
-using FixedAssetCore.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -80,8 +79,8 @@ namespace FixedAssetWeb.Data
             .WithMany(x => x.fa_RoleMenus)
             .HasForeignKey(x => x.MenuId);
 
-            builder.Entity<fa_Assetsreg>()
-                    .HasKey(x => x.assetCode);
+            //builder.Entity<fa_Assetsreg>()
+            //        .HasKey(x => x.assetCode);
     }
    }
 }

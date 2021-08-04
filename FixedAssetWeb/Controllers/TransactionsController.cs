@@ -8,6 +8,11 @@ namespace FixedAssetWeb.Controllers
 {
     public class TransactionsController : Controller
     {
+        public IActionResult AssetReclassification()
+        {
+            return View();
+        }
+
         public IActionResult AssetMovement()
         {
             return View();

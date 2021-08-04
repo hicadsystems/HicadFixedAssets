@@ -20,8 +20,11 @@ namespace FixedAssetCore.Core.Data
         IAssetRegistration reg { get; }
         IAssetClass assetClass { get; }
         IAccountChart accountChart { get; }
-        IAssetMovement assetMovement { get; }
+        IAssetReclassification assetReclassification { get; }
+        IAssetMovementRepository assetMovementRepository { get; }
 
         Task<bool> Done();
+
+        //int Complete();
     }
 }

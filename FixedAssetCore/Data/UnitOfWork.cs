@@ -2,6 +2,7 @@
 using FixedAssetCore.Core.Repositories;
 using FixedAssetCore.IRepositories;
 using FixedAssetCore.Repositories;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,9 +13,11 @@ namespace FixedAssetCore.Core.Data
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IAssetDbContext context;
-        public UnitOfWork(IAssetDbContext context)
+        private readonly IConfiguration _configuration;
+        public UnitOfWork(IAssetDbContext context, IConfiguration configuration)
         {
             this.context = context;
+            this._configuration = configuration;
 
             Users = new UserRepository(context);
             Menus = new MenuRepository(context);
@@ -27,7 +30,8 @@ namespace FixedAssetCore.Core.Data
             reg = new AssetRegistration(context);
             assetClass = new AssetClassification(context);
             accountChart = new ChartRepository(context);
-            assetMovement = new AssetMovement(context);
+            assetReclassification = new AssetReclassification(context, configuration);
+            assetMovementRepository = new AssetMovementRepository(context, configuration);
         }
 
         public IUserRepository Users { get; set; }
@@ -52,11 +56,36 @@ namespace FixedAssetCore.Core.Data
 
         public IAccountChart accountChart { get; set; }
 
-        public IAssetMovement assetMovement { get; set; }
+        public IAssetReclassification assetReclassification { get; set; }
+
+        public IAssetMovementRepository assetMovementRepository { get; set; }
 
         public async Task<bool> Done()
         {
-           return await context.Instance.SaveChangesAsync() > 0;
+            try
+            {
+                return await context.Instance.SaveChangesAsync() > 0;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
+
+        //public int Complete()
+        //{
+        //    try
+        //    {
+        //        return context.Instance.SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        ex.ToString();
+        //    }
+
+        //    return 0;
+        //}
     }
 }

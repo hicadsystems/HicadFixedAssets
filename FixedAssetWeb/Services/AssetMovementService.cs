@@ -1,6 +1,6 @@
 ﻿using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
-using FixedAssetCore.Core.Repositories;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using System;
 using System.Collections.Generic;
@@ -16,29 +16,19 @@ namespace FixedAssetWeb.Services
         {
             this.unitOfWork = unitOfWork;
         }
-        public IEnumerable<fa_Assetsreg> GetAssets()
+        public IEnumerable<fa_Assetsreg> GetAllAssets()
         {
-            return unitOfWork.assetMovement.All();
+            return unitOfWork.assetMovementRepository.All();
         }
 
-        public Task<fa_Assetsreg> GetAssetByAssetCode(string code)
+        public IEnumerable<nac_costcenters> GetAllCostCenters()
         {
-            return unitOfWork.assetMovement.GetAssetByCode(code);
+            return unitOfWork.cost.All();
         }
 
-        public IEnumerable<fa_class> GetClassifications()
+        public CostCenterDescriptionVM GetCenterDescriptionWithAssetCode(string assetcode)
         {
-            return unitOfWork.assetClass.All();
-        }
-
-        public Task<fa_class> GetClassificationByCode(string code)
-        {
-            return unitOfWork.assetClass.GetClassByCode(code);
-        }
-
-        public Task<bool> UpdateAssetClassification(fa_Assetsreg fa_Assetsreg)
-        {
-          return  unitOfWork.assetMovement.UpdateAsset(fa_Assetsreg);  
+            return unitOfWork.assetMovementRepository.GetCenterDescription(assetcode);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace FixedAssetCore.Core.IRepositories
     public interface IRepository<T>
     {
         Task<T> Find(int id);
+
+        Task<T> FindCode(string id);
         IEnumerable<T> GetByExpression(Expression<Func<T, bool>> predicate);
         IEnumerable<T> All();
         Task<List<T>> FindPaged<T>(int page, int pageSize) where T : class;

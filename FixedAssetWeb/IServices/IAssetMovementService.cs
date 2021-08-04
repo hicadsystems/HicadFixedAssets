@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.Entities;
+using FixedAssetCore.EntityCoreVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +9,10 @@ namespace FixedAssetWeb.IServices
 {
     public interface IAssetMovementService
     {
-        IEnumerable<fa_Assetsreg> GetAssets();
+        IEnumerable<fa_Assetsreg> GetAllAssets();
 
-        Task<fa_Assetsreg> GetAssetByAssetCode(string code);
+        IEnumerable<nac_costcenters> GetAllCostCenters();
 
-        IEnumerable<fa_class> GetClassifications();
-
-        Task<fa_class> GetClassificationByCode(string code);
-
-        Task<bool> UpdateAssetClassification(fa_Assetsreg fa_Assetsreg);
+        CostCenterDescriptionVM GetCenterDescriptionWithAssetCode(string assetcode);
     }
 }

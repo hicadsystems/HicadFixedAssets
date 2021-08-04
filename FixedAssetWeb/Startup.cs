@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
@@ -20,6 +21,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using FixedAssetCore.IRepositories;
+using FixedAssetCore.Repositories;
 
 namespace FixedAssetWeb
 {
@@ -81,6 +84,7 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetRegisterationService, AssetRegService>();
             services.AddScoped<IBusinessLineService, BusinessLineService>();
             services.AddScoped<IAssetClassService, AssetClassService>();
+            services.AddScoped<IAssetReclassificationService, AssetReclassificationService>();
             services.AddScoped<IAssetMovementService, AssetMovementService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

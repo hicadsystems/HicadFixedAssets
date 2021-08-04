@@ -11,7 +11,7 @@ namespace FixedAssetCore.Core.Entities
         public int Id { get; set; }
         public string bl_code { get; set; }
         public string bl_desc { get; set; }
-        public Nullable<System.DateTime> datecreated { get; set; }
+        public DateTime? datecreated { get; set; }
         public string createdby { get; set; }
     }
 }
