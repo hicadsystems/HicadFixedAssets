@@ -2,6 +2,7 @@
 using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,12 @@ namespace FixedAssetWeb.Services
         public CostCenterDescriptionVM GetCenterDescriptionWithAssetCode(string assetcode)
         {
             return unitOfWork.assetMovementRepository.GetCenterDescription(assetcode);
+        }
+
+        public void UpdateAssetDepartment(fa_AssetRegVM fa_assetsregVm)
+        {
+            unitOfWork.assetMovementRepository.UpdateAssetRegDept(fa_assetsregVm);
+            unitOfWork.Done();
         }
     }
 }

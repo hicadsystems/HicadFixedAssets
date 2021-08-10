@@ -3,11 +3,15 @@ using FixedAssetCore.Core.Entities;
 using FixedAssetCore.Core.Repositories;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetCore.IRepositories;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+
 
 namespace FixedAssetCore.Repositories
 {
@@ -33,6 +37,30 @@ namespace FixedAssetCore.Repositories
                 }).FirstOrDefault();
 
             return result;
+        }
+
+        public void UpdateAssetRegDept(fa_AssetRegVM fa_assetregVm)
+        {
+       
+            using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand sqlcommand = new SqlCommand("sp_UpdateAssetMovementRegister", sqlConnection))
+                {
+                    sqlcommand.CommandTimeout = 1200;
+                    sqlcommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlcommand.Parameters.Add(new SqlParameter("@assetCode", fa_assetregVm.assetCode));
+                    sqlcommand.Parameters.Add(new SqlParameter("@newLoc", fa_assetregVm.newUnitCode));
+                    sqlcommand.Parameters.Add(new SqlParameter("@movedate", fa_assetregVm.movedate));
+                    sqlcommand.Parameters.Add(new SqlParameter("@userid",fa_assetregVm.userId));
+
+                    sqlcommand.Parameters.Add("@message", SqlDbType.Char, 500);
+                    sqlcommand.Parameters["@message"].Direction = ParameterDirection.Output;
+
+                    sqlConnection.Open();
+                    sqlcommand.ExecuteNonQuery();
+                    string message = sqlcommand.Parameters["@message"].Value.ToString();
+                }
+            }
         }
     }
 }

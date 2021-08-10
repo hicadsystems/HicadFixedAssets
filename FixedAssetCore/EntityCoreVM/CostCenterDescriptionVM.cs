@@ -7,7 +7,10 @@ namespace FixedAssetCore.EntityCoreVM
     public class CostCenterDescriptionVM
     {
         public string AssetCode { get; set; }
+
+        public string AssetDesc { get; set; }
         public string oldUnitCode { get; set; }
         public string UnitCodeDescription { get; set; }
+        public string newClass { get; set; }
     }
 }

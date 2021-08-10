@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace FixedAssetWeb.IServices
         IEnumerable<nac_costcenters> GetAllCostCenters();
 
         CostCenterDescriptionVM GetCenterDescriptionWithAssetCode(string assetcode);
+
+        void UpdateAssetDepartment(fa_AssetRegVM fa_AssetsregVm);
     }
 }

@@ -89,6 +89,9 @@ namespace FixedAssetWeb.Controllers.Api.Transaction
                     return Ok(new { responseCode = 500, responseDescription = $"Kindly Supply a valid Asset Code and Class Code!! Either {fa_assetRegVm.assetCode} Or {fa_assetRegVm.newClassCode} Is not Available" });
                 }
 
+                string user = User.Identity.Name;
+                fa_assetRegVm.userId = user;
+
                 service.UpdateAssetClassification(fa_assetRegVm);
             }
             catch (Exception e)

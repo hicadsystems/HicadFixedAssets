@@ -62,5 +62,14 @@ namespace FixedAssetWeb.ViewModels.AssetMovementVM
         public string Period { get; set; }
 
         public DateTime? oldrenewdate { get; set; }
+
+        [StringLength(15)]
+        public string newUnitCode { get; set; }
+
+        [StringLength(15)]
+        public string oldUnitCode { get; set; }
+
+        [StringLength(100)]
+        public string unitCodeDescription { get; set; }
     }
 }

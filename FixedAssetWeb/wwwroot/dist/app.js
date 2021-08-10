@@ -2775,6 +2775,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2784,17 +2805,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      errors: null,
-      responseMessage: '',
+      errors: [],
+      responseMessage: "",
       assetList: null,
       costCenterList: null,
       canProcess: true,
       objectBody: {
-        assetCode: '',
-        newClassCode: '',
-        Reclassdate: '',
-        oldUnitCode: '',
-        unitCodeDescription: ''
+        assetCode: "",
+        newUnitCode: "",
+        movedate: "",
+        oldUnitCode: "",
+        unitCodeDescription: ""
       }
     };
   },
@@ -2808,38 +2829,38 @@ __webpack_require__.r(__webpack_exports__);
       return _this.costCenterList = response.data;
     });
   },
+  computed: {},
   methods: {
     checkForm: function checkForm(e) {
-      alert("here now");
+      this.errors = [];
+      if (this.objectBody.assetCode == "") this.errors.push("Asset required."); //this.onEmptyField();
 
-      if (this.objectBody.assetCode) {
-        e.preventDefault();
-        this.canProcess = false;
-        this.postPost();
-      } else {
+      if (this.objectBody.newUnitCode == "") this.errors.push("New Locatiion Required."); //this.onEmptyField();
+
+      if (this.objectBody.movedate == "") this.errors.push("Date required."); //this.onEmptyField();
+
+      if (this.objectBody.assetCode && this.objectBody.newUnitCode && this.objectBody.movedate) {
         this.errors = [];
-        this.errors.push('Asset Code is Required');
+        this.postPost();
       }
+
+      e.preventDefault();
     },
     postPost: function postPost() {
       var _this2 = this;
 
-      alert("here now");
-      axios.put("/api/AssetReclassification/updateAssetClassCode/".concat(this.objectBody.objectBody)).then(function (response) {
+      axios.put("/api/AssetMovement/updateAssetUnitCode/", this.objectBody).then(function (response) {
         _this2.responseMessage = response.data.responseDescription;
         _this2.canProcess = true;
 
-        if (response.data.responseCode == '200') {
-          _this2.objectBody.assetCode = '';
-          _this2.objectBody.assetCode = '';
-          _this2.objectBody.newClassCode = '';
-          _this2.objectBody.newClassCode = '';
-          _this2.objectBody.Reclassdate = '';
-          _this2.objectBody.Reclassdate = '';
-          _this2.objectBody.unitCodeDescription = '';
-          _this2.objectBody.unitCodeDescription = '';
+        if (response.data.responseCode == "200") {
+          //this Clears the Input field.
+          _this2.onCancel();
         }
+      })["catch"](function (e) {
+        _this2.errors.push(e);
       });
+      this.$alert("Asset Movement Successful!!!", "Ok", "success");
     },
     getUnitCodeDescription: function getUnitCodeDescription() {
       var _this3 = this;
@@ -2849,6 +2870,27 @@ __webpack_require__.r(__webpack_exports__);
         _this3.objectBody.unitCodeDescription = response.data.data.unitCodeDescription;
         console.log(response.data.data);
       });
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.movedate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.unitCodeDescription = "";
+      this.objectBody.unitCodeDescription = "";
+    },
+    onEmptyField: function onEmptyField() {
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.movedate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.unitCodeDescription = "";
+      this.objectBody.unitCodeDescription = "";
     }
   }
 });
@@ -2993,6 +3035,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3002,7 +3059,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      errors: null,
+      errors: [],
       responseMessage: "",
       assetList: null,
       classList: null,
@@ -3026,16 +3083,22 @@ __webpack_require__.r(__webpack_exports__);
       return _this.classList = response.data;
     });
   },
+  computed: {},
   methods: {
     checkForm: function checkForm(e) {
-      if (this.objectBody.assetCode) {
-        e.preventDefault();
-        this.canProcess = false;
-        this.postPost();
-      } else {
+      this.errors = [];
+      if (this.objectBody.assetCode == "") this.errors.push('Asset required.'); //this.onEmptyField();
+
+      if (this.objectBody.newClassCode == "") this.errors.push('New class required.'); //this.onEmptyField();
+
+      if (this.objectBody.Reclassdate == "") this.errors.push('Date required.'); //this.onEmptyField();
+
+      if (this.objectBody.assetCode && this.objectBody.newClassCode && this.objectBody.Reclassdate) {
         this.errors = [];
-        this.errors.push("Asset Code is Required");
+        this.postPost();
       }
+
+      e.preventDefault();
     },
     postPost: function postPost() {
       var _this2 = this;
@@ -3063,6 +3126,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newClassCode = "";
+      this.objectBody.newClassCode = "";
+      this.objectBody.Reclassdate = "";
+      this.objectBody.Reclassdate = "";
+      this.objectBody.classDescription = "";
+      this.objectBody.classDescription = "";
+    },
+    onEmptyField: function onEmptyField() {
       this.objectBody.assetCode = "";
       this.objectBody.assetCode = "";
       this.objectBody.newClassCode = "";
@@ -8055,15 +8129,23 @@ var render = function() {
   return _c("div", { staticClass: "page-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.errors
-      ? _c("div", { staticClass: "has-error" }, [
-          _vm._v(" " + _vm._s([_vm.errors]))
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.responseMessage
-      ? _c("div", { staticClass: "has-error" }, [
-          _vm._v(" " + _vm._s(_vm.responseMessage))
+    _vm.errors.length
+      ? _c("p", [
+          _c("b", [_vm._v("Please correct the following error(s):")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.errors, function(error) {
+              return _c("li", { key: error.length }, [
+                _c(
+                  "h6",
+                  { staticClass: "has-error", staticStyle: { color: "red" } },
+                  [_vm._v(" " + _vm._s(error) + " ")]
+                )
+              ])
+            }),
+            0
+          )
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -8076,7 +8158,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.postPost()
+                return _vm.checkForm.apply(null, arguments)
               }
             }
           },
@@ -8129,29 +8211,24 @@ var render = function() {
                           ]
                         }
                       },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Select Asset")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.assetList, function(asset) {
-                          return _c(
-                            "option",
-                            {
-                              key: asset.assetCode,
-                              domProps: { value: asset.assetCode }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(asset.assetDesc) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        })
-                      ],
-                      2
+                      _vm._l(_vm.assetList, function(asset) {
+                        return _c(
+                          "option",
+                          {
+                            key: asset.assetCode,
+                            attrs: { required: "" },
+                            domProps: { value: asset.assetCode }
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(asset.assetDesc) +
+                                "\n                "
+                            )
+                          ]
+                        )
+                      }),
+                      0
                     )
                   ]
                 ),
@@ -8168,14 +8245,16 @@ var render = function() {
                       _c("vuejsDatepicker", {
                         attrs: {
                           "input-class": "form-control",
-                          name: "Reclassdate"
+                          name: "movedate",
+                          type: "date",
+                          required: ""
                         },
                         model: {
-                          value: _vm.objectBody.Reclassdate,
+                          value: _vm.objectBody.movedate,
                           callback: function($$v) {
-                            _vm.$set(_vm.objectBody, "Reclassdate", $$v)
+                            _vm.$set(_vm.objectBody, "movedate", $$v)
                           },
-                          expression: "objectBody.Reclassdate"
+                          expression: "objectBody.movedate"
                         }
                       })
                     ],
@@ -8204,7 +8283,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { name: "oldlocation", readonly: "" },
+                        attrs: {
+                          name: "oldlocation",
+                          placeholder: "Current Location",
+                          readonly: ""
+                        },
                         domProps: { value: _vm.objectBody.unitCodeDescription },
                         on: {
                           input: function($event) {
@@ -8240,12 +8323,12 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.objectBody.newClassCode,
-                            expression: "objectBody.newClassCode"
+                            value: _vm.objectBody.newUnitCode,
+                            expression: "objectBody.newUnitCode"
                           }
                         ],
                         staticClass: "form-control form-control-inverse",
-                        attrs: { name: "aassetdesc" },
+                        attrs: { name: "assetlocation", required: "" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -8258,7 +8341,7 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.objectBody,
-                              "newClassCode",
+                              "newUnitCode",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -8271,6 +8354,7 @@ var render = function() {
                           "option",
                           {
                             key: clist.unitcode,
+                            attrs: { required: "" },
                             domProps: { value: clist.unitcode }
                           },
                           [
@@ -8297,23 +8381,47 @@ var render = function() {
                       attrs: { role: "group" }
                     },
                     [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-submit btn-primary",
-                          attrs: { type: "submit" },
-                          on: {
-                            click: function($event) {
-                              return _vm.postPost()
-                            }
-                          }
-                        },
-                        [_vm._v("\n                  Accept\n                ")]
-                      )
+                      this.objectBody.movedate != "" &&
+                      this.objectBody.newUnitCode != ""
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-submit btn-primary",
+                              attrs: { type: "submit" },
+                              on: { click: _vm.checkForm }
+                            },
+                            [
+                              _vm._v(
+                                "\n                  Accept\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _c(
+                    "div",
+                    {
+                      staticClass: "btn-group mr-2 sw-btn-group-extra",
+                      attrs: { role: "group" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      )
+                    ]
+                  )
                 ])
               ])
             ])
@@ -8361,23 +8469,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "btn-group mr-2 sw-btn-group-extra",
-        attrs: { role: "group" }
-      },
-      [
-        _c("button", { staticClass: "btn btn-submit btn-danger" }, [
-          _vm._v("\n                  Cancel\n                ")
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -8404,6 +8495,26 @@ var render = function() {
   return _c("div", { staticClass: "page-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
+    _vm.errors.length
+      ? _c("p", [
+          _c("b", [_vm._v("Please correct the following error(s):")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.errors, function(error) {
+              return _c("li", { key: error.length }, [
+                _c(
+                  "h6",
+                  { staticClass: "has-error", staticStyle: { color: "red" } },
+                  [_vm._v(" " + _vm._s(error) + " ")]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "page-body" }, [
       _c("div", { staticClass: "card" }, [
         _c(
@@ -8413,7 +8524,7 @@ var render = function() {
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                return _vm.postPost()
+                return _vm.checkForm.apply(null, arguments)
               }
             }
           },
@@ -8466,29 +8577,24 @@ var render = function() {
                           ]
                         }
                       },
-                      [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("Select Asset")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.assetList, function(asset) {
-                          return _c(
-                            "option",
-                            {
-                              key: asset.assetCode,
-                              domProps: { value: asset.assetCode }
-                            },
-                            [
-                              _vm._v(
-                                "\n                  " +
-                                  _vm._s(asset.assetDesc) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        })
-                      ],
-                      2
+                      _vm._l(_vm.assetList, function(asset) {
+                        return _c(
+                          "option",
+                          {
+                            key: asset.assetCode,
+                            attrs: { required: "" },
+                            domProps: { value: asset.assetCode }
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(asset.assetDesc) +
+                                "\n                "
+                            )
+                          ]
+                        )
+                      }),
+                      0
                     )
                   ]
                 ),
@@ -8506,7 +8612,8 @@ var render = function() {
                         attrs: {
                           "input-class": "form-control",
                           name: "Reclassdate",
-                          type: "date"
+                          type: "date",
+                          required: ""
                         },
                         model: {
                           value: _vm.objectBody.Reclassdate,
@@ -8529,7 +8636,7 @@ var render = function() {
                   [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "form-label" }, [
-                        _vm._v("OLD CLASS")
+                        _vm._v("CURRENT CLASS")
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -8543,8 +8650,8 @@ var render = function() {
                         ],
                         staticClass: "form-control",
                         attrs: {
-                          name: "oldlocation",
-                          placeholder: "Old Class",
+                          name: "oldclass",
+                          placeholder: "Current Class",
                           readonly: ""
                         },
                         domProps: { value: _vm.objectBody.classDescription },
@@ -8572,7 +8679,7 @@ var render = function() {
                   { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
                   [
                     _c("h4", { staticClass: "sub-title" }, [
-                      _vm._v("New Class")
+                      _vm._v("NEW CLASS")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -8587,7 +8694,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control form-control-inverse",
-                        attrs: { name: "aassetdesc" },
+                        attrs: { name: "assetdesc", required: "" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -8613,6 +8720,7 @@ var render = function() {
                           "option",
                           {
                             key: clist.classcode,
+                            attrs: { required: "" },
                             domProps: { value: clist.classcode }
                           },
                           [
@@ -8639,15 +8747,22 @@ var render = function() {
                       attrs: { role: "group" }
                     },
                     [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-submit btn-primary",
-                          attrs: { type: "submit" },
-                          on: { click: _vm.checkForm }
-                        },
-                        [_vm._v("\n                  Accept\n                ")]
-                      )
+                      this.objectBody.Reclassdate != "" &&
+                      this.objectBody.newClassCode != ""
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-submit btn-primary",
+                              attrs: { type: "submit" },
+                              on: { click: _vm.checkForm }
+                            },
+                            [
+                              _vm._v(
+                                "\n                  Accept\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ]
                   ),
                   _vm._v(" "),

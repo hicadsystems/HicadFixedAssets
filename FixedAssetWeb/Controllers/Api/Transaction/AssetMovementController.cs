@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Entities;
 using FixedAssetWeb.IServices;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -47,6 +48,31 @@ namespace FixedAssetWeb.Controllers.Api.Transaction
                 return Ok(new { responseCode = 404, responseDescription = "Asset Code does not Exist" });
             }
             return Ok(new { responseCode = 200, responseDescription = "Asset Code Exist", Data = assetInDb });
+        }
+
+        // PUT: /api/AssetMovement/updateAssetUnitCode/
+        [Route("updateAssetUnitCode/")]
+        [HttpPut]
+        public IActionResult UpdateAssetClassCode([FromBody] fa_AssetRegVM fa_assetRegVm)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(fa_assetRegVm.assetCode) || string.IsNullOrEmpty(fa_assetRegVm.newUnitCode))
+                {
+                    return Ok(new { responseCode = 500, responseDescription = $"Kindly Supply a valid Asset Code and Unit Code!! Either {fa_assetRegVm.assetCode} Or {fa_assetRegVm.newLoc} Is not Available" });
+                }
+
+                string user = User.Identity.Name;
+                fa_assetRegVm.userId = user;
+
+                assetMovementService.UpdateAssetDepartment(fa_assetRegVm);
+            }
+            catch (Exception e)
+            {
+                return Ok(new { responseCode = 500, responseDescription = "Failed", Data = e.StackTrace });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = "Updated Successfully" });
         }
     }
 }

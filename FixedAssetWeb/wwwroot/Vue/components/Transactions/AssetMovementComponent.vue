@@ -28,11 +28,23 @@
       </div>
     </div>
 
-    <div v-if="errors" class="has-error"> {{ [errors] }}</div>
-    <div v-if="responseMessage" class="has-error"> {{ responseMessage }}</div>
+    <!-- <div v-if="errors" class="has-error"> {{ [errors] }}</div>
+    <div v-if="responseMessage" class="has-error"> {{ responseMessage }}</div> -->
+
+    <p v-if="errors.length">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li 
+          v-for="error in errors" 
+          v-bind:key="error.length">
+          <h6 style="color: red;" class="has-error"> {{ error }} </h6>
+      </li>
+    </ul>
+  </p>
+
     <div class="page-body">
       <div class="card">
-        <form @submit.prevent="postPost()"  method="post">
+        <form @submit.prevent="checkForm"  method="post">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
@@ -43,11 +55,11 @@
                   @change="getUnitCodeDescription()"
                   class="form-control form-control-inverse"
                 >
-                  <option selected>Select Asset</option>
                   <option
                     v-for="asset in assetList"
                     v-bind:value="asset.assetCode"
                     v-bind:key="asset.assetCode"
+                    required
                   >
                     {{ asset.assetDesc }}
                   </option>
@@ -59,8 +71,11 @@
                 <label class="form-label">Movement Date</label>
                 <vuejsDatepicker 
                    input-class="form-control" 
-                   name="Reclassdate" 
-                   v-model="objectBody.Reclassdate"> 
+                   name="movedate"
+                   type="date"
+                   v-model="objectBody.movedate"
+                   required
+                   > 
                 </vuejsDatepicker>
               </div>
               </div>
@@ -71,6 +86,7 @@
                   <label class="sub-title">OLD LOCATION</label>
                   <input
                     name="oldlocation"
+                    placeholder="Current Location"
                     v-model="objectBody.unitCodeDescription"
                     class="form-control"
                     readonly
@@ -82,14 +98,16 @@
               <div class="col-sm-8 col-md-18 col-xl-8x m-b-30">
                 <h4 class="sub-title">NEW LOCATION</h4>
                 <select
-                  name="aassetdesc"
-                  v-model="objectBody.newClassCode"
+                  name="assetlocation"
+                  v-model="objectBody.newUnitCode"
                   class="form-control form-control-inverse"
+                  required
                 >
                   <option
                     v-for="clist in costCenterList"
                     v-bind:value="clist.unitcode"
                     v-bind:key="clist.unitcode"
+                    required
                   >
                     {{ clist.unitdesc }}
                   </option>
@@ -99,14 +117,17 @@
             <div class="row">
               <div class="col-6">
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-                  <button v-on:click="postPost()" type="submit" class="btn btn-submit btn-primary">
+                  <button 
+                    v-if="this.objectBody.movedate != '' && this.objectBody.newUnitCode != ''"
+                    v-on:click="checkForm" 
+                    type="submit" 
+                    class="btn btn-submit btn-primary"
+                  >
                     Accept
                   </button>
                 </div>
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-                  <button class="btn btn-submit btn-danger">
-                    Cancel
-                  </button>
+                  <button @click.prevent="onCancel()" class="btn btn-danger">Cancel</button>
                 </div>
               </div>
             </div>
@@ -119,27 +140,27 @@
 
 
 <script>
-    import vuejsDatepicker from 'vuejs-datepicker';
-    import VueSimpleAlert from "vue-simple-alert";
+import vuejsDatepicker from "vuejs-datepicker";
+import VueSimpleAlert from "vue-simple-alert";
 export default {
-     components: {
-            vuejsDatepicker,
-            VueSimpleAlert,
-        },
+  components: {
+    vuejsDatepicker,
+    VueSimpleAlert,
+  },
   data() {
     return {
-      errors: null,
-      responseMessage:'',
+      errors: [],
+      responseMessage: "",
       assetList: null,
       costCenterList: null,
       canProcess: true,
       objectBody: {
-        assetCode : '',
-        newClassCode : '',
-        Reclassdate : '',
-        oldUnitCode : '',
-        unitCodeDescription : '',
-      }
+        assetCode: "",
+        newUnitCode: "",
+        movedate: "",
+        oldUnitCode: "",
+        unitCodeDescription: "",
+      },
     };
   },
 
@@ -153,41 +174,92 @@ export default {
       .then((response) => (this.costCenterList = response.data));
   },
 
+  computed: {},
+
   methods: {
-    checkForm : function(e) {
-      alert("here now");
-      if(this.objectBody.assetCode){
-        e.preventDefault();
-        this.canProcess = false;
+    checkForm: function (e) {
+
+      this.errors = [];
+
+      if (this.objectBody.assetCode == "") 
+          this.errors.push("Asset required.");
+          //this.onEmptyField();
+
+      if (this.objectBody.newUnitCode == "")
+          this.errors.push("New Locatiion Required.");
+          //this.onEmptyField();
+
+      if (this.objectBody.movedate == "") 
+          this.errors.push("Date required.");
+          //this.onEmptyField();
+
+      if (
+        this.objectBody.assetCode &&
+        this.objectBody.newUnitCode &&
+        this.objectBody.movedate
+      ) {
+        this.errors = [];
         this.postPost();
       }
-      else{
-        this.errors = [];
-            this.errors.push('Asset Code is Required');
-      }
+
+      e.preventDefault();
     },
-    postPost(){
-      alert("here now");
-      axios.put(`/api/AssetReclassification/updateAssetClassCode/${this.objectBody.objectBody}`)
-            .then(response => {
-              this.responseMessage = response.data.responseDescription;this.canProcess = true;
-              if(response.data.responseCode == '200'){
-                this.objectBody.assetCode = ''; this.objectBody.assetCode = '';
-                this.objectBody.newClassCode = ''; this.objectBody.newClassCode = '';
-                this.objectBody.Reclassdate = ''; this.objectBody.Reclassdate = '';
-                this.objectBody.unitCodeDescription = ''; this.objectBody.unitCodeDescription = '';
-              }
-            });
-    },
-    getUnitCodeDescription(){
+
+    postPost() {
       axios
-      .get(`/api/AssetMovement/getUnitDescByAssetCode/${this.objectBody.assetCode}`)
-      .then((response) => {
-        this.objectBody.oldUnitCode = response.data.oldUnitCode;
-        this.objectBody.unitCodeDescription = response.data.data.unitCodeDescription;
-        console.log(response.data.data);
-      });
+        .put(`/api/AssetMovement/updateAssetUnitCode/`, this.objectBody)
+        .then((response) => {
+          this.responseMessage = response.data.responseDescription;
+          this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            this.onCancel();
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      this.$alert("Asset Movement Successful!!!", "Ok", "success");
+    },
+
+    getUnitCodeDescription() {
+      axios
+        .get(
+          `/api/AssetMovement/getUnitDescByAssetCode/${this.objectBody.assetCode}`
+        )
+        .then((response) => {
+          this.objectBody.oldUnitCode = response.data.oldUnitCode;
+          this.objectBody.unitCodeDescription =
+            response.data.data.unitCodeDescription;
+          console.log(response.data.data);
+        });
+    },
+
+    onCancel() {
+      this.errors = [];
+
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.movedate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.unitCodeDescription = "";
+      this.objectBody.unitCodeDescription = "";
+    },
+
+    onEmptyField(){
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.newUnitCode = "";
+      this.objectBody.movedate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.unitCodeDescription = "";
+      this.objectBody.unitCodeDescription = "";
     }
-  }
+  },
 };
 </script>

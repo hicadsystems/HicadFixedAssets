@@ -28,12 +28,23 @@
       </div>
     </div>
 
-    <!-- <div v-if="errors" class="has-error">{{ [errors] }}</div>
+    <!-- <div v-if="errors" class="has-error">{{ this.errors }}</div>
     <div v-if="responseMessage" class="has-error">{{ responseMessage }}</div> -->
+
+  <p v-if="errors.length">
+    <b>Please correct the following error(s):</b>
+    <ul>
+      <li 
+          v-for="error in errors" 
+          v-bind:key="error.length">
+          <h6 style="color: red;" class="has-error"> {{ error }} </h6>
+      </li>
+    </ul>
+  </p>
 
     <div class="page-body">
       <div class="card">
-        <form @submit.prevent="postPost()" method="post">
+        <form @submit.prevent="checkForm" method="post">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
@@ -44,11 +55,11 @@
                   @change="getClassDescription()"
                   class="form-control form-control-inverse"
                 >
-                  <option selected>Select Asset</option>
                   <option
                     v-for="asset in assetList"
                     v-bind:value="asset.assetCode"
                     v-bind:key="asset.assetCode"
+                    required
                   >
                     {{ asset.assetDesc }}
                   </option>
@@ -63,6 +74,7 @@
                     name="Reclassdate"
                     type="date"
                     v-model="objectBody.Reclassdate"
+                    required
                   >
                   </vuejsDatepicker>
                 </div>
@@ -71,10 +83,10 @@
             <div class="row">
               <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
                 <div class="form-group">
-                  <label class="form-label">OLD CLASS</label>
+                  <label class="form-label">CURRENT CLASS</label>
                   <input
-                    name="oldlocation"
-                    placeholder="Old Class"
+                    name="oldclass"
+                    placeholder="Current Class"
                     v-model="objectBody.classDescription"
                     class="form-control"
                     readonly
@@ -84,16 +96,18 @@
             </div>
             <div class="row">
               <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
-                <h4 class="sub-title">New Class</h4>
+                <h4 class="sub-title">NEW CLASS</h4>
                 <select
-                  name="aassetdesc"
+                  name="assetdesc"
                   v-model="objectBody.newClassCode"
                   class="form-control form-control-inverse"
+                  required
                 >
                   <option
                     v-for="clist in classList"
                     v-bind:value="clist.classcode"
                     v-bind:key="clist.classcode"
+                    required
                   >
                     {{ clist.classdesc }}
                   </option>
@@ -104,6 +118,7 @@
               <div class="col-6">
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
                   <button
+                    v-if="this.objectBody.Reclassdate != '' && this.objectBody.newClassCode != ''"
                     v-on:click="checkForm"
                     type="submit"
                     class="btn btn-submit btn-primary"
@@ -134,7 +149,7 @@ export default {
   },
   data() {
     return {
-      errors: null,
+      errors: [],
       responseMessage: "",
       assetList: null,
       classList: null,
@@ -159,16 +174,33 @@ export default {
       .then((response) => (this.classList = response.data));
   },
 
+  computed: {
+    
+  },
+
   methods: {
     checkForm: function (e) {
-      if (this.objectBody.assetCode) {
-        e.preventDefault();
-        this.canProcess = false;
-        this.postPost();
-      } else {
+
+      this.errors = [];
+
+      if(this.objectBody.assetCode == "")
+         this.errors.push('Asset required.');
+         //this.onEmptyField();
+
+      if(this.objectBody.newClassCode == "")
+        this.errors.push('New class required.');
+        //this.onEmptyField();
+
+      if(this.objectBody.Reclassdate == "")
+        this.errors.push('Date required.');
+        //this.onEmptyField();
+        
+      if (this.objectBody.assetCode && this.objectBody.newClassCode && this.objectBody.Reclassdate){
         this.errors = [];
-        this.errors.push("Asset Code is Required");
+        this.postPost();
       }
+
+      e.preventDefault();
     },
 
     postPost() {
@@ -178,8 +210,10 @@ export default {
           this.objectBody
         )
         .then((response) => {
+
           this.responseMessage = response.data.responseDescription;
           this.canProcess = true;
+          
           if (response.data.responseCode == '200') {
 
             //this Clears the Input field.
@@ -207,6 +241,19 @@ export default {
     },
 
     onCancel(){
+      this.errors = [];
+      
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.newClassCode = "";
+      this.objectBody.newClassCode = "";
+      this.objectBody.Reclassdate = "";
+      this.objectBody.Reclassdate = "";
+      this.objectBody.classDescription = "";
+      this.objectBody.classDescription = "";
+    },
+
+    onEmptyField(){
       this.objectBody.assetCode = "";
       this.objectBody.assetCode = "";
       this.objectBody.newClassCode = "";
