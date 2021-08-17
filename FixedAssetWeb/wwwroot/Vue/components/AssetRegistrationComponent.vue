@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Asset Registration Form -->
-    <div class="page-wrapper">
+    <div v-if="isFormVisible" class="page-wrapper">
     <div class="page-header">
       <div class="row align-items-end">
         <div class="col-lg-8">
@@ -320,6 +320,15 @@
     </div>
   </div>
     <!-- End Of Asset Registration Form -->
+    <!-- NAV DIV -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+          <button @click="showForm()"><span class="btn btn-primary h5">Create Asset</span></button>
+        </li>
+      </ol>
+    </nav>
+    <!--END OF NAV DIV -->
 
     <!-- ASSET TABLE -->
     <div class="page-wrapper">
@@ -380,7 +389,7 @@
 
                         <td>
                             <button type="button" class="btn btn-submit btn-primary" >Edit</button>
-                            <button type="button" class="btn btn-submit btn-primary" >Delete</button>
+                            <button type="button" class="btn btn-submit btn-danger" >Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -405,6 +414,7 @@ export default {
 
   data() {
     return {
+      isFormVisible: false,
       errors: [],
       responseMessage: "",
       canProcess: true,
@@ -543,6 +553,13 @@ export default {
         });
 
       this.$alert("Asset Created Successfully!!!", "Ok", "success");
+
+      this.isFormVisible = false;
+    },
+
+    showForm() {
+
+      this.isFormVisible = true;
     },
 
     onCancel() {

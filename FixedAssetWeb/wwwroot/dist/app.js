@@ -2354,6 +2354,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2363,6 +2372,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      isFormVisible: false,
       errors: [],
       responseMessage: "",
       canProcess: true,
@@ -2452,6 +2462,10 @@ __webpack_require__.r(__webpack_exports__);
         _this2.errors.push(e);
       });
       this.$alert("Asset Created Successfully!!!", "Ok", "success");
+      this.isFormVisible = false;
+    },
+    showForm: function showForm() {
+      this.isFormVisible = true;
     },
     onCancel: function onCancel() {
       this.errors = [];
@@ -7387,810 +7401,853 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "page-wrapper" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _vm.errors.length
-        ? _c("p", [
-            _c("b", [_vm._v("Please correct the following error(s):")]),
-            _vm._v(" "),
-            _c(
-              "ul",
-              _vm._l(_vm.errors, function(error) {
-                return _c("li", { key: error.length }, [
-                  _c(
-                    "h6",
-                    { staticClass: "has-error", staticStyle: { color: "red" } },
-                    [_vm._v(" " + _vm._s(error) + " ")]
-                  )
-                ])
-              }),
-              0
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { staticClass: "page-body" }, [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "form",
-            {
-              attrs: { method: "post" },
-              on: {
-                submit: function($event) {
-                  $event.preventDefault()
-                  return _vm.checkForm.apply(null, arguments)
-                }
-              }
-            },
-            [
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("ASSET CODE")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.objectBody.assetCode,
-                            expression: "objectBody.assetCode"
-                          }
-                        ],
-                        staticClass: "form-control form-control-inverse",
-                        attrs: { type: "text", name: "assetcode" },
-                        domProps: { value: _vm.objectBody.assetCode },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.objectBody,
-                              "assetCode",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-9 col-md-9 col-xl-9" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("ASSET DESCRIPTION")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.objectBody.assetDesc,
-                            expression: "objectBody.assetDesc"
-                          }
-                        ],
-                        staticClass: "form-control form-control-inverse",
-                        attrs: { type: "text", name: "assetdesc" },
-                        domProps: { value: _vm.objectBody.assetDesc },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.objectBody,
-                              "assetDesc",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ])
-                  ])
-                ]),
+    _vm.isFormVisible
+      ? _c("div", { staticClass: "page-wrapper" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm.errors.length
+            ? _c("p", [
+                _c("b", [_vm._v("Please correct the following error(s):")]),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-9 col-md-9 col-xl-9 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("ASSET CLASSIFICATION")
-                      ]),
-                      _vm._v(" "),
+                _c(
+                  "ul",
+                  _vm._l(_vm.errors, function(error) {
+                    return _c("li", { key: error.length }, [
                       _c(
-                        "select",
+                        "h6",
                         {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.objectBody.class,
-                              expression: "objectBody.class"
-                            }
-                          ],
-                          staticClass: "form-control form-control-inverse",
-                          attrs: { name: "assetclass", required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.objectBody,
-                                "class",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
+                          staticClass: "has-error",
+                          staticStyle: { color: "red" }
                         },
-                        _vm._l(_vm.classList, function(clist) {
-                          return _c(
-                            "option",
-                            {
-                              key: clist.classcode,
-                              attrs: { required: "" },
-                              domProps: { value: clist.classcode }
-                            },
-                            [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(clist.classdesc) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        }),
-                        0
+                        [_vm._v(" " + _vm._s(error) + " ")]
                       )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DEPRECIATION RATE")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.objectBody.depr_rate,
-                            expression: "objectBody.depr_rate"
-                          }
-                        ],
-                        staticClass: "form-control form-control-inverse",
-                        attrs: { type: "number", name: "deprate" },
-                        domProps: { value: _vm.objectBody.depr_rate },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.objectBody,
-                              "depr_rate",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DEPARTMENT")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.objectBody.dept,
-                              expression: "objectBody.dept"
-                            }
-                          ],
-                          staticClass: "form-control form-control-inverse",
-                          attrs: { name: "assetclass", required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.objectBody,
-                                "dept",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        _vm._l(_vm.costCenterList, function(clist) {
-                          return _c(
-                            "option",
-                            {
-                              key: clist.unitcode,
-                              attrs: { required: "" },
-                              domProps: { value: clist.unitcode }
-                            },
-                            [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(clist.unitdesc) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("BUSINESS LINE")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.objectBody.busline,
-                              expression: "objectBody.busline"
-                            }
-                          ],
-                          staticClass: "form-control form-control-inverse",
-                          attrs: { name: "assetclass", required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.objectBody,
-                                "busline",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        _vm._l(_vm.businessLineList, function(blist) {
-                          return _c(
-                            "option",
-                            {
-                              key: blist.code,
-                              attrs: { required: "" },
-                              domProps: { value: blist.code }
-                            },
-                            [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(blist.description) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        }),
-                        0
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("RECLASSIFICATION DATE")
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "reclassdate",
-                          type: "date",
-                          required: ""
-                        },
-                        model: {
-                          value: _vm.objectBody.reclassdate,
-                          callback: function($$v) {
-                            _vm.$set(_vm.objectBody, "reclassdate", $$v)
-                          },
-                          expression: "objectBody.reclassdate"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("PURCHASE")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("label", { staticClass: "form-label" }, [
-                              _vm._v("DATE")
-                            ]),
-                            _vm._v(" "),
-                            _c("vuejsDatepicker", {
-                              attrs: {
-                                "input-class": "form-control",
-                                name: "purchdate",
-                                type: "date",
-                                required: ""
-                              },
-                              model: {
-                                value: _vm.objectBody.purchdate,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.objectBody, "purchdate", $$v)
-                                },
-                                expression: "objectBody.purchdate"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { staticClass: "form-label" }, [
-                                _vm._v("VALUE")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.purchval,
-                                    expression: "objectBody.purchval"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-inverse",
-                                attrs: { type: "number", name: "purchval" },
-                                domProps: { value: _vm.objectBody.purchval },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "purchval",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("INSURANCE")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("label", { staticClass: "form-label" }, [
-                              _vm._v("DATE")
-                            ]),
-                            _vm._v(" "),
-                            _c("vuejsDatepicker", {
-                              attrs: {
-                                "input-class": "form-control",
-                                name: "insurdate",
-                                type: "date",
-                                required: ""
-                              },
-                              model: {
-                                value: _vm.objectBody.insurdate,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.objectBody, "insurdate", $$v)
-                                },
-                                expression: "objectBody.insurdate"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { staticClass: "form-label" }, [
-                                _vm._v("VALUE")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.insuredval,
-                                    expression: "objectBody.insuredval"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-inverse",
-                                attrs: { type: "number", name: "insurdval" },
-                                domProps: { value: _vm.objectBody.insuredval },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "insuredval",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("LAST MOVEMENT DATE")
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "lastmovdate",
-                          type: "date",
-                          required: ""
-                        },
-                        model: {
-                          value: _vm.objectBody.movedate,
-                          callback: function($$v) {
-                            _vm.$set(_vm.objectBody, "movedate", $$v)
-                          },
-                          expression: "objectBody.movedate"
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("DISPOSAL")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("label", { staticClass: "form-label" }, [
-                              _vm._v("DATE")
-                            ]),
-                            _vm._v(" "),
-                            _c("vuejsDatepicker", {
-                              attrs: {
-                                "input-class": "form-control",
-                                name: "dispdate",
-                                type: "date",
-                                required: ""
-                              },
-                              model: {
-                                value: _vm.objectBody.dispdate,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.objectBody, "dispdate", $$v)
-                                },
-                                expression: "objectBody.dispdate"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { staticClass: "form-label" }, [
-                                _vm._v("VALUE")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.dispval,
-                                    expression: "objectBody.dispval"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-inverse",
-                                attrs: { type: "number", name: "dispval" },
-                                domProps: { value: _vm.objectBody.dispval },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "dispval",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("REVALUATION")
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("label", { staticClass: "form-label" }, [
-                              _vm._v("DATE")
-                            ]),
-                            _vm._v(" "),
-                            _c("vuejsDatepicker", {
-                              attrs: {
-                                "input-class": "form-control",
-                                name: "revaldate",
-                                type: "date",
-                                required: ""
-                              },
-                              model: {
-                                value: _vm.objectBody.revaldate,
-                                callback: function($$v) {
-                                  _vm.$set(_vm.objectBody, "revaldate", $$v)
-                                },
-                                expression: "objectBody.revaldate"
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
-                          [
-                            _c("div", { staticClass: "form-group" }, [
-                              _c("label", { staticClass: "form-label" }, [
-                                _vm._v("VALUE")
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.revalval,
-                                    expression: "objectBody.revalval"
-                                  }
-                                ],
-                                staticClass:
-                                  "form-control form-control-inverse",
-                                attrs: { type: "number", name: "revalval" },
-                                domProps: { value: _vm.objectBody.revalval },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "revalval",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ])
-                          ]
-                        )
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
-                    [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { staticClass: "form-label" }, [
-                          _vm._v("ACCUMULATED DEPRECIATION VALUE")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.objectBody.accum_depre,
-                              expression: "objectBody.accum_depre"
-                            }
-                          ],
-                          staticClass: "form-control form-control-inverse",
-                          attrs: { type: "number", name: "accum_depval" },
-                          domProps: { value: _vm.objectBody.accum_depre },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.objectBody,
-                                "accum_depre",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-6" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "btn-group mr-2 sw-btn-group-extra",
-                        attrs: { role: "group" }
-                      },
-                      [
-                        this.objectBody.assetCode != "" &&
-                        this.objectBody.assetDesc != "" &&
-                        this.objectBody.assetclass != "" &&
-                        this.objectBody.dept != "" &&
-                        this.objectBody.depr_rate != ""
-                          ? _c(
-                              "button",
+                  }),
+                  0
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "page-body" }, [
+            _c("div", { staticClass: "card" }, [
+              _c(
+                "form",
+                {
+                  attrs: { method: "post" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.checkForm.apply(null, arguments)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("ASSET CODE")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
                               {
-                                staticClass: "btn btn-submit btn-primary",
-                                attrs: { type: "submit" },
-                                on: { click: _vm.checkForm }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  Accept\n                "
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.objectBody.assetCode,
+                                expression: "objectBody.assetCode"
+                              }
+                            ],
+                            staticClass: "form-control form-control-inverse",
+                            attrs: { type: "text", name: "assetcode" },
+                            domProps: { value: _vm.objectBody.assetCode },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.objectBody,
+                                  "assetCode",
+                                  $event.target.value
                                 )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9 col-md-9 col-xl-9" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("ASSET DESCRIPTION")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.objectBody.assetDesc,
+                                expression: "objectBody.assetDesc"
+                              }
+                            ],
+                            staticClass: "form-control form-control-inverse",
+                            attrs: { type: "text", name: "assetdesc" },
+                            domProps: { value: _vm.objectBody.assetDesc },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.objectBody,
+                                  "assetDesc",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-9 col-md-9 col-xl-9 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("ASSET CLASSIFICATION")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.objectBody.class,
+                                  expression: "objectBody.class"
+                                }
+                              ],
+                              staticClass: "form-control form-control-inverse",
+                              attrs: { name: "assetclass", required: "" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.objectBody,
+                                    "class",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.classList, function(clist) {
+                              return _c(
+                                "option",
+                                {
+                                  key: clist.classcode,
+                                  attrs: { required: "" },
+                                  domProps: { value: clist.classcode }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(clist.classdesc) +
+                                      "\n                "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("DEPRECIATION RATE")
+                          ]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.objectBody.depr_rate,
+                                expression: "objectBody.depr_rate"
+                              }
+                            ],
+                            staticClass: "form-control form-control-inverse",
+                            attrs: { type: "number", name: "deprate" },
+                            domProps: { value: _vm.objectBody.depr_rate },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.objectBody,
+                                  "depr_rate",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("DEPARTMENT")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.objectBody.dept,
+                                  expression: "objectBody.dept"
+                                }
+                              ],
+                              staticClass: "form-control form-control-inverse",
+                              attrs: { name: "assetclass", required: "" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.objectBody,
+                                    "dept",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.costCenterList, function(clist) {
+                              return _c(
+                                "option",
+                                {
+                                  key: clist.unitcode,
+                                  attrs: { required: "" },
+                                  domProps: { value: clist.unitcode }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(clist.unitdesc) +
+                                      "\n                "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("BUSINESS LINE")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.objectBody.busline,
+                                  expression: "objectBody.busline"
+                                }
+                              ],
+                              staticClass: "form-control form-control-inverse",
+                              attrs: { name: "assetclass", required: "" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.objectBody,
+                                    "busline",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            _vm._l(_vm.businessLineList, function(blist) {
+                              return _c(
+                                "option",
+                                {
+                                  key: blist.code,
+                                  attrs: { required: "" },
+                                  domProps: { value: blist.code }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                " +
+                                      _vm._s(blist.description) +
+                                      "\n                "
+                                  )
+                                ]
+                              )
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("RECLASSIFICATION DATE")
+                          ]),
+                          _vm._v(" "),
+                          _c("vuejsDatepicker", {
+                            attrs: {
+                              "input-class": "form-control",
+                              name: "reclassdate",
+                              type: "date",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.objectBody.reclassdate,
+                              callback: function($$v) {
+                                _vm.$set(_vm.objectBody, "reclassdate", $$v)
+                              },
+                              expression: "objectBody.reclassdate"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("PURCHASE")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("label", { staticClass: "form-label" }, [
+                                  _vm._v("DATE")
+                                ]),
+                                _vm._v(" "),
+                                _c("vuejsDatepicker", {
+                                  attrs: {
+                                    "input-class": "form-control",
+                                    name: "purchdate",
+                                    type: "date",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.objectBody.purchdate,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.objectBody, "purchdate", $$v)
+                                    },
+                                    expression: "objectBody.purchdate"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("label", { staticClass: "form-label" }, [
+                                    _vm._v("VALUE")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.objectBody.purchval,
+                                        expression: "objectBody.purchval"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "form-control form-control-inverse",
+                                    attrs: { type: "number", name: "purchval" },
+                                    domProps: {
+                                      value: _vm.objectBody.purchval
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.objectBody,
+                                          "purchval",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
                               ]
                             )
-                          : _vm._e()
-                      ]
-                    ),
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("INSURANCE")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("label", { staticClass: "form-label" }, [
+                                  _vm._v("DATE")
+                                ]),
+                                _vm._v(" "),
+                                _c("vuejsDatepicker", {
+                                  attrs: {
+                                    "input-class": "form-control",
+                                    name: "insurdate",
+                                    type: "date",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.objectBody.insurdate,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.objectBody, "insurdate", $$v)
+                                    },
+                                    expression: "objectBody.insurdate"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("label", { staticClass: "form-label" }, [
+                                    _vm._v("VALUE")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.objectBody.insuredval,
+                                        expression: "objectBody.insuredval"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "form-control form-control-inverse",
+                                    attrs: {
+                                      type: "number",
+                                      name: "insurdval"
+                                    },
+                                    domProps: {
+                                      value: _vm.objectBody.insuredval
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.objectBody,
+                                          "insuredval",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "btn-group mr-2 sw-btn-group-extra",
-                        attrs: { role: "group" }
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-danger",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.onCancel()
-                              }
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("LAST MOVEMENT DATE")
+                          ]),
+                          _vm._v(" "),
+                          _c("vuejsDatepicker", {
+                            attrs: {
+                              "input-class": "form-control",
+                              name: "lastmovdate",
+                              type: "date",
+                              required: ""
+                            },
+                            model: {
+                              value: _vm.objectBody.movedate,
+                              callback: function($$v) {
+                                _vm.$set(_vm.objectBody, "movedate", $$v)
+                              },
+                              expression: "objectBody.movedate"
                             }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("DISPOSAL")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("label", { staticClass: "form-label" }, [
+                                  _vm._v("DATE")
+                                ]),
+                                _vm._v(" "),
+                                _c("vuejsDatepicker", {
+                                  attrs: {
+                                    "input-class": "form-control",
+                                    name: "dispdate",
+                                    type: "date",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.objectBody.dispdate,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.objectBody, "dispdate", $$v)
+                                    },
+                                    expression: "objectBody.dispdate"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("label", { staticClass: "form-label" }, [
+                                    _vm._v("VALUE")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.objectBody.dispval,
+                                        expression: "objectBody.dispval"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "form-control form-control-inverse",
+                                    attrs: { type: "number", name: "dispval" },
+                                    domProps: { value: _vm.objectBody.dispval },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.objectBody,
+                                          "dispval",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("label", { staticClass: "form-label" }, [
+                            _vm._v("REVALUATION")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("label", { staticClass: "form-label" }, [
+                                  _vm._v("DATE")
+                                ]),
+                                _vm._v(" "),
+                                _c("vuejsDatepicker", {
+                                  attrs: {
+                                    "input-class": "form-control",
+                                    name: "revaldate",
+                                    type: "date",
+                                    required: ""
+                                  },
+                                  model: {
+                                    value: _vm.objectBody.revaldate,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.objectBody, "revaldate", $$v)
+                                    },
+                                    expression: "objectBody.revaldate"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                              [
+                                _c("div", { staticClass: "form-group" }, [
+                                  _c("label", { staticClass: "form-label" }, [
+                                    _vm._v("VALUE")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.objectBody.revalval,
+                                        expression: "objectBody.revalval"
+                                      }
+                                    ],
+                                    staticClass:
+                                      "form-control form-control-inverse",
+                                    attrs: { type: "number", name: "revalval" },
+                                    domProps: {
+                                      value: _vm.objectBody.revalval
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.objectBody,
+                                          "revalval",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                        [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v("ACCUMULATED DEPRECIATION VALUE")
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.objectBody.accum_depre,
+                                  expression: "objectBody.accum_depre"
+                                }
+                              ],
+                              staticClass: "form-control form-control-inverse",
+                              attrs: { type: "number", name: "accum_depval" },
+                              domProps: { value: _vm.objectBody.accum_depre },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.objectBody,
+                                    "accum_depre",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-6" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group mr-2 sw-btn-group-extra",
+                            attrs: { role: "group" }
                           },
-                          [_vm._v("Cancel")]
+                          [
+                            this.objectBody.assetCode != "" &&
+                            this.objectBody.assetDesc != "" &&
+                            this.objectBody.assetclass != "" &&
+                            this.objectBody.dept != "" &&
+                            this.objectBody.depr_rate != ""
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-submit btn-primary",
+                                    attrs: { type: "submit" },
+                                    on: { click: _vm.checkForm }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                  Accept\n                "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group mr-2 sw-btn-group-extra",
+                            attrs: { role: "group" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.onCancel()
+                                  }
+                                }
+                              },
+                              [_vm._v("Cancel")]
+                            )
+                          ]
                         )
-                      ]
-                    )
+                      ])
+                    ])
                   ])
-                ])
-              ])
-            ]
-          )
+                ]
+              )
+            ])
+          ])
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
+      _c("ol", { staticClass: "breadcrumb" }, [
+        _c(
+          "li",
+          { staticClass: "breadcrumb-item", attrs: { "aria-current": "page" } },
+          [
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.showForm()
+                  }
+                }
+              },
+              [
+                _c("span", { staticClass: "btn btn-primary h5" }, [
+                  _vm._v("Create Asset")
+                ])
+              ]
+            )
+          ]
+        )
       ])
     ]),
     _vm._v(" "),
@@ -8364,10 +8421,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        {
-          staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
-        },
+        { staticClass: "btn btn-submit btn-danger", attrs: { type: "button" } },
         [_vm._v("Delete")]
       )
     ])
