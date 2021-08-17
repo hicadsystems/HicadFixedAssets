@@ -1946,6 +1946,555 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/build.js");
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    vuejsDatepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a,
+    VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      errors: [],
+      responseMessage: "",
+      canProcess: true,
+      classList: null,
+      costCenterList: null,
+      businessLineList: null,
+      assetRegList: null,
+      objectBody: {
+        assetCode: "",
+        assetDesc: "",
+        "class": "",
+        dept: "",
+        busline: "",
+        purchdate: "",
+        revaldate: "",
+        reclassdate: "",
+        movedate: "",
+        dispdate: "",
+        purchval: "",
+        accum_depre: "",
+        dispval: "",
+        revalval: "",
+        insurdate: "",
+        insuredval: "",
+        year_depr: "",
+        depr_rate: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/AssetReclassification/getAllClassifications").then(function (response) {
+      return _this.classList = response.data;
+    });
+    axios.get("/api/AssetMovement/getAllCostCenters").then(function (response) {
+      return _this.costCenterList = response.data;
+    });
+    axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
+      return _this.businessLineList = response.data;
+    });
+    axios.get("/api/AssetRegisteration/getAllAssets").then(function (response) {
+      return _this.assetRegList = response.data;
+    });
+  },
+  computed: {},
+  methods: {
+    checkForm: function checkForm(e) {
+      this.errors = [];
+      if (this.objectBody.assetCode == "") this.errors.push("Asset required.");
+      if (this.objectBody.assetDesc == "") this.errors.push("Asset Description required.");
+      if (this.objectBody["class"] == "") this.errors.push("Classification required.");
+      if (this.objectBody.dept == "") this.errors.push("Location required.");
+      if (this.objectBody.busline == "") this.errors.push("Business Line required.");
+      if (this.objectBody.purchdate == "") this.errors.push("Purchase Date required.");
+      if (this.objectBody.revaldate == "") this.errors.push("Revaluation date required.");
+      if (this.objectBody.reclassdate == "") this.errors.push("Reclassification date required.");
+      if (this.objectBody.movedate == "") this.errors.push("Movement date required.");
+      if (this.objectBody.dispdate == "") this.errors.push("Disposal date required.");
+      if (this.objectBody.purchval == "") this.errors.push("Purchase value required.");
+      if (this.objectBody.accum_depre == "") this.errors.push("Accumulated depreciation required.");
+      if (this.objectBody.dispval == "") this.errors.push("Disposal value required.");
+      if (this.objectBody.revalval == "") this.errors.push("Revaluation value required.");
+      if (this.objectBody.insurdate == "") this.errors.push("Insurance date required.");
+      if (this.objectBody.insuredval == "") this.errors.push("Insurance value required.");
+      if (this.objectBody.depr_rate == "") this.errors.push("Depreciation rate required.");
+
+      if (this.objectBody.assetCode && this.objectBody.assetDesc && this.objectBody["class"] && this.objectBody.dept && this.objectBody.busline && this.objectBody.purchdate && this.objectBody.revaldate && this.objectBody.depr_rate) {
+        this.errors = [];
+        this.postPost();
+      }
+
+      e.preventDefault();
+    },
+    postPost: function postPost() {
+      var _this2 = this;
+
+      axios.post("/api/AssetRegisteration/createAssetsreg/", this.objectBody).then(function (response) {
+        _this2.responseMessage = response.data.responseDescription;
+        _this2.canProcess = true;
+
+        if (response.data.responseCode == "200") {
+          //this Clears the Input field.
+          _this2.onCancel();
+        }
+      })["catch"](function (e) {
+        _this2.errors.push(e);
+      });
+      this.$alert("Asset Created Successfully!!!", "Ok", "success");
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.assetCode = "";
+      this.objectBody.assetCode = "";
+      this.objectBody.assetDesc = "";
+      this.objectBody.assetDesc = "";
+      this.objectBody["class"] = "";
+      this.objectBody["class"] = "";
+      this.objectBody.dept = "";
+      this.objectBody.dept = "";
+      this.objectBody.busline = "";
+      this.objectBody.busline = "";
+      this.objectBody.purchdate = "";
+      this.objectBody.purchdate = "";
+      this.objectBody.revaldate = "";
+      this.objectBody.revaldate = "";
+      this.objectBody.reclassdate = "";
+      this.objectBody.reclassdate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.movedate = "";
+      this.objectBody.dispdate = "";
+      this.objectBody.dispdate = "";
+      this.objectBody.purchval = "";
+      this.objectBody.purchval = "";
+      this.objectBody.accum_depre = "";
+      this.objectBody.accum_depre = "";
+      this.objectBody.dispval = "";
+      this.objectBody.dispval = "";
+      this.objectBody.revalval = "";
+      this.objectBody.revalval = "";
+      this.objectBody.insurdate = "";
+      this.objectBody.insurdate = "";
+      this.objectBody.insuredval = "";
+      this.objectBody.insuredval = "";
+      this.objectBody.depr_rate = "";
+      this.objectBody.depr_rate = "";
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/CreateBusinesslineComponent.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/CreateBusinesslineComponent.vue?vue&type=script&lang=js& ***!
@@ -2794,8 +3343,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3047,9 +3594,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3160,6 +3704,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -6826,6 +7371,1014 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "page-wrapper" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm.errors.length
+        ? _c("p", [
+            _c("b", [_vm._v("Please correct the following error(s):")]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(_vm.errors, function(error) {
+                return _c("li", { key: error.length }, [
+                  _c(
+                    "h6",
+                    { staticClass: "has-error", staticStyle: { color: "red" } },
+                    [_vm._v(" " + _vm._s(error) + " ")]
+                  )
+                ])
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-body" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.checkForm.apply(null, arguments)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("ASSET CODE")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.assetCode,
+                            expression: "objectBody.assetCode"
+                          }
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "text", name: "assetcode" },
+                        domProps: { value: _vm.objectBody.assetCode },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "assetCode",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-9 col-md-9 col-xl-9" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("ASSET DESCRIPTION")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.assetDesc,
+                            expression: "objectBody.assetDesc"
+                          }
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "text", name: "assetdesc" },
+                        domProps: { value: _vm.objectBody.assetDesc },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "assetDesc",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-9 col-md-9 col-xl-9 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("ASSET CLASSIFICATION")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.objectBody.class,
+                              expression: "objectBody.class"
+                            }
+                          ],
+                          staticClass: "form-control form-control-inverse",
+                          attrs: { name: "assetclass", required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.objectBody,
+                                "class",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.classList, function(clist) {
+                          return _c(
+                            "option",
+                            {
+                              key: clist.classcode,
+                              attrs: { required: "" },
+                              domProps: { value: clist.classcode }
+                            },
+                            [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(clist.classdesc) +
+                                  "\n                "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-sm-3 col-md-3 col-xl-3" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("DEPRECIATION RATE")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.depr_rate,
+                            expression: "objectBody.depr_rate"
+                          }
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { type: "number", name: "deprate" },
+                        domProps: { value: _vm.objectBody.depr_rate },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "depr_rate",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("DEPARTMENT")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.objectBody.dept,
+                              expression: "objectBody.dept"
+                            }
+                          ],
+                          staticClass: "form-control form-control-inverse",
+                          attrs: { name: "assetclass", required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.objectBody,
+                                "dept",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.costCenterList, function(clist) {
+                          return _c(
+                            "option",
+                            {
+                              key: clist.unitcode,
+                              attrs: { required: "" },
+                              domProps: { value: clist.unitcode }
+                            },
+                            [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(clist.unitdesc) +
+                                  "\n                "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("BUSINESS LINE")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.objectBody.busline,
+                              expression: "objectBody.busline"
+                            }
+                          ],
+                          staticClass: "form-control form-control-inverse",
+                          attrs: { name: "assetclass", required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.objectBody,
+                                "busline",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.businessLineList, function(blist) {
+                          return _c(
+                            "option",
+                            {
+                              key: blist.code,
+                              attrs: { required: "" },
+                              domProps: { value: blist.code }
+                            },
+                            [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(blist.description) +
+                                  "\n                "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("RECLASSIFICATION DATE")
+                      ]),
+                      _vm._v(" "),
+                      _c("vuejsDatepicker", {
+                        attrs: {
+                          "input-class": "form-control",
+                          name: "reclassdate",
+                          type: "date",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.objectBody.reclassdate,
+                          callback: function($$v) {
+                            _vm.$set(_vm.objectBody, "reclassdate", $$v)
+                          },
+                          expression: "objectBody.reclassdate"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("PURCHASE")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v("DATE")
+                            ]),
+                            _vm._v(" "),
+                            _c("vuejsDatepicker", {
+                              attrs: {
+                                "input-class": "form-control",
+                                name: "purchdate",
+                                type: "date",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.objectBody.purchdate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.objectBody, "purchdate", $$v)
+                                },
+                                expression: "objectBody.purchdate"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("VALUE")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.objectBody.purchval,
+                                    expression: "objectBody.purchval"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control form-control-inverse",
+                                attrs: { type: "number", name: "purchval" },
+                                domProps: { value: _vm.objectBody.purchval },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.objectBody,
+                                      "purchval",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("INSURANCE")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v("DATE")
+                            ]),
+                            _vm._v(" "),
+                            _c("vuejsDatepicker", {
+                              attrs: {
+                                "input-class": "form-control",
+                                name: "insurdate",
+                                type: "date",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.objectBody.insurdate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.objectBody, "insurdate", $$v)
+                                },
+                                expression: "objectBody.insurdate"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("VALUE")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.objectBody.insuredval,
+                                    expression: "objectBody.insuredval"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control form-control-inverse",
+                                attrs: { type: "number", name: "insurdval" },
+                                domProps: { value: _vm.objectBody.insuredval },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.objectBody,
+                                      "insuredval",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("LAST MOVEMENT DATE")
+                      ]),
+                      _vm._v(" "),
+                      _c("vuejsDatepicker", {
+                        attrs: {
+                          "input-class": "form-control",
+                          name: "lastmovdate",
+                          type: "date",
+                          required: ""
+                        },
+                        model: {
+                          value: _vm.objectBody.movedate,
+                          callback: function($$v) {
+                            _vm.$set(_vm.objectBody, "movedate", $$v)
+                          },
+                          expression: "objectBody.movedate"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("DISPOSAL")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v("DATE")
+                            ]),
+                            _vm._v(" "),
+                            _c("vuejsDatepicker", {
+                              attrs: {
+                                "input-class": "form-control",
+                                name: "dispdate",
+                                type: "date",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.objectBody.dispdate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.objectBody, "dispdate", $$v)
+                                },
+                                expression: "objectBody.dispdate"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("VALUE")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.objectBody.dispval,
+                                    expression: "objectBody.dispval"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control form-control-inverse",
+                                attrs: { type: "number", name: "dispval" },
+                                domProps: { value: _vm.objectBody.dispval },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.objectBody,
+                                      "dispval",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("label", { staticClass: "form-label" }, [
+                        _vm._v("REVALUATION")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v("DATE")
+                            ]),
+                            _vm._v(" "),
+                            _c("vuejsDatepicker", {
+                              attrs: {
+                                "input-class": "form-control",
+                                name: "revaldate",
+                                type: "date",
+                                required: ""
+                              },
+                              model: {
+                                value: _vm.objectBody.revaldate,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.objectBody, "revaldate", $$v)
+                                },
+                                expression: "objectBody.revaldate"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6 col-md-6 col-xl-6" },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("VALUE")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.objectBody.revalval,
+                                    expression: "objectBody.revalval"
+                                  }
+                                ],
+                                staticClass:
+                                  "form-control form-control-inverse",
+                                attrs: { type: "number", name: "revalval" },
+                                domProps: { value: _vm.objectBody.revalval },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.objectBody,
+                                      "revalval",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-sm-4 col-md-4 col-xl-4 m-b-30" },
+                    [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", { staticClass: "form-label" }, [
+                          _vm._v("ACCUMULATED DEPRECIATION VALUE")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.objectBody.accum_depre,
+                              expression: "objectBody.accum_depre"
+                            }
+                          ],
+                          staticClass: "form-control form-control-inverse",
+                          attrs: { type: "number", name: "accum_depval" },
+                          domProps: { value: _vm.objectBody.accum_depre },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.objectBody,
+                                "accum_depre",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-6" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mr-2 sw-btn-group-extra",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        this.objectBody.assetCode != "" &&
+                        this.objectBody.assetDesc != "" &&
+                        this.objectBody.assetclass != "" &&
+                        this.objectBody.dept != "" &&
+                        this.objectBody.depr_rate != ""
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-submit btn-primary",
+                                attrs: { type: "submit" },
+                                on: { click: _vm.checkForm }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Accept\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mr-2 sw-btn-group-extra",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.onCancel()
+                              }
+                            }
+                          },
+                          [_vm._v("Cancel")]
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("div", { staticClass: "page-body" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c(
+            "table",
+            {
+              staticClass: "table table-striped",
+              staticStyle: { width: "100%" },
+              attrs: { id: "datatables-buttons" }
+            },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.assetRegList, function(assetReg, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(assetReg.assetCode))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(assetReg.assetDesc))]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { display: "none" } }, [
+                      _vm._v(_vm._s(assetReg.classCode))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(assetReg.classDesc))]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { display: "none" } }, [
+                      _vm._v(_vm._s(assetReg.unitCode))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(assetReg.unitDesc))]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { display: "none" } }, [
+                      _vm._v(_vm._s(assetReg.busline))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(assetReg.buslineDesc))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(assetReg.purchval))]),
+                    _vm._v(" "),
+                    _vm._m(3, true)
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-header" }, [
+      _c("div", { staticClass: "row align-items-end" }, [
+        _c("div", { staticClass: "col-lg-8" }, [
+          _c("div", { staticClass: "page-header-title" }, [
+            _c("div", { staticClass: "d-inline" }, [
+              _c("h4", [_vm._v("Asset Registration Form")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("ADD NEW ASSET")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-4" }, [
+          _c("div", { staticClass: "page-header-breadcrumb" }, [
+            _c("ul", { staticClass: "breadcrumb-title" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "index.html" } }, [
+                  _c("i", { staticClass: "feather icon-home" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-wrapper" }, [
+      _c("div", { staticClass: "page-header" }, [
+        _c("div", { staticClass: "row align-items-end" }, [
+          _c("div", { staticClass: "col-lg-8" }, [
+            _c("div", { staticClass: "page-header-title" }, [
+              _c("div", { staticClass: "d-inline" }, [
+                _c("h4", [_vm._v("ASSET LIST TABLE")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("THE LIST OF ALL ASSET")])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "page-header-breadcrumb" }, [
+              _c("ul", { staticClass: "breadcrumb-title" }, [
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "index.html" } }, [
+                    _c("i", { staticClass: "feather icon-home" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Classification")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Business Line")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Purchase Value")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-submit btn-primary",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Edit")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-submit btn-primary",
+          attrs: { type: "button" }
+        },
+        [_vm._v("Delete")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/CreateBusinesslineComponent.vue?vue&type=template&id=aa063abe&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/CreateBusinesslineComponent.vue?vue&type=template&id=aa063abe& ***!
@@ -8167,10 +9720,10 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
-                    _c("h4", { staticClass: "sub-title" }, [
-                      _vm._v("Asset Description")
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("ASSET DESCRIPTION")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -8233,43 +9786,41 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-4 col-md-4 col-xl-8 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("Movement Date")
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "movedate",
-                          type: "date",
-                          required: ""
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3 col-md-3 col-xl-2 m-b-30" },
+                  [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("MOVEMENT DATE")
+                    ]),
+                    _vm._v(" "),
+                    _c("vuejsDatepicker", {
+                      attrs: {
+                        "input-class": "form-control",
+                        name: "movedate",
+                        type: "date",
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.objectBody.movedate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.objectBody, "movedate", $$v)
                         },
-                        model: {
-                          value: _vm.objectBody.movedate,
-                          callback: function($$v) {
-                            _vm.$set(_vm.objectBody, "movedate", $$v)
-                          },
-                          expression: "objectBody.movedate"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
+                        expression: "objectBody.movedate"
+                      }
+                    })
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-18 col-xl-8 m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", { staticClass: "sub-title" }, [
+                      _c("label", { staticClass: "form-label" }, [
                         _vm._v("OLD LOCATION")
                       ]),
                       _vm._v(" "),
@@ -8310,9 +9861,9 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-18 col-xl-8x m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
-                    _c("h4", { staticClass: "sub-title" }, [
+                    _c("label", { staticClass: "form-label" }, [
                       _vm._v("NEW LOCATION")
                     ]),
                     _vm._v(" "),
@@ -8533,9 +10084,9 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
-                    _c("h4", { staticClass: "sub-title" }, [
+                    _c("label", { staticClass: "from-label" }, [
                       _vm._v("Asset Description")
                     ]),
                     _vm._v(" "),
@@ -8599,40 +10150,38 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _c(
-                    "div",
-                    { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
-                    [
-                      _c("label", { staticClass: "form-label" }, [
-                        _vm._v("Reclassification Date")
-                      ]),
-                      _vm._v(" "),
-                      _c("vuejsDatepicker", {
-                        attrs: {
-                          "input-class": "form-control",
-                          name: "Reclassdate",
-                          type: "date",
-                          required: ""
+                _c(
+                  "div",
+                  { staticClass: "col-sm-3 col-md-3 col-xl-3 m-b-30" },
+                  [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("RECLASSIFICATION DATE")
+                    ]),
+                    _vm._v(" "),
+                    _c("vuejsDatepicker", {
+                      attrs: {
+                        "input-class": "form-control",
+                        name: "Reclassdate",
+                        type: "date",
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.objectBody.Reclassdate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.objectBody, "Reclassdate", $$v)
                         },
-                        model: {
-                          value: _vm.objectBody.Reclassdate,
-                          callback: function($$v) {
-                            _vm.$set(_vm.objectBody, "Reclassdate", $$v)
-                          },
-                          expression: "objectBody.Reclassdate"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
+                        expression: "objectBody.Reclassdate"
+                      }
+                    })
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
                     _c("div", { staticClass: "form-group" }, [
                       _c("label", { staticClass: "form-label" }, [
@@ -8676,9 +10225,9 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c(
                   "div",
-                  { staticClass: "col-sm-8 col-md-8 col-xl-8 m-b-30" },
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
                   [
-                    _c("h4", { staticClass: "sub-title" }, [
+                    _c("label", { staticClass: "form-label" }, [
                       _vm._v("NEW CLASS")
                     ]),
                     _vm._v(" "),
@@ -22737,6 +24286,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./components/AssetRegistrationComponent.vue": "./wwwroot/Vue/components/AssetRegistrationComponent.vue",
 	"./components/CreateBusinesslineComponent.vue": "./wwwroot/Vue/components/CreateBusinesslineComponent.vue",
 	"./components/CreateCompanyComponent.vue": "./wwwroot/Vue/components/CreateCompanyComponent.vue",
 	"./components/CreateCostCenter.vue": "./wwwroot/Vue/components/CreateCostCenter.vue",
@@ -22789,13 +24339,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/ViewBusinesslineComponent.vue */ "./wwwroot/Vue/components/ViewBusinesslineComponent.vue");
 /* harmony import */ var _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Transactions/AssetReclassificationComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetReclassificationComponent.vue");
 /* harmony import */ var _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Transactions/AssetMovementComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/AssetRegistrationComponent.vue */ "./wwwroot/Vue/components/AssetRegistrationComponent.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_11__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -22809,20 +24361,90 @@ vue__WEBPACK_IMPORTED_MODULE_10___default.a.use(vue_simple_alert__WEBPACK_IMPORT
 var files = __webpack_require__("./wwwroot/Vue sync recursive \\.vue$/");
 
 files.keys().map(function (key) {
-  return vue__WEBPACK_IMPORTED_MODULE_10___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+  return vue__WEBPACK_IMPORTED_MODULE_11___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
 });
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_10___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_10___default.a({
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_11___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_11___default.a({
   el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/AssetRegistrationComponent.vue":
+/*!***************************************************************!*\
+  !*** ./wwwroot/Vue/components/AssetRegistrationComponent.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0& */ "./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0&");
+/* harmony import */ var _AssetRegistrationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AssetRegistrationComponent.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AssetRegistrationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/AssetRegistrationComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRegistrationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AssetRegistrationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRegistrationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0&":
+/*!**********************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/AssetRegistrationComponent.vue?vue&type=template&id=6424e5d0&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRegistrationComponent_vue_vue_type_template_id_6424e5d0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

@@ -23,6 +23,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FixedAssetCore.IRepositories;
 using FixedAssetCore.Repositories;
+using System.Text.Json.Serialization;
 
 namespace FixedAssetWeb
 {
@@ -91,6 +92,9 @@ namespace FixedAssetWeb
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddControllers().AddNewtonsoftJson();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

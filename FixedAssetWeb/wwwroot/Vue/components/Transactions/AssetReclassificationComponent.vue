@@ -47,8 +47,8 @@
         <form @submit.prevent="checkForm" method="post">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
-                <h4 class="sub-title">Asset Description</h4>
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
+                <label class="from-label">Asset Description</label>
                 <select
                   name="assetdesc"
                   v-model="objectBody.assetCode"
@@ -65,10 +65,8 @@
                   </option>
                 </select>
               </div>
-
-              <div class="row">
-                <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
-                  <label class="form-label">Reclassification Date</label>
+              <div class="col-sm-3 col-md-3 col-xl-3 m-b-30">
+                  <label class="form-label">RECLASSIFICATION DATE</label>
                   <vuejsDatepicker
                     input-class="form-control"
                     name="Reclassdate"
@@ -78,10 +76,9 @@
                   >
                   </vuejsDatepicker>
                 </div>
-              </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
                 <div class="form-group">
                   <label class="form-label">CURRENT CLASS</label>
                   <input
@@ -95,8 +92,8 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
-                <h4 class="sub-title">NEW CLASS</h4>
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
+                <label class="form-label">NEW CLASS</label>
                 <select
                   name="assetdesc"
                   v-model="objectBody.newClassCode"

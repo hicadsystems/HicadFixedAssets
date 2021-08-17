@@ -11,7 +11,7 @@
                             <label class="form-label">Code</label>
                             <input type="text" name="code" class="form-control" v-model="postBody.comp_code" required :readonly="submitorUpdate == 'Update'" />
                         </div>
-                        </div>
+                    </div>
                     <div class="col-12 col-xl-3">
                         <div class="form-group">
                             <label class="form-label">Name</label>

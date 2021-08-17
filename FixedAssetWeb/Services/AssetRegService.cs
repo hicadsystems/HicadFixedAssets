@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,11 @@ namespace FixedAssetWeb.Services
         public IEnumerable<fa_Assetsreg> GetAssetReg()
         {
             return unitOfWork.reg.All();
+        }
+
+        public IEnumerable<AssetRegListVM> GetAllAssetReg()
+        {
+            return unitOfWork.reg.GetAllAssetRegisters();
         }
 
         public Task<fa_Assetsreg> GetAssetRegByCode(string bcode)

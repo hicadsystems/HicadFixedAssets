@@ -47,8 +47,8 @@
         <form @submit.prevent="checkForm"  method="post">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-8 col-md-8 col-xl-8 m-b-30">
-                <h4 class="sub-title">Asset Description</h4>
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
+                <label class="form-label">ASSET DESCRIPTION</label>
                 <select
                   name="assetdesc"
                   v-model="objectBody.assetCode"
@@ -66,9 +66,8 @@
                 </select>
               </div>
 
-              <div class="row">
-                <div class="col-sm-4 col-md-4 col-xl-8 m-b-30">
-                <label class="form-label">Movement Date</label>
+              <div class="col-sm-3 col-md-3 col-xl-2 m-b-30">
+                <label class="form-label">MOVEMENT DATE</label>
                 <vuejsDatepicker 
                    input-class="form-control" 
                    name="movedate"
@@ -78,12 +77,11 @@
                    > 
                 </vuejsDatepicker>
               </div>
-              </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 col-md-18 col-xl-8 m-b-30">
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
                 <div class="form-group">
-                  <label class="sub-title">OLD LOCATION</label>
+                  <label class="form-label">OLD LOCATION</label>
                   <input
                     name="oldlocation"
                     placeholder="Current Location"
@@ -95,8 +93,8 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-sm-8 col-md-18 col-xl-8x m-b-30">
-                <h4 class="sub-title">NEW LOCATION</h4>
+              <div class="col-sm-6 col-md-6 col-xl-6 m-b-30">
+                <label class="form-label">NEW LOCATION</label>
                 <select
                   name="assetlocation"
                   v-model="objectBody.newUnitCode"

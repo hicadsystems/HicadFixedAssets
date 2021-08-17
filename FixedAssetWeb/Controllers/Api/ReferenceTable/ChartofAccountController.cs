@@ -35,7 +35,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         // GET: api/ChartofAccount
         [Route("")]
         [HttpGet]
-        public async System.Threading.Tasks.Task<IActionResult> getChart(int? pageno)
+        public async Task<IActionResult> getChart(int? pageno)
         {
             int iDisplayLength = 10;
 
@@ -50,7 +50,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         //api/ChartofAccount/getAllChartofAccounts
         [Route("getAllChartofAccounts")]
         [HttpGet]
-        public async System.Threading.Tasks.Task<IActionResult> getChartofAcount()
+        public async Task<IActionResult> getChartofAcount()
         {
             var chatlist = await chartofAccountService.getChartofAccountAndDesc();
 
@@ -132,7 +132,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
             catch (Exception ex)
             {
-                return Ok(new { responseCode = 500, responseDescription = "Failed" });
+                return Ok(new { responseCode = 500, responseDescription = "Failed" , Data = ex.Message});
             }
         }
 

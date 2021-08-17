@@ -21,16 +21,17 @@
                         <td>{{ FundType.description }}</td>
                         <td>{{ FundType.startDate }}</td>
                         <td>{{ FundType.processingMonth }}</td>
-                        <td>{{ FundType.processingYear }}</td>
+                        <td >{{ FundType.processingYear }}</td>
+                        <!-- style="display:none;" -->
 
                         <td>
                             <button type="button" class="btn btn-submit btn-primary" @click="processRetrieve(FundType)">Edit</button>
                             <button type="button" class="btn btn-submit btn-primary" @click="processDelete(FundType.id)">Delete</button></td>
-                    </tr>
+                        </tr>
                 </tbody>
               
             </table>
-    </div>
+        </div>
 
     </div>
 

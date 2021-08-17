@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FixedAssetCore.Core.Entities;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,13 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         public IEnumerable<fa_Assetsreg> Get()
         {
             return service.GetAssetReg();
+        }
+
+        [Route("getAllAssets")]
+        [HttpGet]
+        public IEnumerable<AssetRegListVM> GetAllAssets()
+        {
+            return service.GetAllAssetReg();
         }
 
         // GET: api/CostCenter
