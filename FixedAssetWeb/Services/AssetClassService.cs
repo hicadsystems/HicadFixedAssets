@@ -45,7 +45,7 @@ namespace FixedAssetWeb.Services
 
         public Task<bool> UpdateClass(fa_class bl_sheet)
         {
-            unitOfWork.assetClass.Remove(bl_sheet);
+            unitOfWork.assetClass.Update(bl_sheet);
             return unitOfWork.Done();
         }
     }
