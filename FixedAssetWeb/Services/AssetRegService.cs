@@ -51,7 +51,7 @@ namespace FixedAssetWeb.Services
 
         public async Task<bool> UpdateAssetReg(fa_Assetsreg bl_sheet)
         {
-            unitOfWork.reg.Remove(bl_sheet);
+            unitOfWork.reg.Update(bl_sheet);
             return await unitOfWork.Done();
         }
 

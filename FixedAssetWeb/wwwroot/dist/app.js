@@ -2363,6 +2363,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2374,7 +2378,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isFormVisible: false,
       errors: [],
+      showCreateButton: true,
       responseMessage: "",
+      CreateOrUpdate: "Create",
       canProcess: true,
       classList: null,
       costCenterList: null,
@@ -2450,22 +2456,69 @@ __webpack_require__.r(__webpack_exports__);
     postPost: function postPost() {
       var _this2 = this;
 
-      axios.post("/api/AssetRegisteration/createAssetsreg/", this.objectBody).then(function (response) {
-        _this2.responseMessage = response.data.responseDescription;
-        _this2.canProcess = true;
+      if (this.CreateOrUpdate == "Create") {
+        axios.post("/api/AssetRegisteration/createAssetsreg/", this.objectBody).then(function (response) {
+          _this2.responseMessage = response.data.responseDescription;
+          _this2.canProcess = true;
 
-        if (response.data.responseCode == "200") {
-          //this Clears the Input field.
-          _this2.onCancel();
-        }
-      })["catch"](function (e) {
-        _this2.errors.push(e);
-      });
-      this.$alert("Asset Created Successfully!!!", "Ok", "success");
-      this.isFormVisible = false;
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            _this2.onCancel();
+          }
+        })["catch"](function (e) {
+          _this2.errors.push(e);
+        });
+        this.$alert("Asset Created Successfully!!!", "Ok", "success");
+        this.isFormVisible = false;
+      }
+
+      if (this.CreateOrUpdate == "Update") {
+        alert("Got here");
+        axios.put("/api/AssetRegisteration/updateAssetsreg/", this.objectBody).then(function (response) {
+          _this2.responseMessage = response.data.responseDescription;
+          _this2.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            _this2.onCancel();
+          }
+        })["catch"](function (e) {
+          _this2.errors.push(e);
+        });
+        this.$alert("Asset Updated Successfully!!!", "Ok", "success");
+        this.isFormVisible = false;
+      }
     },
     showForm: function showForm() {
       this.isFormVisible = true;
+      this.showCreateButton = false;
+    },
+    editAssetReg: function editAssetReg(assetCode) {
+      var _this3 = this;
+
+      axios.get("/api/AssetRegisteration/getAssetsregByCode/".concat(assetCode)).then(function (response) {
+        console.log(response.data.data);
+        _this3.objectBody.assetCode = response.data.data.assetCode;
+        _this3.objectBody.assetDesc = response.data.data.assetDesc;
+        _this3.objectBody["class"] = response.data.data["class"];
+        _this3.objectBody.dept = response.data.data.dept;
+        _this3.objectBody.busline = response.data.data.busline;
+        _this3.objectBody.purchdate = response.data.data.purchdate;
+        _this3.objectBody.revaldate = response.data.data.revaldate;
+        _this3.objectBody.reclassdate = response.data.data.reclassdate;
+        _this3.objectBody.movedate = response.data.data.movedate;
+        _this3.objectBody.dispdate = response.data.data.dispdate;
+        _this3.objectBody.purchval = response.data.data.purchval;
+        _this3.objectBody.accum_depre = response.data.data.accum_depre;
+        _this3.objectBody.dispval = response.data.data.dispval;
+        _this3.objectBody.revalval = response.data.data.revalval;
+        _this3.objectBody.insurdate = response.data.data.insurdate;
+        _this3.objectBody.insuredval = response.data.data.insuredval;
+        _this3.objectBody.year_depr = response.data.data.year_depr;
+        _this3.objectBody.depr_rate = response.data.data.depr_rate;
+        _this3.isFormVisible = true;
+        _this3.CreateOrUpdate = "Update";
+      });
     },
     onCancel: function onCancel() {
       this.errors = [];
@@ -7460,7 +7513,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "form-control form-control-inverse",
-                            attrs: { type: "text", name: "assetcode" },
+                            attrs: {
+                              type: "text",
+                              name: "assetcode",
+                              readonly: _vm.CreateOrUpdate == "Update"
+                            },
                             domProps: { value: _vm.objectBody.assetCode },
                             on: {
                               input: function($event) {
@@ -8185,7 +8242,9 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                  Accept\n                "
+                                      "\n                  " +
+                                        _vm._s(_vm.CreateOrUpdate) +
+                                        "\n                "
                                     )
                                   ]
                                 )
@@ -8225,85 +8284,117 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
-      _c("ol", { staticClass: "breadcrumb" }, [
-        _c(
-          "li",
-          { staticClass: "breadcrumb-item", attrs: { "aria-current": "page" } },
-          [
+    !_vm.isFormVisible
+      ? _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
+          _c("ol", { staticClass: "breadcrumb" }, [
             _c(
-              "button",
+              "li",
               {
-                on: {
-                  click: function($event) {
-                    return _vm.showForm()
-                  }
-                }
+                staticClass: "breadcrumb-item",
+                attrs: { "aria-current": "page" }
               },
               [
-                _c("span", { staticClass: "btn btn-primary h5" }, [
-                  _vm._v("Create Asset")
-                ])
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.showForm()
+                      }
+                    }
+                  },
+                  [
+                    _c("span", { staticClass: "btn btn-primary h5" }, [
+                      _vm._v("Create Asset")
+                    ])
+                  ]
+                )
               ]
             )
-          ]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c("div", { staticClass: "page-body" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" }, [
-          _c(
-            "table",
-            {
-              staticClass: "table table-striped",
-              staticStyle: { width: "100%" },
-              attrs: { id: "datatables-buttons" }
-            },
-            [
-              _vm._m(2),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.assetRegList, function(assetReg, index) {
-                  return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(_vm._s(assetReg.assetCode))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(assetReg.assetDesc))]),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { display: "none" } }, [
-                      _vm._v(_vm._s(assetReg.classCode))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(assetReg.classDesc))]),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { display: "none" } }, [
-                      _vm._v(_vm._s(assetReg.unitCode))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(assetReg.unitDesc))]),
-                    _vm._v(" "),
-                    _c("td", { staticStyle: { display: "none" } }, [
-                      _vm._v(_vm._s(assetReg.busline))
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(assetReg.buslineDesc))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(assetReg.purchval))]),
-                    _vm._v(" "),
-                    _vm._m(3, true)
-                  ])
-                }),
-                0
-              )
-            ]
-          )
+          ])
         ])
-      ])
-    ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isFormVisible
+      ? _c("div", [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "page-body" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass: "table table-striped",
+                    staticStyle: { width: "100%" },
+                    attrs: { id: "datatables-buttons" }
+                  },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.assetRegList, function(assetReg, index) {
+                        return _c("tr", { key: index }, [
+                          _c("td", [_vm._v(_vm._s(assetReg.assetCode))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.assetDesc))]),
+                          _vm._v(" "),
+                          _c("td", { staticStyle: { display: "none" } }, [
+                            _vm._v(_vm._s(assetReg.classCode))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.classDesc))]),
+                          _vm._v(" "),
+                          _c("td", { staticStyle: { display: "none" } }, [
+                            _vm._v(_vm._s(assetReg.unitCode))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.unitDesc))]),
+                          _vm._v(" "),
+                          _c("td", { staticStyle: { display: "none" } }, [
+                            _vm._v(_vm._s(assetReg.busline))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.buslineDesc))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.purchval))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-submit btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.editAssetReg(assetReg.assetCode)
+                                  }
+                                }
+                              },
+                              [_vm._v("Edit")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-submit btn-danger",
+                                attrs: { type: "button" }
+                              },
+                              [_vm._v("Delete")]
+                            )
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -8403,27 +8494,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Purchase Value")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
-        },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-submit btn-danger", attrs: { type: "button" } },
-        [_vm._v("Delete")]
-      )
     ])
   }
 ]

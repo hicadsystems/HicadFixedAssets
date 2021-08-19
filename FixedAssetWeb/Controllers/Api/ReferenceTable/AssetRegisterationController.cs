@@ -36,11 +36,11 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         }
 
         // GET: api/CostCenter
-        [Route("getAssetsregByCode/{id}")]
+        [Route("getAssetsregByCode/{assetCode}")]
         [HttpGet]
-        public IActionResult GetCostCenterByCode(string id)
+        public IActionResult GetCostCenterByCode(string assetCode)
         {
-            var balsheet =  service.GetAssetRegByCode(id);
+            var balsheet =  service.GetAssetRegByCode(assetCode.Trim()).Result;
 
             if (balsheet == null)
             {

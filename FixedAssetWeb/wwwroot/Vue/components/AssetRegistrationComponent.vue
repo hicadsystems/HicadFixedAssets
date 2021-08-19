@@ -56,7 +56,8 @@
                               type="text" 
                               name="assetcode" 
                               class="form-control form-control-inverse"
-                              v-model="objectBody.assetCode" 
+                              v-model="objectBody.assetCode"
+                              :readonly="CreateOrUpdate == 'Update'" 
                             />
                         </div>
                 </div>
@@ -306,7 +307,7 @@
                     type="submit"
                     class="btn btn-submit btn-primary"
                   >
-                    Accept
+                    {{ CreateOrUpdate }}
                   </button>
                 </div>
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
@@ -321,48 +322,49 @@
   </div>
     <!-- End Of Asset Registration Form -->
     <!-- NAV DIV -->
-    <nav aria-label="breadcrumb">
+    <nav v-if="!isFormVisible" aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page">
-          <button @click="showForm()"><span class="btn btn-primary h5">Create Asset</span></button>
+          <a @click="showForm()"><span class="btn btn-primary h5">Create Asset</span></a>
         </li>
       </ol>
     </nav>
     <!--END OF NAV DIV -->
 
     <!-- ASSET TABLE -->
-    <div class="page-wrapper">
-     <div class="page-header">
-       <div class="row align-items-end">
-         <div class="col-lg-8">
-           <div class="page-header-title">
-             <div class="d-inline">
-               <h4>ASSET LIST TABLE</h4>
-               <span>THE LIST OF ALL ASSET</span>
-             </div>
-           </div>
-         </div>
-         <div class="col-lg-4">
-           <div class="page-header-breadcrumb">
-             <ul class="breadcrumb-title">
-               <li class="breadcrumb-item">
-                 <a href="index.html"> <i class="feather icon-home"></i> </a>
-              </li>
-               <li class="breadcrumb-item">
-                 <a href="#!">Data Table</a>
-               </li>
-               <li class="breadcrumb-item">
-                 <a href="#!">Styling</a>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div>
-     </div>
-    </div>
+    <div v-if="!isFormVisible">
+      <div class="page-wrapper">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                  <div class="d-inline">
+                    <h4>ASSET LIST TABLE</h4>
+                    <span>THE LIST OF ALL ASSET</span>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                    <a href="index.html"> <i class="feather icon-home"></i> </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Data Table</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Styling</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="page-body">
-      <div class="card">
+      <div class="page-body">
+        <div class="card">
           <div class="card-body">
             <table id="datatables-buttons" class="table table-striped" style="width:100%">
                 <thead>
@@ -388,7 +390,8 @@
                         <td>{{ assetReg.purchval }}</td>
 
                         <td>
-                            <button type="button" class="btn btn-submit btn-primary" >Edit</button>
+                
+                            <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
                             <button type="button" class="btn btn-submit btn-danger" >Delete</button>
                         </td>
                     </tr>
@@ -396,6 +399,7 @@
               
             </table>
           </div>
+        </div>
       </div>
     </div>
 
@@ -416,7 +420,9 @@ export default {
     return {
       isFormVisible: false,
       errors: [],
+      showCreateButton: true,
       responseMessage: "",
+      CreateOrUpdate: "Create",
       canProcess: true,
       classList: null,
       costCenterList: null,
@@ -537,7 +543,8 @@ export default {
     },
 
     postPost() {
-      axios
+      if(this.CreateOrUpdate == "Create"){
+        axios
         .post(`/api/AssetRegisteration/createAssetsreg/`, this.objectBody)
         .then((response) => {
           this.responseMessage = response.data.responseDescription;
@@ -555,11 +562,65 @@ export default {
       this.$alert("Asset Created Successfully!!!", "Ok", "success");
 
       this.isFormVisible = false;
+      }
+
+      if(this.CreateOrUpdate == "Update"){
+        alert("Got here");
+        axios
+        .put(`/api/AssetRegisteration/updateAssetsreg/`, this.objectBody)
+        .then((response) => {
+          this.responseMessage = response.data.responseDescription;
+          this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            this.onCancel();
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      this.$alert("Asset Updated Successfully!!!", "Ok", "success");
+
+      this.isFormVisible = false;
+      }
     },
 
     showForm() {
-
       this.isFormVisible = true;
+
+      this.showCreateButton = false;
+    },
+
+    editAssetReg(assetCode) {
+      axios
+        .get(`/api/AssetRegisteration/getAssetsregByCode/${assetCode}`)
+        .then((response) => {
+          console.log(response.data.data);
+          this.objectBody.assetCode = response.data.data.assetCode;
+          this.objectBody.assetDesc = response.data.data.assetDesc;
+          this.objectBody.class = response.data.data.class;
+          this.objectBody.dept = response.data.data.dept;
+          this.objectBody.busline = response.data.data.busline;
+          this.objectBody.purchdate = response.data.data.purchdate;
+          this.objectBody.revaldate = response.data.data.revaldate;
+          this.objectBody.reclassdate = response.data.data.reclassdate;
+          this.objectBody.movedate = response.data.data.movedate;
+          this.objectBody.dispdate = response.data.data.dispdate;
+          this.objectBody.purchval = response.data.data.purchval;
+          this.objectBody.accum_depre = response.data.data.accum_depre;
+          this.objectBody.dispval = response.data.data.dispval;
+          this.objectBody.revalval = response.data.data.revalval;
+          this.objectBody.insurdate = response.data.data.insurdate;
+          this.objectBody.insuredval = response.data.data.insuredval;
+          this.objectBody.year_depr = response.data.data.year_depr;
+          this.objectBody.depr_rate = response.data.data.depr_rate;
+
+          this.isFormVisible = true;
+
+          this.CreateOrUpdate = "Update";
+        });
     },
 
     onCancel() {
