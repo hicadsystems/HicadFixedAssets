@@ -30,6 +30,7 @@ namespace FixedAssetCore.Core.Repositories
                 .Join(context.nac_businessline, abl => abl.assetclass.Busline, busline => busline.Code, (abl, busline) => new { abl.assetclass, abl.costcnt, abl.c, busline })
                 .Select(assetRegVm => new AssetRegListVM
                 {
+                    Id = assetRegVm.assetclass.Id,
                     assetCode = assetRegVm.assetclass.assetCode,
                     assetDesc = assetRegVm.assetclass.assetDesc,
                     classCode = assetRegVm.assetclass.Class,
