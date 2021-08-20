@@ -6,6 +6,7 @@ namespace FixedAssetCore.EntityCoreVM
 {
     public class AssetRegListVM
     {
+        public int Id { get; set; }
         public string assetCode { get; set; }
 
         public string assetDesc { get; set; }

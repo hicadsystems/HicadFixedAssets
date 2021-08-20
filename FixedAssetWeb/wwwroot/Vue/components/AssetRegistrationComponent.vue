@@ -379,9 +379,11 @@
                 </thead>
                 <tbody>
                     <tr v-for="(assetReg,index) in assetRegList" :key="index">
+                        <td>{{ assetReg.id }}</td>
                         <td>{{ assetReg.assetCode }}</td>
                         <td>{{ assetReg.assetDesc }}</td>
                         <td style="display:none;">{{ assetReg.classCode }}</td>
+                        <td style="display:none;">{{ assetReg.id }}</td>
                         <td>{{ assetReg.classDesc }}</td>
                         <td style="display:none;">{{ assetReg.unitCode }}</td>
                         <td>{{ assetReg.unitDesc }}</td>
@@ -392,7 +394,7 @@
                         <td>
                 
                             <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
-                            <button type="button" class="btn btn-submit btn-danger" >Delete</button>
+                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.assetCode)" >Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -565,7 +567,7 @@ export default {
       }
 
       if(this.CreateOrUpdate == "Update"){
-        alert("Got here");
+      
         axios
         .put(`/api/AssetRegisteration/updateAssetsreg/`, this.objectBody)
         .then((response) => {
@@ -623,6 +625,21 @@ export default {
         });
     },
 
+    deleteAssetReg(assetCode){
+
+      axios.get(`/api/BusinessLine/RemoveBusinessLine/${assetCode}`)
+            .then(response => {
+              if (response.data.responseCode == '200') {
+
+                  alert("businessline successfully deleted");
+
+              }
+
+              }).catch(e => {
+                  this.errors.push(e)
+              });
+    },
+ 
     onCancel() {
       this.errors = [];
 

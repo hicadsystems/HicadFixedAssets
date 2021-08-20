@@ -2367,6 +2367,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2473,7 +2475,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       if (this.CreateOrUpdate == "Update") {
-        alert("Got here");
         axios.put("/api/AssetRegisteration/updateAssetsreg/", this.objectBody).then(function (response) {
           _this2.responseMessage = response.data.responseDescription;
           _this2.canProcess = true;
@@ -2518,6 +2519,17 @@ __webpack_require__.r(__webpack_exports__);
         _this3.objectBody.depr_rate = response.data.data.depr_rate;
         _this3.isFormVisible = true;
         _this3.CreateOrUpdate = "Update";
+      });
+    },
+    deleteAssetReg: function deleteAssetReg(assetCode) {
+      var _this4 = this;
+
+      axios.get("/api/BusinessLine/RemoveBusinessLine/".concat(assetCode)).then(function (response) {
+        if (response.data.responseCode == '200') {
+          alert("businessline successfully deleted");
+        }
+      })["catch"](function (e) {
+        _this4.errors.push(e);
       });
     },
     onCancel: function onCancel() {
@@ -8336,12 +8348,18 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.assetRegList, function(assetReg, index) {
                         return _c("tr", { key: index }, [
+                          _c("td", [_vm._v(_vm._s(assetReg.id))]),
+                          _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(assetReg.assetCode))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(assetReg.assetDesc))]),
                           _vm._v(" "),
                           _c("td", { staticStyle: { display: "none" } }, [
                             _vm._v(_vm._s(assetReg.classCode))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticStyle: { display: "none" } }, [
+                            _vm._v(_vm._s(assetReg.id))
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(assetReg.classDesc))]),
@@ -8379,7 +8397,14 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-submit btn-danger",
-                                attrs: { type: "button" }
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteAssetReg(
+                                      assetReg.assetCode
+                                    )
+                                  }
+                                }
                               },
                               [_vm._v("Delete")]
                             )
