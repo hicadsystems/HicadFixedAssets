@@ -8,11 +8,11 @@ namespace FixedAssetWeb.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "fa_history");
+            //migrationBuilder.DropTable(
+            //    name: "fa_history");
 
-            migrationBuilder.DropTable(
-                name: "fa_transaction");
+            //migrationBuilder.DropTable(
+            //    name: "fa_transaction");
 
             migrationBuilder.CreateTable(
                 name: "fa_historys",
@@ -80,11 +80,11 @@ namespace FixedAssetWeb.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "fa_historys");
+            //migrationBuilder.DropTable(
+            //    name: "fa_historys");
 
-            migrationBuilder.DropTable(
-                name: "fa_transactions");
+            //migrationBuilder.DropTable(
+            //    name: "fa_transactions");
 
             migrationBuilder.CreateTable(
                 name: "fa_history",
