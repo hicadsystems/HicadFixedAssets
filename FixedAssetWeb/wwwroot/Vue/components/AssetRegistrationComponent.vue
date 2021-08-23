@@ -1,5 +1,9 @@
 <template>
   <div>
+
+    <!-- Confirm pop-up -->
+    <vue-confirm-dialog></vue-confirm-dialog>
+
     <!-- Asset Registration Form -->
     <div v-if="isFormVisible" class="page-wrapper">
     <div class="page-header">
@@ -379,7 +383,6 @@
                 </thead>
                 <tbody>
                     <tr v-for="(assetReg,index) in assetRegList" :key="index">
-                        <td>{{ assetReg.id }}</td>
                         <td>{{ assetReg.assetCode }}</td>
                         <td>{{ assetReg.assetDesc }}</td>
                         <td style="display:none;">{{ assetReg.classCode }}</td>
@@ -394,7 +397,7 @@
                         <td>
                 
                             <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
-                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.assetCode)" >Delete</button>
+                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.id, assetReg.assetDesc)" >Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -625,19 +628,30 @@ export default {
         });
     },
 
-    deleteAssetReg(assetCode){
-
-      axios.get(`/api/BusinessLine/RemoveBusinessLine/${assetCode}`)
+    deleteAssetReg(assetCode, assetDesc){
+      this.$confirm({
+        message: "Delete " + assetDesc + " ?",
+        button: {
+          no: "NO",
+          yes: "YES"
+        },
+        callback: confirm => {
+          if(confirm){
+            alert("deleted " + assetCode + " " + assetDesc);
+            axios.get(`/api/AssetRegisteration/RemoveAssetsreg/${assetCode}`)
             .then(response => {
               if (response.data.responseCode == '200') {
 
-                  alert("businessline successfully deleted");
-
+                this.$alert(assetDesc + " Deleted Successfully!!!", "Ok", "success");
               }
 
               }).catch(e => {
                   this.errors.push(e)
               });
+              
+          }
+        },
+      });
     },
  
     onCancel() {

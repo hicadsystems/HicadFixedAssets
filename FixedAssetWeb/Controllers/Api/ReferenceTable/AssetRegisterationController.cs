@@ -60,7 +60,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         // POST: api/CostCenter
         [Route("createAssetsreg")]
         [HttpPost]
-        public IActionResult createCostCenter([FromBody] fa_Assetsreg value)
+        public IActionResult createAssetRegister([FromBody] fa_Assetsreg value)
         {
             try
             {
