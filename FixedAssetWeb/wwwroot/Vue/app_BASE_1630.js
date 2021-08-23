@@ -2,10 +2,8 @@ window.Vue = require('vue')
 window.axios = require('axios')
 import store from './store';
 import VueSimpleAlert from "vue-simple-alert";
-import VueConfirmDialog from 'vue-confirm-dialog';
 
 Vue.use(VueSimpleAlert);
-Vue.use(VueConfirmDialog);
 
 import CreateCompanyComponent from './components/CreateCompanyComponent.vue';
 import ViewCompanyComponent from './components/ViewCompanyComponent.vue';
@@ -30,7 +28,6 @@ Vue.component('view-businessline-component',ViewBusinesslineComponent);
 Vue.component('asset-reclassification-component', AssetReclassificationComponent);
 Vue.component('asset-movement-component', AssetMovementComponent);
 Vue.component('asset-registration-component', AssetRegistrationComponent);
-Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
  
 const app = new Vue({
     el: "#app",
