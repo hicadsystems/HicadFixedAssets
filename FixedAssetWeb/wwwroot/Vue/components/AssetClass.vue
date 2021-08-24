@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- Asset Class Form -->
-        <div class="page-wrapper">
+        <div v-if="isFormVisible" class="page-wrapper">
             <div class="page-header">
                 <div class="row align-items-end">
                     <div class="col-lg-8">
@@ -34,19 +34,25 @@
 
         <div class="page body">
             <div class="card">
-                <form>
+                <form @submit.prevent="checkForm" method="post">
                    <div class="card-body">
                         <div class="row">
                         <div class="col-sm-2 col-md-2 col-xl-2">
                             <div class="form-group">
                                 <label class="form-label">Class Code</label>
-                                <input type="text" name="Code" class="form-control" />
+                                <input 
+                                name="classcode"
+                                v-model="objectBody.classcode" 
+                                class="form-control" />
                             </div>
                         </div>
                         <div class="col-6 col-xl-6">
                             <div class="form-group">
                                 <label class="form-label"> Class Description</label>
-                                <input class="form-control" name="Description" />
+                                <input 
+                                name="classdesc"
+                                v-model="objectBody.classdesc" 
+                                class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -59,14 +65,22 @@
                                         <div class="form-group row">
                                                 <label for="rate" class="col-sm-4 col-form-label">Rate :</label>
                                                 <div class="col-sm-4">
-                                                    <input class="form-control" type="text">
+                                                    <input 
+                                                    name="deprrate"
+                                                    v-model="objectBody.deprrate" 
+                                                    class="form-control" />
                                                 </div>
                                                 <h5>%</h5>
                                         </div>
                                         <div class="form-group row">
                                                 <label for="rate" class="col-sm-4 col-form-label">Method :</label>
                                                 <div class="col-sm-7">
-                                                    <select class="form-control" type="text"></select>
+                                                    <select
+                                                    name="deptmethod"
+                                                    v-model="objectBody.deptmethod" 
+                                                    class="form-control">
+                                                    <option></option>
+                                                    </select>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
@@ -85,27 +99,53 @@
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Cost Code :</label>
                                             <div class="col-sm-7">
-                                                <select class="form-control" type="text"></select>
+                                                <select 
+                                                name="led_cost_code"
+                                                v-model="objectBody.led_cost_code" 
+                                                class="form-control">
+                                                <option></option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Accum.Depr.Code :</label>
                                             <div class="col-sm-7">
-                                                <select class="form-control" type="text"></select>
+                                                <select 
+                                                name="led_accum_depr_code"
+                                                v-model="objectBody.led_accum_depr_code" 
+                                                class="form-control">
+                                                <option></option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Expenses Code :</label>
                                             <div class="col-sm-7">
-                                                <select class="form-control" type="text"></select>
+                                                <select 
+                                                name="led_exp_code"
+                                                v-model="objectBody.led_exp_code" 
+                                                class="form-control">
+                                                <option></option>
+                                                </select>
                                             </div>
                                         </div>
                                     </fieldset>
                                 </form>
                             </div>
-                            <div>
-                                <button type="submit" class="btn btn-primary mb-2">Add</button>
-                                <button type="submit" class="btn btn-primary mb-2">Delete</button>
+                            <div role="group" class="btn-group mr-2 sw-btn-group-extra">
+                                <button 
+                                 v-if="this.objectBody.classcode != '' && this.objectBody.classdesc != '' 
+                                 && this.objectBody.deprrate != '' 
+                                 && this.objectBody.deptmethod !='' && this.objectBody.led_cost_code !='' 
+                                 && this.objectBody.led_accum_depr_code != '' && this.objectBody.Led_exp_code !='' "
+                                 v-on:click="checkForm"
+                                type="submit" 
+                                class="btn btn-primary mb-2">
+                                {{ Create }}
+                                </button>
+                            </div>
+                            <div role="group" class="btn-group mr-2 sw-btn-group-extra">
+                                <button @click.prevent="onCancel()" class="btn btn-danger">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -113,6 +153,84 @@
                 </form>
             </div>
         </div>
+        <div>
+      <div class="page-wrapper">
+        <div class="page-header">
+          <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                  <div class="d-inline">
+                    <h4>ASSET CLASS TABLE</h4>
+                    <span>THE LIST OF ALL ASSET CLASS</span>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                  <li class="breadcrumb-item">
+                    <a href="index.html"> <i class="feather icon-home"></i> </a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Data Table</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#!">Styling</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- NAV DIV -->
+        <nav v-if="!isFormVisible" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+            <a @click="showForm()"><span class="btn btn-primary h5">Create Class</span></a>
+            </li>
+        </ol>
+        </nav>
+      <!--END OF NAV DIV -->
+
+      <div class="page-body">
+        <div class="card">
+          <div class="card-body">
+            <table id="datatables-buttons" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Class Code</th>
+                        <th>Class Description</th>
+                        <th>Rate</th>
+                        <th>Method</th>
+                        <th>Cost Code</th>
+                        <th>Accum.Depr.Code</th>
+                        <th>Expenses Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(AssetClass,index) in classList" :key="index">
+                        <td>{{ AssetClass.classcode }}</td>
+                        <td>{{ AssetClass.classdesc }}</td>
+                        <td>{{ AssetClass.deprrate }}</td>
+                        <td>{{ AssetClass.deprmethod }}</td>
+                        <td>{{ AssetClass.led_cost_code }}</td>
+                        <td>{{ AssetClass.led_accum_depr_code }}</td>
+                        <td>{{ AssetClass.led_exp_code }}</td>
+
+                        <td>
+                
+                            <button type="button" class="btn btn-submit btn-primary">Edit</button>
+                            <button type="button" class="btn btn-submit btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 </template>
 
@@ -121,13 +239,38 @@ import vuejsDatepicker from 'vuejs-datepicker';
 export default {
     components: {
         vuejsDatepicker
+    },
+
+    data() {
+        return{
+            isFormVisible: false,
+            errors: [],
+            showCreateButton: true,
+            classList: null,
+            objectBody: {
+                classcode: "",
+                classdesc: "",
+                deprrate: "",
+                deprmethod: "",
+                led_cost_code:"",
+                led_accum_depr_code: "",
+                led_exp_code:"",
+            },
+        }
+    },
+
+    showForm() {
+      this.isFormVisible = true;
+
+      this.showCreateButton = false;
+    },
+
+    mounted(){
+        axios
+        .get("/api/AssetClass/getAllclasss")
+        .then((response) => (this.classList = response.data));
     }
 }
 </script>
 <style scoped>
-/* .label {
-  display: inline-block;
-  width: 140px;
-  text-align: right;
-}​ */
 </style>
