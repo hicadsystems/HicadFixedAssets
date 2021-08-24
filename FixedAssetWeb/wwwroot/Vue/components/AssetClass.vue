@@ -1,7 +1,8 @@
 <template>
     <div>
         <!-- Asset Class Form -->
-        <div v-if="isFormVisible" class="page-wrapper">
+        <div v-if="isFormVisible">
+            <div  class="page-wrapper">
             <div class="page-header">
                 <div class="row align-items-end">
                     <div class="col-lg-8">
@@ -75,12 +76,16 @@
                                         <div class="form-group row">
                                                 <label for="rate" class="col-sm-4 col-form-label">Method :</label>
                                                 <div class="col-sm-7">
-                                                    <select
+                                                    <input 
+                                                    name="classdesc"
+                                                    v-model="objectBody.deprmethod" 
+                                                    class="form-control" />
+                                                    <!-- <select
                                                     name="deptmethod"
-                                                    v-model="objectBody.deptmethod" 
+                                                    v-model="objectBody.deprmethod" 
                                                     class="form-control">
                                                     <option></option>
-                                                    </select>
+                                                    </select> -->
                                                 </div>
                                         </div>
                                         <div class="form-group row">
@@ -99,34 +104,46 @@
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Cost Code :</label>
                                             <div class="col-sm-7">
-                                                <select 
+                                                <input 
+                                                name="led_cost_code"
+                                                v-model="objectBody.led_cost_code" 
+                                                class="form-control" />
+                                                <!-- <select 
                                                 name="led_cost_code"
                                                 v-model="objectBody.led_cost_code" 
                                                 class="form-control">
                                                 <option></option>
-                                                </select>
+                                                </select> -->
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Accum.Depr.Code :</label>
                                             <div class="col-sm-7">
-                                                <select 
+                                                <input 
+                                                name="led_accum_depr_code"
+                                                v-model="objectBody.led_accum_depr_code" 
+                                                class="form-control" />
+                                                <!-- <select 
                                                 name="led_accum_depr_code"
                                                 v-model="objectBody.led_accum_depr_code" 
                                                 class="form-control">
                                                 <option></option>
-                                                </select>
+                                                </select> -->
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="rate" class="col-sm-4 col-form-label">Expenses Code :</label>
                                             <div class="col-sm-7">
-                                                <select 
+                                                <input 
+                                                name="led_exp_code"
+                                                v-model="objectBody.led_exp_code" 
+                                                class="form-control" />
+                                                <!-- <select 
                                                 name="led_exp_code"
                                                 v-model="objectBody.led_exp_code" 
                                                 class="form-control">
                                                 <option></option>
-                                                </select>
+                                                </select> -->
                                             </div>
                                         </div>
                                     </fieldset>
@@ -136,12 +153,12 @@
                                 <button 
                                  v-if="this.objectBody.classcode != '' && this.objectBody.classdesc != '' 
                                  && this.objectBody.deprrate != '' 
-                                 && this.objectBody.deptmethod !='' && this.objectBody.led_cost_code !='' 
+                                 && this.objectBody.deprmethod !='' && this.objectBody.led_cost_code !='' 
                                  && this.objectBody.led_accum_depr_code != '' && this.objectBody.Led_exp_code !='' "
                                  v-on:click="checkForm"
                                 type="submit" 
                                 class="btn btn-primary mb-2">
-                                {{ Create }}
+                                {{ CreateOrUpdate }}
                                 </button>
                             </div>
                             <div role="group" class="btn-group mr-2 sw-btn-group-extra">
@@ -153,6 +170,9 @@
                 </form>
             </div>
         </div>
+        </div>
+
+        <!-- Set Asset Class Table -->
         <div>
       <div class="page-wrapper">
         <div class="page-header">
@@ -220,8 +240,8 @@
 
                         <td>
                 
-                            <button type="button" class="btn btn-submit btn-primary">Edit</button>
-                            <button type="button" class="btn btn-submit btn-danger">Delete</button>
+                            <button type="button" class="btn btn-submit btn-primary" @click="editAssetClass(AssetClass.classcode)" >Edit</button>
+                            <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetClass(AssetClass.classcode, AssetClass.classdesc)" >Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -246,7 +266,9 @@ export default {
             isFormVisible: false,
             errors: [],
             showCreateButton: true,
+            canProcess: true,
             classList: null,
+            CreateOrUpdate: "Create",
             objectBody: {
                 classcode: "",
                 classdesc: "",
@@ -258,13 +280,156 @@ export default {
             },
         }
     },
+    methods: {
+        checkForm: function (e) {
+        this.errors = [];
 
-    showForm() {
-      this.isFormVisible = true;
+        if (this.objectBody.classcode == "") this.errors.push("Code required.");
 
-      this.showCreateButton = false;
+        if (this.objectBody.classdesc == "")
+            this.errors.push("Description required.");
+
+        if (this.objectBody.deprrate == "")
+            this.errors.push("Depreciation Rate required.");
+
+        if (this.objectBody.deprmethod == "") this.errors.push("Method required.");
+
+        if (this.objectBody.led_cost_code == "")
+            this.errors.push("Cost Code required.");
+
+        if (this.objectBody.led_accum_depr_code == "")
+            this.errors.push("Accum.Depr.Code required.");
+
+        if (this.objectBody.led_exp_code == "")
+            this.errors.push("Expenses Code required.");
+
+        if (
+            this.objectBody.classcode &&
+            this.objectBody.classdesc &&
+            this.objectBody.deprrate &&
+            this.objectBody.deprmethod &&
+            this.objectBody.led_cost_code &&
+            this.objectBody.led_accum_depr_code &&
+            this.objectBody.led_exp_code
+        ) {
+                this.errors = [];
+
+                this.postPost();
+            }
+
+        e.preventDefault();
+        },
+
+        postPost() {
+            if(this.CreateOrUpdate == "Create"){
+            axios
+            .post(`/api/AssetClass/createclass/`, this.objectBody)
+            .then((response) => {
+                this.responseMessage = response.data.responseDescription;
+                this.canProcess = true;
+
+                if (response.data.responseCode == "200") {
+                    //this Clears the Input field.
+                    this.onCancel();
+                }
+            })
+            .catch((e) => {
+                this.errors.push(e);
+            });
+
+            this.$alert("Class Created Successfully!!!", "Ok", "success");
+
+            this.isFormVisible = false;
+            }
+
+            if(this.CreateOrUpdate == "Update"){
+      
+                axios
+                .put(`/api/AssetClass/updateclass/`, this.objectBody)
+                .then((response) => {
+                    this.responseMessage = response.data.responseDescription;
+                    this.canProcess = true;
+
+                    if (response.data.responseCode == "200") {
+                        //this Clears the Input field.
+                        this.onCancel();
+                    }
+                })
+                .catch((e) => {
+                    this.errors.push(e);
+                });
+
+                this.$alert("Class Updated Successfully!!!", "Ok", "success");
+
+                this.isFormVisible = false;
+            }
+        },
+
+
+        showForm() {
+        this.isFormVisible = true;
+
+        this.showCreateButton = false;
+        },
+
+        editAssetClass(classcode) {
+            axios
+            .get(`/api/AssetClass/getclassByCode/${classcode}`)
+            .then((response) => {
+                console.log(response.data.data);
+                this.objectBody.classcode = response.data.data.classcode;
+                this.objectBody.classdesc = response.data.data.classdesc;
+                this.objectBody.deprrate = response.data.data.deprrate;
+                this.objectBody.deprmethod = response.data.data.deprmethod;
+                this.objectBody.led_cost_code = response.data.data.led_cost_code;
+                this.objectBody.led_accum_depr_code = response.data.data.led_accum_depr_code;
+                this.objectBody.led_exp_code = response.data.data.led_exp_code;
+
+                this.isFormVisible = true;
+
+                this.CreateOrUpdate = "Update";
+            });
+        },
+
+        deleteAssetClass(classcode, classdesc){
+            this.$confirm({
+                message: "Delete " + classdesc + " ?",
+                button: {
+                    no: "NO",
+                    yes: "YES"
+                },
+                callback: confirm => {
+                    if(confirm){
+                        alert("deleted " + classcode + " " + classdesc);
+                        axios.get(`/api/AssetClass/removeclass/${classcode}`)
+                        .then(response => {
+                        if (response.data.responseCode == '200') {
+
+                            this.$alert(classdesc + " Deleted Successfully!!!", "Ok", "success");
+                        }
+
+                        }).catch(e => {
+                            this.errors.push(e)
+                        });
+              
+                    }
+                },
+            });
+        },
+
+        onCancel() {
+            this.errors = [];
+
+            this.objectBody.classcode = "";
+            this.objectBody.classdesc = "";
+            this.objectBody.deprrate = "";
+            this.objectBody.deprmethod = "";
+            this.objectBody.led_cost_code = "";
+            this.objectBody.led_accum_depr_code = "";
+            this.objectBody.led_exp_code = "";
+        },
     },
-
+    
     mounted(){
         axios
         .get("/api/AssetClass/getAllclasss")
