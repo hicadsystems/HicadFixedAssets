@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.Entities;
+using FixedAssetCore.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,6 @@ namespace FixedAssetCore.Core.Data
         DbSet<nac_costcenters> nac_costcenters { get; set; }
         DbSet<fa_history> fa_historys { get; set; }
         DbSet<fa_transaction> fa_transactions { get; set; }
+        DbSet<fa_gdepreciation> fa_gdepreciations { get; set; }
     }
 }

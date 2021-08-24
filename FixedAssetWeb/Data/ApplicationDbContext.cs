@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Data;
 using FixedAssetCore.Core.Entities;
+using FixedAssetCore.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,6 +37,7 @@ namespace FixedAssetWeb.Data
 
     public DbSet<fa_history> fa_historys { get; set; }
     public DbSet<fa_transaction> fa_transactions { get; set; }
+    public DbSet<fa_gdepreciation> fa_gdepreciations { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
