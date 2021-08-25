@@ -76,9 +76,9 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         //api/class/RemoveBalsheet/7
         [Route("removeclass/{id:int}")]
         [HttpGet]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(string id)
         {
-            var balsheet = service.GetClassById(id).Result;
+            var balsheet = service.GetClassByCode(id).Result;
             if (balsheet == null) return NotFound();
 
             service.RemoveClass(balsheet);

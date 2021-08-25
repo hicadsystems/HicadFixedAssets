@@ -1,5 +1,9 @@
 <template>
     <div>
+        <!-- Confirm pop-up -->
+    <vue-confirm-dialog></vue-confirm-dialog>
+
+
         <!-- Asset Class Form -->
         <div v-if="isFormVisible">
             <div  class="page-wrapper">
@@ -43,7 +47,8 @@
                                 <label class="form-label">Class Code</label>
                                 <input 
                                 name="classcode"
-                                v-model="objectBody.classcode" 
+                                v-model="objectBody.classcode"
+                                :readonly="CreateOrUpdate == 'Update'" 
                                 class="form-control" />
                             </div>
                         </div>
@@ -172,8 +177,18 @@
         </div>
         </div>
 
+        <!-- NAV DIV -->
+        <nav v-if="!isFormVisible" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+            <a @click="showForm()"><span class="btn btn-primary h5">Create Class</span></a>
+            </li>
+        </ol>
+        </nav>
+      <!--END OF NAV DIV -->
+
         <!-- Set Asset Class Table -->
-        <div>
+        <div v-if="!isFormVisible">
       <div class="page-wrapper">
         <div class="page-header">
           <div class="row align-items-end">
@@ -203,15 +218,6 @@
           </div>
         </div>
       </div>
-      <!-- NAV DIV -->
-        <nav v-if="!isFormVisible" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item" aria-current="page">
-            <a @click="showForm()"><span class="btn btn-primary h5">Create Class</span></a>
-            </li>
-        </ol>
-        </nav>
-      <!--END OF NAV DIV -->
 
       <div class="page-body">
         <div class="card">
@@ -400,7 +406,7 @@ export default {
                 },
                 callback: confirm => {
                     if(confirm){
-                        alert("deleted " + classcode + " " + classdesc);
+                        // alert("deleted " + classcode + " " + classdesc);
                         axios.get(`/api/AssetClass/removeclass/${classcode}`)
                         .then(response => {
                         if (response.data.responseCode == '200') {
