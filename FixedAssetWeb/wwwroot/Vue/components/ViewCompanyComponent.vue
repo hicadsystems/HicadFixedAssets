@@ -70,7 +70,9 @@ export default {
              axios.get(`/api/Company/RemoveCompany/${id}`)
                  .then(response => {
                      if (response.data.responseCode == '200') {
-                         alert("company successfully deleted");
+                         
+                         this.$alert("Company Deleted Successfully!!!", "Ok", "success");
+
                          this.getAllBalanceSheets();
                      }
                  }).catch(e => {

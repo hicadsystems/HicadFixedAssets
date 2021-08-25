@@ -101,6 +101,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
                 getbal.state = value.state;
                 getbal.tel = value.tel;
                 getbal.town = value.town;
+                getbal.MinBookVal = value.MinBookVal;
 
 
                 service.UpdateCompany(getbal);

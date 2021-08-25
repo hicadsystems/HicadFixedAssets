@@ -131,10 +131,16 @@
                            </select>
                         </div>
                     </div>
-                     <div class="col-12 col-xl-3">
+                    <div class="col-12 col-xl-3">
                         <div class="form-group">
-                            <label class="form-label">Runtype</label>
+                            <label class="form-label">Run type</label>
                             <input class="form-control" name="description" v-model="postBody.runtype" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-3">
+                        <div class="form-group">
+                            <label class="form-label">Minimum book value</label>
+                            <input type="number" class="form-control" name="minBookValue" v-model="postBody.minBookValue" placeholder="" />
                         </div>
                     </div>
                     <div class="col-12 ">
@@ -151,7 +157,11 @@
 </template>
 
 <script>
+import VueSimpleAlert from "vue-simple-alert";
 export default {
+    components: {
+        VueSimpleAlert
+    },
     
     data() {
         return {
@@ -180,7 +190,8 @@ export default {
                 serverport:'',
                 email_pword:'',
                 mthly_tax:'',
-                runtype:''
+                runtype:'',
+                minBookValue: ''
             }
     
         }
@@ -204,7 +215,8 @@ export default {
           this.postBody.serveraddr = this.$store.state.objectToUpdate.serveraddr,
           this.postBody.serverport = this.$store.state.objectToUpdate.serverport,
            this.postBody.runtype = this.$store.state.objectToUpdate.runtype,
-          this.postBody.mthly_tax = this.$store.state.objectToUpdate.mthly_tax
+          this.postBody.mthly_tax = this.$store.state.objectToUpdate.mthly_tax,
+          this.postBody.minBookValue = this.$store.state.objectToUpdate.minBookValue
 
           this.submitorUpdate = 'Update';
                
@@ -212,7 +224,7 @@ export default {
     },
     methods: {
         checkForm: function (e) {
-            
+        this.$alert("Company Created Successfully!!!", "Ok", "success");
          if (this.postBody.comp_code) {
               e.preventDefault();
               this.canProcess = false;
@@ -250,19 +262,22 @@ export default {
                                 this.postBody.email_pword='';
                                 this.postBody.mthly_tax='';
                                 this.postBody.runtype='';
-                                
+                                this.postBody.minBookValue = '';
                             }
+
                         })
                         .catch(e => {
                             this.errors.push(e)
                         });
+
+                    this.$alert("Company Created Successfully!!!", "Ok", "success");
                 }
                 if(this.submitorUpdate == 'Update'){
                     axios.put(`/api/Company/updateCompany`, this.postBody )
                         .then(response => {
                             this.responseMessage = response.data.responseDescription;this.canProcess = true;
                             if(response.data.responseCode == '200'){
-                                 this.submitorUpdate = 'Submit'
+                                this.submitorUpdate = 'Submit'
                                 this.postBody.comp_code=''; 
                                 this.postBody.comp_name='';
                                 this.postBody.address='';
@@ -282,12 +297,15 @@ export default {
                                 this.postBody.email_pword='';
                                 this.postBody.mthly_tax='';
                                 this.postBody.runtype='';
+                                this.postBody.minBookValue = '';
                                 this.$store.state.objectToUpdate = "update";
                             }
                         })
                         .catch(e => {
                             this.errors.push(e)
                         });
+
+                    this.$alert("Company Updated Successfully!!!", "Ok", "success");
                 }
             }
         },
@@ -313,7 +331,8 @@ export default {
                      this.postBody.serveraddr = objecttoedit.serveraddr;
                      this.postBody.serverport = objecttoedit.serverport;
                      this.postBody.runtype = objecttoedit.runtype;
-                     this.postBody.mthly_tax = objecttoedit.mthly_tax
+                     this.postBody.mthly_tax = objecttoedit.mthly_tax;
+                     this.postBody.minBookValue = objecttoedit.minBookValue;
                 }
             }
         }

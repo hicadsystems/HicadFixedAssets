@@ -16,7 +16,7 @@ namespace FixedAssetCore.Core.Entities
 		public string Address { get; set; }
 		public string Processyear { get; set; }
 		public string processmonth { get; set; }
-		public DateTime datecreated { get; set; }
+		public DateTime? datecreated { get; set; }
 		public string createdby { get; set; }
 		public string salaryscale { get; set; }
 		public string retireage { get; set; }
@@ -32,5 +32,6 @@ namespace FixedAssetCore.Core.Entities
 		public string email_pword { get; set; }
 		public string mthly_tax { get; set; }
 		public string runtype { get; set; }
-	}
+        public decimal? MinBookVal { get; set; }
+    }
 }
