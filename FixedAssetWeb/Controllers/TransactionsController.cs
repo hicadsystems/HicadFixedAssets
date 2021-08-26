@@ -17,5 +17,15 @@ namespace FixedAssetWeb.Controllers
         {
             return View();
         }
+
+        public IActionResult AssetRevaluation()
+        {
+            return View();
+        }
+
+        public IActionResult InsuranceRenewal()
+        {
+            return View();
+        }
     }
 }
