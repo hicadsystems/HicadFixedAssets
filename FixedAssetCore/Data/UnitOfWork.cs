@@ -27,7 +27,7 @@ namespace FixedAssetCore.Core.Data
             company = new CompanyRepository(context);
             bus = new BusinessLineRepository(context);
             cost = new CostCenterRepository(context);
-            reg = new AssetRegistration(context);
+            reg = new AssetRegistration(context, configuration);
             assetClass = new AssetClassification(context);
             accountChart = new ChartRepository(context);
             assetReclassification = new AssetReclassification(context, configuration);

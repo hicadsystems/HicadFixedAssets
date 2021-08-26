@@ -87,6 +87,7 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetClassService, AssetClassService>();
             services.AddScoped<IAssetReclassificationService, AssetReclassificationService>();
             services.AddScoped<IAssetMovementService, AssetMovementService>();
+            services.AddScoped<IGenerateDepreciationService, GenerateDepreciationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddMvc(options => options.EnableEndpointRouting = false);

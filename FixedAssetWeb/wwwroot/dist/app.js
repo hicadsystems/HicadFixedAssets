@@ -2193,6 +2193,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2203,7 +2229,9 @@ __webpack_require__.r(__webpack_exports__);
       isFormVisible: false,
       errors: [],
       showCreateButton: true,
+      canProcess: true,
       classList: null,
+      CreateOrUpdate: "Create",
       objectBody: {
         classcode: "",
         classdesc: "",
@@ -2215,15 +2243,118 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  showForm: function showForm() {
-    this.isFormVisible = true;
-    this.showCreateButton = false;
+  methods: {
+    checkForm: function checkForm(e) {
+      this.errors = [];
+      if (this.objectBody.classcode == "") this.errors.push("Code required.");
+      if (this.objectBody.classdesc == "") this.errors.push("Description required.");
+      if (this.objectBody.deprrate == "") this.errors.push("Depreciation Rate required.");
+      if (this.objectBody.deprmethod == "") this.errors.push("Method required.");
+      if (this.objectBody.led_cost_code == "") this.errors.push("Cost Code required.");
+      if (this.objectBody.led_accum_depr_code == "") this.errors.push("Accum.Depr.Code required.");
+      if (this.objectBody.led_exp_code == "") this.errors.push("Expenses Code required.");
+
+      if (this.objectBody.classcode && this.objectBody.classdesc && this.objectBody.deprrate && this.objectBody.deprmethod && this.objectBody.led_cost_code && this.objectBody.led_accum_depr_code && this.objectBody.led_exp_code) {
+        this.errors = [];
+        this.postPost();
+      }
+
+      e.preventDefault();
+    },
+    postPost: function postPost() {
+      var _this = this;
+
+      if (this.CreateOrUpdate == "Create") {
+        axios.post("/api/AssetClass/createclass/", this.objectBody).then(function (response) {
+          _this.responseMessage = response.data.responseDescription;
+          _this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            _this.onCancel();
+          }
+        })["catch"](function (e) {
+          _this.errors.push(e);
+        });
+        this.$alert("Class Created Successfully!!!", "Ok", "success");
+        this.isFormVisible = false;
+      }
+
+      if (this.CreateOrUpdate == "Update") {
+        axios.put("/api/AssetClass/updateclass/", this.objectBody).then(function (response) {
+          _this.responseMessage = response.data.responseDescription;
+          _this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            _this.onCancel();
+          }
+        })["catch"](function (e) {
+          _this.errors.push(e);
+        });
+        this.$alert("Class Updated Successfully!!!", "Ok", "success");
+        this.isFormVisible = false;
+      }
+    },
+    showForm: function showForm() {
+      this.isFormVisible = true;
+      this.showCreateButton = false;
+    },
+    editAssetClass: function editAssetClass(classcode) {
+      var _this2 = this;
+
+      axios.get("/api/AssetClass/getclassByCode/".concat(classcode)).then(function (response) {
+        console.log(response.data.data);
+        _this2.objectBody.classcode = response.data.data.classcode;
+        _this2.objectBody.classdesc = response.data.data.classdesc;
+        _this2.objectBody.deprrate = response.data.data.deprrate;
+        _this2.objectBody.deprmethod = response.data.data.deprmethod;
+        _this2.objectBody.led_cost_code = response.data.data.led_cost_code;
+        _this2.objectBody.led_accum_depr_code = response.data.data.led_accum_depr_code;
+        _this2.objectBody.led_exp_code = response.data.data.led_exp_code;
+        _this2.isFormVisible = true;
+        _this2.CreateOrUpdate = "Update";
+      });
+    },
+    deleteAssetClass: function deleteAssetClass(classcode, classdesc) {
+      var _this3 = this;
+
+      this.$confirm({
+        message: "Delete " + classdesc + " ?",
+        button: {
+          no: "NO",
+          yes: "YES"
+        },
+        callback: function callback(confirm) {
+          if (confirm) {
+            // alert("deleted " + classcode + " " + classdesc);
+            axios.get("/api/AssetClass/removeclass/".concat(classcode)).then(function (response) {
+              if (response.data.responseCode == '200') {
+                _this3.$alert(classdesc + " Deleted Successfully!!!", "Ok", "success");
+              }
+            })["catch"](function (e) {
+              _this3.errors.push(e);
+            });
+          }
+        }
+      });
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.classcode = "";
+      this.objectBody.classdesc = "";
+      this.objectBody.deprrate = "";
+      this.objectBody.deprmethod = "";
+      this.objectBody.led_cost_code = "";
+      this.objectBody.led_accum_depr_code = "";
+      this.objectBody.led_exp_code = "";
+    }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this4 = this;
 
     axios.get("/api/AssetClass/getAllclasss").then(function (response) {
-      return _this.classList = response.data;
+      return _this4.classList = response.data;
     });
   }
 });
@@ -3584,6 +3715,154 @@ __webpack_require__.r(__webpack_exports__);
     return {
       year: new Date().getFullYear()
     };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/build.js");
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    vuejsDatepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a,
+    VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      errors: [],
+      responseMessage: "",
+      objectBody: {
+        depdate: ''
+      }
+    };
+  },
+  methods: {
+    checkForm: function checkForm(e) {
+      this.errors = [];
+      this.postPost();
+      e.preventDefault();
+    },
+    postPost: function postPost() {
+      var _this = this;
+
+      axios.post("/api/GenerateDepreciation/date/", this.objectBody).then(function (response) {
+        _this.responseMessage = response.data.responseDescription;
+        _this.canProcess = true;
+
+        if (response.data.responseCode == "200") {
+          //this Clears the Input field.
+          _this.onCancel();
+        }
+      })["catch"](function (e) {
+        _this.errors.push(e);
+      });
+      this.$alert("Generated Depreciation!!!", "Ok", "success");
+      this.onCancel();
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.depdate = " ";
+    }
   }
 });
 
@@ -8591,126 +8870,90 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.isFormVisible
-      ? _c("div", { staticClass: "page-wrapper" }, [_vm._m(0)])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { staticClass: "page body" }, [
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "form",
-          {
-            attrs: { method: "post" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.checkForm.apply(null, arguments)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-sm-2 col-md-2 col-xl-2" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "form-label" }, [
-                      _vm._v("Class Code")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.objectBody.classcode,
-                          expression: "objectBody.classcode"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "classcode" },
-                      domProps: { value: _vm.objectBody.classcode },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.objectBody,
-                            "classcode",
-                            $event.target.value
-                          )
-                        }
+  return _c(
+    "div",
+    [
+      _c("vue-confirm-dialog"),
+      _vm._v(" "),
+      _vm.isFormVisible
+        ? _c("div", [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "page body" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { method: "post" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.checkForm.apply(null, arguments)
                       }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-6 col-xl-6" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { staticClass: "form-label" }, [
-                      _vm._v(" Class Description")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.objectBody.classdesc,
-                          expression: "objectBody.classdesc"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "classdesc" },
-                      domProps: { value: _vm.objectBody.classdesc },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.objectBody,
-                            "classdesc",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-xl-5" }, [
-                    _c("form", [
-                      _c("fieldset", [
-                        _c("legend", [_vm._v("Depreciation Calculation")]),
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-2 col-md-2 col-xl-2" },
+                          [
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("label", { staticClass: "form-label" }, [
+                                _vm._v("Class Code")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.objectBody.classcode,
+                                    expression: "objectBody.classcode"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: {
+                                  name: "classcode",
+                                  readonly: _vm.CreateOrUpdate == "Update"
+                                },
+                                domProps: { value: _vm.objectBody.classcode },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.objectBody,
+                                      "classcode",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          ]
+                        ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-4 col-form-label",
-                              attrs: { for: "rate" }
-                            },
-                            [_vm._v("Rate :")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-4" }, [
+                        _c("div", { staticClass: "col-6 col-xl-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { staticClass: "form-label" }, [
+                              _vm._v(" Class Description")
+                            ]),
+                            _vm._v(" "),
                             _c("input", {
                               directives: [
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.objectBody.deprrate,
-                                  expression: "objectBody.deprrate"
+                                  value: _vm.objectBody.classdesc,
+                                  expression: "objectBody.classdesc"
                                 }
                               ],
                               staticClass: "form-control",
-                              attrs: { name: "deprrate" },
-                              domProps: { value: _vm.objectBody.deprrate },
+                              attrs: { name: "classdesc" },
+                              domProps: { value: _vm.objectBody.classdesc },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -8718,295 +8961,312 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.objectBody,
-                                    "deprrate",
+                                    "classdesc",
                                     $event.target.value
                                   )
                                 }
                               }
                             })
-                          ]),
-                          _vm._v(" "),
-                          _c("h5", [_vm._v("%")])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-4 col-form-label",
-                              attrs: { for: "rate" }
-                            },
-                            [_vm._v("Method :")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-7" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.deptmethod,
-                                    expression: "objectBody.deptmethod"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "deptmethod" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "deptmethod",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("option")]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(1)
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-xl-7" }, [
-                    _c("form", [
-                      _c("fieldset", [
-                        _c("legend", [_vm._v("Ledger")]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-4 col-form-label",
-                              attrs: { for: "rate" }
-                            },
-                            [_vm._v("Cost Code :")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-7" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.led_cost_code,
-                                    expression: "objectBody.led_cost_code"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "led_cost_code" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "led_cost_code",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("option")]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-4 col-form-label",
-                              attrs: { for: "rate" }
-                            },
-                            [_vm._v("Accum.Depr.Code :")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-7" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.led_accum_depr_code,
-                                    expression: "objectBody.led_accum_depr_code"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "led_accum_depr_code" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "led_accum_depr_code",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("option")]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group row" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "col-sm-4 col-form-label",
-                              attrs: { for: "rate" }
-                            },
-                            [_vm._v("Expenses Code :")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-sm-7" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.objectBody.led_exp_code,
-                                    expression: "objectBody.led_exp_code"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: { name: "led_exp_code" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.objectBody,
-                                      "led_exp_code",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [_c("option")]
-                            )
                           ])
                         ])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn-group mr-2 sw-btn-group-extra",
-                      attrs: { role: "group" }
-                    },
-                    [
-                      this.objectBody.classcode != "" &&
-                      this.objectBody.classdesc != "" &&
-                      this.objectBody.deprrate != "" &&
-                      this.objectBody.deptmethod != "" &&
-                      this.objectBody.led_cost_code != "" &&
-                      this.objectBody.led_accum_depr_code != "" &&
-                      this.objectBody.Led_exp_code != ""
-                        ? _c(
-                            "button",
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-xl-5" }, [
+                            _c("form", [
+                              _c("fieldset", [
+                                _c("legend", [
+                                  _vm._v("Depreciation Calculation")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-sm-4 col-form-label",
+                                      attrs: { for: "rate" }
+                                    },
+                                    [_vm._v("Rate :")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-4" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.objectBody.deprrate,
+                                          expression: "objectBody.deprrate"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "deprrate" },
+                                      domProps: {
+                                        value: _vm.objectBody.deprrate
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.objectBody,
+                                            "deprrate",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("h5", [_vm._v("%")])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-sm-4 col-form-label",
+                                      attrs: { for: "rate" }
+                                    },
+                                    [_vm._v("Method :")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-7" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.objectBody.deprmethod,
+                                          expression: "objectBody.deprmethod"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "classdesc" },
+                                      domProps: {
+                                        value: _vm.objectBody.deprmethod
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.objectBody,
+                                            "deprmethod",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(1)
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-xl-7" }, [
+                            _c("form", [
+                              _c("fieldset", [
+                                _c("legend", [_vm._v("Ledger")]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-sm-4 col-form-label",
+                                      attrs: { for: "rate" }
+                                    },
+                                    [_vm._v("Cost Code :")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-7" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.objectBody.led_cost_code,
+                                          expression: "objectBody.led_cost_code"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "led_cost_code" },
+                                      domProps: {
+                                        value: _vm.objectBody.led_cost_code
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.objectBody,
+                                            "led_cost_code",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-sm-4 col-form-label",
+                                      attrs: { for: "rate" }
+                                    },
+                                    [_vm._v("Accum.Depr.Code :")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-7" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value:
+                                            _vm.objectBody.led_accum_depr_code,
+                                          expression:
+                                            "objectBody.led_accum_depr_code"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "led_accum_depr_code" },
+                                      domProps: {
+                                        value:
+                                          _vm.objectBody.led_accum_depr_code
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.objectBody,
+                                            "led_accum_depr_code",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "form-group row" }, [
+                                  _c(
+                                    "label",
+                                    {
+                                      staticClass: "col-sm-4 col-form-label",
+                                      attrs: { for: "rate" }
+                                    },
+                                    [_vm._v("Expenses Code :")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "col-sm-7" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.objectBody.led_exp_code,
+                                          expression: "objectBody.led_exp_code"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: { name: "led_exp_code" },
+                                      domProps: {
+                                        value: _vm.objectBody.led_exp_code
+                                      },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.objectBody,
+                                            "led_exp_code",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
                             {
-                              staticClass: "btn btn-primary mb-2",
-                              attrs: { type: "submit" },
-                              on: { click: _vm.checkForm }
+                              staticClass: "btn-group mr-2 sw-btn-group-extra",
+                              attrs: { role: "group" }
                             },
                             [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.Create) +
-                                  "\n                            "
+                              this.objectBody.classcode != "" &&
+                              this.objectBody.classdesc != "" &&
+                              this.objectBody.deprrate != "" &&
+                              this.objectBody.deprmethod != "" &&
+                              this.objectBody.led_cost_code != "" &&
+                              this.objectBody.led_accum_depr_code != "" &&
+                              this.objectBody.Led_exp_code != ""
+                                ? _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-primary mb-2",
+                                      attrs: { type: "submit" },
+                                      on: { click: _vm.checkForm }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(_vm.CreateOrUpdate) +
+                                          "\n                            "
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "btn-group mr-2 sw-btn-group-extra",
+                              attrs: { role: "group" }
+                            },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger",
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.onCancel()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Cancel")]
                               )
                             ]
                           )
-                        : _vm._e()
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn-group mr-2 sw-btn-group-extra",
-                      attrs: { role: "group" }
-                    },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.onCancel()
-                            }
-                          }
-                        },
-                        [_vm._v("Cancel")]
-                      )
-                    ]
-                  )
-                ])
+                        ])
+                      ])
+                    ])
+                  ]
+                )
               ])
             ])
-          ]
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", [
-      _vm._m(2),
+          ])
+        : _vm._e(),
       _vm._v(" "),
       !_vm.isFormVisible
         ? _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
@@ -9039,84 +9299,128 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "page-body" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c(
-              "table",
-              {
-                staticClass: "table table-striped",
-                staticStyle: { width: "100%" },
-                attrs: { id: "datatables-buttons" }
-              },
-              [
-                _vm._m(3),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.classList, function(AssetClass, index) {
-                    return _c("tr", { key: index }, [
-                      _c("td", [_vm._v(_vm._s(AssetClass.classcode))]),
+      !_vm.isFormVisible
+        ? _c("div", [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "page-body" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-striped",
+                      staticStyle: { width: "100%" },
+                      attrs: { id: "datatables-buttons" }
+                    },
+                    [
+                      _vm._m(3),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(AssetClass.classdesc))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(AssetClass.deprrate))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(AssetClass.deprmethod))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(AssetClass.led_cost_code))]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v(_vm._s(AssetClass.led_accum_depr_code))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(AssetClass.led_exp_code))]),
-                      _vm._v(" "),
-                      _vm._m(4, true)
-                    ])
-                  }),
-                  0
-                )
-              ]
-            )
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.classList, function(AssetClass, index) {
+                          return _c("tr", { key: index }, [
+                            _c("td", [_vm._v(_vm._s(AssetClass.classcode))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(AssetClass.classdesc))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(AssetClass.deprrate))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(AssetClass.deprmethod))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(AssetClass.led_cost_code))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(AssetClass.led_accum_depr_code))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(AssetClass.led_exp_code))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-submit btn-primary",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editAssetClass(
+                                        AssetClass.classcode
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Edit")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-submit btn-danger",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteAssetClass(
+                                        AssetClass.classcode,
+                                        AssetClass.classdesc
+                                      )
+                                    }
+                                  }
+                                },
+                                [_vm._v("Delete")]
+                              )
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
           ])
-        ])
-      ])
-    ])
-  ])
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "page-header" }, [
-      _c("div", { staticClass: "row align-items-end" }, [
-        _c("div", { staticClass: "col-lg-8" }, [
-          _c("div", { staticClass: "page-header-title" }, [
-            _c("div", { staticClass: "d-inline" }, [
-              _c("h4", [_vm._v("Classification Input Form")]),
-              _vm._v(" "),
-              _c("span", [_vm._v("ADD NEW ASSET CLASS")])
+    return _c("div", { staticClass: "page-wrapper" }, [
+      _c("div", { staticClass: "page-header" }, [
+        _c("div", { staticClass: "row align-items-end" }, [
+          _c("div", { staticClass: "col-lg-8" }, [
+            _c("div", { staticClass: "page-header-title" }, [
+              _c("div", { staticClass: "d-inline" }, [
+                _c("h4", [_vm._v("Classification Input Form")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("ADD NEW ASSET CLASS")])
+              ])
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-4" }, [
-          _c("div", { staticClass: "page-header-breadcrumb" }, [
-            _c("ul", { staticClass: "breadcrumb-title" }, [
-              _c("li", { staticClass: "breadcrumb-item" }, [
-                _c("a", { attrs: { href: "index.html" } }, [
-                  _c("i", { staticClass: "feather icon-home" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-4" }, [
+            _c("div", { staticClass: "page-header-breadcrumb" }, [
+              _c("ul", { staticClass: "breadcrumb-title" }, [
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "index.html" } }, [
+                    _c("i", { staticClass: "feather icon-home" })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                ]),
+                _vm._v(" "),
+                _c("li", { staticClass: "breadcrumb-item" }, [
+                  _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
                 ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "breadcrumb-item" }, [
-                _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "breadcrumb-item" }, [
-                _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
               ])
             ])
           ])
@@ -9200,27 +9504,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Expenses Code")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
-        },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-submit btn-danger", attrs: { type: "button" } },
-        [_vm._v("Delete")]
-      )
     ])
   }
 ]
@@ -11674,6 +11957,192 @@ var render = function() {
   return _c("div", [_vm._v("\n    this year is " + _vm._s(_vm.year) + "\n")])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "page-wrapper" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.errors.length
+      ? _c("p", [
+          _c("b", [_vm._v("Please correct the following error(s):")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.errors, function(error) {
+              return _c("li", { key: error.length }, [
+                _c(
+                  "h6",
+                  { staticClass: "has-error", staticStyle: { color: "red" } },
+                  [_vm._v(" " + _vm._s(error) + " ")]
+                )
+              ])
+            }),
+            0
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "page-body" }, [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "form",
+          {
+            attrs: { method: "post" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.checkForm.apply(null, arguments)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "card-body" }, [
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                  [
+                    _c("label", { staticClass: "form-label" }, [
+                      _vm._v("DEPRECIATION DATE")
+                    ]),
+                    _vm._v(" "),
+                    _c("vuejsDatepicker", {
+                      attrs: {
+                        "input-class": "form-control",
+                        name: "depdate",
+                        type: "date",
+                        required: ""
+                      },
+                      model: {
+                        value: _vm.objectBody.depdate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.objectBody, "depdate", $$v)
+                        },
+                        expression: "objectBody.depdate"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "btn-group mr-2 sw-btn-group-extra",
+                      attrs: { role: "group" }
+                    },
+                    [
+                      this.objectBody.depdate != ""
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-submit btn-primary",
+                              attrs: { type: "submit" },
+                              on: { click: _vm.checkForm }
+                            },
+                            [
+                              _vm._v(
+                                "\n                  Accept\n                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "btn-group mr-2 sw-btn-group-extra",
+                      attrs: { role: "group" }
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [_vm._v("Cancel")]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-header" }, [
+      _c("div", { staticClass: "row align-items-end" }, [
+        _c("div", { staticClass: "col-lg-8" }, [
+          _c("div", { staticClass: "page-header-title" }, [
+            _c("div", { staticClass: "d-inline" }, [
+              _c("h4", [_vm._v("Generate Depreciation")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("Input Date To Calculate Depreciation")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-4" }, [
+          _c("div", { staticClass: "page-header-breadcrumb" }, [
+            _c("ul", { staticClass: "breadcrumb-title" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "index.html" } }, [
+                  _c("i", { staticClass: "feather icon-home" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -26308,6 +26777,7 @@ var map = {
 	"./components/CreateCompanyComponent.vue": "./wwwroot/Vue/components/CreateCompanyComponent.vue",
 	"./components/CreateCostCenter.vue": "./wwwroot/Vue/components/CreateCostCenter.vue",
 	"./components/FirstComponent.vue": "./wwwroot/Vue/components/FirstComponent.vue",
+	"./components/MonthEndProcessing/GenerateDepreciationComponent.vue": "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue",
 	"./components/Transactions/AssetMovementComponent.vue": "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue",
 	"./components/Transactions/AssetReclassificationComponent.vue": "./wwwroot/Vue/components/Transactions/AssetReclassificationComponent.vue",
 	"./components/ViewBusinesslineComponent.vue": "./wwwroot/Vue/components/ViewBusinesslineComponent.vue",
@@ -26359,15 +26829,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Transactions/AssetReclassificationComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetReclassificationComponent.vue");
 /* harmony import */ var _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Transactions/AssetMovementComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue");
 /* harmony import */ var _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AssetRegistrationComponent.vue */ "./wwwroot/Vue/components/AssetRegistrationComponent.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/MonthEndProcessing/GenerateDepreciationComponent.vue */ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_13__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+
 
 
 
@@ -26382,19 +26854,20 @@ vue__WEBPACK_IMPORTED_MODULE_12___default.a.use(vue_confirm_dialog__WEBPACK_IMPO
 var files = __webpack_require__("./wwwroot/Vue sync recursive \\.vue$/");
 
 files.keys().map(function (key) {
-  return vue__WEBPACK_IMPORTED_MODULE_12___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+  return vue__WEBPACK_IMPORTED_MODULE_13___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
 });
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_12___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_12___default.a({
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('generate-depreciation-component', _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_13___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_13___default.a({
   el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
@@ -26810,6 +27283,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FirstComponent_vue_vue_type_template_id_61fd2f6e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FirstComponent_vue_vue_type_template_id_61fd2f6e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue":
+/*!*************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./GenerateDepreciationComponent.vue?vue&type=template&id=15753554& */ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554&");
+/* harmony import */ var _GenerateDepreciationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GenerateDepreciationComponent.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _GenerateDepreciationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./GenerateDepreciationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554&":
+/*!********************************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554& ***!
+  \********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./GenerateDepreciationComponent.vue?vue&type=template&id=15753554& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue?vue&type=template&id=15753554&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -16,6 +16,7 @@ import ViewBusinesslineComponent from './components/ViewBusinesslineComponent.vu
 import AssetReclassificationComponent from './components/Transactions/AssetReclassificationComponent.vue';
 import AssetMovementComponent from './components/Transactions/AssetMovementComponent.vue';
 import AssetRegistrationComponent from './components/AssetRegistrationComponent.vue';
+import GenerateDepreciationComponent from './components/MonthEndProcessing/GenerateDepreciationComponent.vue';
 import Vue from 'vue';
 
 const files = require.context('./', true, /\.vue$/i)
@@ -30,6 +31,7 @@ Vue.component('view-businessline-component',ViewBusinesslineComponent);
 Vue.component('asset-reclassification-component', AssetReclassificationComponent);
 Vue.component('asset-movement-component', AssetMovementComponent);
 Vue.component('asset-registration-component', AssetRegistrationComponent);
+Vue.component('generate-depreciation-component', GenerateDepreciationComponent);
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
  
 const app = new Vue({

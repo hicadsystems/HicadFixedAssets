@@ -3,19 +3,26 @@ using FixedAssetCore.Core.Entities;
 using FixedAssetCore.Core.IRepositories;
 using FixedAssetCore.EntityCoreVM;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace FixedAssetCore.Core.Repositories
 {
     public class AssetRegistration : Repository<fa_Assetsreg>, IAssetRegistration
     {
         private readonly IAssetDbContext context;
+        private readonly string connectionstring;
 
-        public AssetRegistration(IAssetDbContext context):base(context)
+        public AssetRegistration(IAssetDbContext context, IConfiguration configuration) :base(context)
         {
             this.context = context;
+
+            connectionstring = configuration.GetConnectionString("DefaultConnection");
         }
         public Task<fa_Assetsreg> getAssetRegByCode(string code)
         {
@@ -44,6 +51,26 @@ namespace FixedAssetCore.Core.Repositories
                 }).ToList();
 
             return result;
+        }
+
+        public string GenerateAssetsDepreciation(DateTime dateTime)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand sqlcommand = new SqlCommand("sp_UpdateAssetMovementRegister", sqlConnection))
+                {
+                    sqlcommand.CommandTimeout = 1200;
+                    sqlcommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlcommand.Parameters.Add(new SqlParameter("@assetCode", dateTime));
+                    
+                    sqlConnection.Open();
+                    sqlcommand.ExecuteNonQuery();
+
+                    string message = sqlcommand.Parameters["@message"].Value.ToString();
+
+                    return message;
+                }
+            }
         }
     }
 }
