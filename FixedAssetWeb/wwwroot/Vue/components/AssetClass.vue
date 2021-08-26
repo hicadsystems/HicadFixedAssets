@@ -82,7 +82,7 @@
                                                 <label for="rate" class="col-sm-4 col-form-label">Method :</label>
                                                 <div class="col-sm-7">
                                                     <input 
-                                                    name="classdesc"
+                                                    name="deprmethod"
                                                     v-model="objectBody.deprmethod" 
                                                     class="form-control" />
                                                     <!-- <select

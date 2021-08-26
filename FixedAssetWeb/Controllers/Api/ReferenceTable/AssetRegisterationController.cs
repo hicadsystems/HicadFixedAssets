@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -126,6 +127,27 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
                 getbal.Revalval = value.Revalval;
                 getbal.year_depr = value.year_depr;
                 service.UpdateAssetReg(getbal);
+                return Ok(new { responseCode = 200, responseDescription = "Updated Successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { responseCode = 500, responseDescription = "Failed" });
+            }
+        }
+
+        // PUT: api/AssetRegisteration/assetrevaluation
+        [Route("assetrevaluation")]
+        [HttpPut]
+        public IActionResult Put([FromBody] fa_AssetRegVM value)
+        {
+            try
+            {
+                if (String.IsNullOrEmpty(value.assetCode))
+                {
+                    return Ok(new { responseCode = 500, responseDescription = "Kindly Supply Asset registeration Code" });
+                }
+
+                
                 return Ok(new { responseCode = 200, responseDescription = "Updated Successfully" });
             }
             catch (Exception ex)
