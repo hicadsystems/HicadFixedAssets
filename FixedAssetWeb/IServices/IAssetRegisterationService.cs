@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace FixedAssetWeb.IServices
         Task<bool> AddAssetReg(fa_Assetsreg bl_sheet);
         Task<fa_Assetsreg> GetAssetRegByCode(string bcode);
         Task<bool> UpdateAssetReg(fa_Assetsreg bl_sheet);
+        string AssetRegEval(fa_AssetRegVM fa_AssetRegVM);
     }
 }

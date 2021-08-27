@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,7 @@ namespace FixedAssetCore.Core.IRepositories
         IEnumerable<AssetRegListVM> GetAllAssetRegisters();
 
         string GenerateAssetsDepreciation(DateTime dateTime);
+
+        string AssetEval(fa_AssetRegVM fa_AssetRegVM);
     }
 }

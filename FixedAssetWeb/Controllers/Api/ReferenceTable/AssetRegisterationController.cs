@@ -147,6 +147,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
                     return Ok(new { responseCode = 500, responseDescription = "Kindly Supply Asset registeration Code" });
                 }
 
+                string response = service.AssetRegEval(value);
                 
                 return Ok(new { responseCode = 200, responseDescription = "Updated Successfully" });
             }
