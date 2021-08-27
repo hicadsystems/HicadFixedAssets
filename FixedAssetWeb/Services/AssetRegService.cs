@@ -2,6 +2,7 @@
 using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,6 +54,13 @@ namespace FixedAssetWeb.Services
         {
             unitOfWork.reg.Update(bl_sheet);
             return await unitOfWork.Done();
+        }
+
+        public string AssetRegEval(fa_AssetRegVM fa_AssetRegVM)
+        {
+            string response = unitOfWork.reg.AssetEval(fa_AssetRegVM);
+
+            return response;
         }
 
     }

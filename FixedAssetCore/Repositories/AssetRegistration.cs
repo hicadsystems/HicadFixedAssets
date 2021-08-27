@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
+using System.Data;
 
 namespace FixedAssetCore.Core.Repositories
 {
@@ -66,6 +68,31 @@ namespace FixedAssetCore.Core.Repositories
                     sqlConnection.Open();
                     sqlcommand.ExecuteNonQuery();
 
+                    string message = sqlcommand.Parameters["@message"].Value.ToString();
+
+                    return message;
+                }
+            }
+        }
+
+        public string AssetEval(fa_AssetRegVM fa_AssetRegVM)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
+            {
+                using (SqlCommand sqlcommand = new SqlCommand("sp_AssetRevaluation", sqlConnection))
+                {
+                    sqlcommand.CommandTimeout = 1200;
+                    sqlcommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlcommand.Parameters.Add(new SqlParameter("@assetCode", fa_AssetRegVM.assetCode));
+                    sqlcommand.Parameters.Add(new SqlParameter("@Purchval", fa_AssetRegVM.Purchval));
+                    sqlcommand.Parameters.Add(new SqlParameter("@Revaldate", fa_AssetRegVM.Revaldate));
+                    sqlcommand.Parameters.Add(new SqlParameter("@Revalval", fa_AssetRegVM.Revalval));
+
+                    sqlcommand.Parameters.Add("@message", SqlDbType.Char, 500);
+                    sqlcommand.Parameters["@message"].Direction = ParameterDirection.Output;
+
+                    sqlConnection.Open();
+                    sqlcommand.ExecuteNonQuery();
                     string message = sqlcommand.Parameters["@message"].Value.ToString();
 
                     return message;

@@ -35,7 +35,7 @@
 
         <div class="page-body">
             <div class="card">
-                <form @submit.prevent="checkForm" method="post">
+                
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-xl-6 m-b-30">
@@ -110,7 +110,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                
             </div>
         </div>
     </div>
