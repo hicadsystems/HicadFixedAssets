@@ -13091,239 +13091,213 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "page-body" }, [
       _c("div", { staticClass: "card" }, [
-        _c(
-          "form",
-          {
-            attrs: { method: "post" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.checkForm.apply(null, arguments)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 col-xl-6 m-b-30" }, [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("ASSET DESCRIPTION")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-xl-6 m-b-30" }, [
+              _c("label", { staticClass: "form-label" }, [
+                _vm._v("ASSET DESCRIPTION")
+              ]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.objectBody.assetCode,
-                          expression: "objectBody.assetCode"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { name: "" },
-                      on: {
-                        change: [
-                          function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.objectBody,
-                              "assetCode",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          },
-                          function($event) {
-                            return _vm.getAssetValue()
-                          }
-                        ]
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.objectBody.assetCode,
+                      expression: "objectBody.assetCode"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.objectBody,
+                          "assetCode",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      function($event) {
+                        return _vm.getAssetValue()
                       }
+                    ]
+                  }
+                },
+                _vm._l(_vm.assetRegList, function(blist) {
+                  return _c(
+                    "option",
+                    {
+                      key: blist.assetCode,
+                      attrs: { required: "" },
+                      domProps: { value: blist.assetCode }
                     },
-                    _vm._l(_vm.assetRegList, function(blist) {
-                      return _c(
-                        "option",
+                    [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(blist.assetDesc) +
+                          "\n                            "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-12 col-xl-3 m-b-30" },
+              [
+                _c("label", { staticClass: "form-label" }, [
+                  _vm._v("REVALUATION DATE")
+                ]),
+                _vm._v(" "),
+                _c("vuejsDatepicker", {
+                  attrs: {
+                    "input-class": "form-control",
+                    name: "",
+                    type: "date",
+                    required: ""
+                  },
+                  model: {
+                    value: _vm.objectBody.Revaldate,
+                    callback: function($$v) {
+                      _vm.$set(_vm.objectBody, "Revaldate", $$v)
+                    },
+                    expression: "objectBody.Revaldate"
+                  }
+                })
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-xl-4 m-b-30" }, [
+              _c("label", { staticClass: "form-label" }, [_vm._v("OLD VALUE")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.objectBody.purchval,
+                    expression: "objectBody.purchval"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  name: "purchval",
+                  placeholder: "Current Value",
+                  readonly: ""
+                },
+                domProps: { value: _vm.objectBody.purchval },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.objectBody, "purchval", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-xl-4 m-b-30" }, [
+              _c("label", { staticClass: "form-label" }, [_vm._v("NEW VALUE")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.objectBody.Revalval,
+                    expression: "objectBody.Revalval"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "" },
+                domProps: { value: _vm.objectBody.Revalval },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.objectBody, "Revalval", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "btn-group mr-2 m-b-30 sw-btn-group-extra",
+                  attrs: { role: "group" }
+                },
+                [
+                  this.objectBody.Revaldate != "" &&
+                  this.objectBody.Revalval != ""
+                    ? _c(
+                        "button",
                         {
-                          key: blist.assetCode,
-                          attrs: { required: "" },
-                          domProps: { value: blist.assetCode }
+                          staticClass: "btn btn-submit btn-primary",
+                          attrs: { type: "submit" },
+                          on: { click: _vm.checkForm }
                         },
                         [
                           _vm._v(
-                            "\n                            " +
-                              _vm._s(blist.assetDesc) +
-                              "\n                            "
+                            "\n                                Accept\n                                "
                           )
                         ]
                       )
-                    }),
-                    0
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-12 col-xl-3 m-b-30" },
-                  [
-                    _c("label", { staticClass: "form-label" }, [
-                      _vm._v("REVALUATION DATE")
-                    ]),
-                    _vm._v(" "),
-                    _c("vuejsDatepicker", {
-                      attrs: {
-                        "input-class": "form-control",
-                        name: "",
-                        type: "date",
-                        required: ""
-                      },
-                      model: {
-                        value: _vm.objectBody.Revaldate,
-                        callback: function($$v) {
-                          _vm.$set(_vm.objectBody, "Revaldate", $$v)
-                        },
-                        expression: "objectBody.Revaldate"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]),
+                    : _vm._e()
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 col-xl-4 m-b-30" }, [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("OLD VALUE")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.objectBody.purchval,
-                        expression: "objectBody.purchval"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      name: "purchval",
-                      placeholder: "Current Value",
-                      readonly: ""
-                    },
-                    domProps: { value: _vm.objectBody.purchval },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.objectBody,
-                          "purchval",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12 col-xl-4 m-b-30" }, [
-                  _c("label", { staticClass: "form-label" }, [
-                    _vm._v("NEW VALUE")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.objectBody.Revalval,
-                        expression: "objectBody.Revalval"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "" },
-                    domProps: { value: _vm.objectBody.Revalval },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.objectBody,
-                          "Revalval",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-6" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "btn-group mr-2 m-b-30 sw-btn-group-extra",
+                  attrs: { role: "group" }
+                },
+                [
                   _c(
-                    "div",
+                    "button",
                     {
-                      staticClass: "btn-group mr-2 m-b-30 sw-btn-group-extra",
-                      attrs: { role: "group" }
+                      staticClass: "btn btn-danger",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.onCancel()
+                        }
+                      }
                     },
-                    [
-                      this.objectBody.Revaldate != "" &&
-                      this.objectBody.Revalval != ""
-                        ? _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-submit btn-primary",
-                              attrs: { type: "submit" },
-                              on: { click: _vm.checkForm }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                Accept\n                                "
-                              )
-                            ]
-                          )
-                        : _vm._e()
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn-group mr-2 m-b-30 sw-btn-group-extra",
-                      attrs: { role: "group" }
-                    },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.onCancel()
-                            }
-                          }
-                        },
-                        [_vm._v("Cancel")]
-                      )
-                    ]
+                    [_vm._v("Cancel")]
                   )
-                ])
-              ])
+                ]
+              )
             ])
-          ]
-        )
+          ])
+        ])
       ])
     ])
   ])
