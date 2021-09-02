@@ -166,6 +166,7 @@ export default {
     data() {
         return {
             errors: null,
+            isFormVisible: false,
             responseMessage:'',
             submitorUpdate : 'Submit',
             canProcess : true,

@@ -2787,6 +2787,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3424,6 +3425,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       errors: null,
+      isFormVisible: false,
       responseMessage: '',
       submitorUpdate: 'Submit',
       canProcess: true,
@@ -13452,7 +13454,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-submit btn-primary",
+                      staticClass: "btn btn-submit btn-danger",
                       attrs: { type: "button" },
                       on: {
                         click: function($event) {
@@ -28408,7 +28410,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

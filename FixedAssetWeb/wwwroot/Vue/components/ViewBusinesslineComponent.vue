@@ -26,7 +26,7 @@
 
                         <td>
                             <button type="button" class="btn btn-submit btn-primary" @click="processRetrieve(FundType)">Edit</button>
-                            <button type="button" class="btn btn-submit btn-primary" @click="processDelete(FundType.id)">Delete</button></td>
+                            <button type="button" class="btn btn-submit btn-danger" @click="processDelete(FundType.id)">Delete</button></td>
                         </tr>
                 </tbody>
               

@@ -59,15 +59,17 @@ namespace FixedAssetCore.Core.Repositories
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
             {
-                using (SqlCommand sqlcommand = new SqlCommand("sp_UpdateAssetMovementRegister", sqlConnection))
+                using (SqlCommand sqlcommand = new SqlCommand("sp_GenerateDepreciationII", sqlConnection))
                 {
                     sqlcommand.CommandTimeout = 1200;
                     sqlcommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    sqlcommand.Parameters.Add(new SqlParameter("@assetCode", dateTime));
-                    
+                    sqlcommand.Parameters.Add(new SqlParameter("@depdate", dateTime));
+
+                    sqlcommand.Parameters.Add("@message", SqlDbType.Char, 500);
+                    sqlcommand.Parameters["@message"].Direction = ParameterDirection.Output;
+
                     sqlConnection.Open();
                     sqlcommand.ExecuteNonQuery();
-
                     string message = sqlcommand.Parameters["@message"].Value.ToString();
 
                     return message;
