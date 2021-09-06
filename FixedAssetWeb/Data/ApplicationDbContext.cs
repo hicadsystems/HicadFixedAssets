@@ -38,6 +38,8 @@ namespace FixedAssetWeb.Data
     public DbSet<fa_history> fa_historys { get; set; }
     public DbSet<fa_transaction> fa_transactions { get; set; }
     public DbSet<fa_gdepreciation> fa_gdepreciations { get; set; }
+
+    public DbSet<ac_month> ac_Months { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

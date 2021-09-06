@@ -497,29 +497,8 @@ export default {
       if (this.objectBody.purchdate == "")
         this.errors.push("Purchase Date required.");
 
-      if (this.objectBody.revaldate == "")
-        this.errors.push("Revaluation date required.");
-
-      if (this.objectBody.reclassdate == "")
-        this.errors.push("Reclassification date required.");
-
-      if (this.objectBody.movedate == "")
-        this.errors.push("Movement date required.");
-
-      if (this.objectBody.dispdate == "")
-        this.errors.push("Disposal date required.");
-
       if (this.objectBody.purchval == "")
         this.errors.push("Purchase value required.");
-
-      if (this.objectBody.accum_depre == "")
-        this.errors.push("Accumulated depreciation required.");
-
-      if (this.objectBody.dispval == "")
-        this.errors.push("Disposal value required.");
-
-      if (this.objectBody.revalval == "")
-        this.errors.push("Revaluation value required.");
 
       if (this.objectBody.insurdate == "")
         this.errors.push("Insurance date required.");
@@ -537,7 +516,6 @@ export default {
         this.objectBody.dept &&
         this.objectBody.busline &&
         this.objectBody.purchdate &&
-        this.objectBody.revaldate &&
         this.objectBody.depr_rate
       ) {
         this.errors = [];
@@ -603,7 +581,7 @@ export default {
       axios
         .get(`/api/AssetRegisteration/getAssetsregByCode/${assetCode}`)
         .then((response) => {
-          console.log(response.data.data);
+          
           this.objectBody.assetCode = response.data.data.assetCode;
           this.objectBody.assetDesc = response.data.data.assetDesc;
           this.objectBody.class = response.data.data.class;

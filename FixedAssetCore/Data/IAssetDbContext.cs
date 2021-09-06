@@ -27,5 +27,6 @@ namespace FixedAssetCore.Core.Data
         DbSet<fa_history> fa_historys { get; set; }
         DbSet<fa_transaction> fa_transactions { get; set; }
         DbSet<fa_gdepreciation> fa_gdepreciations { get; set; }
+        DbSet<ac_month> ac_Months { get; set; }
     }
 }
