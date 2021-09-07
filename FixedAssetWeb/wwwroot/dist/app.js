@@ -2863,19 +2863,12 @@ __webpack_require__.r(__webpack_exports__);
       if (this.objectBody.dept == "") this.errors.push("Location required.");
       if (this.objectBody.busline == "") this.errors.push("Business Line required.");
       if (this.objectBody.purchdate == "") this.errors.push("Purchase Date required.");
-      if (this.objectBody.revaldate == "") this.errors.push("Revaluation date required.");
-      if (this.objectBody.reclassdate == "") this.errors.push("Reclassification date required.");
-      if (this.objectBody.movedate == "") this.errors.push("Movement date required.");
-      if (this.objectBody.dispdate == "") this.errors.push("Disposal date required.");
       if (this.objectBody.purchval == "") this.errors.push("Purchase value required.");
-      if (this.objectBody.accum_depre == "") this.errors.push("Accumulated depreciation required.");
-      if (this.objectBody.dispval == "") this.errors.push("Disposal value required.");
-      if (this.objectBody.revalval == "") this.errors.push("Revaluation value required.");
       if (this.objectBody.insurdate == "") this.errors.push("Insurance date required.");
       if (this.objectBody.insuredval == "") this.errors.push("Insurance value required.");
       if (this.objectBody.depr_rate == "") this.errors.push("Depreciation rate required.");
 
-      if (this.objectBody.assetCode && this.objectBody.assetDesc && this.objectBody["class"] && this.objectBody.dept && this.objectBody.busline && this.objectBody.purchdate && this.objectBody.revaldate && this.objectBody.depr_rate) {
+      if (this.objectBody.assetCode && this.objectBody.assetDesc && this.objectBody["class"] && this.objectBody.dept && this.objectBody.busline && this.objectBody.purchdate && this.objectBody.depr_rate) {
         this.errors = [];
         this.postPost();
       }
@@ -2925,7 +2918,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get("/api/AssetRegisteration/getAssetsregByCode/".concat(assetCode)).then(function (response) {
-        console.log(response.data.data);
         _this3.objectBody.assetCode = response.data.data.assetCode;
         _this3.objectBody.assetDesc = response.data.data.assetDesc;
         _this3.objectBody["class"] = response.data.data["class"];
@@ -28499,7 +28491,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

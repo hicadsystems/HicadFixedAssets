@@ -33,5 +33,7 @@ namespace FixedAssetCore.Core.Entities
 		public string mthly_tax { get; set; }
 		public string runtype { get; set; }
         public decimal? MinBookVal { get; set; }
+        public string reclassdepr { get; set; }
+        public string status { get; set; }
     }
 }
