@@ -24,6 +24,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FixedAssetCore.IRepositories;
 using FixedAssetCore.Repositories;
 using System.Text.Json.Serialization;
+using Wkhtmltopdf.NetCore;
 
 namespace FixedAssetWeb
 {
@@ -39,6 +40,7 @@ namespace FixedAssetWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddWkhtmltopdf("WKHtmlToPdf");
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -89,6 +91,11 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetMovementService, AssetMovementService>();
             services.AddScoped<IGenerateDepreciationService, GenerateDepreciationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            //In-Memory
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);
+            });
 
             services.AddMvc(options => options.EnableEndpointRouting = false);
 
@@ -119,8 +126,8 @@ namespace FixedAssetWeb
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

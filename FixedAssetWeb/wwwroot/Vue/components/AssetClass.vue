@@ -222,6 +222,11 @@
       <div class="page-body">
         <div class="card">
           <div class="card-body">
+              <div>
+                  <button type="button" class="btn btn-submit btn-primary" v-on:click="generateReport">
+                    Print Report
+                  </button>
+              </div>
             <table id="datatables-buttons" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -434,6 +439,10 @@ export default {
             this.objectBody.led_accum_depr_code = "";
             this.objectBody.led_exp_code = "";
         },
+
+        generateReport(){
+       window.open(`/Statictable/PrintAssetclass/`, "_blank")
+    }
     },
     
     mounted(){
