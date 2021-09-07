@@ -14,7 +14,7 @@ namespace FixedAssetCore.Core.IRepositories
 
         IEnumerable<AssetRegListVM> GetAllAssetRegisters();
 
-        string GenerateAssetsDepreciation(DateTime dateTime);
+        string GenerateAssetsDepreciation(string username, DateTime dateTime);
 
         string AssetEval(fa_AssetRegVM fa_AssetRegVM);
     }

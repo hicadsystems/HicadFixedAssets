@@ -55,15 +55,16 @@ namespace FixedAssetCore.Core.Repositories
             return result;
         }
 
-        public string GenerateAssetsDepreciation(DateTime dateTime)
+        public string GenerateAssetsDepreciation(string username, DateTime dateTime)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionstring))
             {
-                using (SqlCommand sqlcommand = new SqlCommand("sp_GenerateDepreciationII", sqlConnection))
+                using (SqlCommand sqlcommand = new SqlCommand("fa_calc_depreciation", sqlConnection))
                 {
                     sqlcommand.CommandTimeout = 1200;
                     sqlcommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    sqlcommand.Parameters.Add(new SqlParameter("@depdate", dateTime));
+                    sqlcommand.Parameters.Add(new SqlParameter("@txtdate1", dateTime));
+                    sqlcommand.Parameters.Add(new SqlParameter("@globaluser", username));
 
                     sqlcommand.Parameters.Add("@message", SqlDbType.Char, 500);
                     sqlcommand.Parameters["@message"].Direction = ParameterDirection.Output;

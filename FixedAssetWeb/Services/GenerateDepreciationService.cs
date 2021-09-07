@@ -14,9 +14,9 @@ namespace FixedAssetWeb.Services
         {
             this.unitOfWork = unitOfWork;
         }
-        public string GenerateDepreciation(DateTime dateTime)
+        public string GenerateDepreciation(string username, DateTime dateTime)
         {
-            string responseMessage = unitOfWork.reg.GenerateAssetsDepreciation(dateTime);
+            string responseMessage = unitOfWork.reg.GenerateAssetsDepreciation(username, dateTime);
 
             return responseMessage;
         }

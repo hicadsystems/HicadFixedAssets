@@ -7,6 +7,6 @@ namespace FixedAssetWeb.IServices
 {
     public interface IGenerateDepreciationService
     {
-        string GenerateDepreciation(DateTime dateTime);
+        string GenerateDepreciation(string username, DateTime dateTime);
     }
 }

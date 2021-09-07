@@ -31,8 +31,9 @@ namespace FixedAssetWeb.Controllers.Api.MonthEndProcessing
                 {
                     return Ok(new { responseCode = 500, responseDescription = "Kindly Supply A Valid Date" });
                 }
+                string username = User.Identity.Name;
 
-                generateDepreciationService.GenerateDepreciation(dateTime);
+                generateDepreciationService.GenerateDepreciation(username, dateTime);
 
                 return Ok(new { responseCode = 200, responseDescription = "Depreciation Generated Successfully" });
             }
