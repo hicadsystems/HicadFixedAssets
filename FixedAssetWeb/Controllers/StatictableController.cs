@@ -2,12 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FixedAssetWeb.IServices;
+using FixedAssetWeb.ViewModels.Reports;
 using Microsoft.AspNetCore.Mvc;
+using Wkhtmltopdf.NetCore;
 
 namespace FixedAssetWeb.Controllers
 {
     public class StatictableController : Controller
     {
+        private readonly ICompanyService _companyService;
+        private readonly IBusinessLineService _businessLineService;
+        private readonly ICostCenterService _costCenterService;
+        private readonly IAssetClassService _assetclassService;
+        private readonly IGeneratePdf _generatePdf;
+
+        public StatictableController(ICompanyService companyService, IBusinessLineService businessLineService, IGeneratePdf generatePdf,
+            ICostCenterService costCenterService, IAssetClassService assetClassService)
+        {
+            _companyService = companyService;
+            _businessLineService = businessLineService;
+            _costCenterService = costCenterService;
+            _assetclassService = assetClassService;
+            _generatePdf = generatePdf;
+        }
         public IActionResult Company()
         {
             return View();
@@ -29,6 +47,39 @@ namespace FixedAssetWeb.Controllers
         public IActionResult AssetClass()
         {
             return View();
+        }
+
+        [Route("Statictable/PrintBusinessline")]
+        public async Task<IActionResult> PrintBusinessline()
+        {
+            var businessline = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                BusinesslinesReport = _businessLineService.Getbusinesslines()
+            };
+            return await _generatePdf.GetPdf("Views/Statictable/PrintBusinessline.cshtml", businessline);
+        }
+
+        [Route("Statictable/PrintCostcenter")]
+        public async Task<IActionResult> PrintCostcenter()
+        {
+            var costcenter = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                CostcenterReport = _costCenterService.GetCostCenters()
+            };
+            return await _generatePdf.GetPdf("Views/Statictable/PrintCostcenter.cshtml", costcenter);
+        }
+
+        [Route("Statictable/PrintAssetclass")]
+        public async Task<IActionResult> PrintAssetclass()
+        {
+            var assetclass = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                AssetclassReport = _assetclassService.GetClass()
+            };
+            return await _generatePdf.GetPdf("Views/Statictable/PrintAssetclass.cshtml", assetclass);
         }
     }
 }

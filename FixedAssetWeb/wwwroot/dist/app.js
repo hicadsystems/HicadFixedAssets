@@ -2219,6 +2219,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2348,6 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
       this.objectBody.led_cost_code = "";
       this.objectBody.led_accum_depr_code = "";
       this.objectBody.led_exp_code = "";
+    },
+    generateReport: function generateReport() {
+      window.open("/Statictable/PrintAssetclass/", "_blank");
     }
   },
   mounted: function mounted() {
@@ -4633,6 +4641,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4643,7 +4672,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.state.objectToUpdate = null;
   },
   watch: {
-    '$store.state.objectToUpdate': function $storeStateObjectToUpdate(newVal, oldVal) {
+    "$store.state.objectToUpdate": function $storeStateObjectToUpdate(newVal, oldVal) {
       this.getallfund();
     }
   },
@@ -4657,7 +4686,7 @@ __webpack_require__.r(__webpack_exports__);
     getallfund: function getallfund() {
       var _this = this;
 
-      axios.get('/api/BusinessLine/getAllBusinessLine').then(function (response) {
+      axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
         return _this.fundtypeList = response.data;
       });
     },
@@ -4665,7 +4694,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("/api/BusinessLine/RemoveBusinessLine/".concat(id)).then(function (response) {
-        if (response.data.responseCode == '200') {
+        if (response.data.responseCode == "200") {
           alert("businessline successfully deleted");
 
           _this2.getallfund();
@@ -4673,6 +4702,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         _this2.errors.push(e);
       });
+    },
+    generateReport: function generateReport() {
+      window.open("/Statictable/PrintBusinessline/", "_blank");
     }
   }
 });
@@ -4818,18 +4850,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       costCenterList: null,
-      responseMessage: ''
+      responseMessage: ""
     };
   },
   created: function created() {
     this.$store.state.objectToUpdate = null;
   },
   watch: {
-    '$store.state.objectToUpdate': function $storeStateObjectToUpdate(newVal, oldVal) {
+    "$store.state.objectToUpdate": function $storeStateObjectToUpdate(newVal, oldVal) {
       this.getAllCostCenters();
       this.processDelete();
     }
@@ -4846,7 +4896,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get("/api/CostCenter/RemoveCostCenter/".concat(id)).then(function (response) {
-        if (response.data.responseCode == '200') {
+        if (response.data.responseCode == "200") {
           alert("balance sheet successfully deleted");
 
           _this.getAllCostCenters();
@@ -4858,9 +4908,12 @@ __webpack_require__.r(__webpack_exports__);
     getAllCostCenters: function getAllCostCenters() {
       var _this2 = this;
 
-      axios.get('/api/CostCenter/getAllCostCenters').then(function (response) {
+      axios.get("/api/CostCenter/getAllCostCenters").then(function (response) {
         return _this2.costCenterList = response.data;
       });
+    },
+    generateReport: function generateReport() {
+      window.open("/Statictable/PrintCostcenter/", "_blank");
     }
   }
 });
@@ -9519,6 +9572,18 @@ var render = function() {
             _c("div", { staticClass: "page-body" }, [
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-body" }, [
+                  _c("div", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-submit btn-primary",
+                        attrs: { type: "button" },
+                        on: { click: _vm.generateReport }
+                      },
+                      [_vm._v("\n                Print Report\n              ")]
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "table",
                     {
@@ -13412,6 +13477,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "card-body" }, [
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-submit btn-primary",
+            attrs: { type: "button" },
+            on: { click: _vm.generateReport }
+          },
+          [_vm._v("\n        Print Report\n      ")]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "table",
         {
@@ -13448,7 +13525,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Edit")]
+                    [_vm._v("\n              Edit\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -13462,7 +13539,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Delete")]
+                    [_vm._v("\n              Delete\n            ")]
                   )
                 ])
               ])
@@ -13630,9 +13707,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "card-body" }, [
+      _c("div", [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-submit btn-primary",
+            attrs: { type: "button" },
+            on: { click: _vm.generateReport }
+          },
+          [_vm._v("\n        Print Report\n      ")]
+        )
+      ]),
+      _vm._v(" "),
       _vm.responseMessage
         ? _c("div", { staticClass: "has-error" }, [
-            _vm._v(" " + _vm._s(_vm.responseMessage))
+            _vm._v(_vm._s(_vm.responseMessage))
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -13666,7 +13755,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Edit")]
+                    [_vm._v("\n              Edit\n            ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -13680,7 +13769,7 @@ var render = function() {
                         }
                       }
                     },
-                    [_vm._v("Delete")]
+                    [_vm._v("\n              Delete\n            ")]
                   )
                 ])
               ])
