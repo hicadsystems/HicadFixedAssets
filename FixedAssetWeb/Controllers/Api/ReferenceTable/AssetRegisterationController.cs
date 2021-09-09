@@ -36,7 +36,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return service.GetAllAssetReg();
         }
 
-        // GET: api/CostCenter
+        // GET: api/getAssetsregByCode/assetCode
         [Route("getAssetsregByCode/{assetCode}")]
         [HttpGet]
         public IActionResult GetCostCenterByCode(string assetCode)
@@ -48,6 +48,21 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
                 return Ok(new { responseCode = 404, responseDescription = "Asset Registeration code does not Exist" });
             }
             return Ok(new { responseCode = 200, responseDescription = "Asset Registeration Code Exist", Data = balsheet });
+        }
+
+        // GET: api/getAssetsregByClasscode/classCode
+        [Route("getAssetsregByclassCode/{classCode}")]
+        [HttpGet]
+        public IEnumerable<fa_Assetsreg> GetAssetsregByclassCode(string classCode)
+        {
+            if (string.IsNullOrEmpty(classCode))
+            {
+                return (IEnumerable<fa_Assetsreg>)BadRequest("Please supply a valid Class Code!!!");
+            }
+
+            var assetsRegList = service.GetAssetRegByClasscode(classCode.Trim());
+
+            return assetsRegList;
         }
 
         // GET: api/CostCenter/5

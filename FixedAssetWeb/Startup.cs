@@ -91,6 +91,7 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetMovementService, AssetMovementService>();
             services.AddScoped<IGenerateDepreciationService, GenerateDepreciationService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             //In-Memory
             services.AddDistributedMemoryCache();
             services.AddSession(options => {

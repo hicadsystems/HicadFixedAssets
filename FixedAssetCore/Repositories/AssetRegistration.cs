@@ -55,6 +55,13 @@ namespace FixedAssetCore.Core.Repositories
             return result;
         }
 
+        public IEnumerable<fa_Assetsreg> GetAssetsRegByClasscode(string classCode)
+        {
+            var result = context.fa_Assetsreg.Where(assets => assets.Class == classCode);
+
+            return result;
+        }
+
         public string GenerateAssetsDepreciation(string username, DateTime dateTime)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionstring))

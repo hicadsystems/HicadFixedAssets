@@ -12,6 +12,8 @@ namespace FixedAssetCore.Core.IRepositories
     {
         Task<fa_Assetsreg> getAssetRegByCode(string code);
 
+        IEnumerable<fa_Assetsreg> GetAssetsRegByClasscode(string classCode);
+
         IEnumerable<AssetRegListVM> GetAllAssetRegisters();
 
         string GenerateAssetsDepreciation(string username, DateTime dateTime);
