@@ -47,37 +47,52 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             {
                 return Ok(new { responseCode = 404, responseDescription = "Asset Registeration code does not Exist" });
             }
+
             return Ok(new { responseCode = 200, responseDescription = "Asset Registeration Code Exist", Data = balsheet });
         }
 
         // GET: api/AssetRegisteration/getAssetsregByClasscode/classCode
         [Route("getAssetsregByclassCode/{classCode}")]
         [HttpGet]
-        public IEnumerable<AssetRegListVM> GetAssetsregByclassCode(string classCode)
+        public IActionResult GetAssetsregByclassCode(string classCode)
         {
             if (string.IsNullOrEmpty(classCode))
             {
-                return (IEnumerable<AssetRegListVM>)BadRequest("Please supply a valid Class Code!!!");
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid class code"});
             }
 
             var assetsRegList = service.GetAssetRegByClasscode(classCode.Trim());
 
-            return assetsRegList;
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset with Class code { classCode } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
 
         // GET: api/AssetRegisteration/getAssetsregByDept/Dept
         [Route("getAssetsregByDept/{dept}")]
         [HttpGet]
-        public IEnumerable<AssetRegListVM> GetAssetsregByDept(string dept)
+        public IActionResult GetAssetsregByDept(string dept)
         {
             if (string.IsNullOrEmpty(dept))
             {
-                return (IEnumerable<AssetRegListVM>)BadRequest("Please supply a valid Department Code!!!");
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid department code" });
             }
 
             var assetsRegList = service.GetAssetRegByDept(dept.Trim());
 
-            return assetsRegList;
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0 )
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset with Department code { dept } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
 
         // GET: api/CostCenter/5
