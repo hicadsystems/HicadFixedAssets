@@ -36,7 +36,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return service.GetAllAssetReg();
         }
 
-        // GET: api/getAssetsregByCode/assetCode
+        // GET: api/AssetRegisteration/getAssetsregByCode/assetCode
         [Route("getAssetsregByCode/{assetCode}")]
         [HttpGet]
         public IActionResult GetCostCenterByCode(string assetCode)
@@ -50,7 +50,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return Ok(new { responseCode = 200, responseDescription = "Asset Registeration Code Exist", Data = balsheet });
         }
 
-        // GET: api/getAssetsregByClasscode/classCode
+        // GET: api/AssetRegisteration/getAssetsregByClasscode/classCode
         [Route("getAssetsregByclassCode/{classCode}")]
         [HttpGet]
         public IEnumerable<AssetRegListVM> GetAssetsregByclassCode(string classCode)
@@ -65,6 +65,21 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return assetsRegList;
         }
 
+        // GET: api/AssetRegisteration/getAssetsregByDept/Dept
+        [Route("getAssetsregByDept/{dept}")]
+        [HttpGet]
+        public IEnumerable<AssetRegListVM> GetAssetsregByDept(string dept)
+        {
+            if (string.IsNullOrEmpty(dept))
+            {
+                return (IEnumerable<AssetRegListVM>)BadRequest("Please supply a valid Department Code!!!");
+            }
+
+            var assetsRegList = service.GetAssetRegByDept(dept.Trim());
+
+            return assetsRegList;
+        }
+
         // GET: api/CostCenter/5
         [Route("Getl")]
         [HttpGet("{id}")]
@@ -73,7 +88,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return "value";
         }
 
-        // POST: api/CostCenter
+        // POST: api/AssetRegisteration/createAssetsreg
         [Route("createAssetsreg")]
         [HttpPost]
         public IActionResult createAssetRegister([FromBody] fa_Assetsreg value)
@@ -99,7 +114,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
         }
 
-        //api/CostCenter/RemoveBalsheet/7
+        //api/AssetRegisteration/RemoveAssetsreg/id
         [Route("RemoveAssetsreg/{id:int}")]
         [HttpGet]
         public IActionResult Remove(int id)
@@ -112,7 +127,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         }
 
 
-        // PUT: api/CostCenter/5
+        // PUT: api/AssetRegisteration/updateAssetsreg/id
         [Route("updateAssetsreg")]
         [HttpPut]
         public IActionResult Put([FromBody] fa_Assetsreg value)
@@ -150,7 +165,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
         }
 
-        // PUT: api/AssetRegisteration/assetrevaluation
+        // PUT: api/AssetRegisteration/assetrevaluation/id
         [Route("assetrevaluation")]
         [HttpPut]
         public IActionResult Put([FromBody] fa_AssetRegVM value)

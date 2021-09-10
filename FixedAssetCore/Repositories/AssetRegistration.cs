@@ -79,6 +79,30 @@ namespace FixedAssetCore.Core.Repositories
             return result;
         }
 
+        public IEnumerable<AssetRegListVM> GetAssetsRegByDeptcode(string dept)
+        {
+            var result = context.fa_Assetsreg.Where(assets => assets.Dept == dept)
+                .Join(context.fa_class, assetclass => assetclass.Class, c => c.classcode, (assetclass, c) => new { assetclass, c })
+                .Join(context.nac_costcenters, al => al.assetclass.Dept, costcnt => costcnt.unitcode, (al, costcnt) => new { al.assetclass, al.c, costcnt })
+                .Join(context.nac_businessline, abl => abl.assetclass.Busline, busline => busline.Code, (abl, busline) => new { abl.assetclass, abl.costcnt, abl.c, busline })
+                .Select(assetRegVm => new AssetRegListVM
+                {
+                    Id = assetRegVm.assetclass.Id,
+                    assetCode = assetRegVm.assetclass.assetCode,
+                    assetDesc = assetRegVm.assetclass.assetDesc,
+                    classCode = assetRegVm.assetclass.Class,
+                    classDesc = assetRegVm.c.classdesc,
+                    unitCode = assetRegVm.assetclass.Dept,
+                    unitDesc = assetRegVm.costcnt.unitdesc,
+                    busline = assetRegVm.assetclass.Busline,
+                    buslineDesc = assetRegVm.busline.Description,
+                    purchval = assetRegVm.assetclass.Purchval
+
+                }).ToList();
+
+            return result;
+        }
+
         public string GenerateAssetsDepreciation(string username, DateTime dateTime)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionstring))

@@ -42,6 +42,12 @@ namespace FixedAssetWeb.Services
         {
             return unitOfWork.reg.GetAssetsRegByClasscode(classCode);
         }
+
+        public IEnumerable<AssetRegListVM> GetAssetRegByDept(string dept)
+        {
+            return unitOfWork.reg.GetAssetsRegByDeptcode(dept);
+        }
+        
         public Task<fa_Assetsreg> GetAssetRegById(int id)
         {
             return unitOfWork.reg.Find(id);
