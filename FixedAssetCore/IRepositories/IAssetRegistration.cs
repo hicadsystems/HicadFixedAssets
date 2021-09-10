@@ -12,7 +12,7 @@ namespace FixedAssetCore.Core.IRepositories
     {
         Task<fa_Assetsreg> getAssetRegByCode(string code);
 
-        IEnumerable<fa_Assetsreg> GetAssetsRegByClasscode(string classCode);
+        IEnumerable<AssetRegListVM> GetAssetsRegByClasscode(string classCode);
 
         IEnumerable<AssetRegListVM> GetAllAssetRegisters();
 
