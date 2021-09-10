@@ -144,7 +144,7 @@
                                 <div>
                                     <select 
                                         name="assetclass"
-                                        v-model="objectBody.dept"
+                                        v-model="sortDept"
                                         class="form-control form-control-inverse"
                                         required
                                     >
@@ -240,6 +240,7 @@ export default {
             costCenterList: null,
             classList: null,
             sortClassCode: "",
+            sortDept: "",
             objectBody: {
                 assetCode: "",
                 assetDesc: "",
@@ -305,6 +306,16 @@ export default {
             }
 
             if(this.selectDept === true){
+                axios
+                .get(`/api/AssetRegisteration/getAssetsregByDept/${this.sortDept}`)
+                .then((response) => {
+                this.assetRegList = response.data;
+                if (this.assetRegList === null){
+                    alert("no records found");
+                }
+            });
+                console.log(this.assetRegList);
+
 
             }
         },

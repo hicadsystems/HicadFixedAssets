@@ -4137,6 +4137,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       costCenterList: null,
       classList: null,
       sortClassCode: "",
+      sortDept: "",
       objectBody: _defineProperty({
         assetCode: "",
         assetDesc: "",
@@ -4192,7 +4193,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(this.assetRegList);
       }
 
-      if (this.selectDept === true) {}
+      if (this.selectDept === true) {
+        axios.get("/api/AssetRegisteration/getAssetsregByDept/".concat(this.sortDept)).then(function (response) {
+          _this2.assetRegList = response.data;
+
+          if (_this2.assetRegList === null) {
+            alert("no records found");
+          }
+        });
+        console.log(this.assetRegList);
+      }
     }
   }
 });
@@ -13775,8 +13785,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.objectBody.dept,
-                              expression: "objectBody.dept"
+                              value: _vm.sortDept,
+                              expression: "sortDept"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13791,13 +13801,9 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.$set(
-                                _vm.objectBody,
-                                "dept",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
+                              _vm.sortDept = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
                             }
                           }
                         },
@@ -30281,7 +30287,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
