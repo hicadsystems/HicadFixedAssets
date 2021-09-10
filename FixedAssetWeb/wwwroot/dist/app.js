@@ -4186,20 +4186,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.selectDate === true) {}
 
       if (this.selectClass === true) {
-        alert("Process Succeeded");
         axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
-          return _this2.assetRegList = response.data;
+          console.log(response.data.responseCode);
+
+          if (response.data.responseCode === 404) {
+            _this2.$alert("No Asset available for the selected Class!!", "No Records Found", "Warning");
+          }
+
+          _this2.assetRegList = response.data.data;
         });
         console.log(this.assetRegList);
       }
 
       if (this.selectDept === true) {
         axios.get("/api/AssetRegisteration/getAssetsregByDept/".concat(this.sortDept)).then(function (response) {
-          _this2.assetRegList = response.data;
+          console.log(response.data.responseCode);
 
-          if (_this2.assetRegList === null) {
-            alert("no records found");
+          if (response.data.responseCode === 404) {
+            _this2.$alert("No Asset available in selected Deparment!!", "No Records Found", "Warning");
           }
+
+          _this2.assetRegList = response.data.data;
         });
         console.log(this.assetRegList);
       }

@@ -298,10 +298,17 @@ export default {
             }
 
             if(this.selectClass === true){
-                alert("Process Succeeded");
                 axios
                 .get(`/api/AssetRegisteration/getAssetsregByClasscode/${this.sortClassCode}`)
-                .then((response) => (this.assetRegList = response.data));
+                .then((response) => {
+                console.log(response.data.responseCode)
+                if (response.data.responseCode === 404){
+                    this.$alert(`No Asset available for the selected Class!!`, "No Records Found", "Warning");
+                }
+                this.assetRegList = response.data.data;
+                
+                });
+
                 console.log(this.assetRegList);
             }
 
@@ -309,10 +316,12 @@ export default {
                 axios
                 .get(`/api/AssetRegisteration/getAssetsregByDept/${this.sortDept}`)
                 .then((response) => {
-                this.assetRegList = response.data;
-                if (this.assetRegList === null){
-                    alert("no records found");
+                console.log(response.data.responseCode)
+                if (response.data.responseCode === 404){
+                    this.$alert(`No Asset available in selected Deparment!!`, "No Records Found", "Warning");
                 }
+                this.assetRegList = response.data.data;
+                
             });
                 console.log(this.assetRegList);
 
