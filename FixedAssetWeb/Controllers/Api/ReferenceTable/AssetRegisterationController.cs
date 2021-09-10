@@ -53,11 +53,11 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         // GET: api/getAssetsregByClasscode/classCode
         [Route("getAssetsregByclassCode/{classCode}")]
         [HttpGet]
-        public IEnumerable<fa_Assetsreg> GetAssetsregByclassCode(string classCode)
+        public IEnumerable<AssetRegListVM> GetAssetsregByclassCode(string classCode)
         {
             if (string.IsNullOrEmpty(classCode))
             {
-                return (IEnumerable<fa_Assetsreg>)BadRequest("Please supply a valid Class Code!!!");
+                return (IEnumerable<AssetRegListVM>)BadRequest("Please supply a valid Class Code!!!");
             }
 
             var assetsRegList = service.GetAssetRegByClasscode(classCode.Trim());
