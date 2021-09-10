@@ -161,7 +161,12 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-submit btn-primary" >Process</button>
+                    <button 
+                    type="submit" 
+                    class="btn btn-submit btn-primary"
+                    @click.prevent="sortingProcess()"
+                     >Process
+                    </button>
                 </form>
             </div>
         </div>
@@ -261,9 +266,9 @@ export default {
       .get("/api/BusinessLine/getAllBusinessLine")
       .then((response) => (this.businessLineList = response.data));
 
-    axios
-      .get("/api/AssetRegisteration/getAllAssets")
-      .then((response) => (this.assetRegList = response.data));
+    // axios
+    //   .get("/api/AssetRegisteration/getAllAssets")
+    //   .then((response) => (this.assetRegList = response.data));
     },
 
     methods: {
@@ -286,15 +291,20 @@ export default {
         },
 
         sortingProcess() {
-            if(selectDate === true){
+            
+            if(this.selectDate === true){
 
             }
 
-            if(selectClass === true){
-
+            if(this.selectClass === true){
+                alert("Process Succeeded");
+                axios
+                .get(`/api/AssetRegisteration/getAssetsregByClasscode/${this.sortClassCode}`)
+                .then((response) => (this.assetRegList = response.data));
+                console.log(this.assetRegList);
             }
 
-            if(selectDept === true){
+            if(this.selectDept === true){
 
             }
         },

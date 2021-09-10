@@ -4114,6 +4114,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4154,10 +4159,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
       return _this.businessLineList = response.data;
-    });
-    axios.get("/api/AssetRegisteration/getAllAssets").then(function (response) {
-      return _this.assetRegList = response.data;
-    });
+    }); // axios
+    //   .get("/api/AssetRegisteration/getAllAssets")
+    //   .then((response) => (this.assetRegList = response.data));
   },
   methods: {
     setDate: function setDate() {
@@ -4176,11 +4180,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.selectDept = true;
     },
     sortingProcess: function sortingProcess() {
-      if (selectDate === true) {}
+      var _this2 = this;
 
-      if (selectClass === true) {}
+      if (this.selectDate === true) {}
 
-      if (selectDept === true) {}
+      if (this.selectClass === true) {
+        alert("Process Succeeded");
+        axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
+          return _this2.assetRegList = response.data;
+        });
+        console.log(this.assetRegList);
+      }
+
+      if (this.selectDept === true) {}
     }
   }
 });
@@ -13818,9 +13830,15 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "button" }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sortingProcess()
+                }
+              }
             },
-            [_vm._v("Process")]
+            [_vm._v("Process\n                ")]
           )
         ])
       ])
