@@ -4114,6 +4114,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4132,6 +4137,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       costCenterList: null,
       classList: null,
       sortClassCode: "",
+      sortDept: "",
       objectBody: _defineProperty({
         assetCode: "",
         assetDesc: "",
@@ -4154,10 +4160,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
       return _this.businessLineList = response.data;
-    });
-    axios.get("/api/AssetRegisteration/getAllAssets").then(function (response) {
-      return _this.assetRegList = response.data;
-    });
+    }); // axios
+    //   .get("/api/AssetRegisteration/getAllAssets")
+    //   .then((response) => (this.assetRegList = response.data));
   },
   methods: {
     setDate: function setDate() {
@@ -4176,11 +4181,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.selectDept = true;
     },
     sortingProcess: function sortingProcess() {
-      if (selectDate === true) {}
+      var _this2 = this;
 
-      if (selectClass === true) {}
+      if (this.selectDate === true) {}
 
-      if (selectDept === true) {}
+      if (this.selectClass === true) {
+        axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
+          console.log(response.data.responseCode);
+
+          if (response.data.responseCode === 404) {
+            _this2.$alert("No Asset available for the selected Class!!", "No Records Found", "Warning");
+          }
+
+          _this2.assetRegList = response.data.data;
+        });
+        console.log(this.assetRegList);
+      }
+
+      if (this.selectDept === true) {
+        axios.get("/api/AssetRegisteration/getAssetsregByDept/".concat(this.sortDept)).then(function (response) {
+          console.log(response.data.responseCode);
+
+          if (response.data.responseCode === 404) {
+            _this2.$alert("No Asset available in selected Deparment!!", "No Records Found", "Warning");
+          }
+
+          _this2.assetRegList = response.data.data;
+        });
+        console.log(this.assetRegList);
+      }
     }
   }
 });
@@ -13763,8 +13792,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.objectBody.dept,
-                              expression: "objectBody.dept"
+                              value: _vm.sortDept,
+                              expression: "sortDept"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13779,13 +13808,9 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.$set(
-                                _vm.objectBody,
-                                "dept",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
+                              _vm.sortDept = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
                             }
                           }
                         },
@@ -13818,9 +13843,15 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "button" }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sortingProcess()
+                }
+              }
             },
-            [_vm._v("Process")]
+            [_vm._v("Process\n                ")]
           )
         ])
       ])
@@ -30263,7 +30294,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
