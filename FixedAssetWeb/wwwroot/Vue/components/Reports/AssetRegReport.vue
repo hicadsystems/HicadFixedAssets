@@ -101,14 +101,19 @@
                                 <div>
                                     <label for="" ><b>From </b></label>
                                     <vuejsDatepicker
-                                        input-class="form-control col-4 mr-1" 
-                                        type="date" 
+                                        input-class="form-control col-4 mr-1"
+                                        v-model="objectBody.startDate" 
+                                        type="date"
+                                        format="MM/dd/yyyy"
                                     ></vuejsDatepicker>
                                 </div>
                                 <div>
                                     <label for="" ><b>To </b></label>
                                     <vuejsDatepicker
-                                        input-class="form-control col-4" type="date"
+                                        input-class="form-control col-4"
+                                        v-model="objectBody.endDate" 
+                                        type="date"
+                                        format="MM/dd/yyyy"
                                     >
                                     </vuejsDatepicker>
                                 </div>
@@ -250,6 +255,8 @@ export default {
                 purchdate: "",
                 dept: "",
                 class: "",
+                startDate: "",
+                endDate: "",
             }
         }
     },
@@ -294,7 +301,18 @@ export default {
         sortingProcess() {
             
             if(this.selectDate === true){
+                axios
+                .get(`/api/AssetRegisteration/getAssetsregByDate/${this.startDate}/${this.endDate}`)
+                .then((response) => {
+                console.log(response.data.responseCode)
+                if (response.data.responseCode === 404){
+                    this.$alert(`No Asset available for the selected Dates!!`, "No Records Found", "Warning");
+                }
+                this.assetRegList = response.data.data;
+                
+                });
 
+                console.log(this.assetRegList);
             }
 
             if(this.selectClass === true){

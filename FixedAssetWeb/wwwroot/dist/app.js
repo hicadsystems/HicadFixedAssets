@@ -4119,6 +4119,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4127,6 +4132,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
+    var _objectBody;
+
     return {
       selectDate: false,
       selectDept: false,
@@ -4138,7 +4145,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       classList: null,
       sortClassCode: "",
       sortDept: "",
-      objectBody: _defineProperty({
+      objectBody: (_objectBody = {
         assetCode: "",
         assetDesc: "",
         "class": "",
@@ -4146,7 +4153,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         purchval: "",
         purchdate: "",
         dept: ""
-      }, "class", "")
+      }, _defineProperty(_objectBody, "class", ""), _defineProperty(_objectBody, "startDate", ""), _defineProperty(_objectBody, "endDate", ""), _objectBody)
     };
   },
   mounted: function mounted() {
@@ -4183,7 +4190,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sortingProcess: function sortingProcess() {
       var _this2 = this;
 
-      if (this.selectDate === true) {}
+      if (this.selectDate === true) {
+        axios.get("/api/AssetRegisteration/getAssetsregByDate/".concat(this.startDate, "/").concat(this.endDate)).then(function (response) {
+          console.log(response.data.responseCode);
+
+          if (response.data.responseCode === 404) {
+            _this2.$alert("No Asset available for the selected Dates!!", "No Records Found", "Warning");
+          }
+
+          _this2.assetRegList = response.data.data;
+        });
+        console.log(this.assetRegList);
+      }
 
       if (this.selectClass === true) {
         axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
@@ -13699,7 +13717,15 @@ var render = function() {
                         _c("vuejsDatepicker", {
                           attrs: {
                             "input-class": "form-control col-4 mr-1",
-                            type: "date"
+                            type: "date",
+                            format: "MM/dd/yyyy"
+                          },
+                          model: {
+                            value: _vm.objectBody.startDate,
+                            callback: function($$v) {
+                              _vm.$set(_vm.objectBody, "startDate", $$v)
+                            },
+                            expression: "objectBody.startDate"
                           }
                         })
                       ],
@@ -13714,7 +13740,15 @@ var render = function() {
                         _c("vuejsDatepicker", {
                           attrs: {
                             "input-class": "form-control col-4",
-                            type: "date"
+                            type: "date",
+                            format: "MM/dd/yyyy"
+                          },
+                          model: {
+                            value: _vm.objectBody.endDate,
+                            callback: function($$v) {
+                              _vm.$set(_vm.objectBody, "endDate", $$v)
+                            },
+                            expression: "objectBody.endDate"
                           }
                         })
                       ],

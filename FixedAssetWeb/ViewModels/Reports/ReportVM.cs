@@ -12,5 +12,6 @@ namespace FixedAssetWeb.ViewModels.Reports
         public nac_company Company { get; set; }
         public IEnumerable<nac_costcenters> CostcenterReport { get; set; }
         public IEnumerable<fa_class> AssetclassReport { get; set; }
+        public IEnumerable<fa_Assetsreg> GetAssetRegReport { get; set; }
     }
 }

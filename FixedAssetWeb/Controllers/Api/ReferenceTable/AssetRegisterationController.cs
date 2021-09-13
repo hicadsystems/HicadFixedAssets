@@ -95,6 +95,29 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
 
+        // GET: api/AssetRegisteration/getAssetsregByDate/Date
+        [Route("getAssetsregByDate/{startDate}/{endDate}")]
+        [HttpGet]
+
+        public IActionResult GetAssetsregByDate(DateTime? startDate, DateTime? endDate)
+        {
+            if (startDate == null && endDate == null)
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid dates" });
+            }
+
+            var assetsRegList = service.GetAssetRegByDate(startDate, endDate);
+
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset start dates { startDate } and End Date { endDate } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
+        }
+
         // GET: api/CostCenter/5
         [Route("Getl")]
         [HttpGet("{id}")]

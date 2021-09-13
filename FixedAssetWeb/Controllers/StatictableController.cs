@@ -15,15 +15,17 @@ namespace FixedAssetWeb.Controllers
         private readonly IBusinessLineService _businessLineService;
         private readonly ICostCenterService _costCenterService;
         private readonly IAssetClassService _assetclassService;
+        private readonly IAssetRegisterationService _assetRegisterationService;
         private readonly IGeneratePdf _generatePdf;
 
         public StatictableController(ICompanyService companyService, IBusinessLineService businessLineService, IGeneratePdf generatePdf,
-            ICostCenterService costCenterService, IAssetClassService assetClassService)
+            ICostCenterService costCenterService, IAssetClassService assetClassService, IAssetRegisterationService assetRegisterationService)
         {
             _companyService = companyService;
             _businessLineService = businessLineService;
             _costCenterService = costCenterService;
             _assetclassService = assetClassService;
+            _assetRegisterationService = assetRegisterationService;
             _generatePdf = generatePdf;
         }
         public IActionResult Company()
@@ -80,6 +82,17 @@ namespace FixedAssetWeb.Controllers
                 AssetclassReport = _assetclassService.GetClass()
             };
             return await _generatePdf.GetPdf("Views/Statictable/PrintAssetclass.cshtml", assetclass);
+        }
+
+        [Route("Statictable/PrintAssetreg")]
+        public async Task<IActionResult> PrintAssetreg()
+        {
+            var assetreg = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                GetAssetRegReport = _assetRegisterationService.GetAssetReg()
+            };
+            return await _generatePdf.GetPdf("Views/Statictable/PrintAssetreg.cshtml", assetreg);
         }
     }
 }
