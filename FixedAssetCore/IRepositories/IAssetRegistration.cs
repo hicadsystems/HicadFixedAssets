@@ -24,6 +24,6 @@ namespace FixedAssetCore.Core.IRepositories
 
         string AssetEval(fa_AssetRegVM fa_AssetRegVM);
 
-        IEnumerable<AssetRegListVM> GetAssetRegByDates(DateTime? startDate, DateTime? endDate);
+
     }
 }
