@@ -47,13 +47,16 @@ namespace FixedAssetWeb.Services
         {
             return unitOfWork.reg.GetAssetsRegByDeptcode(dept);
         }
-
+        
         public Task<fa_Assetsreg> GetAssetRegById(int id)
         {
             return unitOfWork.reg.Find(id);
         }
 
-
+        public IEnumerable<AssetRegListVM> SortAssetRegList(SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            return unitOfWork.reg.SortAssetsRegister(sortAssetsRegListVM);
+        }
         public void RemoveAssetReg(fa_Assetsreg bl_sheet)
         {
             unitOfWork.reg.Remove(bl_sheet);
@@ -71,13 +74,6 @@ namespace FixedAssetWeb.Services
             string response = unitOfWork.reg.AssetEval(fa_AssetRegVM);
 
             return response;
-        }
-
-        public IEnumerable<AssetRegListVM> GetAssetRegByDate(DateTime? startDate, DateTime? endDate)
-        {
-            var result = unitOfWork.reg.GetAssetRegByDates(startDate, endDate);
-
-            return result;
         }
 
     }

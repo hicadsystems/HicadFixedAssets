@@ -8,7 +8,7 @@
                             <div class="page-header-title">
                                 <div class="d-inline">
                                     <h4>ASSET REG REPORT</h4> 
-                                    <!-- <span>ADD NEW ASSET CLASS</span> -->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                                         <label class="form-check-label" for="exampleRadios2">
                                             <b>Sort by Date</b>
                                         </label>
-                                        <!-- <input  v-if="selectDate" type="date" class="form-control col-4" /> -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                         <label class="form-check-label" for="exampleRadios2">
                                             <b>Sort by Class</b>
                                         </label>
-                                        <!-- <input  v-if="selectDate" type="date" class="form-control col-4" /> -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                         <label class="form-check-label" for="exampleRadios2">
                                             <b>Sort by Dept</b>
                                         </label>
-                                        <!-- <input  v-if="selectDate" type="date" class="form-control col-4" /> -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -101,19 +101,16 @@
                                 <div>
                                     <label for="" ><b>From </b></label>
                                     <vuejsDatepicker
-                                        input-class="form-control col-4 mr-1"
-                                        v-model="objectBody.startDate" 
-                                        type="date"
-                                        format="MM/dd/yyyy"
+                                        v-model="sortAssetsList.startDate"
+                                        input-class="form-control col-4 mr-1" 
+                                        type="date" 
                                     ></vuejsDatepicker>
                                 </div>
                                 <div>
                                     <label for="" ><b>To </b></label>
                                     <vuejsDatepicker
-                                        input-class="form-control col-4"
-                                        v-model="objectBody.endDate" 
-                                        type="date"
-                                        format="MM/dd/yyyy"
+                                        v-model="sortAssetsList.endDate"
+                                        input-class="form-control col-4" type="date"
                                     >
                                     </vuejsDatepicker>
                                 </div>
@@ -126,7 +123,7 @@
                                 <div>
                                     <select
                                         name="assetclass"
-                                        v-model="sortClassCode"
+                                        v-model="sortAssetsList.classCode"
                                         class="form-control form-control-inverse"
                                         required
                                     >
@@ -149,7 +146,7 @@
                                 <div>
                                     <select 
                                         name="assetclass"
-                                        v-model="sortDept"
+                                        v-model="sortAssetsList.classDept"
                                         class="form-control form-control-inverse"
                                         required
                                     >
@@ -179,19 +176,6 @@
 
         <!-- ASSET TABLE -->
         <div v-if="!isFormVisible">
-            <!-- <div class="page-wrapper">
-                <div class="page-header">
-                    <div class="row align-items-end">
-                        <div class="col-lg-8">
-                            <div class="page-header-title">
-                                <div class="d-inline">
-                                    <h4>LIST OF ASSETS</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
             <button type="button" class="btn btn-submit btn-primary" >Show Report</button>
             <div class="page-body">
@@ -246,6 +230,12 @@ export default {
             classList: null,
             sortClassCode: "",
             sortDept: "",
+            sortAssetsList: {
+                classCode: "",
+                classDept: "",
+                startDate: "",
+                endDate: "",
+            },
             objectBody: {
                 assetCode: "",
                 assetDesc: "",
@@ -255,8 +245,6 @@ export default {
                 purchdate: "",
                 dept: "",
                 class: "",
-                startDate: "",
-                endDate: "",
             }
         }
     },
@@ -273,10 +261,6 @@ export default {
     axios
       .get("/api/BusinessLine/getAllBusinessLine")
       .then((response) => (this.businessLineList = response.data));
-
-    // axios
-    //   .get("/api/AssetRegisteration/getAllAssets")
-    //   .then((response) => (this.assetRegList = response.data));
     },
 
     methods: {
@@ -299,52 +283,24 @@ export default {
         },
 
         sortingProcess() {
-            
-            if(this.selectDate === true){
+
                 axios
-                .get(`/api/AssetRegisteration/getAssetsregByDate/${this.startDate}/${this.endDate}`)
+                .post(`/api/AssetRegisteration/sortAssetsregList/`, this.sortAssetsList)
+
                 .then((response) => {
-                console.log(response.data.responseCode)
+
+                console.log(response.data.responseCode);
+
                 if (response.data.responseCode === 404){
-                    this.$alert(`No Asset available for the selected Dates!!`, "No Records Found", "Warning");
+
+                    this.$alert(`No Asset available for the selected Parameter!!`, "No Records Found", "Warning");
                 }
+
                 this.assetRegList = response.data.data;
                 
                 });
 
                 console.log(this.assetRegList);
-            }
-
-            if(this.selectClass === true){
-                axios
-                .get(`/api/AssetRegisteration/getAssetsregByClasscode/${this.sortClassCode}`)
-                .then((response) => {
-                console.log(response.data.responseCode)
-                if (response.data.responseCode === 404){
-                    this.$alert(`No Asset available for the selected Class!!`, "No Records Found", "Warning");
-                }
-                this.assetRegList = response.data.data;
-                
-                });
-
-                console.log(this.assetRegList);
-            }
-
-            if(this.selectDept === true){
-                axios
-                .get(`/api/AssetRegisteration/getAssetsregByDept/${this.sortDept}`)
-                .then((response) => {
-                console.log(response.data.responseCode)
-                if (response.data.responseCode === 404){
-                    this.$alert(`No Asset available in selected Deparment!!`, "No Records Found", "Warning");
-                }
-                this.assetRegList = response.data.data;
-                
-            });
-                console.log(this.assetRegList);
-
-
-            }
         },
     }
 };
