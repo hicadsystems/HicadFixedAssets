@@ -51,6 +51,28 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return Ok(new { responseCode = 200, responseDescription = "Asset Registeration Code Exist", Data = balsheet });
         }
 
+        // GET: api/AssetRegisteration/sortAssetsregList
+        [Route("sortAssetsregList")]
+        [HttpPost]
+        public IActionResult SortAssetsregList([FromBody] SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            if (string.IsNullOrEmpty(sortAssetsRegListVM.classCode) && string.IsNullOrWhiteSpace(sortAssetsRegListVM.classDept) && sortAssetsRegListVM.startDate == null && sortAssetsRegListVM.endDate == null)
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid sort parameter" });
+            }
+
+            var assetsRegList = service.SortAssetRegList(sortAssetsRegListVM);
+
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset with Class code { sortAssetsRegListVM.classCode } or { sortAssetsRegListVM.classDept } or { sortAssetsRegListVM.startDate } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
+        }
+
         // GET: api/AssetRegisteration/getAssetsregByClasscode/classCode
         [Route("getAssetsregByclassCode/{classCode}")]
         [HttpGet]

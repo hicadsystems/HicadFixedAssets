@@ -18,6 +18,7 @@ namespace FixedAssetWeb.IServices
         Task<bool> AddAssetReg(fa_Assetsreg bl_sheet);
         Task<fa_Assetsreg> GetAssetRegByCode(string bcode);
         IEnumerable<AssetRegListVM> GetAssetRegByClasscode(string classCode);
+        IEnumerable<AssetRegListVM> SortAssetRegList(SortAssetsRegListVM sortAssetsRegListVM);
         IEnumerable<AssetRegListVM> GetAssetRegByDept(string dept);
         Task<bool> UpdateAssetReg(fa_Assetsreg bl_sheet);
         string AssetRegEval(fa_AssetRegVM fa_AssetRegVM);

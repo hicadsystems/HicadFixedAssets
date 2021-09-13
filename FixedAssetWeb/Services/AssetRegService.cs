@@ -53,7 +53,10 @@ namespace FixedAssetWeb.Services
             return unitOfWork.reg.Find(id);
         }
 
-        
+        public IEnumerable<AssetRegListVM> SortAssetRegList(SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            return unitOfWork.reg.SortAssetsRegister(sortAssetsRegListVM);
+        }
         public void RemoveAssetReg(fa_Assetsreg bl_sheet)
         {
             unitOfWork.reg.Remove(bl_sheet);

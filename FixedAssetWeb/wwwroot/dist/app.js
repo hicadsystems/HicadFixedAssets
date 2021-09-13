@@ -4108,17 +4108,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4138,6 +4127,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       classList: null,
       sortClassCode: "",
       sortDept: "",
+      sortAssetsList: {
+        classCode: "",
+        classDept: "",
+        startDate: "",
+        endDate: ""
+      },
       objectBody: _defineProperty({
         assetCode: "",
         assetDesc: "",
@@ -4160,9 +4155,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
       return _this.businessLineList = response.data;
-    }); // axios
-    //   .get("/api/AssetRegisteration/getAllAssets")
-    //   .then((response) => (this.assetRegList = response.data));
+    });
   },
   methods: {
     setDate: function setDate() {
@@ -4183,33 +4176,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sortingProcess: function sortingProcess() {
       var _this2 = this;
 
-      if (this.selectDate === true) {}
+      axios.post("/api/AssetRegisteration/sortAssetsregList/", this.sortAssetsList).then(function (response) {
+        console.log(response.data.responseCode);
 
-      if (this.selectClass === true) {
-        axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
-          console.log(response.data.responseCode);
+        if (response.data.responseCode === 404) {
+          _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
+        }
 
-          if (response.data.responseCode === 404) {
-            _this2.$alert("No Asset available for the selected Class!!", "No Records Found", "Warning");
-          }
-
-          _this2.assetRegList = response.data.data;
-        });
-        console.log(this.assetRegList);
-      }
-
-      if (this.selectDept === true) {
-        axios.get("/api/AssetRegisteration/getAssetsregByDept/".concat(this.sortDept)).then(function (response) {
-          console.log(response.data.responseCode);
-
-          if (response.data.responseCode === 404) {
-            _this2.$alert("No Asset available in selected Deparment!!", "No Records Found", "Warning");
-          }
-
-          _this2.assetRegList = response.data.data;
-        });
-        console.log(this.assetRegList);
-      }
+        _this2.assetRegList = response.data.data;
+      });
+      console.log(this.assetRegList);
     }
   }
 });
@@ -13700,6 +13676,13 @@ var render = function() {
                           attrs: {
                             "input-class": "form-control col-4 mr-1",
                             type: "date"
+                          },
+                          model: {
+                            value: _vm.sortAssetsList.startDate,
+                            callback: function($$v) {
+                              _vm.$set(_vm.sortAssetsList, "startDate", $$v)
+                            },
+                            expression: "sortAssetsList.startDate"
                           }
                         })
                       ],
@@ -13715,6 +13698,13 @@ var render = function() {
                           attrs: {
                             "input-class": "form-control col-4",
                             type: "date"
+                          },
+                          model: {
+                            value: _vm.sortAssetsList.endDate,
+                            callback: function($$v) {
+                              _vm.$set(_vm.sortAssetsList, "endDate", $$v)
+                            },
+                            expression: "sortAssetsList.endDate"
                           }
                         })
                       ],
@@ -13735,8 +13725,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sortClassCode,
-                              expression: "sortClassCode"
+                              value: _vm.sortAssetsList.classCode,
+                              expression: "sortAssetsList.classCode"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13751,9 +13741,13 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.sortClassCode = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.$set(
+                                _vm.sortAssetsList,
+                                "classCode",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             }
                           }
                         },
@@ -13792,8 +13786,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sortDept,
-                              expression: "sortDept"
+                              value: _vm.sortAssetsList.classDept,
+                              expression: "sortAssetsList.classDept"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13808,9 +13802,13 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.sortDept = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.$set(
+                                _vm.sortAssetsList,
+                                "classDept",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             }
                           }
                         },
