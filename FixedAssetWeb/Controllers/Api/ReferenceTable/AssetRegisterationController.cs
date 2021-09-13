@@ -180,6 +180,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
         }
 
+
         // PUT: api/AssetRegisteration/assetrevaluation/id
         [Route("assetrevaluation")]
         [HttpPut]
