@@ -23,5 +23,7 @@ namespace FixedAssetCore.Core.IRepositories
         string GenerateAssetsDepreciation(string username, DateTime dateTime);
 
         string AssetEval(fa_AssetRegVM fa_AssetRegVM);
+
+
     }
 }
