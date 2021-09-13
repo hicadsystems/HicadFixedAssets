@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.Entities;
+using FixedAssetCore.EntityCoreVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace FixedAssetWeb.ViewModels.Reports
         public nac_company Company { get; set; }
         public IEnumerable<nac_costcenters> CostcenterReport { get; set; }
         public IEnumerable<fa_class> AssetclassReport { get; set; }
-        public IEnumerable<fa_Assetsreg> GetAssetRegReport { get; set; }
+        public IEnumerable<AssetRegListVM> GetAssetRegReport { get; set; }
+        public IEnumerable<AssetRegListVM> AssetRegListReport { get; set; }
     }
 }

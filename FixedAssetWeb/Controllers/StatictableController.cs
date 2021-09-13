@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using FixedAssetWeb.ViewModels.Reports;
 using Microsoft.AspNetCore.Mvc;
@@ -84,13 +85,20 @@ namespace FixedAssetWeb.Controllers
             return await _generatePdf.GetPdf("Views/Statictable/PrintAssetclass.cshtml", assetclass);
         }
 
-        [Route("Statictable/PrintAssetreg")]
-        public async Task<IActionResult> PrintAssetreg()
+        [Route("Statictable/PrintAssetreg/{classCode}")]
+        public async Task<IActionResult> PrintAssetreg(string classCode)
         {
+            var sortAssetsRegListVMv = new SortAssetsRegListVM()
+            {
+                classCode = classCode,
+                classDept = "",
+                startDate = null,
+                endDate = null
+            };
             var assetreg = new ReportVM
             {
                 Company = _companyService.GetCompanySingleRecord(),
-                GetAssetRegReport = _assetRegisterationService.GetAssetReg()
+                GetAssetRegReport = _assetRegisterationService.SortAssetRegList(sortAssetsRegListVMv)
             };
             return await _generatePdf.GetPdf("Views/Statictable/PrintAssetreg.cshtml", assetreg);
         }

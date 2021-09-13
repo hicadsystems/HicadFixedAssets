@@ -4108,22 +4108,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4132,8 +4116,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
-    var _objectBody;
-
     return {
       selectDate: false,
       selectDept: false,
@@ -4145,7 +4127,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       classList: null,
       sortClassCode: "",
       sortDept: "",
-      objectBody: (_objectBody = {
+      sortAssetsList: {
+        classCode: "",
+        classDept: "",
+        startDate: "",
+        endDate: ""
+      },
+      objectBody: _defineProperty({
         assetCode: "",
         assetDesc: "",
         "class": "",
@@ -4153,7 +4141,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         purchval: "",
         purchdate: "",
         dept: ""
-      }, _defineProperty(_objectBody, "class", ""), _defineProperty(_objectBody, "startDate", ""), _defineProperty(_objectBody, "endDate", ""), _objectBody)
+      }, "class", "")
     };
   },
   mounted: function mounted() {
@@ -4167,9 +4155,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     axios.get("/api/BusinessLine/getAllBusinessLine").then(function (response) {
       return _this.businessLineList = response.data;
-    }); // axios
-    //   .get("/api/AssetRegisteration/getAllAssets")
-    //   .then((response) => (this.assetRegList = response.data));
+    });
   },
   methods: {
     setDate: function setDate() {
@@ -4190,44 +4176,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     sortingProcess: function sortingProcess() {
       var _this2 = this;
 
-      if (this.selectDate === true) {
-        axios.get("/api/AssetRegisteration/getAssetsregByDate/".concat(this.startDate, "/").concat(this.endDate)).then(function (response) {
-          console.log(response.data.responseCode);
+      axios.post("/api/AssetRegisteration/sortAssetsregList/", this.sortAssetsList).then(function (response) {
+        console.log(response.data.responseCode);
 
-          if (response.data.responseCode === 404) {
-            _this2.$alert("No Asset available for the selected Dates!!", "No Records Found", "Warning");
-          }
+        if (response.data.responseCode === 404) {
+          _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
+        }
 
-          _this2.assetRegList = response.data.data;
-        });
-        console.log(this.assetRegList);
-      }
-
-      if (this.selectClass === true) {
-        axios.get("/api/AssetRegisteration/getAssetsregByClasscode/".concat(this.sortClassCode)).then(function (response) {
-          console.log(response.data.responseCode);
-
-          if (response.data.responseCode === 404) {
-            _this2.$alert("No Asset available for the selected Class!!", "No Records Found", "Warning");
-          }
-
-          _this2.assetRegList = response.data.data;
-        });
-        console.log(this.assetRegList);
-      }
-
-      if (this.selectDept === true) {
-        axios.get("/api/AssetRegisteration/getAssetsregByDept/".concat(this.sortDept)).then(function (response) {
-          console.log(response.data.responseCode);
-
-          if (response.data.responseCode === 404) {
-            _this2.$alert("No Asset available in selected Deparment!!", "No Records Found", "Warning");
-          }
-
-          _this2.assetRegList = response.data.data;
-        });
-        console.log(this.assetRegList);
-      }
+        _this2.assetRegList = response.data.data;
+      });
+      console.log(this.assetRegList);
+    },
+    generateReport: function generateReport() {
+      window.open("/Statictable/PrintAssetreg/".concat(this.sortAssetsList.classCode, "/"), "_blank");
     }
   }
 });
@@ -13717,15 +13678,14 @@ var render = function() {
                         _c("vuejsDatepicker", {
                           attrs: {
                             "input-class": "form-control col-4 mr-1",
-                            type: "date",
-                            format: "MM/dd/yyyy"
+                            type: "date"
                           },
                           model: {
-                            value: _vm.objectBody.startDate,
+                            value: _vm.sortAssetsList.startDate,
                             callback: function($$v) {
-                              _vm.$set(_vm.objectBody, "startDate", $$v)
+                              _vm.$set(_vm.sortAssetsList, "startDate", $$v)
                             },
-                            expression: "objectBody.startDate"
+                            expression: "sortAssetsList.startDate"
                           }
                         })
                       ],
@@ -13740,15 +13700,14 @@ var render = function() {
                         _c("vuejsDatepicker", {
                           attrs: {
                             "input-class": "form-control col-4",
-                            type: "date",
-                            format: "MM/dd/yyyy"
+                            type: "date"
                           },
                           model: {
-                            value: _vm.objectBody.endDate,
+                            value: _vm.sortAssetsList.endDate,
                             callback: function($$v) {
-                              _vm.$set(_vm.objectBody, "endDate", $$v)
+                              _vm.$set(_vm.sortAssetsList, "endDate", $$v)
                             },
-                            expression: "objectBody.endDate"
+                            expression: "sortAssetsList.endDate"
                           }
                         })
                       ],
@@ -13758,7 +13717,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.selectClass
-                ? _c("div", { staticClass: "col md-2" }, [
+                ? _c("div", { staticClass: "col-lg-4" }, [
                     _vm._m(6),
                     _vm._v(" "),
                     _c("div", [
@@ -13769,8 +13728,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sortClassCode,
-                              expression: "sortClassCode"
+                              value: _vm.sortAssetsList.classCode,
+                              expression: "sortAssetsList.classCode"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13785,9 +13744,13 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.sortClassCode = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.$set(
+                                _vm.sortAssetsList,
+                                "classCode",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             }
                           }
                         },
@@ -13815,7 +13778,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.selectDept
-                ? _c("div", { staticClass: "col md-2" }, [
+                ? _c("div", { staticClass: "col-lg-4" }, [
                     _vm._m(7),
                     _vm._v(" "),
                     _c("div", [
@@ -13826,8 +13789,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.sortDept,
-                              expression: "sortDept"
+                              value: _vm.sortAssetsList.classDept,
+                              expression: "sortAssetsList.classDept"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -13842,9 +13805,13 @@ var render = function() {
                                   var val = "_value" in o ? o._value : o.value
                                   return val
                                 })
-                              _vm.sortDept = $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                              _vm.$set(
+                                _vm.sortAssetsList,
+                                "classDept",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             }
                           }
                         },
@@ -13897,7 +13864,8 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "button" }
+              attrs: { type: "button" },
+              on: { click: _vm.generateReport }
             },
             [_vm._v("Show Report")]
           ),
@@ -13955,7 +13923,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "col-lg-8" }, [
               _c("div", { staticClass: "page-header-title" }, [
                 _c("div", { staticClass: "d-inline" }, [
-                  _c("h4", [_vm._v("ASSET REG REPORT")])
+                  _c("h4", [_vm._v("ASSET REGISTER REPORT")])
                 ])
               ])
             ]),

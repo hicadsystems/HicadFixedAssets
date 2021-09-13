@@ -17,27 +17,25 @@
     @*<h3 style="text-align:center">REPORTS</h3>
         <h4 style="text-align:center">Stock Position</h4>*@
 
-    <h3>Business Line Report: Produce On @DateTime.Now</h3>
+    <h3>Asset Register Report: Produce On @DateTime.Now</h3>
     <table border="2" cellpadding="2" cellspacing="0" width="100%">
         <tr style="text-align:left">
-            <th>Class Code</th>
-            <th>Class Description</th>
-            <th>Rate</th>
-            <th>Method</th>
-            <th>Cost Code</th>
-            <th>Accum.Depr.Code</th>
-            <th>Expenses Code</th>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Classification</th>
+            <th>Location</th>
+            <th>Business Line</th>
+            <th>Purchase Line</th>
         </tr>
-        @foreach (var a in Model.AssetclassReport)
+        @foreach (var a in Model.GetAssetRegReport)
         {
             <tr style="text-align:center">
-                <td> @a.classcode </td>
-                <td> @a.classdesc </td>
-                <td> @a.Deprrate</td>
-                <td> @a.Deprmethod</td>
-                <td> @a.Led_cost_code</td>
-                <td> @a.Led_accum_depr_code</td>
-                <td> @a.Led_exp_code</td>
+                <td> @a.assetCode </td>
+                <td> @a.assetDesc </td>
+                <td> @a.classDesc</td>
+                <td> @a.unitDesc</td>
+                <td> @a.buslineDesc</td>
+                <td> @a.purchval</td>
             </tr>
         }
 

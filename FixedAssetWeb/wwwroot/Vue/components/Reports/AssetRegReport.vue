@@ -7,7 +7,7 @@
                         <div class="col-lg-8">
                             <div class="page-header-title">
                                 <div class="d-inline">
-                                    <h4>ASSET REG REPORT</h4> 
+                                    <h4>ASSET REGISTER REPORT</h4> 
                                     
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                 </div>
                             </div>
 
-                            <div class="col md-2" v-if="selectClass">
+                            <div class="col-lg-4" v-if="selectClass">
                                 <div>
                                     <label for="" ><b>Class </b></label>
                                 </div>
@@ -139,7 +139,7 @@
                                 </div>
                             </div>
 
-                            <div class="col md-2" v-if="selectDept">
+                            <div class="col-lg-4" v-if="selectDept">
                                 <div>
                                     <label for="" ><b>Department </b></label>
                                 </div>
@@ -177,7 +177,7 @@
         <!-- ASSET TABLE -->
         <div v-if="!isFormVisible">
 
-            <button type="button" class="btn btn-submit btn-primary" >Show Report</button>
+            <button type="button" class="btn btn-submit btn-primary" v-on:click="generateReport">Show Report</button>
             <div class="page-body">
                 <div class="card">
                     <div class="card-body">
@@ -302,6 +302,10 @@ export default {
 
                 console.log(this.assetRegList);
         },
+
+        generateReport(){
+            window.open(`/Statictable/PrintAssetreg/${this.sortAssetsList.classCode}/` , "_blank")
+        }
     }
 };
 </script>
