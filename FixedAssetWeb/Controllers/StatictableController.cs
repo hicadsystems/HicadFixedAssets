@@ -85,20 +85,22 @@ namespace FixedAssetWeb.Controllers
             return await _generatePdf.GetPdf("Views/Statictable/PrintAssetclass.cshtml", assetclass);
         }
 
-        [Route("Statictable/PrintAssetreg/{classCode}")]
-        public async Task<IActionResult> PrintAssetreg(string classCode)
+        [Route("Statictable/PrintAssetreg/")]
+        public async Task<IActionResult> PrintAssetreg(SortAssetsRegListVM sortAssetsList)
         {
-            var sortAssetsRegListVMv = new SortAssetsRegListVM()
-            {
-                classCode = classCode,
-                classDept = "",
-                startDate = null,
-                endDate = null
-            };
+            //var sortAssetsRegListVMv = new SortAssetsRegListVM()
+            //{
+            //    classCode = classCode,
+            //    classDept = classDept,
+            //    startDate = startDate,
+            //    endDate = endDate
+            //};
+
+
             var assetreg = new ReportVM
             {
                 Company = _companyService.GetCompanySingleRecord(),
-                GetAssetRegReport = _assetRegisterationService.SortAssetRegList(sortAssetsRegListVMv)
+                GetAssetRegReport = _assetRegisterationService.SortAssetRegList(sortAssetsList)
             };
             return await _generatePdf.GetPdf("Views/Statictable/PrintAssetreg.cshtml", assetreg);
         }

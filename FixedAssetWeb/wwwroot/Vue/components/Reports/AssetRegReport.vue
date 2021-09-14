@@ -101,6 +101,7 @@
                                 <div>
                                     <label for="" ><b>From </b></label>
                                     <vuejsDatepicker
+                                        :format="customFormatter"
                                         v-model="sortAssetsList.startDate"
                                         input-class="form-control col-4 mr-1" 
                                         type="date" 
@@ -109,6 +110,7 @@
                                 <div>
                                     <label for="" ><b>To </b></label>
                                     <vuejsDatepicker
+                                        format="MM/dd/yyyy"
                                         v-model="sortAssetsList.endDate"
                                         input-class="form-control col-4" type="date"
                                     >
@@ -304,7 +306,8 @@ export default {
         },
 
         generateReport(){
-            window.open(`/Statictable/PrintAssetreg/${this.sortAssetsList.classCode}/` , "_blank")
+            alert("here")
+            window.open(`/Statictable/PrintAssetreg/`, this.sortAssetsList)
         }
     }
 };
