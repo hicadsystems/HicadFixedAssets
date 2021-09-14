@@ -4108,6 +4108,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4188,7 +4190,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log(this.assetRegList);
     },
     generateReport: function generateReport() {
-      window.open("/Statictable/PrintAssetreg/".concat(this.sortAssetsList.classCode, "/"), "_blank");
+      alert("here");
+      window.open("/Statictable/PrintAssetreg/", this.sortAssetsList);
     }
   }
 });
@@ -13677,6 +13680,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("vuejsDatepicker", {
                           attrs: {
+                            format: _vm.customFormatter,
                             "input-class": "form-control col-4 mr-1",
                             type: "date"
                           },
@@ -13699,6 +13703,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("vuejsDatepicker", {
                           attrs: {
+                            format: "MM/dd/yyyy",
                             "input-class": "form-control col-4",
                             type: "date"
                           },
