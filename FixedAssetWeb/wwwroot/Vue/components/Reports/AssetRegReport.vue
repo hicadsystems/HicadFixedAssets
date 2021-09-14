@@ -101,7 +101,6 @@
                                 <div>
                                     <label for="" ><b>From </b></label>
                                     <vuejsDatepicker
-                                        :format="customFormatter"
                                         v-model="sortAssetsList.startDate"
                                         input-class="form-control col-4 mr-1" 
                                         type="date" 
@@ -110,9 +109,9 @@
                                 <div>
                                     <label for="" ><b>To </b></label>
                                     <vuejsDatepicker
-                                        format="MM/dd/yyyy"
                                         v-model="sortAssetsList.endDate"
-                                        input-class="form-control col-4" type="date"
+                                        input-class="form-control col-4" 
+                                        type="date"
                                     >
                                     </vuejsDatepicker>
                                 </div>
@@ -213,12 +212,16 @@
 </template>
 
 <script>
+
 import vuejsDatepicker from "vuejs-datepicker";
 import VueSimpleAlert from "vue-simple-alert";
+import moment from 'moment';
+
 export default {
     components: {
         vuejsDatepicker,
         VueSimpleAlert,
+        moment,
     },
     data() {
         return {
@@ -233,10 +236,10 @@ export default {
             sortClassCode: "",
             sortDept: "",
             sortAssetsList: {
-                classCode: "",
-                classDept: "",
-                startDate: "",
-                endDate: "",
+                classCode: "null",
+                classDept: "null",
+                startDate: null,
+                endDate: null,
             },
             objectBody: {
                 assetCode: "",
@@ -291,8 +294,6 @@ export default {
 
                 .then((response) => {
 
-                console.log(response.data.responseCode);
-
                 if (response.data.responseCode === 404){
 
                     this.$alert(`No Asset available for the selected Parameter!!`, "No Records Found", "Warning");
@@ -302,13 +303,23 @@ export default {
                 
                 });
 
-                console.log(this.assetRegList);
         },
 
         generateReport(){
-            alert("here")
-            window.open(`/Statictable/PrintAssetreg/`, this.sortAssetsList)
-        }
+
+            let startDay = moment(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+
+            let endDay = moment(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+
+            if(startDay === "Invalid date" && endDay === "Invalid date" ){
+
+                startDay = null;
+                endDay = null;
+            }
+
+            window.open(`/Statictable/PrintAssetreg/${this.sortAssetsList.classCode}/${this.sortAssetsList.classDept}/${startDay}/${endDay}`);
+
+        },
     }
 };
 </script>
