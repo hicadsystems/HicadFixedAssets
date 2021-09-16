@@ -41,6 +41,7 @@
                                 <div>
                                     <label for="" ><b>From </b></label>
                                     <vuejsDatepicker
+                                        v-model="sortDepreciation.startDate"
                                         input-class="form-control col-4 mr-1" 
                                         type="date" 
                                     ></vuejsDatepicker>
@@ -48,6 +49,7 @@
                                 <div>
                                     <label for="" ><b>To </b></label>
                                     <vuejsDatepicker
+                                        v-model="sortDepreciation.endDate"
                                         input-class="form-control col-4" 
                                         type="date"
                                     >
@@ -59,6 +61,7 @@
                     <button 
                     type="submit" 
                     class="btn btn-submit btn-primary"
+                    @click.prevent="sortingProcess()"
                      >Process
                     </button>
                 </form>
@@ -114,6 +117,12 @@ export default {
     data() {
         return {
             deprList: null,
+            sortDepreciation: {
+                classCode: "null",
+                classDept: "null",
+                startDate: null,
+                endDate: null,
+            },
             objectBody: {
                 assetCode: "",
                 assetDesc: "",
@@ -124,6 +133,26 @@ export default {
                 bookval: "",
             }
         }
+    },
+
+    methods: {
+        sortingProcess() {
+
+                axios
+                .post(`/api/GenerateDepreciation/sortAssetDepreciation/`, this.sortDepreciation)
+
+                .then((response) => {
+
+                if (response.data.responseCode === 404){
+
+                    this.$alert(`No Value available for the selected Dates!!`, "No Records Found", "Warning");
+                }
+
+                this.deprList = response.data.data;
+                
+                });
+
+        },
     }
 }
 </script>

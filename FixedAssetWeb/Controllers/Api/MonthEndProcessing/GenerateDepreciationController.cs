@@ -43,5 +43,27 @@ namespace FixedAssetWeb.Controllers.Api.MonthEndProcessing
             }
         }
 
+        // GET: api/GenerateDepreciation/sortAssetDepreciation
+        [Route("sortAssetDepreciation")]
+        [HttpPost]
+        public IActionResult SortAssetDepreciation([FromBody] SortAssetsRegListVM sortDepreciation)
+        {
+            if (sortDepreciation.startDate == null && sortDepreciation.endDate == null)
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid sort parameter" });
+            }
+
+            var assetsRegList = generateDepreciationService.SortAssetsDeprecation(sortDepreciation);
+
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset between { sortDepreciation.startDate } and { sortDepreciation.endDate } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
+        }
+
     }
 }

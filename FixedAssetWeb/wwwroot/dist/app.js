@@ -4310,6 +4310,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4320,6 +4323,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       deprList: null,
+      sortDepreciation: {
+        classCode: "null",
+        classDept: "null",
+        startDate: null,
+        endDate: null
+      },
       objectBody: {
         assetCode: "",
         assetDesc: "",
@@ -4330,6 +4339,19 @@ __webpack_require__.r(__webpack_exports__);
         bookval: ""
       }
     };
+  },
+  methods: {
+    sortingProcess: function sortingProcess() {
+      var _this = this;
+
+      axios.post("/api/GenerateDepreciation/sortAssetDepreciation/", this.sortDepreciation).then(function (response) {
+        if (response.data.responseCode === 404) {
+          _this.$alert("No Value available for the selected Dates!!", "No Records Found", "Warning");
+        }
+
+        _this.deprList = response.data.data;
+      });
+    }
   }
 });
 
@@ -34939,6 +34961,13 @@ var render = function() {
                       attrs: {
                         "input-class": "form-control col-4 mr-1",
                         type: "date"
+                      },
+                      model: {
+                        value: _vm.sortDepreciation.startDate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.sortDepreciation, "startDate", $$v)
+                        },
+                        expression: "sortDepreciation.startDate"
                       }
                     })
                   ],
@@ -34954,6 +34983,13 @@ var render = function() {
                       attrs: {
                         "input-class": "form-control col-4",
                         type: "date"
+                      },
+                      model: {
+                        value: _vm.sortDepreciation.endDate,
+                        callback: function($$v) {
+                          _vm.$set(_vm.sortDepreciation, "endDate", $$v)
+                        },
+                        expression: "sortDepreciation.endDate"
                       }
                     })
                   ],
@@ -34967,7 +35003,13 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "submit" }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sortingProcess()
+                }
+              }
             },
             [_vm._v("Process\n                ")]
           )
@@ -50687,15 +50729,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************************!*\
   !*** ./wwwroot/Vue/components/Reports/AssetRegReport.vue ***!
   \***********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AssetRegReport_vue_vue_type_template_id_475852e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AssetRegReport.vue?vue&type=template&id=475852e4& */ "./wwwroot/Vue/components/Reports/AssetRegReport.vue?vue&type=template&id=475852e4&");
 /* harmony import */ var _AssetRegReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AssetRegReport.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/Reports/AssetRegReport.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AssetRegReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AssetRegReport_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -50725,7 +50766,7 @@ component.options.__file = "wwwroot/Vue/components/Reports/AssetRegReport.vue"
 /*!************************************************************************************!*\
   !*** ./wwwroot/Vue/components/Reports/AssetRegReport.vue?vue&type=script&lang=js& ***!
   \************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51317,9 +51358,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   state: {
     objectToUpdate: null // The TV inventory
@@ -51355,7 +51400,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_0__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

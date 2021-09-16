@@ -1,7 +1,9 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import moment from 'moment'
 
 Vue.use(Vuex)
+Vue.use(moment)
 
 export default new Vuex.Store({
   state: {

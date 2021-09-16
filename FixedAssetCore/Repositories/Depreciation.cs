@@ -20,7 +20,7 @@ namespace FixedAssetCore.Repositories
 
         public IEnumerable<DepreciationVM> SortAssetsDeprecation(SortAssetsRegListVM sortAssetsRegListVM)
         {
-            var result = context.fa_gdepreciations.Where(assets => assets.purchdate >= sortAssetsRegListVM.startDate && assets.purchdate <= sortAssetsRegListVM.endDate)
+            var result = context.fa_gdepreciations.Where(assets => assets.calc_date >= sortAssetsRegListVM.startDate && assets.calc_date <= sortAssetsRegListVM.endDate)
                 .Select(depreciationVm => new DepreciationVM
                 {
                     Id = depreciationVm.Id,
