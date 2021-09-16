@@ -4205,6 +4205,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/build.js");
 /* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -4313,6 +4315,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4324,8 +4327,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       deprList: null,
       sortDepreciation: {
-        classCode: "null",
-        classDept: "null",
         startDate: null,
         endDate: null
       },
@@ -4351,6 +4352,17 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.deprList = response.data.data;
       });
+    },
+    generateReport: function generateReport() {
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.startDate).format('MM DD YYYY, h:mm:ss a');
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.endDate).format('MM DD YYYY, h:mm:ss a');
+
+      if (startDay === "Invalid date" && endDay === "Invalid date") {
+        startDay = null;
+        endDay = null;
+      }
+
+      window.open("/MonthEndProcessing/PrintDeprValue/".concat(startDay, "/").concat(endDay));
     }
   }
 });
@@ -35022,7 +35034,8 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
+          attrs: { type: "button" },
+          on: { click: _vm.generateReport }
         },
         [_vm._v("Show Report")]
       ),

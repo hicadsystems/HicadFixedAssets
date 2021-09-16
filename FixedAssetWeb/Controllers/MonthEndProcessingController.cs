@@ -33,7 +33,7 @@ namespace FixedAssetWeb.Controllers
         }
 
         [Route("MonthEndProcessing/PrintDeprValue/{startDate}/{endDate}")]
-        public async Task<IActionResult> PrintAssetreg( DateTime? startDate, DateTime? endDate)
+        public async Task<IActionResult> PrintDeprValue( DateTime? startDate, DateTime? endDate)
         {
             var sortAssetsRegListVMv = new SortAssetsRegListVM()
             {
@@ -42,13 +42,13 @@ namespace FixedAssetWeb.Controllers
             };
 
 
-            var assetreg = new ReportVM
+            var deprval = new ReportVM
             {
                 Company = _companyService.GetCompanySingleRecord(),
                 DepreciationValueReport = _generateDepreciationService.SortAssetsDeprecation(sortAssetsRegListVMv)
             };
 
-            return await _generatePdf.GetPdf("Views/Statictable/PrintAssetreg.cshtml", assetreg);
+            return await _generatePdf.GetPdf("Views/MonthEndProcessing/PrintDeprValue.cshtml", deprval);
         }
     }
 }

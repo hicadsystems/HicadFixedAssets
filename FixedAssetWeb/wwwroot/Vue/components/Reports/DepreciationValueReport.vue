@@ -71,7 +71,7 @@
          <!-- DEPRECIATION VALUE TABLE -->
         <div >
 
-            <button type="button" class="btn btn-submit btn-primary">Show Report</button>
+            <button type="button" class="btn btn-submit btn-primary" v-on:click="generateReport">Show Report</button>
             <div class="page-body">
                 <div class="card">
                     <div class="card-body">
@@ -109,6 +109,7 @@
 <script>
 import vuejsDatepicker from "vuejs-datepicker";
 import VueSimpleAlert from "vue-simple-alert";
+import moment from 'moment';
 export default {
     components: {
         vuejsDatepicker,
@@ -118,8 +119,6 @@ export default {
         return {
             deprList: null,
             sortDepreciation: {
-                classCode: "null",
-                classDept: "null",
                 startDate: null,
                 endDate: null,
             },
@@ -151,6 +150,22 @@ export default {
                 this.deprList = response.data.data;
                 
                 });
+
+        },
+
+        generateReport(){
+
+            let startDay = moment(this.sortDepreciation.startDate).format('MM DD YYYY, h:mm:ss a');
+
+            let endDay = moment(this.sortDepreciation.endDate).format('MM DD YYYY, h:mm:ss a');
+
+            if(startDay === "Invalid date" && endDay === "Invalid date" ){
+
+                startDay = null;
+                endDay = null;
+            }
+
+            window.open(`/MonthEndProcessing/PrintDeprValue/${startDay}/${endDay}`);
 
         },
     }
