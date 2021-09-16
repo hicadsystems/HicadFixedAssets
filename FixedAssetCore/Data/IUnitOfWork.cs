@@ -22,6 +22,7 @@ namespace FixedAssetCore.Core.Data
         IAccountChart accountChart { get; }
         IAssetReclassification assetReclassification { get; }
         IAssetMovementRepository assetMovementRepository { get; }
+        IDepreciation depreciation { get; }
 
         Task<bool> Done();
 

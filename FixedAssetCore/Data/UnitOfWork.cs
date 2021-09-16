@@ -32,6 +32,8 @@ namespace FixedAssetCore.Core.Data
             accountChart = new ChartRepository(context);
             assetReclassification = new AssetReclassification(context, configuration);
             assetMovementRepository = new AssetMovementRepository(context, configuration);
+            depreciation = new Depreciation(context);
+
         }
 
         public IUserRepository Users { get; set; }
@@ -59,6 +61,8 @@ namespace FixedAssetCore.Core.Data
         public IAssetReclassification assetReclassification { get; set; }
 
         public IAssetMovementRepository assetMovementRepository { get; set; }
+
+        public IDepreciation depreciation { get; set; }
 
         public async Task<bool> Done()
         {

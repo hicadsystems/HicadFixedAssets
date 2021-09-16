@@ -15,5 +15,6 @@ namespace FixedAssetWeb.ViewModels.Reports
         public IEnumerable<fa_class> AssetclassReport { get; set; }
         public IEnumerable<AssetRegListVM> GetAssetRegReport { get; set; }
         public IEnumerable<AssetRegListVM> AssetRegListReport { get; set; }
+        public IEnumerable<DepreciationVM> DepreciationValueReport { get; set; }
     }
 }

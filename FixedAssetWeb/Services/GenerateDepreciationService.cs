@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.Data;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,13 @@ namespace FixedAssetWeb.Services
         public string GenerateDepreciation(string username, DateTime dateTime)
         {
             string responseMessage = unitOfWork.reg.GenerateAssetsDepreciation(username, dateTime);
+
+            return responseMessage;
+        }
+
+        public IEnumerable<DepreciationVM> SortAssetsDeprecation(SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            var responseMessage = unitOfWork.depreciation.SortAssetsDeprecation(sortAssetsRegListVM);
 
             return responseMessage;
         }
