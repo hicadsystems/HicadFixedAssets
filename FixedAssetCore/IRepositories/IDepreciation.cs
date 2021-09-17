@@ -10,5 +10,6 @@ namespace FixedAssetCore.IRepositories
     public interface IDepreciation : IRepository<fa_gdepreciation>
     {
         IEnumerable<DepreciationVM> SortAssetsDeprecation(SortAssetsRegListVM sortAssetsRegListVM);
+        IEnumerable<DepreciationVM> DeprecationSummary(string assetCode);
     }
 }

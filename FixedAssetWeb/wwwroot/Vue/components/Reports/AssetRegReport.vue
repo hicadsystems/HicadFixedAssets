@@ -218,11 +218,13 @@ import VueSimpleAlert from "vue-simple-alert";
 import moment from 'moment';
 
 export default {
+
     components: {
         vuejsDatepicker,
         VueSimpleAlert,
         moment,
     },
+    
     data() {
         return {
             selectDate: false,

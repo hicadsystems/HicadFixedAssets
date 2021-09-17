@@ -65,5 +65,26 @@ namespace FixedAssetWeb.Controllers.Api.MonthEndProcessing
             return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
 
+        // GET: api/GenerateDepreciation/depreciationSummary/assetcode
+        [Route("depreciationSummary/{assetcode}")]
+        [HttpGet]
+        public IActionResult DepreciationSummary(string assetcode)
+        {
+            if (string.IsNullOrEmpty(assetcode))
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid asset" });
+            }
+
+            var assetsRegList = generateDepreciationService.DeprecationSummaryReport(assetcode.Trim());
+
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset with { assetcode } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
+        }
     }
 }
