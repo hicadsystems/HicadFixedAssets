@@ -10,5 +10,6 @@ namespace FixedAssetWeb.IServices
     {
         string GenerateDepreciation(string username, DateTime dateTime);
         IEnumerable<DepreciationVM> SortAssetsDeprecation(SortAssetsRegListVM sortAssetsRegListVM);
+        IEnumerable<DepreciationVM> DeprecationSummaryReport(string assetCode);
     }
 }

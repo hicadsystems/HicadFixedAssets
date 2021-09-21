@@ -15,6 +15,14 @@ namespace FixedAssetWeb.Services
         {
             this.unitOfWork = unitOfWork;
         }
+
+        public IEnumerable<DepreciationVM> DeprecationSummaryReport(string assetCode)
+        {
+            var responseObject = unitOfWork.depreciation.DeprecationSummary(assetCode);
+
+            return responseObject;
+        }
+
         public string GenerateDepreciation(string username, DateTime dateTime)
         {
             string responseMessage = unitOfWork.reg.GenerateAssetsDepreciation(username, dateTime);

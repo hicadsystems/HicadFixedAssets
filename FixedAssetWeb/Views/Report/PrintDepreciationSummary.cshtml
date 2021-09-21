@@ -1,0 +1,42 @@
+﻿@model FixedAssetWeb.ViewModels.Reports.ReportVM
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "Print Depreciation Summary";
+}
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 style="text-align:center" class="text-center display-4">@Model.Company.comp_name</h1>
+    <h3 style="text-align:center">@Model.Company.Address</h3>
+
+    <br />
+
+    <h3>Asset Register Report: Produce On @DateTime.Now</h3>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        <tr style="text-align:left">
+            <th>Asset Description</th>
+            <th>Business Line</th>
+            <th>Department</th>
+            <th>Classification</th>
+            <th>Amount</th>
+        </tr>
+        @foreach (var depreciationSummary in Model.DepreciationSummaryReport)
+        {
+            <tr style="text-align:center">
+                <td> @depreciationSummary.assetdesc </td>
+                <td> @depreciationSummary.busline </td>
+                <td> @depreciationSummary.newloc</td>
+                <td> @depreciationSummary.newclass</td>
+                <td> @depreciationSummary.depreciation</td>
+            </tr>
+        }
+
+        
+
+    </table>
+</body>
+</html>
