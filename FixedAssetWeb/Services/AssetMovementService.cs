@@ -37,5 +37,12 @@ namespace FixedAssetWeb.Services
             unitOfWork.assetMovementRepository.UpdateAssetRegDept(fa_assetsregVm);
             unitOfWork.Done();
         }
+
+        public IEnumerable<fa_historyVM> GetAssetNovementList(SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            var responseMessage = unitOfWork.assetMovementRepository.GetAssetNovementList(sortAssetsRegListVM);
+
+            return responseMessage;
+        }
     }
 }

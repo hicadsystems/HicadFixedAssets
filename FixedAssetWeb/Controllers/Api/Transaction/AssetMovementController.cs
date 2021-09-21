@@ -1,4 +1,5 @@
 ﻿using FixedAssetCore.Core.Entities;
+using FixedAssetCore.EntityCoreVM;
 using FixedAssetWeb.IServices;
 using FixedAssetWeb.ViewModels.AssetMovementVM;
 using Microsoft.AspNetCore.Http;
@@ -73,6 +74,28 @@ namespace FixedAssetWeb.Controllers.Api.Transaction
             }
 
             return Ok(new { responseCode = 200, responseDescription = "Updated Successfully" });
+        }
+
+        // GET: api/GetAssetMovementList/sortAssetMovement
+        [Route("sortAssetMovement/")]
+        [HttpPost]
+        public IActionResult GetAssetNovementList([FromBody] SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            if (string.IsNullOrEmpty(sortAssetsRegListVM.classDept) && sortAssetsRegListVM.startDate == null && sortAssetsRegListVM.endDate == null)
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid sort parameter" });
+            }
+
+            var assetsRegList = assetMovementService.GetAssetNovementList(sortAssetsRegListVM);
+    
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset between { sortAssetsRegListVM.startDate } and { sortAssetsRegListVM.endDate } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
     }
 }
