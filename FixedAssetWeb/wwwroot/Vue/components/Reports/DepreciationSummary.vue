@@ -162,17 +162,7 @@ export default {
 
         generateReport(){
 
-        //     let startDay = moment(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
-
-        //     let endDay = moment(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
-
-        //     if(startDay === "Invalid date" && endDay === "Invalid date" ){
-
-        //         startDay = null;
-        //         endDay = null;
-        //     }
-
-        //     window.open(`/Statictable/PrintAssetreg/${this.sortAssetsList.classCode}/${this.sortAssetsList.classDept}/${startDay}/${endDay}`);
+            window.open(`/Report/PrintDepreciationSummary/${this.assetCode}`);
 
         },
     }

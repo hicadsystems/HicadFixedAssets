@@ -4596,13 +4596,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.DeprAssetsList = response.data.data;
       });
     },
-    generateReport: function generateReport() {//     let startDay = moment(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
-      //     let endDay = moment(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
-      //     if(startDay === "Invalid date" && endDay === "Invalid date" ){
-      //         startDay = null;
-      //         endDay = null;
-      //     }
-      //     window.open(`/Statictable/PrintAssetreg/${this.sortAssetsList.classCode}/${this.sortAssetsList.classDept}/${startDay}/${endDay}`);
+    generateReport: function generateReport() {
+      window.open("/Report/PrintDepreciationSummary/".concat(this.assetCode));
     }
   }
 });
@@ -51862,15 +51857,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************************************************!*\
   !*** ./wwwroot/Vue/components/Reports/DepreciationSummary.vue ***!
   \****************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DepreciationSummary_vue_vue_type_template_id_5a9b517d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DepreciationSummary.vue?vue&type=template&id=5a9b517d& */ "./wwwroot/Vue/components/Reports/DepreciationSummary.vue?vue&type=template&id=5a9b517d&");
 /* harmony import */ var _DepreciationSummary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DepreciationSummary.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/Reports/DepreciationSummary.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _DepreciationSummary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _DepreciationSummary_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -51900,7 +51894,7 @@ component.options.__file = "wwwroot/Vue/components/Reports/DepreciationSummary.v
 /*!*****************************************************************************************!*\
   !*** ./wwwroot/Vue/components/Reports/DepreciationSummary.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
