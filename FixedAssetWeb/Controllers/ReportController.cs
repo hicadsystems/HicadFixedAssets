@@ -1,4 +1,5 @@
-﻿using FixedAssetWeb.IServices;
+﻿using FixedAssetCore.EntityCoreVM;
+using FixedAssetWeb.IServices;
 using FixedAssetWeb.ViewModels.Reports;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,11 +15,14 @@ namespace FixedAssetWeb.Controllers
         private readonly ICompanyService _companyService;
         private readonly IGeneratePdf _generatePdf;
         private readonly IGenerateDepreciationService _generateDepreciation;
-        public ReportController(ICompanyService companyService, IGeneratePdf generatePdf, IGenerateDepreciationService generateDepreciation)
+        private readonly IAssetMovementService _assetMovementService;
+        public ReportController(ICompanyService companyService, IGeneratePdf generatePdf, IGenerateDepreciationService generateDepreciation, 
+            IAssetMovementService assetMovementService)
         {
             _companyService = companyService;
             _generatePdf = generatePdf;
             _generateDepreciation = generateDepreciation;
+            _assetMovementService = assetMovementService;
         }
         public IActionResult Index()
         {
@@ -65,6 +69,26 @@ namespace FixedAssetWeb.Controllers
             };
 
             return await _generatePdf.GetPdf("Views/Report/PrintDepreciationSummary.cshtml", depreciationReport);
+        }
+
+        [Route("Report/PrintAssetMovement/{classCode}/{classDept}/{startDate}/{endDate}")]
+        public async Task<IActionResult> PrintAssetMovement(string classCode, string classDept, DateTime? startDate, DateTime? endDate)
+        {
+            var sortAssetsRegListVMv = new SortAssetsRegListVM()
+            {
+                classCode = classCode,
+                classDept = classDept,
+                startDate = startDate,
+                endDate = endDate
+            };
+
+            var assetMovementReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                AssetNovementReport = _assetMovementService.GetAssetNovementList(sortAssetsRegListVMv)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/PrintAssetMovement.cshtml", assetMovementReport);
         }
 
     }

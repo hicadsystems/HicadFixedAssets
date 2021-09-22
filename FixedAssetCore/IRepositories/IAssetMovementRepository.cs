@@ -13,5 +13,7 @@ namespace FixedAssetCore.IRepositories
         CostCenterDescriptionVM GetCenterDescription(string assetcode);
 
         void UpdateAssetRegDept(fa_AssetRegVM fa_assetregVm);
+
+        IEnumerable<fa_historyVM> GetAssetNovementList(SortAssetsRegListVM sortAssetsRegListVM);
     }
 }

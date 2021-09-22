@@ -34,7 +34,7 @@
 
                 <div class="page-body">
             <div class="card">
-                <form>
+                <form @submit="checkForm">
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-sm-4">
@@ -119,12 +119,14 @@
                                     </option>
                                     </select>
                                 </div>
+                                <p>{{ errors.specificDept }}</p>
                             </div>
                         </div>
                     </div>
                     <button 
                     type="submit" 
                     class="btn btn-submit btn-primary"
+                    @click.prevent="sortingProcess()"
                      >Process
                     </button>
                 </form>
@@ -134,7 +136,7 @@
 
         <!-- ASSET TABLE -->
         <div>
-            <button type="button" class="btn btn-submit btn-primary">Show Report</button>
+            <button type="button" class="btn btn-submit btn-primary" v-on:click="generateReport">Show Report</button>
             <div class="page-body">
                 <div class="card">
                     <div class="card-body">
@@ -178,12 +180,14 @@ export default {
 
     data() {
         return {
-            allDept: true,
+            errors:[],
+            allDept: false,
             specificDept: false,
             responseMessage: "",
             assetMovementList: null,
             costCenterList: null,
             sortAssetsList: {
+                classCode: "null",
                 classDept: "null",
                 startDate: null,
                 endDate: null,
@@ -217,7 +221,7 @@ export default {
         sortingProcess() {
 
                 axios
-                .post(`/api/AssetRegisteration/sortAssetsregList/`, this.sortAssetsList)
+                .post(`/api/AssetMovement/sortAssetMovement/`, this.sortAssetsList)
 
                 .then((response) => {
 
@@ -226,11 +230,40 @@ export default {
                     this.$alert(`No Asset available for the selected Parameter!!`, "No Records Found", "Warning");
                 }
 
-                this.assetRegList = response.data.data;
+                this.assetMovementList = response.data.data;
                 
                 });
 
         },
+
+        generateReport(){
+
+            let startDay = moment(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+
+            let endDay = moment(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+
+            if(startDay === "Invalid date" && endDay === "Invalid date" ){
+
+                startDay = null;
+                endDay = null;
+            }
+
+            window.open(`/Report/PrintAssetMovement/${this.sortAssetsList.classCode}/${this.sortAssetsList.classDept}/${startDay}/${endDay}`);
+
+        },
+
+        checkForm: function (e) {
+            if (this.specificDept) {
+                return true;
+            }
+            this.errors = [];
+
+            if (!this.specificDept) {
+                this.errors.push('Department required.');
+            }
+            
+            e.preventDefault();
+        }
     }
 }
 </script>

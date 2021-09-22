@@ -4051,6 +4051,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -4062,12 +4064,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      allDept: true,
+      errors: [],
+      allDept: false,
       specificDept: false,
       responseMessage: "",
       assetMovementList: null,
       costCenterList: null,
       sortAssetsList: {
+        classCode: "null",
         classDept: "null",
         startDate: null,
         endDate: null
@@ -4100,13 +4104,37 @@ __webpack_require__.r(__webpack_exports__);
     sortingProcess: function sortingProcess() {
       var _this2 = this;
 
-      axios.post("/api/AssetRegisteration/sortAssetsregList/", this.sortAssetsList).then(function (response) {
+      axios.post("/api/AssetMovement/sortAssetMovement/", this.sortAssetsList).then(function (response) {
         if (response.data.responseCode === 404) {
           _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
         }
 
-        _this2.assetRegList = response.data.data;
+        _this2.assetMovementList = response.data.data;
       });
+    },
+    generateReport: function generateReport() {
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+
+      if (startDay === "Invalid date" && endDay === "Invalid date") {
+        startDay = null;
+        endDay = null;
+      }
+
+      window.open("/Report/PrintAssetMovement/".concat(this.sortAssetsList.classCode, "/").concat(this.sortAssetsList.classDept, "/").concat(startDay, "/").concat(endDay));
+    },
+    checkForm: function checkForm(e) {
+      if (this.specificDept) {
+        return true;
+      }
+
+      this.errors = [];
+
+      if (!this.specificDept) {
+        this.errors.push('Department required.');
+      }
+
+      e.preventDefault();
     }
   }
 });
@@ -34920,7 +34948,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "page-body" }, [
       _c("div", { staticClass: "card" }, [
-        _c("form", [
+        _c("form", { on: { submit: _vm.checkForm } }, [
           _c("div", { staticClass: "card-body" }, [
             _c("div", { staticClass: "form-group row" }, [
               _c("div", { staticClass: "col-sm-4" }, [
@@ -35068,7 +35096,9 @@ var render = function() {
                         }),
                         0
                       )
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [_vm._v(_vm._s(_vm.errors.specificDept))])
                   ])
                 : _vm._e()
             ])
@@ -35078,7 +35108,13 @@ var render = function() {
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "submit" }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sortingProcess()
+                }
+              }
             },
             [_vm._v("Process\n                ")]
           )
@@ -35091,7 +35127,8 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
+          attrs: { type: "button" },
+          on: { click: _vm.generateReport }
         },
         [_vm._v("Show Report")]
       ),
@@ -52528,7 +52565,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

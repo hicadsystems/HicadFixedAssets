@@ -62,5 +62,46 @@ namespace FixedAssetCore.Repositories
                 }
             }
         }
+
+        public IEnumerable<fa_historyVM> GetAssetNovementList(SortAssetsRegListVM sortAssetsRegListVM)
+        {
+            if (sortAssetsRegListVM.classDept != "null" && sortAssetsRegListVM.classDept != "")
+            {
+                var result = context.fa_historys.Where(assets => assets.newloc == sortAssetsRegListVM.classDept.Trim() &&
+                                                   (assets.movedate >= sortAssetsRegListVM.startDate && assets.movedate <= sortAssetsRegListVM.endDate))
+                .Join(context.nac_costcenters, al => al.oldloc, costcnt => costcnt.unitcode, (al, costcnt) => new { al, costcnt })
+                .Join(context.nac_costcenters, al2 => al2.al.newloc, costcnt => costcnt.unitcode, (al2, costcnt) => new { al2.al, costcnt })
+                .Select(movementVm => new fa_historyVM
+                {
+                    Id = movementVm.al.Id,
+                    assetCode = movementVm.al.assetCode,
+                    assetdesc = movementVm.al.assetdesc,
+                    oldloc = movementVm.al.oldloc,
+                    newloc = movementVm.al.newloc,
+                    movedate = movementVm.al.movedate
+
+                }).ToList();
+
+                return result;
+            }
+            else
+            {
+                var result = context.fa_historys.Where(assets => assets.movedate >= sortAssetsRegListVM.startDate && assets.movedate <= sortAssetsRegListVM.endDate)
+              .Join(context.nac_costcenters, al => al.oldloc, costcnt => costcnt.unitcode, (al, costcnt) => new { al, costcnt })
+              .Join(context.nac_costcenters, al2 => al2.al.newloc, costcnt => costcnt.unitcode, (al2, costcnt) => new { al2.al, costcnt })
+              .Select(movementVm => new fa_historyVM
+              {
+                  Id = movementVm.al.Id,
+                  assetCode = movementVm.al.assetCode,
+                  assetdesc = movementVm.al.assetdesc,
+                  oldloc = movementVm.al.oldloc,
+                  newloc = movementVm.al.newloc,
+                  movedate = movementVm.al.movedate
+
+              }).ToList();
+
+                return result;
+            }
+        }
     }
 }

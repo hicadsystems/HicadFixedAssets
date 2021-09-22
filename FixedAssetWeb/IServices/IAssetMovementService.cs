@@ -17,5 +17,7 @@ namespace FixedAssetWeb.IServices
         CostCenterDescriptionVM GetCenterDescriptionWithAssetCode(string assetcode);
 
         void UpdateAssetDepartment(fa_AssetRegVM fa_AssetsregVm);
+
+        IEnumerable<fa_historyVM> GetAssetNovementList(SortAssetsRegListVM sortAssetsRegListVM);
     }
 }
