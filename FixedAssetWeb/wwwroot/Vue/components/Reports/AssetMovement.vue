@@ -119,7 +119,7 @@
                                     </option>
                                     </select>
                                 </div>
-                                <p>{{ errors }}</p>
+                                <p>{{ errors.specificDept }}</p>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
 
         <!-- ASSET TABLE -->
         <div>
-            <button type="button" class="btn btn-submit btn-primary">Show Report</button>
+            <button type="button" class="btn btn-submit btn-primary" v-on:click="generateReport">Show Report</button>
             <div class="page-body">
                 <div class="card">
                     <div class="card-body">
@@ -233,6 +233,22 @@ export default {
                 this.assetMovementList = response.data.data;
                 
                 });
+
+        },
+
+        generateReport(){
+
+            let startDay = moment(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+
+            let endDay = moment(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+
+            if(startDay === "Invalid date" && endDay === "Invalid date" ){
+
+                startDay = null;
+                endDay = null;
+            }
+
+            window.open(`/Report/PrintAssetMovement/${this.sortAssetsList.classCode}/${this.sortAssetsList.classDept}/${startDay}/${endDay}`);
 
         },
 

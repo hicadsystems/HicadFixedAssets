@@ -4112,6 +4112,17 @@ __webpack_require__.r(__webpack_exports__);
         _this2.assetMovementList = response.data.data;
       });
     },
+    generateReport: function generateReport() {
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+
+      if (startDay === "Invalid date" && endDay === "Invalid date") {
+        startDay = null;
+        endDay = null;
+      }
+
+      window.open("/Report/PrintAssetMovement/".concat(this.sortAssetsList.classCode, "/").concat(this.sortAssetsList.classDept, "/").concat(startDay, "/").concat(endDay));
+    },
     checkForm: function checkForm(e) {
       if (this.specificDept) {
         return true;
@@ -35087,7 +35098,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(_vm.errors))])
+                    _c("p", [_vm._v(_vm._s(_vm.errors.specificDept))])
                   ])
                 : _vm._e()
             ])
@@ -35116,7 +35127,8 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
+          attrs: { type: "button" },
+          on: { click: _vm.generateReport }
         },
         [_vm._v("Show Report")]
       ),
@@ -52553,7 +52565,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
