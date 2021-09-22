@@ -200,5 +200,45 @@ namespace FixedAssetCore.Core.Repositories
 
             return result;
         }
+
+        public IEnumerable<fa_AssetRegVM> GetInsuranceReports(string assetCode)
+        {
+            if (!string.IsNullOrEmpty(assetCode) && assetCode != "null")
+            {
+                var result = context.fa_Assetsreg.Where(assets => assets.assetCode == assetCode)
+                    .Join(context.nac_costcenters, assetDept => assetDept.Dept, costCentre => costCentre.unitcode, (assetRecord, costCentre) => new { assetRecord, costCentre })
+                    .Join(context.fa_class, assetClass => assetClass.assetRecord.Class, classCode => classCode.classcode, (assetRecords, classRecord) => new { assetRecords, classRecord })
+                    .Select(insuranceList => new fa_AssetRegVM
+                    {
+                        assetCode = insuranceList.assetRecords.assetRecord.assetCode,
+                        assetDesc = insuranceList.assetRecords.assetRecord.assetDesc,
+                        Dept = insuranceList.assetRecords.costCentre.unitdesc,
+                        newClassCode = insuranceList.classRecord.classdesc,
+                        Insurdate = insuranceList.assetRecords.assetRecord.Insurdate,
+                        Insuredval = insuranceList.assetRecords.assetRecord.Insuredval
+
+                    }).ToList();
+
+                return result;
+            }
+            else
+            {
+                var result = context.fa_Assetsreg
+                    .Join(context.nac_costcenters, assetDept => assetDept.Dept, costCentre => costCentre.unitcode, (assetRecord, costCentre) => new { assetRecord, costCentre })
+                    .Join(context.fa_class, assetClass => assetClass.assetRecord.Class, classCode => classCode.classcode, (assetRecords, classRecord) => new { assetRecords, classRecord })
+                    .Select(insuranceList => new fa_AssetRegVM
+                    {
+                        assetCode = insuranceList.assetRecords.assetRecord.assetCode,
+                        assetDesc = insuranceList.assetRecords.assetRecord.assetDesc,
+                        Dept = insuranceList.assetRecords.costCentre.unitdesc,
+                        newClassCode = insuranceList.classRecord.classdesc,
+                        Insurdate = insuranceList.assetRecords.assetRecord.Insurdate,
+                        Insuredval = insuranceList.assetRecords.assetRecord.Insuredval
+
+                    }).ToList();
+
+                return result;
+            }
+        }
     }
 }

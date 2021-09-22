@@ -17,6 +17,7 @@ namespace FixedAssetCore.Core.IRepositories
         IEnumerable<AssetRegListVM> SortAssetsRegister(SortAssetsRegListVM sortAssetsRegListVM);
 
         IEnumerable<AssetRegListVM> GetAssetsRegByDeptcode(string dept);
+        IEnumerable<fa_AssetRegVM> GetInsuranceReports(string assetCode);
 
         IEnumerable<AssetRegListVM> GetAllAssetRegisters();
 
