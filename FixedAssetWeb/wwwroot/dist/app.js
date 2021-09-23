@@ -4993,6 +4993,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5035,7 +5041,6 @@ __webpack_require__.r(__webpack_exports__);
     sortingProcess: function sortingProcess() {
       var _this2 = this;
 
-      alert("Got here");
       axios.get("/api/AssetRegisteration/getInsuranceRenewalReport/".concat(this.sortAssetsList.assetCode)).then(function (response) {
         if (response.data.responseCode === 404) {
           _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
@@ -5043,6 +5048,9 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.insuranceList = response.data.data;
       });
+    },
+    generateReport: function generateReport() {
+      window.open("/Report/InsuranceRenewalReport/".concat(this.sortAssetsList.assetCode));
     }
   }
 });
@@ -36569,7 +36577,8 @@ var render = function() {
         "button",
         {
           staticClass: "btn btn-submit btn-primary",
-          attrs: { type: "button" }
+          attrs: { type: "button" },
+          on: { click: _vm.generateReport }
         },
         [_vm._v("\n      Show Report\n    ")]
       ),
@@ -53168,7 +53177,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

@@ -121,8 +121,10 @@
                             </div>
                         </div> -->
           </div>
-          <button type="submit" class="btn btn-submit btn-primary"
-          @click.prevent="sortingProcess()"
+          <button 
+            type="submit" 
+            class="btn btn-submit btn-primary"
+            @click.prevent="sortingProcess()"
           >
             Process
           </button>
@@ -132,7 +134,11 @@
 
     <!-- ASSET TABLE -->
     <div>
-      <button type="button" class="btn btn-submit btn-primary">
+      <button 
+        type="button" 
+        class="btn btn-submit btn-primary"
+        v-on:click="generateReport"
+        >
         Show Report
       </button>
       <div class="page-body">
@@ -212,7 +218,6 @@ export default {
     },
 
     sortingProcess() {
-                alert( "Got here");
                 axios
                 .get(`/api/AssetRegisteration/getInsuranceRenewalReport/${this.sortAssetsList.assetCode}`)
 
@@ -226,6 +231,12 @@ export default {
                 this.insuranceList = response.data.data;
                 
                 });
+
+        },
+
+        generateReport(){
+
+            window.open(`/Report/InsuranceRenewalReport/${this.sortAssetsList.assetCode}`);
 
         },
   },
