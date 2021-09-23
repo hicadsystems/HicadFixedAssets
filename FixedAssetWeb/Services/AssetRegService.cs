@@ -43,6 +43,11 @@ namespace FixedAssetWeb.Services
             return unitOfWork.reg.GetAssetsRegByClasscode(classCode);
         }
 
+        public IEnumerable<fa_AssetRegVM> GetInsuranceRenewalReports(string assetCode)
+        {
+            return unitOfWork.reg.GetInsuranceReports(assetCode);
+        }
+
         public IEnumerable<AssetRegListVM> GetAssetRegByDept(string dept)
         {
             return unitOfWork.reg.GetAssetsRegByDeptcode(dept);

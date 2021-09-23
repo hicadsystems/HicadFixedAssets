@@ -70,14 +70,14 @@ namespace FixedAssetCore.Repositories
                 var result = context.fa_historys.Where(assets => assets.newloc == sortAssetsRegListVM.classDept.Trim() &&
                                                    (assets.movedate >= sortAssetsRegListVM.startDate && assets.movedate <= sortAssetsRegListVM.endDate))
                 .Join(context.nac_costcenters, al => al.oldloc, costcnt => costcnt.unitcode, (al, costcnt) => new { al, costcnt })
-                .Join(context.nac_costcenters, al2 => al2.al.newloc, costcnt => costcnt.unitcode, (al2, costcnt) => new { al2.al, costcnt })
+                .Join(context.nac_costcenters, al2 => al2.al.newloc, costcnt2 => costcnt2.unitcode, (al2, costcnt2) => new { al2, al2.al, al2.costcnt, costcnt2 })
                 .Select(movementVm => new fa_historyVM
                 {
                     Id = movementVm.al.Id,
                     assetCode = movementVm.al.assetCode,
                     assetdesc = movementVm.al.assetdesc,
-                    oldloc = movementVm.al.oldloc,
-                    newloc = movementVm.al.newloc,
+                    oldloc = movementVm.costcnt.unitdesc,
+                    newloc = movementVm.costcnt2.unitdesc,
                     movedate = movementVm.al.movedate
 
                 }).ToList();
@@ -94,8 +94,8 @@ namespace FixedAssetCore.Repositories
                   Id = movementVm.al.Id,
                   assetCode = movementVm.al.assetCode,
                   assetdesc = movementVm.al.assetdesc,
-                  oldloc = movementVm.al.oldloc,
-                  newloc = movementVm.al.newloc,
+                  oldloc = movementVm.costcnt.unitdesc,
+                  newloc = movementVm.costcnt.unitdesc,
                   movedate = movementVm.al.movedate
 
               }).ToList();

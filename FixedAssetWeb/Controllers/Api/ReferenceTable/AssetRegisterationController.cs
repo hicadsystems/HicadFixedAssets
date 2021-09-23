@@ -117,6 +117,29 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
         }
 
+        // GET: api/AssetRegisteration/getInsuranceRenewalReport/assetCode
+        [Route("getInsuranceRenewalReport/{assetCode}")]
+        [HttpGet]
+        public IActionResult GetInsuranceRenewalReport(string assetCode)
+        {
+
+            if (string.IsNullOrEmpty(assetCode))
+            {
+                return Ok(new { responseCode = 404, responseDescription = "Please provide a valid Asset code" });
+            }
+
+            var assetsRegList = service.GetInsuranceRenewalReports(assetCode.Trim());
+
+            var assetsAvailable = assetsRegList.Count();
+
+            if (assetsAvailable == 0)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Asset with Asset code { assetCode } does not Exist" });
+            }
+
+            return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsRegList });
+        }
+
         // GET: api/CostCenter/5
         [Route("Getl")]
         [HttpGet("{id}")]
