@@ -16,13 +16,15 @@ namespace FixedAssetWeb.Controllers
         private readonly IGeneratePdf _generatePdf;
         private readonly IGenerateDepreciationService _generateDepreciation;
         private readonly IAssetMovementService _assetMovementService;
+        private readonly IAssetRegisterationService _assetRegisterationService;
         public ReportController(ICompanyService companyService, IGeneratePdf generatePdf, IGenerateDepreciationService generateDepreciation, 
-            IAssetMovementService assetMovementService)
+            IAssetMovementService assetMovementService, IAssetRegisterationService assetRegisterationService)
         {
             _companyService = companyService;
             _generatePdf = generatePdf;
             _generateDepreciation = generateDepreciation;
             _assetMovementService = assetMovementService;
+            _assetRegisterationService = assetRegisterationService;
         }
         public IActionResult Index()
         {
@@ -69,6 +71,18 @@ namespace FixedAssetWeb.Controllers
             };
 
             return await _generatePdf.GetPdf("Views/Report/PrintDepreciationSummary.cshtml", depreciationReport);
+        }
+
+        [Route("Report/InsuranceRenewalReport/{assetCode}")]
+        public async Task<IActionResult> InsuranceRenewalReport(string assetCode)
+        {
+            var insuranceRenewalReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                InsuranceReport = _assetRegisterationService.GetInsuranceRenewalReports(assetCode.Trim()),
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/InsuranceRenewalReport.cshtml", insuranceRenewalReport);
         }
 
         [Route("Report/PrintAssetMovement/{classCode}/{classDept}/{startDate}/{endDate}")]

@@ -1,5 +1,6 @@
 ﻿using FixedAssetCore.Core.Entities;
 using FixedAssetCore.EntityCoreVM;
+using FixedAssetWeb.ViewModels.AssetMovementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace FixedAssetWeb.ViewModels.Reports
         public IEnumerable<DepreciationVM> DepreciationValueReport { get; set; }
         public IEnumerable<DepreciationVM> DepreciationSummaryReport { get; set; }
         public IEnumerable<fa_historyVM> AssetNovementReport { get; set; }
+        public IEnumerable<fa_AssetRegVM> InsuranceReport { get; set; }
     }
 }

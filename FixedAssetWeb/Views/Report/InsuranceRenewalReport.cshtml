@@ -1,0 +1,42 @@
+﻿@model FixedAssetWeb.ViewModels.Reports.ReportVM
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "Insurance Renewal Report";
+}
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 style="text-align:center" class="text-center display-4">@Model.Company.comp_name</h1>
+    <h3 style="text-align:center">@Model.Company.Address</h3>
+
+    <br />
+
+    <h3>Insurance Renewal Report: Produce On @DateTime.Now</h3>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        <tr style="text-align:left">
+            <th>Asset Code</th>
+            <th>Asset Description</th>
+            <th>Asset Location</th>
+            <th>Asset Classification</th>
+            <th>Insurance Renewal Date</th>
+        </tr>
+        @foreach (var insuranceRenewal in Model.InsuranceReport)
+        {
+            <tr style="text-align:center">
+                <td> @insuranceRenewal.assetCode </td>
+                <td> @insuranceRenewal.assetDesc </td>
+                <td> @insuranceRenewal.Dept</td>
+                <td> @insuranceRenewal.newClassCode</td>
+                <td> @insuranceRenewal.Insurdate</td>
+            </tr>
+        }
+
+
+
+    </table>
+</body>
+</html>
