@@ -32,7 +32,7 @@
             </div>
         </div>
 
-                <div class="page-body">
+        <div class="page-body">
             <div class="card">
                 <form @submit="checkForm">
                     <div class="card-body">
