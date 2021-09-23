@@ -24,5 +24,7 @@ namespace FixedAssetCore.EntityCoreVM
         public string buslineDesc { get; set; }
 
         public decimal? purchval { get; set; }
+
+        public DateTime? purchdate { get; set; }
     }
 }
