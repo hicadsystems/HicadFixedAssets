@@ -4967,6 +4967,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4978,14 +5004,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      setAllAsset: false,
       specificAsset: false,
       assetList: null,
       insuranceList: null,
       sortAssetsList: {
-        assetDescription: "null"
+        assetCode: "null"
       },
       objectBody: {
-        assetCode: assetCode
+        assetCode: ""
       }
     };
   },
@@ -4997,8 +5024,25 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    SetAllAsset: function SetAllAsset() {
+      this.setAllAsset = true;
+      this.specificAsset = false;
+    },
     SpecificAsset: function SpecificAsset() {
+      this.setAllAsset = false;
       this.specificAsset = true;
+    },
+    sortingProcess: function sortingProcess() {
+      var _this2 = this;
+
+      alert("Got here");
+      axios.get("/api/AssetRegisteration/getInsuranceRenewalReport/".concat(this.sortAssetsList.assetCode)).then(function (response) {
+        if (response.data.responseCode === 404) {
+          _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
+        }
+
+        _this2.insuranceList = response.data.data;
+      });
     }
   }
 });
@@ -36404,7 +36448,11 @@ var render = function() {
                         id: "exampleRadios2",
                         value: "option2"
                       },
-                      on: { click: _vm.setAllAsset }
+                      on: {
+                        click: function($event) {
+                          return _vm.SetAllAsset()
+                        }
+                      }
                     }),
                     _vm._v(" "),
                     _vm._m(1)
@@ -36423,7 +36471,11 @@ var render = function() {
                         id: "exampleRadios2",
                         value: "option2"
                       },
-                      on: { click: _vm.specificAsset }
+                      on: {
+                        click: function($event) {
+                          return _vm.SpecificAsset()
+                        }
+                      }
                     }),
                     _vm._v(" "),
                     _vm._m(2)
@@ -36432,67 +36484,81 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group row col md-4" }, [
-              _vm.specificAsset
-                ? _c("div", { staticClass: "col-lg-4 " }, [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("div", [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.sortAssetsList.assetDescription,
-                              expression: "sortAssetsList.assetDescription"
-                            }
-                          ],
-                          staticClass: "form-control form-control-inverse",
-                          attrs: { name: "assetclass", required: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                _vm.sortAssetsList,
-                                "assetDescription",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
+            _vm.specificAsset
+              ? _c("div", { staticClass: "col-lg-4" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.sortAssetsList.assetCode,
+                            expression: "sortAssetsList.assetCode"
                           }
-                        },
-                        _vm._l(_vm.assetList, function(asset) {
-                          return _c("option", {
+                        ],
+                        staticClass: "form-control form-control-inverse",
+                        attrs: { name: "assetclass", required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.sortAssetsList,
+                              "assetCode",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      _vm._l(_vm.assetList, function(asset) {
+                        return _c(
+                          "option",
+                          {
                             key: asset.assetCode,
                             attrs: { required: "" },
                             domProps: { value: asset.assetCode }
-                          })
-                        }),
-                        0
-                      )
-                    ])
+                          },
+                          [
+                            _vm._v(
+                              "\n                  " +
+                                _vm._s(asset.assetDesc) +
+                                "\n                "
+                            )
+                          ]
+                        )
+                      }),
+                      0
+                    )
                   ])
-                : _vm._e()
-            ])
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c(
             "button",
             {
               staticClass: "btn btn-submit btn-primary",
-              attrs: { type: "submit" }
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.sortingProcess()
+                }
+              }
             },
-            [_vm._v("Process\n                ")]
+            [_vm._v("\n          Process\n        ")]
           )
         ])
       ])
@@ -36505,7 +36571,7 @@ var render = function() {
           staticClass: "btn btn-submit btn-primary",
           attrs: { type: "button" }
         },
-        [_vm._v("Show Report")]
+        [_vm._v("\n      Show Report\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -36529,11 +36595,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(insRenew.assetDesc))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(insRenew.Dept))]),
+                      _c("td", [_vm._v(_vm._s(insRenew.dept))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(insRenew.Class))]),
+                      _c("td", [_vm._v(_vm._s(insRenew.newClassCode))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(insRenew.Insurdate))])
+                      _c("td", [_vm._v(_vm._s(insRenew.insurdate))])
                     ])
                   }),
                   0
@@ -36612,7 +36678,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("label", { attrs: { for: "" } }, [_c("b", [_vm._v("Asset Code ")])])
+      _c("label", { attrs: { for: "" } }, [_c("b", [_vm._v(" Asset Code ")])])
     ])
   },
   function() {
@@ -53102,7 +53168,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
