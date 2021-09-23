@@ -25,7 +25,8 @@
             <th>Classification</th>
             <th>Location</th>
             <th>Business Line</th>
-            <th>Purchase Line</th>
+            <th>Purchase Value</th>
+            <th>Purchase Date</th>
         </tr>
         @foreach (var a in Model.GetAssetRegReport)
         {
@@ -36,6 +37,7 @@
                 <td> @a.unitDesc</td>
                 <td> @a.buslineDesc</td>
                 <td> @a.purchval</td>
+                <td> @a.purchdate</td>
             </tr>
         }
 

@@ -191,6 +191,7 @@
                                     <th>Location</th>
                                     <th>Business Line</th>
                                     <th>Purchase Value</th>
+                                    <th>Purchase Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -201,6 +202,7 @@
                                     <td>{{ assetReg.unitDesc }}</td>
                                     <td>{{ assetReg.buslineDesc }}</td>
                                     <td>{{ assetReg.purchval }}</td>
+                                    <td>{{ assetReg.purchdate }}</td>
                                 </tr>
                             </tbody>
                         </table>

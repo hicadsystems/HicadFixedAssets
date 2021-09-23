@@ -4370,6 +4370,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 
 
@@ -35837,7 +35839,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(assetReg.buslineDesc))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(assetReg.purchval))])
+                          _c("td", [_vm._v(_vm._s(assetReg.purchval))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(assetReg.purchdate))])
                         ])
                       }),
                       0
@@ -35966,7 +35970,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Business Line")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Purchase Value")])
+        _c("th", [_vm._v("Purchase Value")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Purchase Date")])
       ])
     ])
   }

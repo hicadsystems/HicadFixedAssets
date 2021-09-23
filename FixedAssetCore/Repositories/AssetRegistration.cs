@@ -122,7 +122,8 @@ namespace FixedAssetCore.Core.Repositories
                     unitDesc = assetRegVm.costcnt.unitdesc,
                     busline = assetRegVm.assetclass.Busline,
                     buslineDesc = assetRegVm.busline.Description,
-                    purchval = assetRegVm.assetclass.Purchval
+                    purchval = assetRegVm.assetclass.Purchval,
+                    purchdate = assetRegVm.assetclass.Purchdate
 
                 }).ToList();
 
