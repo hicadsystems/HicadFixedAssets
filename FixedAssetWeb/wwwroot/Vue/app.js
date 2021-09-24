@@ -19,6 +19,7 @@ import AssetRegistrationComponent from './components/AssetRegistrationComponent.
 import GenerateDepreciationComponent from './components/MonthEndProcessing/GenerateDepreciationComponent.vue';
 import DepreciationSummary from './components/Reports/DepreciationSummary.vue';
 import AssetDisposalComponent from './components/Transactions/AssetDisposalComponent.vue';
+import DisposalReport from './components/Reports/DisposalReport.vue'
 import Vue from 'vue';
 
 const files = require.context('./', true, /\.vue$/i)
@@ -36,6 +37,7 @@ Vue.component('asset-registration-component', AssetRegistrationComponent);
 Vue.component('generate-depreciation-component', GenerateDepreciationComponent);
 Vue.component('depreciation-summary', DepreciationSummary);
 Vue.component('asset-disposal-component', AssetDisposalComponent);
+Vue.component('disposal-report', DisposalReport);
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
  
 const app = new Vue({
