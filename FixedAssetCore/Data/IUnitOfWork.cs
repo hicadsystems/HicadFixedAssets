@@ -23,9 +23,8 @@ namespace FixedAssetCore.Core.Data
         IAssetReclassification assetReclassification { get; }
         IAssetMovementRepository assetMovementRepository { get; }
         IDepreciation depreciation { get; }
+        IAssetDisposalRepo assetDisposalRepo { get; }
 
         Task<bool> Done();
-
-        //int Complete();
     }
 }
