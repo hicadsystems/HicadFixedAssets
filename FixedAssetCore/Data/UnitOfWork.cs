@@ -33,6 +33,7 @@ namespace FixedAssetCore.Core.Data
             assetReclassification = new AssetReclassification(context, configuration);
             assetMovementRepository = new AssetMovementRepository(context, configuration);
             depreciation = new Depreciation(context);
+            assetDisposalRepo = new AssetDisposalRepo(context, configuration);
 
         }
 
@@ -64,32 +65,19 @@ namespace FixedAssetCore.Core.Data
 
         public IDepreciation depreciation { get; set; }
 
+        public IAssetDisposalRepo assetDisposalRepo { get; set; }
+
         public async Task<bool> Done()
         {
             try
             {
                 return await context.Instance.SaveChangesAsync() > 0;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
-
-        //public int Complete()
-        //{
-        //    try
-        //    {
-        //        return context.Instance.SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        ex.ToString();
-        //    }
-
-        //    return 0;
-        //}
     }
 }
