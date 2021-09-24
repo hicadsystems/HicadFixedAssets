@@ -77,19 +77,28 @@
                 <div>
                   <label for=""><b>From </b></label>
                   <vuejsDatepicker
+                    v-model="sortAssetsList.startDate"
                     input-class="form-control col-4 mr-1"
                     type="date"
                   ></vuejsDatepicker>
                 </div>
                 <div>
                   <label for=""><b>To </b></label>
-                  <vuejsDatepicker input-class="form-control col-4" type="date">
+                  <vuejsDatepicker
+                    v-model="sortAssetsList.endDate"
+                    input-class="form-control col-4"
+                    type="date"
+                  >
                   </vuejsDatepicker>
                 </div>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-submit btn-primary">
+          <button
+            type="submit"
+            class="btn btn-submit btn-primary"
+            @click.prevent="sortingProcess()"
+          >
             Process
           </button>
         </form>
@@ -98,7 +107,11 @@
 
     <!-- ASSET TABLE -->
     <div>
-      <button type="button" class="btn btn-submit btn-primary">
+      <button
+        type="button"
+        class="btn btn-submit btn-primary"
+        v-on:click="generateReport"
+      >
         Show Report
       </button>
       <div class="page-body">
@@ -122,9 +135,9 @@
                 <tr v-for="(assetReg, index) in assetRegList" :key="index">
                   <td>{{ assetReg.assetCode }}</td>
                   <td>{{ assetReg.assetDesc }}</td>
-                  <td>{{ assetReg.unitDesc }}</td>
-                  <td>{{ assetReg.Dispval }}</td>
-                  <td>{{ assetReg.Dispdate }}</td>
+                  <td>{{ assetReg.dept }}</td>
+                  <td>{{ assetReg.dispval }}</td>
+                  <td>{{ assetReg.dispdate }}</td>
                 </tr>
               </tbody>
             </table>
@@ -165,12 +178,9 @@ export default {
       objectBody: {
         assetCode: "",
         assetDesc: "",
-        class: "",
-        busline: "",
-        purchval: "",
-        purchdate: "",
         dept: "",
-        class: "",
+        dispval: "",
+        dispdate: "",
       },
     };
   },
@@ -185,6 +195,40 @@ export default {
       this.dispDate = true;
       this.selectDisp = false;
     },
-  }
+
+    sortingProcess() {
+      axios
+        .post(`/api/AssetDisposal/getDisposedAsset/`, this.sortAssetsList)
+
+        .then((response) => {
+          if (response.data.responseCode === 404) {
+            this.$alert(
+              `No Asset available for the selected Parameter!!`,
+              "No Records Found",
+              "Warning"
+            );
+          }
+
+          this.assetRegList = response.data.data;
+        });
+    },
+
+    generateReport() {
+      let startDay = moment(this.sortAssetsList.startDate).format(
+        "MM DD YYYY, h:mm:ss a"
+      );
+
+      let endDay = moment(this.sortAssetsList.endDate).format(
+        "MM DD YYYY, h:mm:ss a"
+      );
+
+      if (startDay === "Invalid date" && endDay === "Invalid date") {
+        startDay = null;
+        endDay = null;
+      }
+
+      window.open(`/Report/PrintAssetDisposal/${startDay}/${endDay}`);
+    },
+  },
 };
 </script>
