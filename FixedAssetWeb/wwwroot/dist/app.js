@@ -3884,6 +3884,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3992,6 +4031,43 @@ __webpack_require__.r(__webpack_exports__);
     vuejsDatepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a,
     VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"],
     moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  data: function data() {
+    return {
+      dispDate: false,
+      selectDisp: false,
+      isFormVisible: false,
+      responseMessage: "",
+      assetRegList: null,
+      classList: null,
+      sortClassCode: "",
+      sortDept: "",
+      sortAssetsList: {
+        classCode: "null",
+        classDept: "null",
+        startDate: null,
+        endDate: null
+      },
+      objectBody: _defineProperty({
+        assetCode: "",
+        assetDesc: "",
+        "class": "",
+        busline: "",
+        purchval: "",
+        purchdate: "",
+        dept: ""
+      }, "class", "")
+    };
+  },
+  methods: {
+    AllDisposal: function AllDisposal() {
+      this.dispDate = false;
+      this.selectDisp = true;
+    },
+    DispByDate: function DispByDate() {
+      this.dispDate = true;
+      this.selectDisp = false;
+    }
   }
 });
 
@@ -4011,6 +4087,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4240,8 +4325,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -4258,7 +4343,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errors = [];
 
       if (!this.specificDept) {
-        this.errors.push('Department required.');
+        this.errors.push("Department required.");
       }
 
       e.preventDefault();
@@ -4284,6 +4369,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -4578,8 +4667,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -35326,42 +35415,90 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "page-body" }, [
       _c("div", { staticClass: "card" }, [
-        _c("form", { on: { submit: _vm.checkForm } }, [
+        _c("form", [
           _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "form-group row" }, [
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "row ml-4" }, [
+                  _c("div", { staticClass: "form-check" }, [
+                    _c("input", {
+                      staticClass: "form-check-input col-6",
+                      attrs: {
+                        type: "radio",
+                        name: "exampleRadios",
+                        id: "exampleRadios2",
+                        value: "option2"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.AllDisposal()
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(1)
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-4" }, [
+                _c("div", { staticClass: "row ml-4" }, [
+                  _c("div", { staticClass: "form-check" }, [
+                    _c("input", {
+                      staticClass: "form-check-input col-6",
+                      attrs: {
+                        type: "radio",
+                        name: "exampleRadios",
+                        id: "exampleRadios2",
+                        value: "option2"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.DispByDate()
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group row col md-4" }, [
-              _c("div", { staticClass: "col md-4" }, [
-                _c(
-                  "div",
-                  [
-                    _vm._m(2),
+              _vm.dispDate
+                ? _c("div", { staticClass: "col md-4" }, [
+                    _c(
+                      "div",
+                      [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("vuejsDatepicker", {
+                          attrs: {
+                            "input-class": "form-control col-4 mr-1",
+                            type: "date"
+                          }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _c("vuejsDatepicker", {
-                      attrs: {
-                        "input-class": "form-control col-4 mr-1",
-                        type: "date"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  [
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _c("vuejsDatepicker", {
-                      attrs: {
-                        "input-class": "form-control col-4",
-                        type: "date"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ])
+                    _c(
+                      "div",
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c("vuejsDatepicker", {
+                          attrs: {
+                            "input-class": "form-control col-4",
+                            type: "date"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                : _vm._e()
             ])
           ]),
           _vm._v(" "),
@@ -35373,6 +35510,53 @@ var render = function() {
             },
             [_vm._v("\n          Process\n        ")]
           )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-submit btn-primary",
+          attrs: { type: "button" }
+        },
+        [_vm._v("\n      Show Report\n    ")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-body" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-striped",
+                staticStyle: { width: "100%" },
+                attrs: { id: "datatables-buttons" }
+              },
+              [
+                _vm._m(5),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.assetRegList, function(assetReg, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", [_vm._v(_vm._s(assetReg.assetCode))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(assetReg.assetDesc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(assetReg.unitDesc))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(assetReg.Dispval))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(assetReg.Dispdate))])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            )
+          ])
         ])
       ])
     ])
@@ -35390,7 +35574,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "col-lg-8" }, [
               _c("div", { staticClass: "page-header-title" }, [
                 _c("div", { staticClass: "d-inline" }, [
-                  _c("h4", [_vm._v("ADDITION AND DISPOSAL REPORT")])
+                  _c("h4", [_vm._v("DISPOSAL REPORT")])
                 ])
               ])
             ]),
@@ -35423,57 +35607,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "row ml-4" }, [
-          _c("div", { staticClass: "form-check" }, [
-            _c("input", {
-              staticClass: "form-check-input col-6",
-              attrs: {
-                type: "radio",
-                name: "exampleRadios",
-                id: "exampleRadios2",
-                value: "option2"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "form-check-label",
-                attrs: { for: "exampleRadios2" }
-              },
-              [_c("b", [_vm._v("Addition")])]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("div", { staticClass: "row ml-4" }, [
-          _c("div", { staticClass: "form-check" }, [
-            _c("input", {
-              staticClass: "form-check-input col-6",
-              attrs: {
-                type: "radio",
-                name: "exampleRadios",
-                id: "exampleRadios2",
-                value: "option2"
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "label",
-              {
-                staticClass: "form-check-label",
-                attrs: { for: "exampleRadios2" }
-              },
-              [_c("b", [_vm._v(" Disposal")])]
-            )
-          ])
-        ])
-      ])
-    ])
+    return _c(
+      "label",
+      { staticClass: "form-check-label", attrs: { for: "exampleRadios2" } },
+      [_c("b", [_vm._v("All Disposal")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticClass: "form-check-label", attrs: { for: "exampleRadios2" } },
+      [_c("b", [_vm._v(" Disposal by Date")])]
+    )
   },
   function() {
     var _vm = this
@@ -35486,6 +35634,24 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [_c("b", [_vm._v("To ")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Location")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Disposed Value")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Disposed Date")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -35606,7 +35772,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.specificDept
-                ? _c("div", { staticClass: "col-lg-4 " }, [
+                ? _c("div", { staticClass: "col-lg-4" }, [
                     _vm._m(5),
                     _vm._v(" "),
                     _c("div", [
@@ -35653,9 +35819,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\n                    " +
                                   _vm._s(clist.unitdesc) +
-                                  "\n                                "
+                                  "\n                  "
                               )
                             ]
                           )
@@ -35682,7 +35848,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Process\n                ")]
+            [_vm._v("\n          Process\n        ")]
           )
         ])
       ])
@@ -35696,7 +35862,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("Show Report")]
+        [_vm._v("\n      Show Report\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -36021,9 +36187,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\n                    " +
                                   _vm._s(clist.classdesc) +
-                                  "\n                                "
+                                  "\n                  "
                               )
                             ]
                           )
@@ -36082,9 +36248,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\n                    " +
                                   _vm._s(clist.unitdesc) +
-                                  "\n                                "
+                                  "\n                  "
                               )
                             ]
                           )
@@ -36109,7 +36275,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Process\n                ")]
+            [_vm._v("\n          Process\n        ")]
           )
         ])
       ])
@@ -36124,7 +36290,7 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.generateReport }
             },
-            [_vm._v("Show Report")]
+            [_vm._v("\n      Show Report\n    ")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "page-body" }, [

@@ -7,7 +7,7 @@
             <div class="col-lg-8">
               <div class="page-header-title">
                 <div class="d-inline">
-                  <h4>ADDITION AND DISPOSAL REPORT</h4>
+                  <h4>DISPOSAL REPORT</h4>
                 </div>
               </div>
             </div>
@@ -33,13 +33,14 @@
 
     <div class="page-body">
       <div class="card">
-        <form @submit="checkForm">
+        <form>
           <div class="card-body">
             <div class="form-group row">
               <div class="col-sm-4">
                 <div class="row ml-4">
                   <div class="form-check">
                     <input
+                      @click="AllDisposal()"
                       class="form-check-input col-6"
                       type="radio"
                       name="exampleRadios"
@@ -47,16 +48,16 @@
                       value="option2"
                     />
                     <label class="form-check-label" for="exampleRadios2">
-                      <b>Addition</b>
+                      <b>All Disposal</b>
                     </label>
                   </div>
                 </div>
               </div>
-
               <div class="col-sm-4">
                 <div class="row ml-4">
                   <div class="form-check">
                     <input
+                      @click="DispByDate()"
                       class="form-check-input col-6"
                       type="radio"
                       name="exampleRadios"
@@ -64,7 +65,7 @@
                       value="option2"
                     />
                     <label class="form-check-label" for="exampleRadios2">
-                      <b> Disposal</b>
+                      <b> Disposal by Date</b>
                     </label>
                   </div>
                 </div>
@@ -72,7 +73,7 @@
             </div>
 
             <div class="form-group row col md-4">
-              <div class="col md-4">
+              <div class="col md-4" v-if="dispDate">
                 <div>
                   <label for=""><b>From </b></label>
                   <vuejsDatepicker
@@ -86,7 +87,6 @@
                   </vuejsDatepicker>
                 </div>
               </div>
-
             </div>
           </div>
           <button type="submit" class="btn btn-submit btn-primary">
@@ -95,18 +95,96 @@
         </form>
       </div>
     </div>
+
+    <!-- ASSET TABLE -->
+    <div>
+      <button type="button" class="btn btn-submit btn-primary">
+        Show Report
+      </button>
+      <div class="page-body">
+        <div class="card">
+          <div class="card-body">
+            <table
+              id="datatables-buttons"
+              class="table table-striped"
+              style="width: 100%"
+            >
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Description</th>
+                  <th>Location</th>
+                  <th>Disposed Value</th>
+                  <th>Disposed Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(assetReg, index) in assetRegList" :key="index">
+                  <td>{{ assetReg.assetCode }}</td>
+                  <td>{{ assetReg.assetDesc }}</td>
+                  <td>{{ assetReg.unitDesc }}</td>
+                  <td>{{ assetReg.Dispval }}</td>
+                  <td>{{ assetReg.Dispdate }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import vuejsDatepicker from "vuejs-datepicker";
 import VueSimpleAlert from "vue-simple-alert";
-import moment from 'moment';
+import moment from "moment";
 export default {
-    components: {
-        vuejsDatepicker,
-        VueSimpleAlert,
-        moment,
+  components: {
+    vuejsDatepicker,
+    VueSimpleAlert,
+    moment,
+  },
+
+  data() {
+    return {
+      dispDate: false,
+      selectDisp: false,
+      isFormVisible: false,
+      responseMessage: "",
+      assetRegList: null,
+      classList: null,
+      sortClassCode: "",
+      sortDept: "",
+      sortAssetsList: {
+        classCode: "null",
+        classDept: "null",
+        startDate: null,
+        endDate: null,
+      },
+      objectBody: {
+        assetCode: "",
+        assetDesc: "",
+        class: "",
+        busline: "",
+        purchval: "",
+        purchdate: "",
+        dept: "",
+        class: "",
+      },
+    };
+  },
+
+  methods: {
+    AllDisposal() {
+      this.dispDate = false;
+      this.selectDisp = true;
     },
+
+    DispByDate() {
+      this.dispDate = true;
+      this.selectDisp = false;
+    },
+  }
 };
 </script>
