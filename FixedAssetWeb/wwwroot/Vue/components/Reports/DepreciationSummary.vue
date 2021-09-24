@@ -140,6 +140,7 @@ export default {
     },
 
     methods: {
+        
         sortingProcess() {
 
                 axios
