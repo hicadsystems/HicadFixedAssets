@@ -23,7 +23,7 @@ namespace FixedAssetCore.Repositories
 
         }
 
-        public string AssetDisposal(string assetcode, decimal? currentValue)
+        public string AssetDisposalAction(string assetcode, decimal? currentValue)
         {
             try
             {

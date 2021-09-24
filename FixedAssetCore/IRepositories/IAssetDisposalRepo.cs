@@ -9,7 +9,7 @@ namespace FixedAssetCore.IRepositories
 {
     public interface IAssetDisposalRepo : IRepository<fa_assetDisposal>
     {
-        string AssetDisposal(string assetcode, decimal? curentValue);
+        string AssetDisposalAction(string assetcode, decimal? curentValue);
         IEnumerable<AssetDisposalVM> AssetDisposal(SortAssetsRegListVM sortAssetsRegListVM);
     }
 }
