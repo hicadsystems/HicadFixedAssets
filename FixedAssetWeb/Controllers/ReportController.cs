@@ -105,5 +105,7 @@ namespace FixedAssetWeb.Controllers
             return await _generatePdf.GetPdf("Views/Report/PrintAssetMovement.cshtml", assetMovementReport);
         }
 
+        //Merge
+
     }
 }
