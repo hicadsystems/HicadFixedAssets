@@ -3,6 +3,7 @@ using FixedAssetCore.Core.Repositories;
 using FixedAssetCore.Entities;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetCore.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,57 @@ namespace FixedAssetCore.Repositories
             this.context = context;
             connectionstring = configuration.GetConnectionString("DefaultConnection");
 
+        }
+
+        public string AssetDisposalAction(string assetcode, decimal? currentValue)
+        {
+            try
+            {
+                var assetInDb = context.fa_Assetsreg.FirstOrDefault(x => x.assetCode == assetcode.Trim());
+
+                if (assetInDb == null)
+                {
+                    return "No Record Found for Asset with code " + assetcode;
+                }
+                else
+                {
+                    assetInDb.Dispdate = DateTime.Now;
+                    assetInDb.Dispval = currentValue;
+
+                    context.fa_Assetsreg.Update(assetInDb);
+
+                    fa_assetDisposal disposedAsset = new fa_assetDisposal()
+                    {
+                        assetCode = assetInDb.assetCode,
+                        assetDesc = assetInDb.assetDesc,
+                        Class = assetInDb.Class,
+                        Dept = assetInDb.Dept,
+                        Busline = assetInDb.Busline,
+                        Purchdate = assetInDb.Purchdate,
+                        Revaldate = assetInDb.Revaldate,
+                        Reclassdate  = assetInDb.Reclassdate,
+                        movedate = assetInDb.movedate,
+                        Dispdate = assetInDb.Dispdate,
+                        Purchval = assetInDb.Purchval,
+                        Accum_depre = assetInDb.Accum_depre,
+                        Dispval = assetInDb.Dispval,
+                        Revalval = assetInDb.Revalval,
+                        Insurdate = assetInDb.Insurdate,
+                        Insuredval = assetInDb.Insuredval,
+                        year_depr = assetInDb.year_depr,
+                        depr_rate = assetInDb.depr_rate,
+                    };
+
+                    context.fa_AssetDisposals.Add(disposedAsset);
+
+                    return "Asset with code " + assetcode + " Disposed Succesfully!!";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public IEnumerable<AssetDisposalVM> AssetDisposal(SortAssetsRegListVM sortAssetsRegListVM)

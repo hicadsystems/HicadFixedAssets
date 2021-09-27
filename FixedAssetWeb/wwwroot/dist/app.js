@@ -2795,7 +2795,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4053,15 +4052,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4122,8 +4112,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -4140,7 +4130,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errors = [];
 
       if (!this.specificDept) {
-        this.errors.push("Department required.");
+        this.errors.push('Department required.');
       }
 
       e.preventDefault();
@@ -4166,10 +4156,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -4464,8 +4450,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -5306,6 +5292,207 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-datepicker */ "./node_modules/vuejs-datepicker/dist/build.js");
+/* harmony import */ var vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    vuejsDatepicker: vuejs_datepicker__WEBPACK_IMPORTED_MODULE_0___default.a,
+    VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"],
+    moment: moment__WEBPACK_IMPORTED_MODULE_2___default.a
+  },
+  data: function data() {
+    return {
+      errors: [],
+      isFormVisible: false,
+      responseMessage: "",
+      DeprAssetsList: null,
+      assetList: null,
+      assetCode: ""
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/AssetReclassification/getAllAssets").then(function (response) {
+      return _this.assetList = response.data;
+    });
+  },
+  methods: {
+    sortingProcess: function sortingProcess() {
+      var _this2 = this;
+
+      axios.get("/api/GenerateDepreciation/depreciationSummary/".concat(this.assetCode)).then(function (response) {
+        if (response.data.responseCode === 404) {
+          _this2.$alert("No Asset available for the selected Parameter!!", "No Records Found", "Warning");
+        }
+
+        console.log(response.data.data);
+        _this2.DeprAssetsList = response.data.data;
+      });
+    },
+    disposeAsset: function disposeAsset(assetdesc, amount) {
+      var _this3 = this;
+
+      this.$confirm({
+        message: "Dispose " + assetdesc + " ?",
+        button: {
+          no: "NO",
+          yes: "YES"
+        },
+        callback: function callback(confirm) {
+          if (confirm) {
+            alert("Dispose " + _this3.assetCode + " " + assetdesc);
+            axios.get("/api/AssetRegisteration/DisposeAssetsreg/".concat(_this3.assetCode, "/").concat(amount)).then(function (response) {
+              if (response.data.responseCode == "200") {
+                _this3.$alert(assetdesc + " Disposed Successfully!!!", "Ok", "success");
+              }
+            })["catch"](function (e) {
+              _this3.errors.push(e);
+            });
+          }
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue?vue&type=script&lang=js& ***!
@@ -6000,23 +6187,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -35538,7 +35708,7 @@ var render = function() {
                 : _vm._e(),
               _vm._v(" "),
               _vm.specificDept
-                ? _c("div", { staticClass: "col-lg-4" }, [
+                ? _c("div", { staticClass: "col-lg-4 " }, [
                     _vm._m(5),
                     _vm._v(" "),
                     _c("div", [
@@ -35585,9 +35755,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                    " +
+                                "\n                                " +
                                   _vm._s(clist.unitdesc) +
-                                  "\n                  "
+                                  "\n                                "
                               )
                             ]
                           )
@@ -35614,7 +35784,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n          Process\n        ")]
+            [_vm._v("Process\n                ")]
           )
         ])
       ])
@@ -35628,7 +35798,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("Show Report")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -35953,9 +36123,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                    " +
+                                "\n                                " +
                                   _vm._s(clist.classdesc) +
-                                  "\n                  "
+                                  "\n                                "
                               )
                             ]
                           )
@@ -36014,9 +36184,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                    " +
+                                "\n                                " +
                                   _vm._s(clist.unitdesc) +
-                                  "\n                  "
+                                  "\n                                "
                               )
                             ]
                           )
@@ -36041,7 +36211,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n          Process\n        ")]
+            [_vm._v("Process\n                ")]
           )
         ])
       ])
@@ -36056,7 +36226,7 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.generateReport }
             },
-            [_vm._v("\n      Show Report\n    ")]
+            [_vm._v("Show Report")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "page-body" }, [
@@ -37254,6 +37424,288 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("vue-confirm-dialog"),
+      _vm._v(" "),
+      _c("div", { staticClass: "page-wrapper" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm.errors.length
+          ? _c("p", [
+              _c("b", [_vm._v("Please correct the following error(s):")]),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.errors, function(error) {
+                  return _c("li", { key: error.length }, [
+                    _c(
+                      "h6",
+                      {
+                        staticClass: "has-error",
+                        staticStyle: { color: "red" }
+                      },
+                      [_vm._v(" " + _vm._s(error) + " ")]
+                    )
+                  ])
+                }),
+                0
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "page-body" }, [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "form",
+              {
+                attrs: { method: "post" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c(
+                      "div",
+                      { staticClass: "col-sm-6 col-md-6 col-xl-6 m-b-30" },
+                      [
+                        _c("label", { staticClass: "from-label" }, [
+                          _vm._v("Asset Description")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.assetCode,
+                                expression: "assetCode"
+                              }
+                            ],
+                            staticClass: "form-control form-control-inverse",
+                            attrs: { name: "assetdesc" },
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.assetCode = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              }
+                            }
+                          },
+                          _vm._l(_vm.assetList, function(asset) {
+                            return _c(
+                              "option",
+                              {
+                                key: asset.assetCode,
+                                attrs: { required: "" },
+                                domProps: { value: asset.assetCode }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                " +
+                                    _vm._s(asset.assetDesc) +
+                                    "\n              "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-6" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "btn-group mr-2 sw-btn-group-extra",
+                          attrs: { role: "group" }
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-submit btn-primary",
+                              attrs: { type: "submit" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.sortingProcess()
+                                }
+                              }
+                            },
+                            [_vm._v("\n                Accept\n              ")]
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        !_vm.isFormVisible
+          ? _c("div", [
+              _c("div", { staticClass: "page-body" }, [
+                _c("div", { staticClass: "card" }, [
+                  _c("div", { staticClass: "card-body" }, [
+                    _c(
+                      "table",
+                      {
+                        staticClass: "table table-striped",
+                        staticStyle: { width: "100%" },
+                        attrs: { id: "datatables-buttons" }
+                      },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.DeprAssetsList, function(
+                            deprAsset,
+                            index
+                          ) {
+                            return _c("tr", { key: index }, [
+                              _c("td", [_vm._v(_vm._s(deprAsset.assetdesc))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(deprAsset.newloc))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(deprAsset.newclass))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(deprAsset.depreciation))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-submit btn-danger",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.disposeAsset(
+                                          deprAsset.assetdesc,
+                                          deprAsset.depreciation
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Dispose")]
+                                )
+                              ])
+                            ])
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-header" }, [
+      _c("div", { staticClass: "row align-items-end" }, [
+        _c("div", { staticClass: "col-lg-8" }, [
+          _c("div", { staticClass: "page-header-title" }, [
+            _c("div", { staticClass: "d-inline" }, [
+              _c("h4", [_vm._v("Asset Disposal")]),
+              _vm._v(" "),
+              _c("span", [_vm._v("Perform Asset Disposal")])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-4" }, [
+          _c("div", { staticClass: "page-header-breadcrumb" }, [
+            _c("ul", { staticClass: "breadcrumb-title" }, [
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "index.html" } }, [
+                  _c("i", { staticClass: "feather icon-home" })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "breadcrumb-item" }, [
+                _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Asset Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Department")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Classification")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Current Amount")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue?vue&type=template&id=300c31a8&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue?vue&type=template&id=300c31a8& ***!
@@ -38257,30 +38709,6 @@ var staticRenderFns = [
     ])
   }
 ]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec&":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec& ***!
-  \*******************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div")
-}
-var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52251,10 +52679,10 @@ var map = {
 	"./components/Reports/DepreciationValueReport.vue": "./wwwroot/Vue/components/Reports/DepreciationValueReport.vue",
 	"./components/Reports/DisposalReport.vue": "./wwwroot/Vue/components/Reports/DisposalReport.vue",
 	"./components/Reports/InsuranceRenewalReport.vue": "./wwwroot/Vue/components/Reports/InsuranceRenewalReport.vue",
+	"./components/Transactions/AssetDisposalComponent.vue": "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue",
 	"./components/Transactions/AssetMovementComponent.vue": "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue",
 	"./components/Transactions/AssetReclassificationComponent.vue": "./wwwroot/Vue/components/Transactions/AssetReclassificationComponent.vue",
 	"./components/Transactions/AssetRevaluation.vue": "./wwwroot/Vue/components/Transactions/AssetRevaluation.vue",
-	"./components/Transactions/InsuranceRenewal.vue": "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue",
 	"./components/ViewBusinesslineComponent.vue": "./wwwroot/Vue/components/ViewBusinesslineComponent.vue",
 	"./components/ViewCompanyComponent.vue": "./wwwroot/Vue/components/ViewCompanyComponent.vue",
 	"./components/ViewCostCenter.vue": "./wwwroot/Vue/components/ViewCostCenter.vue"
@@ -52306,15 +52734,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AssetRegistrationComponent.vue */ "./wwwroot/Vue/components/AssetRegistrationComponent.vue");
 /* harmony import */ var _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/MonthEndProcessing/GenerateDepreciationComponent.vue */ "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue");
 /* harmony import */ var _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Reports/DepreciationSummary.vue */ "./wwwroot/Vue/components/Reports/DepreciationSummary.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_Transactions_AssetDisposalComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Transactions/AssetDisposalComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue");
+/* harmony import */ var _components_Reports_DisposalReport_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Reports/DisposalReport.vue */ "./wwwroot/Vue/components/Reports/DisposalReport.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_16__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+
+
 
 
 
@@ -52331,21 +52763,23 @@ vue__WEBPACK_IMPORTED_MODULE_14___default.a.use(vue_confirm_dialog__WEBPACK_IMPO
 var files = __webpack_require__("./wwwroot/Vue sync recursive \\.vue$/");
 
 files.keys().map(function (key) {
-  return vue__WEBPACK_IMPORTED_MODULE_14___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+  return vue__WEBPACK_IMPORTED_MODULE_16___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
 });
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('generate-depreciation-component', _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('depreciation-summary', _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_14___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_14___default.a({
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('generate-depreciation-component', _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('depreciation-summary', _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-disposal-component', _components_Transactions_AssetDisposalComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('disposal-report', _components_Reports_DisposalReport_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_16___default.a({
   el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
@@ -53249,6 +53683,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue":
+/*!************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a& */ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a&");
+/* harmony import */ var _AssetDisposalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AssetDisposalComponent.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AssetDisposalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetDisposalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AssetDisposalComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetDisposalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a&":
+/*!*******************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetDisposalComponent_vue_vue_type_template_id_6a4efd6a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue":
 /*!************************************************************************!*\
   !*** ./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue ***!
@@ -53451,75 +53954,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRevaluation_vue_vue_type_template_id_2d54c3cc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AssetRevaluation_vue_vue_type_template_id_2d54c3cc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue":
-/*!******************************************************************!*\
-  !*** ./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InsuranceRenewal.vue?vue&type=template&id=274c1aec& */ "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec&");
-/* harmony import */ var _InsuranceRenewal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InsuranceRenewal.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _InsuranceRenewal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "wwwroot/Vue/components/Transactions/InsuranceRenewal.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./InsuranceRenewal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec&":
-/*!*************************************************************************************************!*\
-  !*** ./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./InsuranceRenewal.vue?vue&type=template&id=274c1aec& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/InsuranceRenewal.vue?vue&type=template&id=274c1aec&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewal_vue_vue_type_template_id_274c1aec___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -53786,7 +54220,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

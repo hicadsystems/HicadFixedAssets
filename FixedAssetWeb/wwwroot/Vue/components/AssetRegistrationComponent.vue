@@ -396,7 +396,6 @@
                         <td>{{ assetReg.purchval }}</td>
 
                         <td>
-                
                             <button type="button" class="btn btn-submit btn-primary" @click="editAssetReg(assetReg.assetCode)" >Edit</button>
                             <button type="button" class="btn btn-submit btn-danger" @click="deleteAssetReg(assetReg.id, assetReg.assetDesc)" >Delete</button>
                         </td>
