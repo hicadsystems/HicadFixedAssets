@@ -17,14 +17,16 @@ namespace FixedAssetWeb.Controllers
         private readonly IGenerateDepreciationService _generateDepreciation;
         private readonly IAssetMovementService _assetMovementService;
         private readonly IAssetRegisterationService _assetRegisterationService;
+        private readonly IAssetDisposalService _assetDisposalService;
         public ReportController(ICompanyService companyService, IGeneratePdf generatePdf, IGenerateDepreciationService generateDepreciation, 
-            IAssetMovementService assetMovementService, IAssetRegisterationService assetRegisterationService)
+            IAssetMovementService assetMovementService, IAssetRegisterationService assetRegisterationService, IAssetDisposalService assetDisposalService)
         {
             _companyService = companyService;
             _generatePdf = generatePdf;
             _generateDepreciation = generateDepreciation;
             _assetMovementService = assetMovementService;
             _assetRegisterationService = assetRegisterationService;
+            _assetDisposalService = assetDisposalService;
         }
         public IActionResult Index()
         {
@@ -105,5 +107,22 @@ namespace FixedAssetWeb.Controllers
             return await _generatePdf.GetPdf("Views/Report/PrintAssetMovement.cshtml", assetMovementReport);
         }
 
+        [Route("Report/PrintAssetDisposal/{startDate}/{endDate}")]
+        public async Task<IActionResult> PrintAssetDisposal(DateTime? startDate, DateTime? endDate)
+        {
+            var sortAssetsRegListVMv = new SortAssetsRegListVM()
+            {
+                startDate = startDate,
+                endDate = endDate
+            };
+
+            var assetDisposalReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                AssetDisposal = _assetDisposalService.AssetDisposalList(sortAssetsRegListVMv)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/PrintAssetDisposal.cshtml", assetDisposalReport);
+        }
     }
 }

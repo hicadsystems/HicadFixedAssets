@@ -90,6 +90,7 @@ namespace FixedAssetWeb
             services.AddScoped<IAssetReclassificationService, AssetReclassificationService>();
             services.AddScoped<IAssetMovementService, AssetMovementService>();
             services.AddScoped<IGenerateDepreciationService, GenerateDepreciationService>();
+            services.AddScoped<IAssetDisposalService, AssetDisposalService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             //In-Memory
