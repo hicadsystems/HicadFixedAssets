@@ -58,7 +58,7 @@
                   <div class="form-check">
                     <input
                       @click="DispByDate()"
-                      class="form-check-input col-6"
+                      class="form-check-input col-4"
                       type="radio"
                       name="exampleRadios"
                       id="exampleRadios2"
