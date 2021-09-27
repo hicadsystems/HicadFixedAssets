@@ -9,5 +9,7 @@ namespace FixedAssetWeb.IServices
     public interface IAssetDisposalService
     {
         IEnumerable<AssetDisposalVM> AssetDisposalList(SortAssetsRegListVM sortAssetsRegListVM);
+
+        string DisposeAssetsAction(string assetcode, decimal? curentValue);
     }
 }

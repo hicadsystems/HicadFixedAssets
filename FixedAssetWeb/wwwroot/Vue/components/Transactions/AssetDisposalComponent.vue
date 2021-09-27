@@ -178,7 +178,7 @@ export default {
           if (confirm) {
             alert("Dispose " + this.assetCode + " " + assetdesc);
             axios
-              .get(`/api/AssetRegisteration/DisposeAssetsreg/${this.assetCode}/${amount}`)
+              .get(`/api/AssetDisposal/assetDisposalAction/${this.assetCode}/${amount}`)
               .then((response) => {
                 if (response.data.responseCode == "200") {
                   this.$alert(

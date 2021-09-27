@@ -25,12 +25,6 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
         [HttpPost]
         public IActionResult GetAssetDisposal([FromBody] SortAssetsRegListVM sortAssetsRegListVM)
         {
-
-            //if (sortAssetsRegListVM.startDate == null && sortAssetsRegListVM.endDate == null)
-            //{
-            //    return Ok(new { responseCode = 404, responseDescription = "Please provide a valid sort parameter" });
-            //}
-
             var assetsDispList = service.AssetDisposalList(sortAssetsRegListVM);
 
             var assetsAvailable = assetsDispList.Count();
@@ -41,6 +35,26 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
 
             return Ok(new { responseCode = 200, responseDescription = $"{ assetsAvailable } Asset Register(s) Found", Data = assetsDispList });
+        }
+
+        // GET: api/AssetDisposal/assetDisposalAction/{assetCode}/{amount}
+        [Route("assetDisposalAction/{assetCode}/{amount}")]
+        [HttpGet]
+        public IActionResult AssetDisposalAction(string assetCode, decimal amount)
+        {
+            if (string.IsNullOrEmpty(assetCode.Trim()))
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Please supply avalid code, Asset with Asset code { assetCode } does not Exist" });
+            }
+
+            if (amount == decimal.Zero)
+            {
+                return Ok(new { responseCode = 404, responseDescription = $"Please supply a valid Asset Amount, { amount } is Invalid" });
+            }
+
+            string response = service.DisposeAssetsAction(assetCode, amount);
+
+            return Ok(new { responseCode = 200, responseDescription = response } );
         }
     }
 }

@@ -21,5 +21,12 @@ namespace FixedAssetWeb.Services
             return unitOfWork.assetDisposalRepo.AssetDisposal(sortAssetsRegListVM);
         }
 
+        public string DisposeAssetsAction(string assetcode, decimal? curentValue)
+        {
+            string respose =  unitOfWork.assetDisposalRepo.AssetDisposalAction(assetcode, curentValue);
+            unitOfWork.Done();
+
+            return respose;
+        }
     }
 }

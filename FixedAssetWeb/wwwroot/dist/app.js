@@ -5477,7 +5477,7 @@ __webpack_require__.r(__webpack_exports__);
         callback: function callback(confirm) {
           if (confirm) {
             alert("Dispose " + _this3.assetCode + " " + assetdesc);
-            axios.get("/api/AssetRegisteration/DisposeAssetsreg/".concat(_this3.assetCode, "/").concat(amount)).then(function (response) {
+            axios.get("/api/AssetDisposal/assetDisposalAction/".concat(_this3.assetCode, "/").concat(amount)).then(function (response) {
               if (response.data.responseCode == "200") {
                 _this3.$alert(assetdesc + " Disposed Successfully!!!", "Ok", "success");
               }
@@ -54220,7 +54220,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
