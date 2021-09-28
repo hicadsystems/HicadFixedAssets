@@ -33,36 +33,62 @@
 
     <div class="page body">
       <div style="text-align: center" class="card">
-        <form>
+        <form @submit.prevent="checkForm" method="post">
           <div class="card-body">
             <div class="form-group row">
               <div class="col-lg-2">
                 <div>
-                  <label class="form-label"><b>Process Month </b></label>
+                  <label class="form-label">
+                    <b>Process Month </b>
+                  </label>
                 </div>
                 <div>
-                  <input name="processmonth" class="form-control" />
+                  <input
+                    type="number"
+                    name="processmonth"
+                    v-model="objectBody.processMonth"
+                    class="form-control"
+                    placeholder="00"
+                  />
                 </div>
               </div>
 
               <div class="col-lg-2">
                 <div>
-                  <label class="form-label"><b>Process Year </b></label>
+                  <label class="form-label">
+                    <b>Process Year </b>
+                  </label>
                 </div>
                 <div>
-                  <input name="processyear" class="form-control" />
+                  <input
+                    type="number"
+                    name="processyear"
+                    v-model="objectBody.processYear"
+                    class="form-control"
+                    placeholder="0000"
+                  />
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-4">
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-                  <button type="submit" class="btn btn-submit btn-primary">
+                  <button
+                    v-if="
+                      this.objectBody.processMonth != '' &&
+                      this.objectBody.processYear != ''
+                    "
+                    v-on:click="checkForm"
+                    type="submit"
+                    class="btn btn-submit btn-primary"
+                  >
                     Continue
                   </button>
                 </div>
                 <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-                  <button class="btn btn-danger">Cancel</button>
+                  <button @click.prevent="onCancel()" class="btn btn-danger">
+                    Cancel
+                  </button>
                 </div>
               </div>
             </div>
@@ -74,5 +100,60 @@
 </template>
 
 <script>
-export default {};
+import VueSimpleAlert from "vue-simple-alert";
+export default {
+  components: {
+    VueSimpleAlert,
+  },
+
+  data() {
+    return {
+      errors: [],
+      responseMessage: "",
+      objectBody: {
+        processMonth: "",
+        processYear: "",
+      },
+    };
+  },
+
+  methods: {
+    checkForm: function (e) {
+      this.errors = [];
+
+      this.postPost();
+
+      e.preventDefault();
+    },
+
+    postPost() {
+      axios
+        .get(
+          `/api/UpdateDepreciation/UpdateAssets/${this.objectBody.processMonth}/${this.objectBody.processYear}/`
+        )
+        .then((response) => {
+          this.responseMessage = response.data.responseDescription;
+          this.canProcess = true;
+
+          if (response.data.responseCode == "200") {
+            //this Clears the Input field.
+            this.onCancel();
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+
+      this.$alert("Generated Depreciation!!!", "Ok", "success");
+
+      this.onCancel();
+    },
+
+    onCancel() {
+      this.errors = [];
+
+      this.objectBody.depdate = " ";
+    },
+  },
+};
 </script>

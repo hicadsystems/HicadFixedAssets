@@ -2224,6 +2224,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2334,7 +2385,7 @@ __webpack_require__.r(__webpack_exports__);
           if (confirm) {
             // alert("deleted " + classcode + " " + classdesc);
             axios.get("/api/AssetClass/removeclass/".concat(classcode)).then(function (response) {
-              if (response.data.responseCode == '200') {
+              if (response.data.responseCode == "200") {
                 _this3.$alert(classdesc + " Deleted Successfully!!!", "Ok", "success");
               }
             })["catch"](function (e) {
@@ -3878,6 +3929,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-simple-alert */ "./node_modules/vue-simple-alert/lib/index.js");
 //
 //
 //
@@ -3953,7 +4005,76 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueSimpleAlert: vue_simple_alert__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      errors: [],
+      responseMessage: "",
+      objectBody: {
+        processMonth: "",
+        processYear: ""
+      }
+    };
+  },
+  methods: {
+    checkForm: function checkForm(e) {
+      this.errors = [];
+      this.postPost();
+      e.preventDefault();
+    },
+    postPost: function postPost() {
+      var _this = this;
+
+      axios.get("/api/UpdateDepreciation/UpdateAssets/".concat(this.objectBody.processMonth, "/").concat(this.objectBody.processYear, "/")).then(function (response) {
+        _this.responseMessage = response.data.responseDescription;
+        _this.canProcess = true;
+
+        if (response.data.responseCode == "200") {
+          //this Clears the Input field.
+          _this.onCancel();
+        }
+      })["catch"](function (e) {
+        _this.errors.push(e);
+      });
+      this.$alert("Generated Depreciation!!!", "Ok", "success");
+      this.onCancel();
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.objectBody.depdate = " ";
+    }
+  }
+});
 
 /***/ }),
 
@@ -32749,9 +32870,9 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                            " +
+                                        "\n                    " +
                                           _vm._s(_vm.CreateOrUpdate) +
-                                          "\n                            "
+                                          "\n                  "
                                       )
                                     ]
                                   )
@@ -32777,7 +32898,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Cancel")]
+                                [
+                                  _vm._v(
+                                    "\n                    Cancel\n                  "
+                                  )
+                                ]
                               )
                             ]
                           )
@@ -32837,7 +32962,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: { click: _vm.generateReport }
                       },
-                      [_vm._v("\n                Print Report\n              ")]
+                      [_vm._v("\n              Print Report\n            ")]
                     )
                   ]),
                   _vm._v(" "),
@@ -32887,7 +33012,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Edit")]
+                                [
+                                  _vm._v(
+                                    "\n                    Edit\n                  "
+                                  )
+                                ]
                               ),
                               _vm._v(" "),
                               _c(
@@ -32904,7 +33033,11 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v("Delete")]
+                                [
+                                  _vm._v(
+                                    "\n                    Delete\n                  "
+                                  )
+                                ]
                               )
                             ])
                           ])
@@ -32971,7 +33104,11 @@ var staticRenderFns = [
       _c(
         "label",
         { staticClass: "col-sm-4 col-form-label", attrs: { for: "rate" } },
-        [_vm._v("Order on Annual"), _c("br"), _vm._v(" Depreciation Report :")]
+        [
+          _vm._v("Order on Annual"),
+          _c("br"),
+          _vm._v("\n                          Depreciation Report :")
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-4" }, [
@@ -35699,84 +35836,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", [
-        _c("div", { staticClass: "page-wrapper" }, [
-          _c("div", { staticClass: "page-header" }, [
-            _c("div", { staticClass: "row align-items-end" }, [
-              _c("div", { staticClass: "col-lg-8" }, [
-                _c("div", { staticClass: "page-header-title" }, [
-                  _c("div", { staticClass: "d-inline" }, [
-                    _c("h4", [_vm._v("UPDATE ASSET DEPRECIATION")])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-4" }, [
-                _c("div", { staticClass: "page-header-breadcrumb" }, [
-                  _c("ul", { staticClass: "breadcrumb-title" }, [
-                    _c("li", { staticClass: "breadcrumb-item" }, [
-                      _c("a", { attrs: { href: "index.html" } }, [
-                        _c("i", { staticClass: "feather icon-home" })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "breadcrumb-item" }, [
-                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
-                    ]),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "breadcrumb-item" }, [
-                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
-                    ])
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "page body" }, [
-        _c(
-          "div",
-          { staticClass: "card", staticStyle: { "text-align": "center" } },
-          [
-            _c("form", [
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "page body" }, [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "text-align": "center" } },
+        [
+          _c(
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.checkForm.apply(null, arguments)
+                }
+              }
+            },
+            [
               _c("div", { staticClass: "card-body" }, [
                 _c("div", { staticClass: "form-group row" }, [
                   _c("div", { staticClass: "col-lg-2" }, [
-                    _c("div", [
-                      _c("label", { staticClass: "form-label" }, [
-                        _c("b", [_vm._v("Process Month ")])
-                      ])
-                    ]),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c("div", [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.processMonth,
+                            expression: "objectBody.processMonth"
+                          }
+                        ],
                         staticClass: "form-control",
-                        attrs: { name: "processmonth" }
+                        attrs: {
+                          type: "number",
+                          name: "processmonth",
+                          placeholder: "00"
+                        },
+                        domProps: { value: _vm.objectBody.processMonth },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "processMonth",
+                              $event.target.value
+                            )
+                          }
+                        }
                       })
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-lg-2" }, [
-                    _c("div", [
-                      _c("label", { staticClass: "form-label" }, [
-                        _c("b", [_vm._v("Process Year ")])
-                      ])
-                    ]),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c("div", [
                       _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.processYear,
+                            expression: "objectBody.processYear"
+                          }
+                        ],
                         staticClass: "form-control",
-                        attrs: { name: "processyear" }
+                        attrs: {
+                          type: "number",
+                          name: "processyear",
+                          placeholder: "0000"
+                        },
+                        domProps: { value: _vm.objectBody.processYear },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "processYear",
+                              $event.target.value
+                            )
+                          }
+                        }
                       })
                     ])
                   ])
@@ -35791,18 +35940,22 @@ var staticRenderFns = [
                         attrs: { role: "group" }
                       },
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-submit btn-primary",
-                            attrs: { type: "submit" }
-                          },
-                          [
-                            _vm._v(
-                              "\n                  Continue\n                "
+                        this.objectBody.processMonth != "" &&
+                        this.objectBody.processYear != ""
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-submit btn-primary",
+                                attrs: { type: "submit" },
+                                on: { click: _vm.checkForm }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Continue\n                "
+                                )
+                              ]
                             )
-                          ]
-                        )
+                          : _vm._e()
                       ]
                     ),
                     _vm._v(" "),
@@ -35813,17 +35966,93 @@ var staticRenderFns = [
                         attrs: { role: "group" }
                       },
                       [
-                        _c("button", { staticClass: "btn btn-danger" }, [
-                          _vm._v("Cancel")
-                        ])
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.onCancel()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                  Cancel\n                "
+                            )
+                          ]
+                        )
                       ]
                     )
                   ])
                 ])
               ])
+            ]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "page-wrapper" }, [
+        _c("div", { staticClass: "page-header" }, [
+          _c("div", { staticClass: "row align-items-end" }, [
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("div", { staticClass: "page-header-title" }, [
+                _c("div", { staticClass: "d-inline" }, [
+                  _c("h4", [_vm._v("UPDATE ASSET DEPRECIATION")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-4" }, [
+              _c("div", { staticClass: "page-header-breadcrumb" }, [
+                _c("ul", { staticClass: "breadcrumb-title" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "index.html" } }, [
+                      _c("i", { staticClass: "feather icon-home" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+                  ])
+                ])
+              ])
             ])
-          ]
-        )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("label", { staticClass: "form-label" }, [
+        _c("b", [_vm._v("Process Month ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("label", { staticClass: "form-label" }, [
+        _c("b", [_vm._v("Process Year ")])
       ])
     ])
   }
@@ -54528,7 +54757,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
