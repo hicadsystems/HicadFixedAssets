@@ -62,5 +62,27 @@ namespace FixedAssetCore.Repositories
 
             return result;
         }
+
+        public string UpdateAssetDeprecation(string month, string year)
+        {
+            var assetLists = context.fa_gdepreciations.Where(asset => asset.assetmonth == month.Trim() && asset.assetyear == year.Trim());
+
+            if (assetLists.Count() == 0)
+            {
+                return "No Assets depreciation records found for date range: Month " + month + " and year " + year;
+            }
+            else
+            {
+                foreach (var assetList in assetLists)
+                {
+                    var assetReg = context.fa_Assetsreg.Where(asset => asset.assetCode == assetList.assetcode).FirstOrDefault();
+                    assetReg.Accum_depre = assetList.accum_depr;
+
+                    context.fa_Assetsreg.Update(assetReg);
+                }
+
+                return "Assets Depreciation updated successfully for date range: Month " + month + " and year " + year;
+            }
+        }
     }
 }

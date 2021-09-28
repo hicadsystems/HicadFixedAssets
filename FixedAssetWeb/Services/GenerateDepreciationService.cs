@@ -36,5 +36,13 @@ namespace FixedAssetWeb.Services
 
             return responseMessage;
         }
+
+        public string UpdateDepreciations(string month, string year)
+        {
+            string response = unitOfWork.depreciation.UpdateAssetDeprecation(month, year);
+            unitOfWork.Done();
+
+            return response;
+        }
     }
 }
