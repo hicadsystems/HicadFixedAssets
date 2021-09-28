@@ -32,6 +32,11 @@ namespace FixedAssetWeb.Controllers
             return View();
         }
 
+        public IActionResult UpdateAssetDepreciation()
+        {
+            return View();
+        }
+
         [Route("MonthEndProcessing/PrintDeprValue/{startDate}/{endDate}")]
         public async Task<IActionResult> PrintDeprValue( DateTime? startDate, DateTime? endDate)
         {

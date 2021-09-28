@@ -3869,6 +3869,94 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/AssetMovement.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/AssetMovement.vue?vue&type=script&lang=js& ***!
@@ -35596,6 +35684,156 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", [
+        _c("div", { staticClass: "page-wrapper" }, [
+          _c("div", { staticClass: "page-header" }, [
+            _c("div", { staticClass: "row align-items-end" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("div", { staticClass: "page-header-title" }, [
+                  _c("div", { staticClass: "d-inline" }, [
+                    _c("h4", [_vm._v("UPDATE ASSET DEPRECIATION")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-4" }, [
+                _c("div", { staticClass: "page-header-breadcrumb" }, [
+                  _c("ul", { staticClass: "breadcrumb-title" }, [
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "index.html" } }, [
+                        _c("i", { staticClass: "feather icon-home" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "page body" }, [
+        _c(
+          "div",
+          { staticClass: "card", staticStyle: { "text-align": "center" } },
+          [
+            _c("form", [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("div", { staticClass: "col-lg-2" }, [
+                    _c("div", [
+                      _c("label", { staticClass: "form-label" }, [
+                        _c("b", [_vm._v("Process Month ")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { name: "processmonth" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-2" }, [
+                    _c("div", [
+                      _c("label", { staticClass: "form-label" }, [
+                        _c("b", [_vm._v("Process Year ")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: { name: "processyear" }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mr-2 sw-btn-group-extra",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-submit btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                  Continue\n                "
+                            )
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group mr-2 sw-btn-group-extra",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        _c("button", { staticClass: "btn btn-danger" }, [
+                          _vm._v("Cancel")
+                        ])
+                      ]
+                    )
+                  ])
+                ])
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/AssetMovement.vue?vue&type=template&id=5069ede3&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/AssetMovement.vue?vue&type=template&id=5069ede3& ***!
@@ -52673,6 +52911,7 @@ var map = {
 	"./components/CreateCostCenter.vue": "./wwwroot/Vue/components/CreateCostCenter.vue",
 	"./components/FirstComponent.vue": "./wwwroot/Vue/components/FirstComponent.vue",
 	"./components/MonthEndProcessing/GenerateDepreciationComponent.vue": "./wwwroot/Vue/components/MonthEndProcessing/GenerateDepreciationComponent.vue",
+	"./components/MonthEndProcessing/UpdateAssetDepreciation.vue": "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue",
 	"./components/Reports/AssetMovement.vue": "./wwwroot/Vue/components/Reports/AssetMovement.vue",
 	"./components/Reports/AssetRegReport.vue": "./wwwroot/Vue/components/Reports/AssetRegReport.vue",
 	"./components/Reports/DepreciationSummary.vue": "./wwwroot/Vue/components/Reports/DepreciationSummary.vue",
@@ -53264,6 +53503,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_GenerateDepreciationComponent_vue_vue_type_template_id_15753554___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue":
+/*!*******************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22& */ "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22&");
+/* harmony import */ var _UpdateAssetDepreciation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UpdateAssetDepreciation.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _UpdateAssetDepreciation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssetDepreciation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateAssetDepreciation.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssetDepreciation_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22&":
+/*!**************************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/MonthEndProcessing/UpdateAssetDepreciation.vue?vue&type=template&id=3b4b9b22&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UpdateAssetDepreciation_vue_vue_type_template_id_3b4b9b22___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -54220,7 +54528,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
