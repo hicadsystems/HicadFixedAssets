@@ -2,11 +2,14 @@
 using FixedAssetWeb.IServices;
 using FixedAssetWeb.ViewModels.Reports;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Wkhtmltopdf.NetCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FixedAssetWeb.Controllers
 {
@@ -83,6 +86,7 @@ namespace FixedAssetWeb.Controllers
                 Company = _companyService.GetCompanySingleRecord(),
                 InsuranceReport = _assetRegisterationService.GetInsuranceRenewalReports(assetCode.Trim()),
             };
+
 
             return await _generatePdf.GetPdf("Views/Report/InsuranceRenewalReport.cshtml", insuranceRenewalReport);
         }
