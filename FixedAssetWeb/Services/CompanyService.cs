@@ -41,6 +41,14 @@ namespace FixedAssetWeb.Services
             return unitOfWork.company.GetCompanyDetails();
         }
 
+        public Tuple<string, string> ProcessingMonthAndYear()
+        {
+            var result = unitOfWork.company.GetProcessingMonthAndYear();
+            string month = result.Item1;
+            string year = result.Item2;
+            return Tuple.Create(month, year);
+        }
+
         public void RemoveCompany(nac_company bl_sheet)
         {
             unitOfWork.company.Remove(bl_sheet);

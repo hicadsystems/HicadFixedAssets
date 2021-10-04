@@ -11,5 +11,6 @@ namespace FixedAssetCore.Core.IRepositories
     {
         Task<nac_company> GetCompanyByCode(Expression<Func<nac_company, bool>> predicate);
         nac_company GetCompanyDetails();
+        Tuple<string, string> GetProcessingMonthAndYear();
     }
 }

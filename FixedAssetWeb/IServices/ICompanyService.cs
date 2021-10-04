@@ -15,5 +15,6 @@ namespace FixedAssetWeb.IServices
         Task<bool> AddCompany(nac_company bl_sheet);
         Task<nac_company> GetCompanyByCode(string bcode);
         Task<bool> UpdateCompany(nac_company bl_sheet);
+        Tuple<string, string> ProcessingMonthAndYear();
     }
 }

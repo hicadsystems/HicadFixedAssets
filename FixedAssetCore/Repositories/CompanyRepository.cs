@@ -27,5 +27,14 @@ namespace FixedAssetCore.Core.Repositories
             return context.nac_company.FirstOrDefault();
         }
 
+        public Tuple<string, string> GetProcessingMonthAndYear()
+        {
+            var company = context.nac_company.FirstOrDefault();
+
+            string processingMonth = company.processmonth;
+            string processingYear = company.Processyear;
+
+            return Tuple.Create(processingMonth, processingYear);
+        }
     }
 }
