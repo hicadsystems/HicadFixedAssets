@@ -81,6 +81,12 @@ namespace FixedAssetCore.Repositories
                     context.fa_Assetsreg.Update(assetReg);
                 }
 
+                var company = context.nac_company.FirstOrDefault();
+                company.processmonth = month;
+                company.Processyear = year;
+
+                context.nac_company.Update(company);
+
                 return "Assets Depreciation updated successfully for date range: Month " + month + " and year " + year;
             }
         }

@@ -67,6 +67,17 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             return Ok(new { responseCode = 200, responseDescription = "Deleted Successful" });
         }
 
+        //api/Company/GetCompanyMonthAndYear
+        [Route("GetCompanyMonthAndYear")]
+        [HttpGet]
+        public IActionResult GetCompanyMonthAndYear()
+        {
+            var result = service.ProcessingMonthAndYear();
+            string month = result.Item1;
+            string year = result.Item2;
+            return Ok(new { responseCode = 200, Data = new { month, year } });
+        }
+
 
         // PUT: api/BalanceSheet/5
         [Route("updateCompany")]
@@ -110,7 +121,7 @@ namespace FixedAssetWeb.Controllers.Api.ReferenceTable
             }
             catch (Exception ex)
             {
-                return Ok(new { responseCode = 500, responseDescription = "Failed" });
+                return Ok(new { responseCode = 500, responseDescription = "Failed", message = ex });
             }
         }
 
