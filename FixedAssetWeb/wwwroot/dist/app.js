@@ -36042,7 +36042,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("label", { staticClass: "form-label" }, [
-        _c("b", [_vm._v("Process Month ")])
+        _vm._v("\n                  Process Month \n                ")
       ])
     ])
   },
@@ -36052,7 +36052,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", [
       _c("label", { staticClass: "form-label" }, [
-        _c("b", [_vm._v("Process Year ")])
+        _vm._v("\n                  Process Year \n                ")
       ])
     ])
   }
