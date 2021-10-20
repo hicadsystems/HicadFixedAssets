@@ -5501,6 +5501,138 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  data: function data() {
+    return {
+      errors: [],
+      responseMessage: "",
+      objectBody: {
+        Month: "",
+        Year: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/api/Company/GetCompanyMonthAndYear").then(function (response) {
+      _this.objectBody.Year = response.data.data.year;
+      _this.objectBody.Month = response.data.data.month;
+    });
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=script&lang=js& ***!
@@ -37891,6 +38023,226 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7&":
+/*!*********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7& ***!
+  \*********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "page body" }, [
+      _c(
+        "div",
+        { staticClass: "card", staticStyle: { "text-align": "center" } },
+        [
+          _c(
+            "form",
+            {
+              attrs: { method: "post" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("div", { staticClass: "col-lg-2" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.Month,
+                            expression: "objectBody.Month"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "month", readonly: "" },
+                        domProps: { value: _vm.objectBody.Month },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "Month",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-lg-2" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.objectBody.Year,
+                            expression: "objectBody.Year"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { name: "year", readonly: "" },
+                        domProps: { value: _vm.objectBody.Year },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.objectBody,
+                              "Year",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-4" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "btn-group ml-2 sw-btn-group-extra",
+                        attrs: { role: "group" }
+                      },
+                      [
+                        this.objectBody.Month != "" &&
+                        this.objectBody.Year != ""
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-submit btn-primary",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Continue\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(3)
+                  ])
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "page-wrapper" }, [
+        _c("div", { staticClass: "page-header" }, [
+          _c("div", { staticClass: "row align-items-end" }, [
+            _c("div", { staticClass: "col-lg-8" }, [
+              _c("div", { staticClass: "page-header-title" }, [
+                _c("div", { staticClass: "d-inline" }, [
+                  _c("h4", [_vm._v("MONTHLY JOURNAL")])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-lg-4" }, [
+              _c("div", { staticClass: "page-header-breadcrumb" }, [
+                _c("ul", { staticClass: "breadcrumb-title" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "index.html" } }, [
+                      _c("i", { staticClass: "feather icon-home" })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("label", { staticClass: "form-label" }, [_c("b", [_vm._v("Month")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("label", { staticClass: "form-label" }, [_c("b", [_vm._v("Year")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "btn-group mr-6 sw-btn-group-extra",
+        attrs: { role: "group" }
+      },
+      [
+        _c("button", { staticClass: "btn btn-danger" }, [
+          _vm._v("\n                  Cancel\n                ")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue?vue&type=template&id=6a4efd6a& ***!
@@ -53147,6 +53499,7 @@ var map = {
 	"./components/Reports/DepreciationValueReport.vue": "./wwwroot/Vue/components/Reports/DepreciationValueReport.vue",
 	"./components/Reports/DisposalReport.vue": "./wwwroot/Vue/components/Reports/DisposalReport.vue",
 	"./components/Reports/InsuranceRenewalReport.vue": "./wwwroot/Vue/components/Reports/InsuranceRenewalReport.vue",
+	"./components/Reports/MonthlyJournalComponent.vue": "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue",
 	"./components/Transactions/AssetDisposalComponent.vue": "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue",
 	"./components/Transactions/AssetMovementComponent.vue": "./wwwroot/Vue/components/Transactions/AssetMovementComponent.vue",
 	"./components/Transactions/AssetReclassificationComponent.vue": "./wwwroot/Vue/components/Transactions/AssetReclassificationComponent.vue",
@@ -53204,15 +53557,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Reports/DepreciationSummary.vue */ "./wwwroot/Vue/components/Reports/DepreciationSummary.vue");
 /* harmony import */ var _components_Transactions_AssetDisposalComponent_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/Transactions/AssetDisposalComponent.vue */ "./wwwroot/Vue/components/Transactions/AssetDisposalComponent.vue");
 /* harmony import */ var _components_Reports_DisposalReport_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/Reports/DisposalReport.vue */ "./wwwroot/Vue/components/Reports/DisposalReport.vue");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _components_Reports_MonthlyJournalComponent_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/Reports/MonthlyJournalComponent.vue */ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_17__);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.use(vue_simple_alert__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.use(vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a);
+
 
 
 
@@ -53231,23 +53586,24 @@ vue__WEBPACK_IMPORTED_MODULE_16___default.a.use(vue_confirm_dialog__WEBPACK_IMPO
 var files = __webpack_require__("./wwwroot/Vue sync recursive \\.vue$/");
 
 files.keys().map(function (key) {
-  return vue__WEBPACK_IMPORTED_MODULE_16___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
+  return vue__WEBPACK_IMPORTED_MODULE_17___default.a.component(key.split('/').pop().split('.')[0], files(key)["default"]);
 });
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('generate-depreciation-component', _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('depreciation-summary', _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('asset-disposal-component', _components_Transactions_AssetDisposalComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('disposal-report', _components_Reports_DisposalReport_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_16___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
-var app = new vue__WEBPACK_IMPORTED_MODULE_16___default.a({
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('create-company-component', _components_CreateCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('view-company-component', _components_ViewCompanyComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('create-cost-center', _components_CreateCostCenter_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('view-cost-center', _components_ViewCostCenter_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('create-businessline-component', _components_CreateBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('view-businessline-component', _components_ViewBusinesslineComponent_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('asset-reclassification-component', _components_Transactions_AssetReclassificationComponent_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('asset-movement-component', _components_Transactions_AssetMovementComponent_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('asset-registration-component', _components_AssetRegistrationComponent_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('generate-depreciation-component', _components_MonthEndProcessing_GenerateDepreciationComponent_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('depreciation-summary', _components_Reports_DepreciationSummary_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('asset-disposal-component', _components_Transactions_AssetDisposalComponent_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('disposal-report', _components_Reports_DisposalReport_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('monthly-journal-component', _components_Reports_MonthlyJournalComponent_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_17___default.a.component('vue-confirm-dialog', vue_confirm_dialog__WEBPACK_IMPORTED_MODULE_2___default.a["default"]);
+var app = new vue__WEBPACK_IMPORTED_MODULE_17___default.a({
   el: "#app",
   store: _store__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
@@ -54215,6 +54571,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewalReport_vue_vue_type_template_id_fc40c3c4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InsuranceRenewalReport_vue_vue_type_template_id_fc40c3c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue":
+/*!********************************************************************!*\
+  !*** ./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MonthlyJournalComponent.vue?vue&type=template&id=67bdead7& */ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7&");
+/* harmony import */ var _MonthlyJournalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MonthlyJournalComponent.vue?vue&type=script&lang=js& */ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MonthlyJournalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyJournalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MonthlyJournalComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyJournalComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7&":
+/*!***************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7& ***!
+  \***************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MonthlyJournalComponent.vue?vue&type=template&id=67bdead7& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/MonthlyJournalComponent.vue?vue&type=template&id=67bdead7&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MonthlyJournalComponent_vue_vue_type_template_id_67bdead7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
