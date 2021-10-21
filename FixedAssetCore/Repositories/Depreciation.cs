@@ -3,6 +3,7 @@ using FixedAssetCore.Core.Repositories;
 using FixedAssetCore.Entities;
 using FixedAssetCore.EntityCoreVM;
 using FixedAssetCore.IRepositories;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +89,102 @@ namespace FixedAssetCore.Repositories
                 context.nac_company.Update(company);
 
                 return "Assets Depreciation updated successfully for date range: Month " + month + " and year " + year;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> SortDepreciationByClass(string month, string year)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationVMs = new List<DepreciationVM>();
+
+                var depreciationGroup = SortDepreciationByMonthAndYear(month, year).GroupBy(x => x.newclass).ToList();
+
+                foreach (var assetLists in depreciationGroup)
+                {
+                    foreach (var asset in assetLists)
+                    {
+                        depreciationVMs.Add(new DepreciationVM
+                        {
+                            assetcode = asset.assetcode,
+                            assetdesc = asset.assetdesc,
+                            purchdate = asset.purchdate,
+                            purchval = asset.purchval,
+                            depreciation = asset.depreciation,
+                            newclass = asset.newclass,
+                            newloc = asset.newloc,
+                            busline = asset.busline,
+                        });
+                    }
+                }
+
+                return depreciationVMs;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> GroupDeprecitionClass(string month, string year)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationClass = new List<DepreciationVM>();
+
+                var depreciationGroup = SortDepreciationByMonthAndYear(month, year).OrderBy(x => x.newclass).DistinctBy(x => x.newclass);
+
+                foreach (var asset in depreciationGroup)
+                {
+                    depreciationClass.Add(new DepreciationVM
+                    {
+                        assetcode = asset.assetcode,
+                        assetdesc = asset.assetdesc,
+                        purchdate = asset.purchdate,
+                        purchval = asset.purchval,
+                        depreciation = asset.depreciation,
+                        newclass = asset.newclass,
+                        newloc = asset.newloc,
+                        busline = asset.busline,
+                    });
+                }
+
+                return depreciationClass;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private IEnumerable<DepreciationVM> SortDepreciationByMonthAndYear(string month, string year)
+        {
+            try
+            {
+                var result = context.fa_gdepreciations.Where(asset => asset.assetmonth == month && asset.assetyear == year)
+                //.Join(context.fa_class, deprAsset => deprAsset.newclass, c => c.classcode, (deprAsset, c) => new { deprAsset, c })
+                .Join(context.nac_costcenters, al => al.loc, costcnt => costcnt.unitcode, (al, costcnt) => new { al, costcnt })
+                .Join(context.nac_businessline, abl => abl.al.busline, busline => busline.Code, (abl, busline) => new { abl.al, abl.costcnt, busline })
+                .Select(assetsDepreciated => new DepreciationVM
+                {
+                    assetcode = assetsDepreciated.al.assetcode,
+                    assetdesc = assetsDepreciated.al.assetdesc,
+                    purchdate = assetsDepreciated.al.purchdate,
+                    purchval = assetsDepreciated.al.purchval,
+                    depreciation = assetsDepreciated.al.depreciation,
+                    newclass = assetsDepreciated.al.newclass,
+                    newloc = assetsDepreciated.costcnt.unitdesc,
+                    busline = assetsDepreciated.busline.Description,
+                }).ToList();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

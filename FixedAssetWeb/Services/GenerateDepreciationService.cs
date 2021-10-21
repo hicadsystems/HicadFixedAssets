@@ -44,5 +44,19 @@ namespace FixedAssetWeb.Services
 
             return response;
         }
+
+        public IEnumerable<DepreciationVM> SortDepreciationsByClass(string month, string year)
+        {
+            var response = unitOfWork.depreciation.SortDepreciationByClass(month, year);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> OrderDepreciationsByClass(string month, string year)
+        {
+            var response = unitOfWork.depreciation.GroupDeprecitionClass(month, year);
+
+            return response;
+        }
     }
 }
