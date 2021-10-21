@@ -134,18 +134,18 @@ namespace FixedAssetWeb.Controllers
             return await _generatePdf.GetPdf("Views/Report/PrintAssetDisposal.cshtml", assetDisposalReport);
         }
 
-        [Route("Report/MonthlyJournalPDF/{month}/{year}")]
-        public async Task<IActionResult> MonthlyJournalReport(string month, string? year)
+        [Route("Report/MonthlyJournalReport/{month}/{year}")]
+        public async Task<IActionResult> MonthlyJournalReport(string month, string year)
         {
             if (month == null && year == null)
                 return BadRequest("Input is Required");
             var monthlyJournalReport = new ReportVM
             {
-                Company = _companyService.GetCompanySingleRecord().
-                StockLedgers = _ledger.GroupByItemCode(startDate, endDate).ToList(),
-                StockLedgers2 = _ledger.GroupByLastItemCode(startDate, endDate).ToList()
+                Company = _companyService.GetCompanySingleRecord(),
+                MonthlyJournal = _generateDepreciation.SortDepreciationsByClass(month, year),
+                MonthlyJournal2 = _generateDepreciation.OrderDepreciationsByClass(month, year)
             };
-            return await _generatePdf.GetPdf("Views/StockLedger/StockLedgerPdf.cshtml", ledger);
+            return await _generatePdf.GetPdf("Views/Report/MonthlyJournalReport.cshtml", monthlyJournalReport);
         }
     }
 }

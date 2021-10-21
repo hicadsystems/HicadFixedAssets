@@ -78,6 +78,7 @@
                     "
                     type="submit"
                     class="btn btn-submit btn-primary"
+                    v-on:click="generateReport"
                   >
                     Continue
                   </button>
@@ -125,7 +126,9 @@ export default {
     },
 
     methods: {
-
+      generateReport(){
+         window.open(`/Report/MonthlyJournalReport/${this.objectBody.Month}/${this.objectBody.Year}`);
+      }
     }
 }
 </script>
