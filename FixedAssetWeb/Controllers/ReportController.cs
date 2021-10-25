@@ -71,6 +71,11 @@ namespace FixedAssetWeb.Controllers
             return View();
         }
 
+        public IActionResult DepreciationNote()
+        {
+            return View();
+        }
+
         [Route("Report/PrintDepreciationSummary/{assetCode}")]
         public async Task<IActionResult> PrintDepreciationSummary(string assetCode)
         {
