@@ -12,5 +12,7 @@ namespace FixedAssetWeb.IServices
         IEnumerable<DepreciationVM> SortAssetsDeprecation(SortAssetsRegListVM sortAssetsRegListVM);
         IEnumerable<DepreciationVM> DeprecationSummaryReport(string assetCode);
         string UpdateDepreciations(string month, string year);
+        IEnumerable<DepreciationVM> SortDepreciationsByClass(string month, string year);
+        IEnumerable<DepreciationVM> OrderDepreciationsByClass(string month, string year);
     }
 }

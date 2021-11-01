@@ -21,5 +21,7 @@ namespace FixedAssetWeb.ViewModels.Reports
         public IEnumerable<fa_historyVM> AssetNovementReport { get; set; }
         public IEnumerable<fa_AssetRegVM> InsuranceReport { get; set; }
         public IEnumerable<AssetDisposalVM> AssetDisposal { get; set; }
+        public IEnumerable<DepreciationVM> MonthlyJournal { get; set; }
+        public IEnumerable<DepreciationVM> MonthlyJournal2 { get; set; }
     }
 }

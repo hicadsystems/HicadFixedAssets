@@ -1,0 +1,82 @@
+﻿@model FixedAssetWeb.ViewModels.Reports.ReportVM
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "MonthlyJournal";
+}
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 style="text-align:center" class="text-center display-4">@Model.Company.comp_name</h1>
+    <h3 style="text-align:center">@Model.Company.Address</h3>
+
+    <br />
+    <h3 style="text-align:center">REPORTS</h3>
+    <h4 style="text-align:center">Monthly Journal</h4>
+
+    <h3>Monthly Journal Report: Produce On @DateTime.Now</h3>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        <tr style="text-align:center">
+        </tr>
+        @foreach (var b in Model.MonthlyJournal2)
+        {
+
+            <tr>
+                <td><span><b>Class:</b></span> @b.newclass</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th>Asset Code</th>
+                <th>Asset Description</th>
+                <th>Purchase Date</th>
+                <th>Purchase Value</th>
+                <th>Depreciation</th>
+                <th>Class</th>
+                <th>Location</th>
+                <th>Bus Line</th>
+            </tr>
+
+            <tr></tr>
+
+            @foreach (var a in Model.MonthlyJournal.Where(x => x.newclass == b.newclass))
+            {
+                <tr style="text-align:center">
+                    <td>@a.assetcode</td>
+                    <td>@a.assetdesc</td>
+                    <td>@a.purchdate</td>
+                    <td>@a.purchval</td>
+                    <td>@a.depreciation</td>
+                    <td>@a.newclass</td>
+                    <td>@a.newloc</td>
+                    <td>@a.busline</td>
+                </tr>
+            }
+            <tr>
+                <td><span><b> &nbsp;&nbsp;&nbsp; </b></span> </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            @*<tr>
+
+            </tr>*@
+
+        }
+    </table>
+</body>
+</html>

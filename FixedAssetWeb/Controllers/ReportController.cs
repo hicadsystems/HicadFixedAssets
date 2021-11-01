@@ -66,6 +66,16 @@ namespace FixedAssetWeb.Controllers
             return View();
         }
 
+        public IActionResult MonthlyJournal()
+        {
+            return View();
+        }
+
+        public IActionResult DepreciationNote()
+        {
+            return View();
+        }
+
         [Route("Report/PrintDepreciationSummary/{assetCode}")]
         public async Task<IActionResult> PrintDepreciationSummary(string assetCode)
         {
@@ -127,6 +137,20 @@ namespace FixedAssetWeb.Controllers
             };
 
             return await _generatePdf.GetPdf("Views/Report/PrintAssetDisposal.cshtml", assetDisposalReport);
+        }
+
+        [Route("Report/MonthlyJournalReport/{month}/{year}")]
+        public async Task<IActionResult> MonthlyJournalReport(string month, string year)
+        {
+            if (month == null && year == null)
+                return BadRequest("Input is Required");
+            var monthlyJournalReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                MonthlyJournal = _generateDepreciation.SortDepreciationsByClass(month, year),
+                MonthlyJournal2 = _generateDepreciation.OrderDepreciationsByClass(month, year)
+            };
+            return await _generatePdf.GetPdf("Views/Report/MonthlyJournalReport.cshtml", monthlyJournalReport);
         }
     }
 }
