@@ -58,5 +58,18 @@ namespace FixedAssetWeb.Services
 
             return response;
         }
+
+        public IEnumerable<DepreciationNoteVM> DepreciationNoteService(string classCode, string month, string year)
+        {
+            var response = unitOfWork.depreciation.DepreciationNote(classCode, month, year);
+
+            return response;
+        }
+        public IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClassService(string classCode, string month, string year)
+        {
+            var response = unitOfWork.depreciation.DepreciationNote(classCode, month, year);
+
+            return response;
+        }
     }
 }
