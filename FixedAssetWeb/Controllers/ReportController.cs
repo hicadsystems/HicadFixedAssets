@@ -143,7 +143,7 @@ namespace FixedAssetWeb.Controllers
         public async Task<IActionResult> MonthlyJournalReport(string month, string year)
         {
             if (month == null && year == null)
-                return BadRequest("Input is Required");
+                return BadRequest("Date Input is Required");
             var monthlyJournalReport = new ReportVM
             {
                 Company = _companyService.GetCompanySingleRecord(),
@@ -151,6 +151,20 @@ namespace FixedAssetWeb.Controllers
                 MonthlyJournal2 = _generateDepreciation.OrderDepreciationsByClass(month, year)
             };
             return await _generatePdf.GetPdf("Views/Report/MonthlyJournalReport.cshtml", monthlyJournalReport);
+        }
+
+        [Route("Report/DepreciationNotesReport/{classCode}/{month}/{year}")]
+        public async Task<IActionResult> DepreciationNotesReport(string classCode, string month, string year)
+        {
+            if (month == null && year == null)
+                return BadRequest("Date Input is Required");
+            var depreciationNoteReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationNote = _generateDepreciation.DepreciationNoteService(classCode, month, year),
+                DepreciationNote2 = _generateDepreciation.GetDepreciationNoteByClassService(classCode, month, year),
+            };
+            return await _generatePdf.GetPdf("Views/Report/DepreciationNotesReport.cshtml", depreciationNoteReport);
         }
     }
 }

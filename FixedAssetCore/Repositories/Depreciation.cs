@@ -187,5 +187,110 @@ namespace FixedAssetCore.Repositories
                 throw ex;
             }
         }
+
+        public IEnumerable<DepreciationNoteVM> DepreciationNote(string classCode, string month, string year)
+        {
+            var depreAssets = new List<DepreciationNoteVM>();
+
+            var deprecAssetList = DepreciationNoteRepo(classCode, month, year).OrderBy(x => x.newclass).GroupBy(x => x.newclass).ToList();
+
+            foreach (var assets in deprecAssetList)
+            {
+                foreach (var asset in assets)
+                {
+                    depreAssets.Add(new DepreciationNoteVM
+                    {
+                        Class = asset.newclass,
+                        Cost = asset.purchval,
+                        CostStartDate = string.Format("{0:MM/dd/yyyy}", asset.purchdate),
+                        Additions = 1,
+                        Reclassifications = asset.newclassval,
+                        Disposal = 0,
+                        Depreciation = asset.depreciation,
+                        DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date),
+                        DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date)
+
+                    });
+                }
+            }
+
+            return depreAssets;
+        }
+
+        public IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClass(string classCode, string month, string year)
+        {
+            var depreciationClass = new List<DepreciationNoteVM>();
+
+            var depreciatedAssets = DepreciationNoteRepo(classCode, month, year).OrderBy(x => x.newclass).DistinctBy(x => x.newclass);
+
+            foreach (var assets in depreciatedAssets)
+            {
+                depreciationClass.Add(new DepreciationNoteVM
+                {
+                    Class = assets.newclass,
+                    Cost = assets.purchval,
+                    CostStartDate = string.Format("{0:MM/dd/yyyy}", assets.purchdate),
+                    Additions = 1,
+                    Reclassifications = assets.newclassval,
+                    Disposal = 0,
+                    Depreciation = assets.depreciation,
+                    DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date),
+                    DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date)
+                });
+            }
+
+            return depreciationClass;
+        }
+
+        private IEnumerable<DepreciationVM> DepreciationNoteRepo(string classCode, string month, string year)
+        {
+            IEnumerable<DepreciationVM> result = null;
+
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year))
+            {
+                try
+                {
+                    result = context.fa_gdepreciations.Where(asset => asset.newclass == classCode.Trim() && asset.assetmonth == month.Trim() && asset.assetyear == year.Trim())
+                        .Select(depreList => new DepreciationVM
+                        {
+                            oldclass = depreList.oldclass,
+                            newclass = depreList.newclass,
+                            purchdate = depreList.purchdate,
+                            depreciation = depreList.depreciation,
+                            bookval = depreList.bookval
+
+                        }).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+            }
+            else if (!string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year))
+            {
+                try
+                {
+                    result = context.fa_gdepreciations.Where(asset => asset.assetmonth == month.Trim() && asset.assetyear == year.Trim())
+                        .Select(depreList => new DepreciationVM
+                        {
+                            oldclass = depreList.oldclass,
+                            newclass = depreList.newclass,
+                            purchdate = depreList.purchdate,
+                            depreciation = depreList.depreciation,
+                            bookval = depreList.bookval
+
+                        }).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+
+            return result;
+        }
     }
 }

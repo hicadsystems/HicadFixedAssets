@@ -13,7 +13,8 @@ namespace FixedAssetCore.IRepositories
         IEnumerable<DepreciationVM> DeprecationSummary(string assetCode);
         string UpdateAssetDeprecation(string month, string year);
         IEnumerable<DepreciationVM> SortDepreciationByClass(string month, string year);
-
         IEnumerable<DepreciationVM> GroupDeprecitionClass(string month, string year);
+        IEnumerable<DepreciationNoteVM> DepreciationNote(string classCode, string month, string year);
+        IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClass(string classCode, string month, string year);
     }
 }
