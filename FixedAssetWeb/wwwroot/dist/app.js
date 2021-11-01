@@ -4860,8 +4860,8 @@ __webpack_require__.r(__webpack_exports__);
       SpecificAsset: false,
       classList: null,
       SortAssetsList: {
-        AllAssets: "Null",
-        ClassCode: "Null",
+        AllAssets: "null",
+        ClassCode: "null",
         Month: "",
         Year: ""
       }
@@ -4872,11 +4872,10 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("/api/AssetReclassification/getAllClassifications").then(function (response) {
       return _this.classList = response.data;
-    });
-    axios.get("/api/Company/GetCompanyMonthAndYear").then(function (response) {
-      _this.SortAssetsList.Year = response.data.data.year;
-      _this.SortAssetsList.Month = response.data.data.month;
-    });
+    }); // axios.get("/api/Company/GetCompanyMonthAndYear").then((response) => {
+    //   this.SortAssetsList.Year = response.data.data.year;
+    //   this.SortAssetsList.Month = response.data.data.month;
+    // });
   },
   methods: {
     SetAllAsset: function SetAllAsset() {
@@ -55803,7 +55802,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

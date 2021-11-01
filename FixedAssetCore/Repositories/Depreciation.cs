@@ -246,7 +246,7 @@ namespace FixedAssetCore.Repositories
         {
             IEnumerable<DepreciationVM> result = null;
 
-            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year))
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year) && classCode != "null")
             {
                 try
                 {

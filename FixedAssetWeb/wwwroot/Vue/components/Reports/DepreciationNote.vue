@@ -166,8 +166,8 @@ export default {
       SpecificAsset: false,
       classList: null,
       SortAssetsList: {
-        AllAssets: "Null",
-        ClassCode: "Null",
+        AllAssets: "null",
+        ClassCode: "null",
         Month: "",
         Year: "",
       },
@@ -178,10 +178,10 @@ export default {
       .get("/api/AssetReclassification/getAllClassifications")
       .then((response) => (this.classList = response.data));
 
-    axios.get("/api/Company/GetCompanyMonthAndYear").then((response) => {
-      this.SortAssetsList.Year = response.data.data.year;
-      this.SortAssetsList.Month = response.data.data.month;
-    });
+    // axios.get("/api/Company/GetCompanyMonthAndYear").then((response) => {
+    //   this.SortAssetsList.Year = response.data.data.year;
+    //   this.SortAssetsList.Month = response.data.data.month;
+    // });
   },
 
   methods: {
