@@ -4840,6 +4840,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4854,7 +4861,7 @@ __webpack_require__.r(__webpack_exports__);
       classList: null,
       SortAssetsList: {
         AllAssets: "Null",
-        SpecAssets: "Null",
+        ClassCode: "Null",
         Month: "",
         Year: ""
       }
@@ -4867,8 +4874,8 @@ __webpack_require__.r(__webpack_exports__);
       return _this.classList = response.data;
     });
     axios.get("/api/Company/GetCompanyMonthAndYear").then(function (response) {
-      _this.objectBody.Year = response.data.data.year;
-      _this.objectBody.Month = response.data.data.month;
+      _this.SortAssetsList.Year = response.data.data.year;
+      _this.SortAssetsList.Month = response.data.data.month;
     });
   },
   methods: {
@@ -4879,6 +4886,9 @@ __webpack_require__.r(__webpack_exports__);
     SetSpecificAsset: function SetSpecificAsset() {
       this.AllAsset = false;
       this.SpecificAsset = true;
+    },
+    generateReport: function generateReport() {
+      window.open("/Report/DepreciationNotesReport/".concat(this.SortAssetsList.ClassCode, "/").concat(this.SortAssetsList.Month, "/").concat(this.SortAssetsList.Year));
     }
   }
 });
@@ -37290,8 +37300,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.SortAssetsList.SpecAssets,
-                              expression: "SortAssetsList.SpecAssets"
+                              value: _vm.SortAssetsList.ClassCode,
+                              expression: "SortAssetsList.ClassCode"
                             }
                           ],
                           staticClass: "form-control form-control-inverse",
@@ -37308,7 +37318,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.SortAssetsList,
-                                "SpecAssets",
+                                "ClassCode",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -37407,9 +37417,28 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(6),
+          _c(
+            "div",
+            {
+              staticClass: "btn-group mr-2 sw-btn-group-extra",
+              attrs: { role: "group" }
+            },
+            [
+              this.SortAssetsList.Month != "" && this.SortAssetsList.Year != ""
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary mb-2",
+                      attrs: { type: "submit" },
+                      on: { click: _vm.generateReport }
+                    },
+                    [_vm._v("\n            Continue\n          ")]
+                  )
+                : _vm._e()
+            ]
+          ),
           _vm._v(" "),
-          _vm._m(7)
+          _vm._m(6)
         ])
       ])
     ])
@@ -37499,25 +37528,6 @@ var staticRenderFns = [
     return _c("div", [
       _c("label", { staticClass: "form-label" }, [_c("b", [_vm._v("Year")])])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "btn-group mr-2 sw-btn-group-extra",
-        attrs: { role: "group" }
-      },
-      [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary mb-2", attrs: { type: "submit" } },
-          [_vm._v("Continue")]
-        )
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -55793,7 +55803,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })

@@ -80,7 +80,7 @@
                 <div>
                   <select
                     name="assetclass"
-                    v-model="SortAssetsList.SpecAssets"
+                    v-model="SortAssetsList.ClassCode"
                     class="form-control form-control-inverse"
                     required
                   >
@@ -132,7 +132,14 @@
             </div>
           </div>
           <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-            <button type="submit" class="btn btn-primary mb-2">Continue</button>
+            <button
+              v-if="this.SortAssetsList.Month != '' && this.SortAssetsList.Year != ''"
+              type="submit"
+              class="btn btn-primary mb-2"
+              v-on:click="generateReport"
+            >
+              Continue
+            </button>
           </div>
           <div role="group" class="btn-group mr-2 sw-btn-group-extra">
             <button class="btn btn-danger mb-2">Cancel</button>
@@ -160,7 +167,7 @@ export default {
       classList: null,
       SortAssetsList: {
         AllAssets: "Null",
-        SpecAssets: "Null",
+        ClassCode: "Null",
         Month: "",
         Year: "",
       },
@@ -172,8 +179,8 @@ export default {
       .then((response) => (this.classList = response.data));
 
     axios.get("/api/Company/GetCompanyMonthAndYear").then((response) => {
-      this.objectBody.Year = response.data.data.year;
-      this.objectBody.Month = response.data.data.month;
+      this.SortAssetsList.Year = response.data.data.year;
+      this.SortAssetsList.Month = response.data.data.month;
     });
   },
 
@@ -185,6 +192,12 @@ export default {
     SetSpecificAsset() {
       this.AllAsset = false;
       this.SpecificAsset = true;
+    },
+
+    generateReport() {
+      window.open(
+        `/Report/DepreciationNotesReport/${this.SortAssetsList.ClassCode}/${this.SortAssetsList.Month}/${this.SortAssetsList.Year}`
+      );
     },
   },
 };
