@@ -67,7 +67,7 @@ namespace FixedAssetWeb.Services
         }
         public IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClassService(string classCode, string month, string year)
         {
-            var response = unitOfWork.depreciation.DepreciationNote(classCode, month, year);
+            var response = unitOfWork.depreciation.GetDepreciationNoteByClass(classCode, month, year);
 
             return response;
         }

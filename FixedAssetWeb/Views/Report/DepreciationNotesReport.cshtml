@@ -25,35 +25,25 @@
 
         @foreach (var assetClass in Model.DepreciationNote2)
         {
-            <tr>
-                <td><span><b>All Lines:</b></span> @assetClass.Class</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+    <tr>
+        <td> <span><b>All Lines:</b></span></td>
+        <td> @assetClass.Class</td>
+    </tr>
 
-            <tr>
-                <th>Date</th>
-                <th>Receipt Number</th>
-                <th>Item Description</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Amount</th>
-            </tr>
+         
 
             @foreach (var asset in Model.DepreciationNote.Where(x => x.Class == assetClass.Class))
             {
                 <tr style="text-align:center">
                     <td> @asset.CostStartDate</td>
-                    <td> @asset.Additions </td>
-                    <td> @asset.Reclassifications</td>
+                   
+                    @*<td> @asset.Reclassifications</td>
                     <td> @asset.Disposal</td>
-                    <td> @asset.CostEndDate</td>
-                    <td></td>
+                    <td> @asset.CostEndDate</td>*@
+                    @*<td></td>*@
                     
                 </tr>
+                <tr> <td> @asset.Additions </td></tr>
             }
             
          }
