@@ -192,27 +192,104 @@ namespace FixedAssetCore.Repositories
         {
             var depreAssets = new List<DepreciationNoteVM>();
 
-            var deprecAssetList = DepreciationNoteRepo(classCode, month, year).OrderBy(x => x.newclass).GroupBy(x => x.newclass).ToList();
-
-            foreach (var assets in deprecAssetList)
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year) && classCode != "null")
             {
-                foreach (var asset in assets)
+                try
                 {
+                    var classcode = context.fa_class.FirstOrDefault(x => x.classcode == classCode);
+
+                    //get's all records that belongs to a particular class
+                    var allAssetsInclass = context.fa_gdepreciations.Where(asset => asset.newclass == classcode.classdesc.Trim() && asset.assetmonth == month.Trim() && asset.assetyear == year.Trim()).ToList();
+
+                    foreach (var assetRec in allAssetsInclass)
+                    {
+                        //sum properties of a record that belongs to a particular class and adds them to a Depreciation Note Model
+                        depreAssets.Add(new DepreciationNoteVM
+                        {
+                            Class = allAssetsInclass.FirstOrDefault().newclass,
+                            Cost = allAssetsInclass.Sum(x => x.purchval),
+                            CostStartDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().purchdate),
+                            Additions = allAssetsInclass.Count(),
+                            // Reclassifications = deprecAssetList.LastOrDefault().r,
+                            Disposal = 0,
+                            Depreciation = allAssetsInclass.Sum(x => x.depreciation),
+                            DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().calc_date),
+                            DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().calc_date)
+
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            else
+            {
+                //Gets all Distinct classes on the fa_gdepreciations table
+                var classes = context.fa_gdepreciations.DistinctBy(x => x.newclass).ToList();
+
+                //loops through the list of classes
+                foreach (var allrec in classes)
+                {
+                    //get's all records that belongs to a particular class
+                    var getallrecInClass = context.fa_gdepreciations.Where(x => x.newclass == allrec.newclass).ToList();
+
+                    //sum properties of a record that belongs to a particular class and adds them to a Depreciation Note Model
                     depreAssets.Add(new DepreciationNoteVM
                     {
-                        Class = asset.newclass,
-                        Cost = asset.purchval,
-                        CostStartDate = string.Format("{0:MM/dd/yyyy}", asset.purchdate),
-                        Additions = 1,
-                        Reclassifications = asset.newclassval,
+                        Class = getallrecInClass.FirstOrDefault().newclass,
+                        Cost = getallrecInClass.Sum(x => x.purchval),
+                        CostStartDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().purchdate),
+                        Additions = getallrecInClass.Count(),
+                        // Reclassifications = deprecAssetList.LastOrDefault().r,
                         Disposal = 0,
-                        Depreciation = asset.depreciation,
-                        DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date),
-                        DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date)
+                        Depreciation = getallrecInClass.Sum(x => x.depreciation),
+                        DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().calc_date),
+                        DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().calc_date)
 
                     });
                 }
             }
+
+            //var deprecAssetList = DepreciationNoteRepo(classCode, month, year).OrderBy(x => x.newclass).GroupBy(x => x.newclass).ToList();
+            //foreach (var assets in deprecAssetList)
+            //{
+            //    depreAssets.Add(new DepreciationNoteVM
+            //    {
+            //        Class = deprecAssetList.FirstOrDefault().newclass,
+            //        Cost = deprecAssetList.Sum(x => x.purchval),
+            //        CostStartDate = string.Format("{0:MM/dd/yyyy}", deprecAssetList.FirstOrDefault().purchdate),
+            //        Additions = deprecAssetList.Count(),
+            //        // Reclassifications = deprecAssetList.LastOrDefault().r,
+            //        Disposal = 0,
+            //        Depreciation = deprecAssetList.Sum(x => x.depreciation),
+            //        DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", deprecAssetList.FirstOrDefault().calc_date),
+            //        DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", deprecAssetList.FirstOrDefault().calc_date)
+
+            //    });
+            //}
+
+            //foreach (var assets in deprecAssetList)
+            //{
+            //    foreach (var asset in assets)
+            //    {
+            //        depreAssets.Add(new DepreciationNoteVM
+            //        {
+            //            Class = asset.newclass,
+            //            Cost = asset.purchval,
+            //            CostStartDate = string.Format("{0:MM/dd/yyyy}", asset.purchdate),
+            //            Additions = 1,
+            //            Reclassifications = asset.newclassval,
+            //            Disposal = 0,
+            //            Depreciation = asset.depreciation,
+            //            DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date),
+            //            DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", asset.calc_date)
+
+            //        });
+            //    }
+            //}
 
             return depreAssets;
         }
@@ -228,14 +305,14 @@ namespace FixedAssetCore.Repositories
                 depreciationClass.Add(new DepreciationNoteVM
                 {
                     Class = assets.newclass,
-                    Cost = assets.purchval,
-                    CostStartDate = string.Format("{0:MM/dd/yyyy}", assets.purchdate),
-                    Additions = 1,
-                    Reclassifications = assets.newclassval,
-                    Disposal = 0,
-                    Depreciation = assets.depreciation,
-                    DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date),
-                    DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date)
+                    //Cost = assets.purchval,
+                    //CostStartDate = string.Format("{0:MM/dd/yyyy}", assets.purchdate),
+                    //Additions = 1,
+                    //Reclassifications = assets.newclassval,
+                    //Disposal = 0,
+                    //Depreciation = assets.depreciation,
+                    //DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date),
+                    //DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", assets.calc_date)
                 });
             }
 
@@ -246,7 +323,7 @@ namespace FixedAssetCore.Repositories
         {
             IEnumerable<DepreciationVM> result = null;
 
-            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year))
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year) && classCode != "null")
             {
                 try
                 {

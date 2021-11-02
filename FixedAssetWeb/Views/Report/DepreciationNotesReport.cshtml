@@ -1,7 +1,7 @@
 ﻿@model FixedAssetWeb.ViewModels.Reports.ReportVM
 @using Microsoft.AspNetCore.Http;
 @{
-    ViewBag.Title = "DepreciationNote";
+    ViewBag.Title = "Depreciation Note";
 }
 @{
     Layout = null;
@@ -18,42 +18,32 @@
     <h3 style="text-align:center">REPORTS</h3>
     <h4 style="text-align:center">Depreciation Note</h4>
 
-    <h3>Monthly Journal Report: Produce On @DateTime.Now</h3>
+    <h3>Depreciation Note Report: Produce On @DateTime.Now</h3>
     <table border="2" cellpadding="2" cellspacing="0" width="100%">
         <tr style="text-align:center">
         </tr>
 
-        @foreach (var b in Model.DepreciationNote2)
+        @foreach (var assetClass in Model.DepreciationNote2)
         {
-            <tr>
-                <td><span><b>All Lines:</b></span> @b.Class</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+    <tr>
+        <td> <span><b>All Lines:</b></span></td>
+        <td> @assetClass.Class</td>
+    </tr>
 
-            <tr>
-                <th>Date</th>
-                <th>Receipt Number</th>
-                <th>Item Description</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Amount</th>
-            </tr>
+         
 
-            @foreach (var a in Model.DepreciationNote.Where(x => x.Class == b.Class))
+            @foreach (var asset in Model.DepreciationNote.Where(x => x.Class == assetClass.Class))
             {
                 <tr style="text-align:center">
-                    <td> @a.CostStartDate</td>
-                    <td> @a.Additions </td>
-                    <td> @a.Reclassifications</td>
-                    <td> @a.Disposal</td>
-                    <td> @a.CostEndDate</td>
-                    <td></td>
+                    <td> @asset.CostStartDate</td>
+                   
+                    @*<td> @asset.Reclassifications</td>
+                    <td> @asset.Disposal</td>
+                    <td> @asset.CostEndDate</td>*@
+                    @*<td></td>*@
                     
                 </tr>
+                <tr> <td> @asset.Additions </td></tr>
             }
             
          }
