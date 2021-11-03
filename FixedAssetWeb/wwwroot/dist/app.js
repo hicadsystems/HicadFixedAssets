@@ -37548,6 +37548,73 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", [
+        _c("div", { staticClass: "page-wrapper" }, [
+          _c("div", { staticClass: "page-header" }, [
+            _c("div", { staticClass: "row align-items-end" }, [
+              _c("div", { staticClass: "col-lg-8" }, [
+                _c("div", { staticClass: "page-header-title" }, [
+                  _c("div", { staticClass: "d-inline" }, [
+                    _c("h4", [_vm._v("DEPRECIATION SCHEDULE")])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-4" }, [
+                _c("div", { staticClass: "page-header-breadcrumb" }, [
+                  _c("ul", { staticClass: "breadcrumb-title" }, [
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "index.html" } }, [
+                        _c("i", { staticClass: "feather icon-home" })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Data Table")])
+                    ]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "breadcrumb-item" }, [
+                      _c("a", { attrs: { href: "#!" } }, [_vm._v("Styling")])
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/DepreciationSummary.vue?vue&type=template&id=5a9b517d&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./wwwroot/Vue/components/Reports/DepreciationSummary.vue?vue&type=template&id=5a9b517d& ***!
@@ -54046,6 +54113,7 @@ var map = {
 	"./components/Reports/AssetMovement.vue": "./wwwroot/Vue/components/Reports/AssetMovement.vue",
 	"./components/Reports/AssetRegReport.vue": "./wwwroot/Vue/components/Reports/AssetRegReport.vue",
 	"./components/Reports/DepreciationNote.vue": "./wwwroot/Vue/components/Reports/DepreciationNote.vue",
+	"./components/Reports/DepreciationSchedule.vue": "./wwwroot/Vue/components/Reports/DepreciationSchedule.vue",
 	"./components/Reports/DepreciationSummary.vue": "./wwwroot/Vue/components/Reports/DepreciationSummary.vue",
 	"./components/Reports/DepreciationValueReport.vue": "./wwwroot/Vue/components/Reports/DepreciationValueReport.vue",
 	"./components/Reports/DisposalReport.vue": "./wwwroot/Vue/components/Reports/DisposalReport.vue",
@@ -54915,6 +54983,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepreciationNote_vue_vue_type_template_id_68501fab___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepreciationNote_vue_vue_type_template_id_68501fab___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Reports/DepreciationSchedule.vue":
+/*!*****************************************************************!*\
+  !*** ./wwwroot/Vue/components/Reports/DepreciationSchedule.vue ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DepreciationSchedule.vue?vue&type=template&id=4795a160& */ "./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "wwwroot/Vue/components/Reports/DepreciationSchedule.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160&":
+/*!************************************************************************************************!*\
+  !*** ./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DepreciationSchedule.vue?vue&type=template&id=4795a160& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./wwwroot/Vue/components/Reports/DepreciationSchedule.vue?vue&type=template&id=4795a160&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DepreciationSchedule_vue_vue_type_template_id_4795a160___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -55802,7 +55923,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
