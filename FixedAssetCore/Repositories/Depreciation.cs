@@ -187,5 +187,486 @@ namespace FixedAssetCore.Repositories
                 throw ex;
             }
         }
+
+        public IEnumerable<DepreciationVM> SortDepreciationScheduleByClass(string classCode)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationVMs = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForClass(classCode).GroupBy(x => x.newclass).ToList();
+
+                foreach (var assetLists in depreciationGroup)
+                {
+                    foreach (var asset in assetLists)
+                    {
+                        depreciationVMs.Add(new DepreciationVM
+                        {
+                            newclasscode = classCode,
+                            newclass = asset.newclass,
+                            purchval = asset.purchval,
+                            purchdate = asset.purchdate,
+                            depreciation = asset.depreciation,
+                            accum_depr = asset.accum_depr,
+                            bookval = asset.bookval
+                        });
+                    }
+                }
+
+                return depreciationVMs;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> GroupDeprecitionScheduleByClass(string classCode)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationClass = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForClass(classCode).OrderBy(x => x.newclass).DistinctBy(x => x.newclass);
+
+                foreach (var asset in depreciationGroup)
+                {
+                    depreciationClass.Add(new DepreciationVM
+                    {
+                        newclass = asset.newclass
+                    });
+                }
+
+                return depreciationClass;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> SortDepreciationScheduleByDept(string dept)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationVMs = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForDept(dept).GroupBy(x => x.loc).ToList();
+
+                foreach (var assetLists in depreciationGroup)
+                {
+                    foreach (var asset in assetLists)
+                    {
+                        depreciationVMs.Add(new DepreciationVM
+                        {
+                            loc = dept,
+                            newloc = asset.newloc,
+                            purchval = asset.purchval,
+                            purchdate = asset.purchdate,
+                            depreciation = asset.depreciation,
+                            accum_depr = asset.accum_depr,
+                            bookval = asset.bookval
+                        });
+                    }
+                }
+
+                return depreciationVMs;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> GroupDeprecitionScheduleByDept(string dept)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationClass = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForDept(dept).OrderBy(x => x.loc).DistinctBy(x => x.loc);
+
+                foreach (var asset in depreciationGroup)
+                {
+                    depreciationClass.Add(new DepreciationVM
+                    {
+                        loc = asset.loc,
+                        newloc = asset.newloc
+                    });
+                }
+
+                return depreciationClass;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private IEnumerable<DepreciationVM> DepreciationScheduleForClass(string classCode)
+        {
+            if (!string.IsNullOrEmpty(classCode.Trim()) && !string.IsNullOrWhiteSpace(classCode.Trim()) && classCode.Trim() != "null")
+            {
+                try
+                {
+                    var classEntity = context.fa_class.FirstOrDefault(x => x.classcode == classCode);
+
+                    var result = context.fa_gdepreciations.Where(asset => asset.newclass == classEntity.classdesc)
+                        .Select(assetsOfClass => new DepreciationVM
+                        {
+                            newclasscode = classCode,
+                            newclass = assetsOfClass.newclass,
+                            purchval = assetsOfClass.purchval,
+                            purchdate = assetsOfClass.purchdate,
+                            depreciation = assetsOfClass.depreciation,
+                            accum_depr = assetsOfClass.accum_depr,
+                            bookval = assetsOfClass.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            else
+            {
+                try
+                {
+                    var result = context.fa_gdepreciations
+                        .Select(assetsOfClass => new DepreciationVM
+                        {
+                            newclasscode = classCode,
+                            newclass = assetsOfClass.newclass,
+                            purchval = assetsOfClass.purchval,
+                            purchdate = assetsOfClass.purchdate,
+                            depreciation = assetsOfClass.depreciation,
+                            accum_depr = assetsOfClass.accum_depr,
+                            bookval = assetsOfClass.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
+
+        private IEnumerable<DepreciationVM> DepreciationScheduleForDept(string dept)
+        {
+            if (!string.IsNullOrEmpty(dept.Trim()) && !string.IsNullOrWhiteSpace(dept.Trim()) && dept.Trim() != "null")
+            {
+                try
+                {
+                    var deptEntity = context.nac_costcenters.FirstOrDefault(x => x.unitcode == dept);
+
+                    var result = context.fa_gdepreciations.Where(asset => asset.loc == dept)
+                        .Select(assetsOfDept => new DepreciationVM
+                        {
+                            loc = assetsOfDept.loc,
+                            newloc = deptEntity.unitdesc,
+                            purchval = assetsOfDept.purchval,
+                            purchdate = assetsOfDept.purchdate,
+                            depreciation = assetsOfDept.depreciation,
+                            accum_depr = assetsOfDept.accum_depr,
+                            bookval = assetsOfDept.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            else
+            {
+                try
+                {
+                    var deptEntity = context.nac_costcenters.FirstOrDefault(x => x.unitcode == dept);
+
+                    var result = context.fa_gdepreciations
+                        .Select(assetsOfDept => new DepreciationVM
+                        {
+                            loc = assetsOfDept.loc,
+                            newloc = deptEntity.unitdesc,
+                            purchval = assetsOfDept.purchval,
+                            purchdate = assetsOfDept.purchdate,
+                            depreciation = assetsOfDept.depreciation,
+                            accum_depr = assetsOfDept.accum_depr,
+                            bookval = assetsOfDept.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
+
+        public IEnumerable<DepreciationVM> SortDepreciationScheduleByBusinessLine(string busline)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationVMs = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForBusinessLine(busline).GroupBy(x => x.busline).ToList();
+
+                foreach (var assetLists in depreciationGroup)
+                {
+                    foreach (var asset in assetLists)
+                    {
+                        depreciationVMs.Add(new DepreciationVM
+                        {
+                            busline = busline,
+                            busdesc = asset.busdesc,
+                            purchval = asset.purchval,
+                            purchdate = asset.purchdate,
+                            depreciation = asset.depreciation,
+                            accum_depr = asset.accum_depr,
+                            bookval = asset.bookval
+                        });
+                    }
+                }
+
+                return depreciationVMs;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public IEnumerable<DepreciationVM> GroupDeprecitionScheduleByBusinessLine(string busline)
+        {
+            try
+            {
+                List<DepreciationVM> depreciationClass = new List<DepreciationVM>();
+
+                var depreciationGroup = DepreciationScheduleForBusinessLine(busline).OrderBy(x => x.busline).DistinctBy(x => x.busline);
+
+                foreach (var asset in depreciationGroup)
+                {
+                    depreciationClass.Add(new DepreciationVM
+                    {
+                        busline = asset.busline,
+                        busdesc = asset.busdesc
+                    });
+                }
+
+                return depreciationClass;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private IEnumerable<DepreciationVM> DepreciationScheduleForBusinessLine(string busline)
+        {
+            if (!string.IsNullOrEmpty(busline.Trim()) && !string.IsNullOrWhiteSpace(busline.Trim()) && busline.Trim() != "null")
+            {
+                try
+                {
+                    var result = context.fa_gdepreciations.Where(asset => asset.busline == busline)
+                        .Select(assetsOfBusLine => new DepreciationVM
+                        {
+                            busline = assetsOfBusLine.busline,
+                            busdesc = assetsOfBusLine.busdesc,
+                            purchval = assetsOfBusLine.purchval,
+                            purchdate = assetsOfBusLine.purchdate,
+                            depreciation = assetsOfBusLine.depreciation,
+                            accum_depr = assetsOfBusLine.accum_depr,
+                            bookval = assetsOfBusLine.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            else
+            {
+                try
+                {
+                    var result = context.fa_gdepreciations
+                        .Select(assetsOfBusLine => new DepreciationVM
+                        {
+                            busline = assetsOfBusLine.busline,
+                            busdesc = assetsOfBusLine.busdesc,
+                            purchval = assetsOfBusLine.purchval,
+                            purchdate = assetsOfBusLine.purchdate,
+                            depreciation = assetsOfBusLine.depreciation,
+                            accum_depr = assetsOfBusLine.accum_depr,
+                            bookval = assetsOfBusLine.bookval
+
+                        }).ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+        }
+
+        public IEnumerable<DepreciationNoteVM> DepreciationNote(string classCode, string month, string year)
+        {
+            var depreAssets = new List<DepreciationNoteVM>();
+
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year) && classCode != "null")
+            {
+                try
+                {
+                    var classcode = context.fa_class.FirstOrDefault(x => x.classcode == classCode);
+
+                    //get's all records that belongs to a particular class
+                    var allAssetsInclass = context.fa_gdepreciations.Where(asset => asset.newclass == classcode.classdesc.Trim() && asset.assetmonth == month.Trim() && asset.assetyear == year.Trim()).ToList();
+
+                    foreach (var assetRec in allAssetsInclass)
+                    {
+                        //sum properties of a record that belongs to a particular class and adds them to a Depreciation Note Model
+                        depreAssets.Add(new DepreciationNoteVM
+                        {
+                            Class = allAssetsInclass.FirstOrDefault().newclass,
+                            Cost = allAssetsInclass.Sum(x => x.purchval),
+                            CostStartDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().purchdate),
+                            Additions = allAssetsInclass.Count(),
+                            // Reclassifications = deprecAssetList.LastOrDefault().r,
+                            Disposal = 0,
+                            Depreciation = allAssetsInclass.Sum(x => x.depreciation),
+                            DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().calc_date),
+                            DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", allAssetsInclass.FirstOrDefault().calc_date)
+
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+            else
+            {
+                //Gets all Distinct classes on the fa_gdepreciations table
+                var classes = context.fa_gdepreciations.DistinctBy(x => x.newclass).ToList();
+
+                //loops through the list of classes
+                foreach (var allrec in classes)
+                {
+                    //get's all records that belongs to a particular class
+                    var getallrecInClass = context.fa_gdepreciations.Where(x => x.newclass == allrec.newclass).ToList();
+
+                    //sum properties of a record that belongs to a particular class and adds them to a Depreciation Note Model
+                    depreAssets.Add(new DepreciationNoteVM
+                    {
+                        Class = getallrecInClass.FirstOrDefault().newclass,
+                        Cost = getallrecInClass.Sum(x => x.purchval),
+                        CostStartDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().purchdate),
+                        Additions = getallrecInClass.Count(),
+                        // Reclassifications = deprecAssetList.LastOrDefault().r,
+                        Disposal = 0,
+                        Depreciation = getallrecInClass.Sum(x => x.depreciation),
+                        DepreciationStartDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().calc_date),
+                        DepreciationEndDate = string.Format("{0:MM/dd/yyyy}", getallrecInClass.FirstOrDefault().calc_date)
+
+                    });
+                }
+            }
+
+            return depreAssets;
+        }
+
+        public IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClass(string classCode, string month, string year)
+        {
+            var depreciationClass = new List<DepreciationNoteVM>();
+
+            var depreciatedAssets = DepreciationNoteRepo(classCode, month, year).OrderBy(x => x.newclass).DistinctBy(x => x.newclass);
+
+            foreach (var assets in depreciatedAssets)
+            {
+                depreciationClass.Add(new DepreciationNoteVM
+                {
+                    Class = assets.newclass,
+                });
+            }
+
+            return depreciationClass;
+        }
+
+        private IEnumerable<DepreciationVM> DepreciationNoteRepo(string classCode, string month, string year)
+        {
+            IEnumerable<DepreciationVM> result = null;
+
+            if (!string.IsNullOrEmpty(classCode) && !string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year) && classCode != "null")
+            {
+                try
+                {
+                    result = context.fa_gdepreciations.Where(asset => asset.newclass == classCode.Trim() && asset.assetmonth == month.Trim() && asset.assetyear == year.Trim())
+                        .Select(depreList => new DepreciationVM
+                        {
+                            oldclass = depreList.oldclass,
+                            newclass = depreList.newclass,
+                            purchdate = depreList.purchdate,
+                            depreciation = depreList.depreciation,
+                            bookval = depreList.bookval
+
+                        }).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+
+            }
+            else if (!string.IsNullOrEmpty(month) && !string.IsNullOrEmpty(year))
+            {
+                try
+                {
+                    result = context.fa_gdepreciations.Where(asset => asset.assetmonth == month.Trim() && asset.assetyear == year.Trim())
+                        .Select(depreList => new DepreciationVM
+                        {
+                            oldclass = depreList.oldclass,
+                            newclass = depreList.newclass,
+                            purchdate = depreList.purchdate,
+                            depreciation = depreList.depreciation,
+                            bookval = depreList.bookval
+
+                        }).ToList();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
+
+            return result;
+        }
     }
 }

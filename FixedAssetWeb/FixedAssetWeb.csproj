@@ -203,6 +203,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Reports\" />
+    <Folder Include="wwwroot\image\" />
   </ItemGroup>
 
 </Project>

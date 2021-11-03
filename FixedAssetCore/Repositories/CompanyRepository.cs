@@ -36,5 +36,16 @@ namespace FixedAssetCore.Core.Repositories
 
             return Tuple.Create(processingMonth, processingYear);
         }
+
+        //public nac_company GetProcessingMonthAndYearii()
+        //{
+        //    var company = context.nac_company.FirstOrDefault();
+
+        //    nac_company nac_Company = new nac_company();
+        //    nac_Company.processmonth = company.processmonth;
+        //    nac_Company.Processyear = company.Processyear;
+
+        //    return nac_Company;
+        //}
     }
 }

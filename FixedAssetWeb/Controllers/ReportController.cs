@@ -76,6 +76,11 @@ namespace FixedAssetWeb.Controllers
             return View();
         }
 
+        public IActionResult DepreciationSchedule()
+        {
+            return View();
+        }
+
         [Route("Report/PrintDepreciationSummary/{assetCode}")]
         public async Task<IActionResult> PrintDepreciationSummary(string assetCode)
         {
@@ -143,7 +148,7 @@ namespace FixedAssetWeb.Controllers
         public async Task<IActionResult> MonthlyJournalReport(string month, string year)
         {
             if (month == null && year == null)
-                return BadRequest("Input is Required");
+                return BadRequest("Date Input is Required");
             var monthlyJournalReport = new ReportVM
             {
                 Company = _companyService.GetCompanySingleRecord(),
@@ -151,6 +156,59 @@ namespace FixedAssetWeb.Controllers
                 MonthlyJournal2 = _generateDepreciation.OrderDepreciationsByClass(month, year)
             };
             return await _generatePdf.GetPdf("Views/Report/MonthlyJournalReport.cshtml", monthlyJournalReport);
+        }
+
+        [Route("Report/DepreciationNotesReport/{classCode}/{month}/{year}")]
+        public async Task<IActionResult> DepreciationNotesReport(string classCode, string month, string year)
+        {
+            if (month == null && year == null)
+                return BadRequest("Date Input is Required");
+            var depreciationNoteReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationNote = _generateDepreciation.DepreciationNoteService(classCode, month, year),
+                DepreciationNote2 = _generateDepreciation.GetDepreciationNoteByClassService(classCode, month, year),
+            };
+            return await _generatePdf.GetPdf("Views/Report/DepreciationNotesReport.cshtml", depreciationNoteReport);
+        }
+
+        [Route("Report/DepreciationScheduleForClass/{classCode}")]
+        public async Task<IActionResult> DepreciationScheduleForClass(string classCode)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByClass(classCode),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByClass(classCode)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForClass.cshtml", depreciationSheduleReport);
+        }
+
+        [Route("Report/DepreciationScheduleForDepartment/{dept}")]
+        public async Task<IActionResult> DepreciationScheduleForDepartment(string dept)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByDept(dept),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByDept(dept)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForClass.cshtml", depreciationSheduleReport);
+        }
+
+        [Route("Report/DepreciationScheduleForBusinessline/{busline}")]
+        public async Task<IActionResult> DepreciationScheduleForBusinessline(string busline)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByBusinessLine(busline),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByBusinessLine(busline)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForBusinessline.cshtml", depreciationSheduleReport);
         }
     }
 }

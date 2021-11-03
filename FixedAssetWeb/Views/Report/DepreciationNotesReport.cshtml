@@ -1,0 +1,67 @@
+﻿@model FixedAssetWeb.ViewModels.Reports.ReportVM
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewBag.Title = "Depreciation Note";
+}
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <h1 style="text-align:center" class="text-center display-4">@Model.Company.comp_name</h1>
+    <h3 style="text-align:center">@Model.Company.Address</h3>
+
+    <br />
+    <h3 style="text-align:center">REPORTS</h3>
+    <h4 style="text-align:center">Depreciation Note</h4>
+
+    <h3>Depreciation Note Report: Produce On @DateTime.Now</h3>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        @*<tr style="text-align:center">
+            </tr>*@
+
+        @foreach (var assetClass in Model.DepreciationNote2)
+        {
+            <thead>
+                <tr>
+                    <th>All Lines:</th>
+                    <th> @assetClass.Class</th>
+                </tr>
+            </thead>
+
+
+        }
+
+    </table>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        @*<tr style="text-align:center">
+            </tr>*@
+
+        @foreach (var assetClass in Model.DepreciationNote2)
+        {
+            
+
+            @foreach (var asset in Model.DepreciationNote.Where(x => x.Class == assetClass.Class))
+            {
+                <tbody>
+                    <tr style="text-align:center">
+                        <td> @asset.CostStartDate</td>
+
+                        @*<td> @asset.Reclassifications</td>
+                            <td> @asset.Disposal</td>
+                            <td> @asset.CostEndDate</td>*@
+                        @*<td></td>*@
+
+                    </tr>
+                    <tr> <td> @asset.Additions </td></tr>
+                </tbody>
+            }
+
+        }
+
+    </table>
+</body>
+</html>

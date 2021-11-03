@@ -39,7 +39,7 @@
               <div class="col-lg-2">
                 <div>
                   <label class="form-label">
-                    <b>Process Month </b>
+                    Process Month 
                   </label>
                 </div>
                 <div>
@@ -56,7 +56,7 @@
               <div class="col-lg-2">
                 <div>
                   <label class="form-label">
-                    <b>Process Year </b>
+                    Process Year 
                   </label>
                 </div>
                 <div>
