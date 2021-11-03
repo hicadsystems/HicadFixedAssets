@@ -24,6 +24,7 @@ namespace FixedAssetCore.EntityCoreVM
 			public string oldloc { get; set; }
 			public string newloc { get; set; }
 			public string oldclass { get; set; }
+			public string newclasscode { get; set; }
 			public string newclass { get; set; }
 			public decimal? bookval { get; set; }
 			public Single? depreciation { get; set; }

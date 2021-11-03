@@ -20,33 +20,47 @@
 
     <h3>Depreciation Note Report: Produce On @DateTime.Now</h3>
     <table border="2" cellpadding="2" cellspacing="0" width="100%">
-        <tr style="text-align:center">
-        </tr>
+        @*<tr style="text-align:center">
+            </tr>*@
 
         @foreach (var assetClass in Model.DepreciationNote2)
         {
-    <tr>
-        <td> <span><b>All Lines:</b></span></td>
-        <td> @assetClass.Class</td>
-    </tr>
+            <thead>
+                <tr>
+                    <th>All Lines:</th>
+                    <th> @assetClass.Class</th>
+                </tr>
+            </thead>
 
-         
+
+        }
+
+    </table>
+    <table border="2" cellpadding="2" cellspacing="0" width="100%">
+        @*<tr style="text-align:center">
+            </tr>*@
+
+        @foreach (var assetClass in Model.DepreciationNote2)
+        {
+            
 
             @foreach (var asset in Model.DepreciationNote.Where(x => x.Class == assetClass.Class))
             {
-                <tr style="text-align:center">
-                    <td> @asset.CostStartDate</td>
-                   
-                    @*<td> @asset.Reclassifications</td>
-                    <td> @asset.Disposal</td>
-                    <td> @asset.CostEndDate</td>*@
-                    @*<td></td>*@
-                    
-                </tr>
-                <tr> <td> @asset.Additions </td></tr>
+                <tbody>
+                    <tr style="text-align:center">
+                        <td> @asset.CostStartDate</td>
+
+                        @*<td> @asset.Reclassifications</td>
+                            <td> @asset.Disposal</td>
+                            <td> @asset.CostEndDate</td>*@
+                        @*<td></td>*@
+
+                    </tr>
+                    <tr> <td> @asset.Additions </td></tr>
+                </tbody>
             }
-            
-         }
+
+        }
 
     </table>
 </body>
