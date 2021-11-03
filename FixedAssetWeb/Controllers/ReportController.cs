@@ -171,5 +171,44 @@ namespace FixedAssetWeb.Controllers
             };
             return await _generatePdf.GetPdf("Views/Report/DepreciationNotesReport.cshtml", depreciationNoteReport);
         }
+
+        [Route("Report/DepreciationScheduleForClass/{classCode}")]
+        public async Task<IActionResult> DepreciationScheduleForClass(string classCode)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByClass(classCode),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByClass(classCode)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForClass.cshtml", depreciationSheduleReport);
+        }
+
+        [Route("Report/DepreciationScheduleForDepartment/{dept}")]
+        public async Task<IActionResult> DepreciationScheduleForDepartment(string dept)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByDept(dept),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByDept(dept)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForClass.cshtml", depreciationSheduleReport);
+        }
+
+        [Route("Report/DepreciationScheduleForBusinessline/{busline}")]
+        public async Task<IActionResult> DepreciationScheduleForBusinessline(string busline)
+        {
+            var depreciationSheduleReport = new ReportVM
+            {
+                Company = _companyService.GetCompanySingleRecord(),
+                DepreciationSchedule1 = _generateDepreciation.DepreciationScheduleByBusinessLine(busline),
+                DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByBusinessLine(busline)
+            };
+
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForBusinessline.cshtml", depreciationSheduleReport);
+        }
     }
 }

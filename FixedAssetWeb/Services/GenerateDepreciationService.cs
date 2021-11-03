@@ -65,6 +65,48 @@ namespace FixedAssetWeb.Services
 
             return response;
         }
+
+        public IEnumerable<DepreciationVM> DepreciationScheduleByClass(string classCode)
+        {
+            var response = unitOfWork.depreciation.SortDepreciationScheduleByClass(classCode);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> GroupDepreciationScheduleByClass(string classCode)
+        {
+            var response = unitOfWork.depreciation.GroupDeprecitionScheduleByClass(classCode);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> DepreciationScheduleByDept(string dept)
+        {
+            var response = unitOfWork.depreciation.SortDepreciationScheduleByDept(dept);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> GroupDepreciationScheduleByDept(string dept)
+        {
+            var response = unitOfWork.depreciation.GroupDeprecitionScheduleByDept(dept);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> DepreciationScheduleByBusinessLine(string busline)
+        {
+            var response = unitOfWork.depreciation.SortDepreciationScheduleByBusinessLine(busline);
+
+            return response;
+        }
+
+        public IEnumerable<DepreciationVM> GroupDepreciationScheduleByBusinessLine(string busline)
+        {
+            var response = unitOfWork.depreciation.GroupDeprecitionScheduleByBusinessLine(busline);
+
+            return response;
+        }
         public IEnumerable<DepreciationNoteVM> GetDepreciationNoteByClassService(string classCode, string month, string year)
         {
             var response = unitOfWork.depreciation.GetDepreciationNoteByClass(classCode, month, year);

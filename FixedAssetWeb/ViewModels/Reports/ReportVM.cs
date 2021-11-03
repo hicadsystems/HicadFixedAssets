@@ -23,7 +23,8 @@ namespace FixedAssetWeb.ViewModels.Reports
         public IEnumerable<AssetDisposalVM> AssetDisposal { get; set; }
         public IEnumerable<DepreciationVM> MonthlyJournal { get; set; }
         public IEnumerable<DepreciationVM> MonthlyJournal2 { get; set; }
-
+        public IEnumerable<DepreciationVM> DepreciationSchedule1 { get; set; }
+        public IEnumerable<DepreciationVM> DepreciationSchedule2 { get; set; }
         public IEnumerable<DepreciationNoteVM> DepreciationNote { get; set; }
         public IEnumerable<DepreciationNoteVM> DepreciationNote2 { get; set; }
     }
