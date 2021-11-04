@@ -202,7 +202,7 @@ namespace FixedAssetCore.Repositories
                     {
                         depreciationVMs.Add(new DepreciationVM
                         {
-                            newclasscode = classCode,
+                            newclasscode = asset.newclasscode,
                             newclass = asset.newclass,
                             purchval = asset.purchval,
                             purchdate = asset.purchdate,

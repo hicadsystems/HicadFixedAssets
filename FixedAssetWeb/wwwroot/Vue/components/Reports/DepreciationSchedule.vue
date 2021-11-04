@@ -213,7 +213,12 @@
             </div>
           </div>
           <div role="group" class="btn-group mr-2 sw-btn-group-extra">
-            <button type="submit" class="btn btn-primary mb-2">Continue</button>
+            <button 
+              type="submit" 
+              class="btn btn-primary mb-2"
+              v-on:click="generateReport">
+              Continue
+            </button>
           </div>
           <div role="group" class="btn-group mr-2 sw-btn-group-extra">
             <button class="btn btn-danger mb-2">Cancel</button>
@@ -307,6 +312,24 @@ export default {
       this.specificClass = false;
       this.specificDepartment = false;
       this.specificBusinessLine = false;
+    },
+
+    generateReport(){
+      if(this.Class != false){
+        window.open(
+        `/Report/DepreciationScheduleForClass/${this.objectBody.classCode}`
+      );
+      }
+      else if(this.Department != false){
+        window.open(
+        `/Report/DepreciationScheduleForDepartment/${this.objectBody.classDept}`
+      );
+      }
+      else if(this.BusinessLine != false){
+        window.open(
+        `/Report/DepreciationScheduleForBusinessline/${this.objectBody.busLine}`
+      );
+      }
     },
   },
 };
