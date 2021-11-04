@@ -5132,6 +5132,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5207,6 +5212,15 @@ __webpack_require__.r(__webpack_exports__);
       this.specificClass = false;
       this.specificDepartment = false;
       this.specificBusinessLine = false;
+    },
+    generateReport: function generateReport() {
+      if (this.Class != false) {
+        window.open("/Report/DepreciationScheduleForClass/".concat(this.objectBody.classCode));
+      } else if (this.Department != false) {
+        window.open("/Report/DepreciationScheduleForDepartment/".concat(this.objectBody.classDept));
+      } else if (this.BusinessLine != false) {
+        window.open("/Report/DepreciationScheduleForBusinessline/".concat(this.objectBody.busLine));
+      }
     }
   }
 });
@@ -38188,9 +38202,26 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(9),
+          _c(
+            "div",
+            {
+              staticClass: "btn-group mr-2 sw-btn-group-extra",
+              attrs: { role: "group" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary mb-2",
+                  attrs: { type: "submit" },
+                  on: { click: _vm.generateReport }
+                },
+                [_vm._v("\n            Continue\n          ")]
+              )
+            ]
+          ),
           _vm._v(" "),
-          _vm._m(10)
+          _vm._m(9)
         ])
       ])
     ])
@@ -38310,25 +38341,6 @@ var staticRenderFns = [
     return _c("div", [
       _c("label", { attrs: { for: "" } }, [_c("b", [_vm._v("Business Line")])])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "btn-group mr-2 sw-btn-group-extra",
-        attrs: { role: "group" }
-      },
-      [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary mb-2", attrs: { type: "submit" } },
-          [_vm._v("Continue")]
-        )
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -56674,7 +56686,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
