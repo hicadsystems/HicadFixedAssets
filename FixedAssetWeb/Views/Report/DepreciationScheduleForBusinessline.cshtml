@@ -46,6 +46,11 @@
                         <td>@asset.accum_depr</td>
                         <td>@asset.bookval</td>
                     </tr>
+
+                    <tr>
+                        <td>Total</td>
+                        <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.busline == busLine.busline).ToList().Sum(x => x.purchval), 2)</td>
+                    </tr>
                 </tbody>
             }
             <tr>
