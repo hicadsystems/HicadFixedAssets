@@ -395,13 +395,13 @@ namespace FixedAssetCore.Repositories
             {
                 try
                 {
-                    var deptEntity = context.nac_costcenters.FirstOrDefault(x => x.unitcode == dept);
+                    //var deptEntity = context.nac_costcenters.FirstOrDefault(x => x.unitcode == dept);
 
                     var result = context.fa_gdepreciations
                         .Select(assetsOfDept => new DepreciationVM
                         {
                             loc = assetsOfDept.loc,
-                            newloc = deptEntity.unitdesc,
+                            newloc = assetsOfDept.assetcode,
                             purchval = assetsOfDept.purchval,
                             purchdate = assetsOfDept.purchdate,
                             depreciation = assetsOfDept.depreciation,
