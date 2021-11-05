@@ -395,18 +395,18 @@ namespace FixedAssetCore.Repositories
             {
                 try
                 {
-                    var deptEntity = context.nac_costcenters.FirstOrDefault(x => x.unitcode == dept);
 
                     var result = context.fa_gdepreciations
+                        .Join(context.nac_costcenters, al => al.loc, costcnt => costcnt.unitcode, (al, costcnt) => new { al, costcnt })
                         .Select(assetsOfDept => new DepreciationVM
                         {
-                            loc = assetsOfDept.loc,
-                            newloc = deptEntity.unitdesc,
-                            purchval = assetsOfDept.purchval,
-                            purchdate = assetsOfDept.purchdate,
-                            depreciation = assetsOfDept.depreciation,
-                            accum_depr = assetsOfDept.accum_depr,
-                            bookval = assetsOfDept.bookval
+                            loc = assetsOfDept.al.loc,
+                            newloc = assetsOfDept.costcnt.unitdesc,
+                            purchval = assetsOfDept.al.purchval,
+                            purchdate = assetsOfDept.al.purchdate,
+                            depreciation = assetsOfDept.al.depreciation,
+                            accum_depr = assetsOfDept.al.accum_depr,
+                            bookval = assetsOfDept.al.bookval
 
                         }).ToList();
 
@@ -486,15 +486,16 @@ namespace FixedAssetCore.Repositories
                 try
                 {
                     var result = context.fa_gdepreciations.Where(asset => asset.busline == busline)
+                        .Join(context.nac_businessline, al => al.busline, bsline => bsline.Code, (al, bsline) => new { al, bsline })
                         .Select(assetsOfBusLine => new DepreciationVM
                         {
-                            busline = assetsOfBusLine.busline,
-                            busdesc = assetsOfBusLine.busdesc,
-                            purchval = assetsOfBusLine.purchval,
-                            purchdate = assetsOfBusLine.purchdate,
-                            depreciation = assetsOfBusLine.depreciation,
-                            accum_depr = assetsOfBusLine.accum_depr,
-                            bookval = assetsOfBusLine.bookval
+                            busline = assetsOfBusLine.al.busline,
+                            busdesc = assetsOfBusLine.bsline.Description,
+                            purchval = assetsOfBusLine.al.purchval,
+                            purchdate = assetsOfBusLine.al.purchdate,
+                            depreciation = assetsOfBusLine.al.depreciation,
+                            accum_depr = assetsOfBusLine.al.accum_depr,
+                            bookval = assetsOfBusLine.al.bookval
 
                         }).ToList();
 
@@ -511,15 +512,16 @@ namespace FixedAssetCore.Repositories
                 try
                 {
                     var result = context.fa_gdepreciations
+                        .Join(context.nac_businessline, al => al.busline, bsline => bsline.Code, (al, bsline) => new { al, bsline })
                         .Select(assetsOfBusLine => new DepreciationVM
                         {
-                            busline = assetsOfBusLine.busline,
-                            busdesc = assetsOfBusLine.busdesc,
-                            purchval = assetsOfBusLine.purchval,
-                            purchdate = assetsOfBusLine.purchdate,
-                            depreciation = assetsOfBusLine.depreciation,
-                            accum_depr = assetsOfBusLine.accum_depr,
-                            bookval = assetsOfBusLine.bookval
+                            busline = assetsOfBusLine.al.busline,
+                            busdesc = assetsOfBusLine.bsline.Description,
+                            purchval = assetsOfBusLine.al.purchval,
+                            purchdate = assetsOfBusLine.al.purchdate,
+                            depreciation = assetsOfBusLine.al.depreciation,
+                            accum_depr = assetsOfBusLine.al.accum_depr,
+                            bookval = assetsOfBusLine.al.bookval
 
                         }).ToList();
 

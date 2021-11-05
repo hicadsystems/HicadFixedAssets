@@ -48,6 +48,15 @@
                     </tr>
                 </tbody>
             }
+            <tr style="text-align:center">
+                <td><span>Total</span></td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.newclass == assetClass.newclass).ToList().Sum(x => x.purchval), 2)</td>
+                <td></td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.newclass == assetClass.newclass).ToList().Sum(x => x.depreciation), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.newclass == assetClass.newclass).ToList().Sum(x => x.depreciation), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.newclass == assetClass.newclass).ToList().Sum(x => x.accum_depr), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.newclass == assetClass.newclass).ToList().Sum(x => x.bookval), 2)</td>
+            </tr>
             <tr>
                 <td><span><b> &nbsp;&nbsp;&nbsp; </b></span> </td>
                 <td></td>

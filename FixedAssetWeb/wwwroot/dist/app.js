@@ -56686,7 +56686,7 @@ vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(moment__WEBPACK_IMPORTED_MODULE_2
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Projects\HicadFixedAssets-master\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
+module.exports = __webpack_require__(/*! C:\Users\HICADPC\Desktop\Jude Project\HicadFixedAssets\FixedAssetWeb\wwwroot\Vue\app.js */"./wwwroot/Vue/app.js");
 
 
 /***/ })
