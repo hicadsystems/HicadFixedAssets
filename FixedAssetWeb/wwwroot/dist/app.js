@@ -39219,7 +39219,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -39516,7 +39516,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [

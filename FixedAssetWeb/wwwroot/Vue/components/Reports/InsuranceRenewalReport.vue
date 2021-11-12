@@ -139,7 +139,7 @@
         class="btn btn-submit btn-primary"
         v-on:click="generateReport"
         >
-        Show Report
+        PDF File
       </button>
       <div class="page-body">
         <div class="card">

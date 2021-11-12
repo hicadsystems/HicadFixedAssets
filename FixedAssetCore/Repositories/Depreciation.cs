@@ -261,7 +261,7 @@ namespace FixedAssetCore.Repositories
                     {
                         depreciationVMs.Add(new DepreciationVM
                         {
-                            loc = dept,
+                            loc =  dept.Equals("null") ? asset.loc : dept,
                             newloc = asset.newloc,
                             purchval = asset.purchval,
                             purchdate = asset.purchdate,
@@ -434,7 +434,7 @@ namespace FixedAssetCore.Repositories
                     {
                         depreciationVMs.Add(new DepreciationVM
                         {
-                            busline = busline,
+                            busline = busline.Equals("null") ? asset.busline : busline, /*dept.Equals("null") ? asset.loc : dept,*/
                             busdesc = asset.busdesc,
                             purchval = asset.purchval,
                             purchdate = asset.purchdate,
