@@ -195,7 +195,7 @@ namespace FixedAssetWeb.Controllers
                 DepreciationSchedule2 = _generateDepreciation.GroupDepreciationScheduleByDept(dept)
             };
             //return View(depreciationSheduleReport);
-            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForClass.cshtml", depreciationSheduleReport);
+            return await _generatePdf.GetPdf("Views/Report/DepreciationScheduleForDepartment.cshtml", depreciationSheduleReport);
         }
 
         [Route("Report/DepreciationScheduleForBusinessline/{busline}")]
