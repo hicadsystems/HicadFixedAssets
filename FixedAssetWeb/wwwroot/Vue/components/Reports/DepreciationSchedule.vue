@@ -201,8 +201,8 @@
                   >
                     <option
                       v-for="clist in businessLineList"
-                      v-bind:value="clist.Code"
-                      v-bind:key="clist.Code"
+                      v-bind:value="clist.code"
+                      v-bind:key="clist.code"
                       required
                     >
                       {{ clist.description }}

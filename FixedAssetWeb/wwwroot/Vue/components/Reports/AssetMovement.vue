@@ -126,6 +126,12 @@
           >
             Process
           </button>
+          <button 
+            @click.prevent="onCancel()" 
+            class="btn btn-danger"
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>
@@ -137,7 +143,7 @@
         class="btn btn-submit btn-primary"
         v-on:click="generateReport"
       >
-        Show Report
+        PDF File
       </button>
       <div class="page-body">
         <div class="card">
@@ -242,6 +248,15 @@ export default {
 
           this.assetMovementList = response.data.data;
         });
+    },
+
+    onCancel() {
+      this.errors = [];
+
+      this.sortAssetsList.classCode = "";
+      this.sortAssetsList.classDept = "";
+      this.sortAssetsList.startDate = "";
+      this.sortAssetsList.endDate = "";
     },
 
     generateReport() {

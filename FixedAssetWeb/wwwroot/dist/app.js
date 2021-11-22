@@ -3153,6 +3153,92 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3160,47 +3246,47 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      errors: null,
-      responseMessage: '',
-      submitorUpdate: 'Submit',
+      errors: [],
+      responseMessage: "",
+      submitorUpdate: "Submit",
       canProcess: true,
       InterestList: null,
       LiabilityList: null,
       FundacList: null,
       TrusteeList: null,
       postBody: {
-        Code: '',
-        Description: '',
-        startDate: '',
-        processingMonth: '',
-        processingYear: '',
-        incomeacct: '',
-        interestacct: '',
-        fundacct: '',
-        trusteeacct: ''
+        Code: "",
+        Description: "",
+        startDate: "",
+        processingMonth: "",
+        processingYear: "",
+        incomeacct: "",
+        interestacct: "",
+        fundacct: "",
+        trusteeacct: ""
       }
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/ChartofAccount/getChartofAccount1/1').then(function (response) {
+    axios.get("/api/ChartofAccount/getChartofAccount1/1").then(function (response) {
       return _this.InterestList = response.data;
     });
-    axios.get('/api/ChartofAccount/getChartofAccount5/5').then(function (response) {
+    axios.get("/api/ChartofAccount/getChartofAccount5/5").then(function (response) {
       return _this.LiabilityList = response.data;
     });
-    axios.get('/api/ChartofAccount/getChartofAccount2/2').then(function (response) {
+    axios.get("/api/ChartofAccount/getChartofAccount2/2").then(function (response) {
       return _this.TrusteeList = response.data;
     });
-    axios.get('/api/ChartofAccount/getChartofAccount3/3').then(function (response) {
+    axios.get("/api/ChartofAccount/getChartofAccount3/3").then(function (response) {
       return _this.FundacList = response.data;
     });
   },
   watch: {
-    '$store.state.objectToUpdate': function $storeStateObjectToUpdate(newVal, oldVal) {
+    "$store.state.objectToUpdate": function $storeStateObjectToUpdate(newVal, oldVal) {
       this.postBody.Code = this.$store.state.objectToUpdate.code, this.postBody.Description = this.$store.state.objectToUpdate.description, this.postBody.startDate = this.$store.state.objectToUpdate.startDate, this.postBody.processingMonth = this.$store.state.objectToUpdate.processingMonth, this.postBody.processingYear = this.$store.state.objectToUpdate.processingYear, this.postBody.fundacct = this.$store.state.objectToUpdate.fundacct, this.postBody.incomeacct = this.$store.state.objectToUpdate.incomeacct, this.postBody.interestacct = this.$store.state.objectToUpdate.interestacct, this.postBody.trusteeacct = this.$store.state.objectToUpdate.trusteeacct;
-      this.submitorUpdate = 'Update';
+      this.submitorUpdate = "Update";
     }
   },
   methods: {
@@ -3211,36 +3297,36 @@ __webpack_require__.r(__webpack_exports__);
         this.postPost();
       } else {
         this.errors = [];
-        this.errors.push('Code is Required');
+        this.errors.push("Code is Required");
       }
     },
     postPost: function postPost() {
       var _this2 = this;
 
-      if (this.submitorUpdate == 'Submit') {
+      if (this.submitorUpdate == "Submit") {
         axios.post("/api/BusinessLine/createBusinessLine", this.postBody).then(function (response) {
           _this2.responseMessage = response.data.responseDescription;
           _this2.canProcess = true;
 
-          if (response.data.responseCode == '200') {
-            _this2.postBody.Code = '';
-            _this2.postBody.Code = '';
-            _this2.postBody.Description = '';
-            _this2.postBody.Description = '';
-            _this2.postBody.startDate = '';
-            _this2.postBody.startDate = '';
-            _this2.postBody.processingMonth = '';
-            _this2.postBody.processingMonth = '';
-            _this2.postBody.processingYear = '';
-            _this2.postBody.processingYear = '';
-            _this2.postBody.fundacct = '';
-            _this2.postBody.fundacct = '';
-            _this2.postBody.incomeacct = '';
-            _this2.postBody.incomeacct = '';
-            _this2.postBody.trusteeacct = '';
-            _this2.postBody.trusteeacct = '';
-            _this2.postBody.interestacct = '';
-            _this2.postBody.interestacct = '';
+          if (response.data.responseCode == "200") {
+            _this2.postBody.Code = "";
+            _this2.postBody.Code = "";
+            _this2.postBody.Description = "";
+            _this2.postBody.Description = "";
+            _this2.postBody.startDate = "";
+            _this2.postBody.startDate = "";
+            _this2.postBody.processingMonth = "";
+            _this2.postBody.processingMonth = "";
+            _this2.postBody.processingYear = "";
+            _this2.postBody.processingYear = "";
+            _this2.postBody.fundacct = "";
+            _this2.postBody.fundacct = "";
+            _this2.postBody.incomeacct = "";
+            _this2.postBody.incomeacct = "";
+            _this2.postBody.trusteeacct = "";
+            _this2.postBody.trusteeacct = "";
+            _this2.postBody.interestacct = "";
+            _this2.postBody.interestacct = "";
             _this2.$store.state.objectToUpdate = "create";
           }
         })["catch"](function (e) {
@@ -3248,37 +3334,49 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      if (this.submitorUpdate == 'Update') {
+      if (this.submitorUpdate == "Update") {
         axios.put("/api/BusinessLine/updateBusinessLine", this.postBody).then(function (response) {
           _this2.responseMessage = response.data.responseDescription;
           _this2.canProcess = true;
 
-          if (response.data.responseCode == '200') {
-            _this2.submitorUpdate = 'Submit';
-            _this2.postBody.Code = '';
-            _this2.postBody.Code = '';
-            _this2.postBody.Description = '';
-            _this2.postBody.Description = '';
-            _this2.postBody.startDate = '';
-            _this2.postBody.startDate = '';
-            _this2.postBody.processingMonth = '';
-            _this2.postBody.processingMonth = '';
-            _this2.postBody.processingYear = '';
-            _this2.postBody.processingYear = '';
-            _this2.postBody.fundacct = '';
-            _this2.postBody.fundacct = '';
-            _this2.postBody.incomeacct = '';
-            _this2.postBody.incomeacct = '';
-            _this2.postBody.trusteeacct = '';
-            _this2.postBody.trusteeacct = '';
-            _this2.postBody.interestacct = '';
-            _this2.postBody.interestacct = '';
+          if (response.data.responseCode == "200") {
+            _this2.submitorUpdate = "Submit";
+            _this2.postBody.Code = "";
+            _this2.postBody.Code = "";
+            _this2.postBody.Description = "";
+            _this2.postBody.Description = "";
+            _this2.postBody.startDate = "";
+            _this2.postBody.startDate = "";
+            _this2.postBody.processingMonth = "";
+            _this2.postBody.processingMonth = "";
+            _this2.postBody.processingYear = "";
+            _this2.postBody.processingYear = "";
+            _this2.postBody.fundacct = "";
+            _this2.postBody.fundacct = "";
+            _this2.postBody.incomeacct = "";
+            _this2.postBody.incomeacct = "";
+            _this2.postBody.trusteeacct = "";
+            _this2.postBody.trusteeacct = "";
+            _this2.postBody.interestacct = "";
+            _this2.postBody.interestacct = "";
             _this2.$store.state.objectToUpdate = "update";
           }
         })["catch"](function (e) {
           _this2.errors.push(e);
         });
       }
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.postBody.Code = "";
+      this.postBody.Description = "";
+      this.postBody.startDate = "";
+      this.postBody.processingMonth = "";
+      this.postBody.processingYear = "";
+      this.postBody.incomeacct = "";
+      this.postBody.interestacct = "";
+      this.postBody.fundacct = "";
+      this.postBody.trusteeacct = "";
     }
   },
   computed: {
@@ -4270,6 +4368,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -4329,6 +4433,13 @@ __webpack_require__.r(__webpack_exports__);
         _this2.assetMovementList = response.data.data;
       });
     },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.sortAssetsList.classCode = "";
+      this.sortAssetsList.classDept = "";
+      this.sortAssetsList.startDate = "";
+      this.sortAssetsList.endDate = "";
+    },
     generateReport: function generateReport() {
       var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
       var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
@@ -4374,6 +4485,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4667,9 +4785,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this2.assetRegList = response.data.data;
       });
     },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.sortAssetsList.classCode = "";
+      this.sortAssetsList.classDept = "";
+      this.sortAssetsList.startDate = "";
+      this.sortAssetsList.endDate = "";
+    },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format('MM DD YYYY, h:mm:ss a');
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format('MM DD YYYY, h:mm:ss a');
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.startDate).format("MM DD YYYY, h:mm:ss a");
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortAssetsList.endDate).format("MM DD YYYY, h:mm:ss a");
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -5350,6 +5475,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5361,7 +5496,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      assetCode: 'null',
+      errors: [],
+      assetCode: "null",
       assetList: null,
       responseMessage: "",
       DeprAssetsList: null
@@ -5386,6 +5522,10 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data.data);
         _this2.DeprAssetsList = response.data.data;
       });
+    },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.assetCode = "";
     },
     generateReport: function generateReport() {
       window.open("/Report/PrintDepreciationSummary/".concat(this.assetCode));
@@ -5517,6 +5657,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5527,6 +5679,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      errors: [],
       deprList: null,
       sortDepreciation: {
         startDate: null,
@@ -5555,9 +5708,14 @@ __webpack_require__.r(__webpack_exports__);
         _this.deprList = response.data.data;
       });
     },
+    onCancel: function onCancel() {
+      this.errors = [];
+      this.sortDepreciation.startDate = "";
+      this.sortDepreciation.endDate = "";
+    },
     generateReport: function generateReport() {
-      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.startDate).format('MM DD YYYY, h:mm:ss a');
-      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.endDate).format('MM DD YYYY, h:mm:ss a');
+      var startDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.startDate).format("MM DD YYYY, h:mm:ss a");
+      var endDay = moment__WEBPACK_IMPORTED_MODULE_2___default()(this.sortDepreciation.endDate).format("MM DD YYYY, h:mm:ss a");
 
       if (startDay === "Invalid date" && endDay === "Invalid date") {
         startDay = null;
@@ -35023,14 +35181,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.errors
-      ? _c("div", { staticClass: "has-error" }, [
-          _vm._v(" " + _vm._s([_vm.errors]))
-        ])
+      ? _c("div", { staticClass: "has-error" }, [_vm._v(_vm._s([_vm.errors]))])
       : _vm._e(),
     _vm._v(" "),
     _vm.responseMessage
       ? _c("div", { staticClass: "has-error" }, [
-          _vm._v(" " + _vm._s(_vm.responseMessage))
+          _vm._v(_vm._s(_vm.responseMessage))
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -35238,7 +35394,13 @@ var render = function() {
                       key: liability.acctcode,
                       domProps: { value: liability.acctcode }
                     },
-                    [_vm._v(" " + _vm._s(liability.description) + " ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(liability.description) +
+                          "\n              "
+                      )
+                    ]
                   )
                 }),
                 0
@@ -35292,7 +35454,13 @@ var render = function() {
                       key: interest.acctcode,
                       domProps: { value: interest.acctcode }
                     },
-                    [_vm._v(" " + _vm._s(interest.description) + " ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(interest.description) +
+                          "\n              "
+                      )
+                    ]
                   )
                 }),
                 0
@@ -35343,7 +35511,13 @@ var render = function() {
                   return _c(
                     "option",
                     { key: Fund.acctcode, domProps: { value: Fund.acctcode } },
-                    [_vm._v(" " + _vm._s(Fund.description) + " ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(Fund.description) +
+                          "\n              "
+                      )
+                    ]
                   )
                 }),
                 0
@@ -35397,7 +35571,13 @@ var render = function() {
                       key: Trustee.acctcode,
                       domProps: { value: Trustee.acctcode }
                     },
-                    [_vm._v(" " + _vm._s(Trustee.description) + " ")]
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(Trustee.description) +
+                          "\n              "
+                      )
+                    ]
                   )
                 }),
                 0
@@ -35405,7 +35585,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 " }, [
+          _c("div", { staticClass: "col-12" }, [
             _vm.canProcess
               ? _c(
                   "div",
@@ -35421,11 +35601,40 @@ var render = function() {
                         attrs: { type: "submit" },
                         on: { click: _vm.checkForm }
                       },
-                      [_vm._v(_vm._s(_vm.submitorUpdate))]
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm.submitorUpdate) +
+                            "\n            "
+                        )
+                      ]
                     )
                   ]
                 )
-              : _vm._e()
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "btn-group mr-2 sw-btn-group-extra",
+                attrs: { role: "group" }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.onCancel()
+                      }
+                    }
+                  },
+                  [_vm._v("\n                    Cancel\n                  ")]
+                )
+              ]
+            )
           ])
         ])
       ])
@@ -36942,6 +37151,20 @@ var render = function() {
               }
             },
             [_vm._v("\n          Process\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onCancel()
+                }
+              }
+            },
+            [_vm._v("\n          Cancel\n        ")]
           )
         ])
       ])
@@ -36955,7 +37178,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -37280,9 +37503,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\n                    " +
                                   _vm._s(clist.classdesc) +
-                                  "\n                                "
+                                  "\n                  "
                               )
                             ]
                           )
@@ -37341,9 +37564,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                " +
+                                "\n                    " +
                                   _vm._s(clist.unitdesc) +
-                                  "\n                                "
+                                  "\n                  "
                               )
                             ]
                           )
@@ -37368,7 +37591,21 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Process\n                ")]
+            [_vm._v("\n          Process\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onCancel()
+                }
+              }
+            },
+            [_vm._v("\n          Cancel\n        ")]
           )
         ])
       ])
@@ -37383,7 +37620,7 @@ var render = function() {
               attrs: { type: "button" },
               on: { click: _vm.generateReport }
             },
-            [_vm._v("Show Report")]
+            [_vm._v("\n      PDF File\n    ")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "page-body" }, [
@@ -38181,9 +38418,9 @@ var render = function() {
                           return _c(
                             "option",
                             {
-                              key: clist.Code,
+                              key: clist.code,
                               attrs: { required: "" },
-                              domProps: { value: clist.Code }
+                              domProps: { value: clist.code }
                             },
                             [
                               _vm._v(
@@ -38428,9 +38665,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                                    " +
+                            "\n                    " +
                               _vm._s(alist.assetDesc) +
-                              "\r\n                                    "
+                              "\n                  "
                           )
                         ]
                       )
@@ -38454,7 +38691,21 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Process\r\n                    ")]
+            [_vm._v("\n          Process\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onCancel()
+                }
+              }
+            },
+            [_vm._v("\n          Cancel\n        ")]
           )
         ])
       ])
@@ -38468,7 +38719,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("Show Report")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -38666,7 +38917,21 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Process\n                ")]
+            [_vm._v("\n          Process\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.onCancel()
+                }
+              }
+            },
+            [_vm._v("\n          Cancel\n        ")]
           )
         ])
       ])
@@ -38680,7 +38945,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("Show Report")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -38954,7 +39219,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [
@@ -39251,7 +39516,7 @@ var render = function() {
           attrs: { type: "button" },
           on: { click: _vm.generateReport }
         },
-        [_vm._v("\n      Show Report\n    ")]
+        [_vm._v("\n      PDF File\n    ")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "page-body" }, [

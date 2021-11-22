@@ -23,7 +23,7 @@
 
         @foreach (var assetDept in Model.DepreciationSchedule2)
         {
-            
+
             <thead>
                 <tr>
                     <th>Description</th>
@@ -39,7 +39,7 @@
             {
                 <tbody>
                     <tr style="text-align:center">
-                        <td>@asset.newloc</td>
+                        <td>@assetDept.newloc</td>
                         <td>@asset.purchval</td>
                         <td>@asset.purchdate</td>
                         <td>@asset.depreciation</td>
@@ -49,16 +49,16 @@
                     </tr>
                 </tbody>
             }
-            <tr>
+            <tr style="text-align:center">
                 <td><span>Total</span></td>
                 <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.loc == assetDept.loc).ToList().Sum(x => x.purchval), 2)</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.loc == assetDept.loc).ToList().Sum(x => x.depreciation), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.loc == assetDept.loc).ToList().Sum(x => x.depreciation), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.loc == assetDept.loc).ToList().Sum(x => x.accum_depr), 2)</td>
+                <td>@Math.Round((decimal)Model.DepreciationSchedule1.Where(x => x.loc == assetDept.loc).ToList().Sum(x => x.bookval), 2)</td>
             </tr>
-            @*<tr>
+            <tr>
                 <td><span><b> &nbsp;&nbsp;&nbsp; </b></span> </td>
                 <td></td>
                 <td></td>
@@ -67,7 +67,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>*@
+            </tr>
         }
 
     </table>
