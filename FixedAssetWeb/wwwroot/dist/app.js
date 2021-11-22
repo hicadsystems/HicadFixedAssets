@@ -38418,9 +38418,9 @@ var render = function() {
                           return _c(
                             "option",
                             {
-                              key: clist.Code,
+                              key: clist.code,
                               attrs: { required: "" },
-                              domProps: { value: clist.Code }
+                              domProps: { value: clist.code }
                             },
                             [
                               _vm._v(

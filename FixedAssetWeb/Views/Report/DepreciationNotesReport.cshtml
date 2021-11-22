@@ -23,17 +23,12 @@
         @*<tr style="text-align:center">
             </tr>*@
 
-        @foreach (var assetClass in Model.DepreciationNote2)
+        @*@foreach (var assetClass in Model.DepreciationNote2)
         {
-            <thead>
-                <tr>
-                    <th>All Lines:</th>
-                    <th> @assetClass.Class</th>
-                </tr>
-            </thead>
+            
 
 
-        }
+        }*@
 
     </table>
     <table border="2" cellpadding="2" cellspacing="0" width="100%">
@@ -42,7 +37,16 @@
 
         @foreach (var assetClass in Model.DepreciationNote2)
         {
-            
+        <thead>
+            <tr>
+                <th>All Lines:</th>
+                <th> @assetClass.Class</th>
+                @*<th> @assetClass.Class</th>
+                <th> @assetClass.Class</th>
+                <th> @assetClass.Class</th>*@
+                <th> Total </th>
+            </tr>
+        </thead>
 
             @foreach (var asset in Model.DepreciationNote.Where(x => x.Class == assetClass.Class))
             {
