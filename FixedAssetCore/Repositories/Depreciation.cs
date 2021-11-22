@@ -261,7 +261,7 @@ namespace FixedAssetCore.Repositories
                     {
                         depreciationVMs.Add(new DepreciationVM
                         {
-                            loc = dept,
+                            loc = asset.loc,
                             newloc = asset.newloc,
                             purchval = asset.purchval,
                             purchdate = asset.purchdate,
